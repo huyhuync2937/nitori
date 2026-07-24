@@ -1,0 +1,63 @@
+<smc:Form x:Class="Socthda.FrmView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="clr-namespace:SasControls;assembly=SasControls"
+          xmlns:local="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          xmlns:sm="clr-namespace:SasFormBrowes;assembly=SasFormBrowes"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          Loaded="Window_Loaded" KeyUp="Form_KeyUp" Title="Danh muc don hang" Theme="Standard" Height="680"
+          Width="960" WindowStartupLocation="CenterScreen">
+  <FrameworkElement.Resources>
+    <ResourceDictionary/>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="0"/>
+        <RowDefinition Height="320*"/>
+        <RowDefinition Height="320*"/>
+      </Grid.RowDefinitions>
+      <FrameworkElement.Resources>
+        <ResourceDictionary/>
+      </FrameworkElement.Resources>
+      <smc:BasicGridView RecordActivated="GrdBrowse_RecordActivated" Name="GrdBrowse" Grid.Row="1" Margin="0,0,0,12">
+        <FrameworkElement.Resources>
+          <LinearGradientBrush x:Key="HeaderBackGround" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFEFF7F7" Offset="0"/>
+            <GradientStop Color="#FF9CF1F5" Offset="0.115"/>
+            <GradientStop Color="#FFEFF5F5" Offset="0.996"/>
+            <GradientStop Color="#FFD7F6F7" Offset="0.385"/>
+          </LinearGradientBrush>
+        </FrameworkElement.Resources>
+        <igDP:DataPresenterBase.FieldSettings>
+          <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="True" AllowGroupBy="True" SummaryUIType="MultiSelect"
+                              AllowSummaries="False"/>
+        </igDP:DataPresenterBase.FieldSettings>
+        <igDP:DataPresenterBase.FieldLayoutSettings>
+          <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                    RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                    FilterRecordLocation="OnTopFixed"/>
+        </igDP:DataPresenterBase.FieldLayoutSettings>
+      </smc:BasicGridView>
+      <smc:BasicGridView Name="GrdBrowseCt" Grid.Row="2" Margin="0,0,0,0">
+        <FrameworkElement.Resources>
+          <LinearGradientBrush x:Key="HeaderBackGround" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFEFF7F7" Offset="0"/>
+            <GradientStop Color="#FF9CF1F5" Offset="0.115"/>
+            <GradientStop Color="#FFEFF5F5" Offset="0.996"/>
+            <GradientStop Color="#FFD7F6F7" Offset="0.385"/>
+          </LinearGradientBrush>
+        </FrameworkElement.Resources>
+        <igDP:DataPresenterBase.FieldSettings>
+          <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="False" AllowGroupBy="True" SummaryUIType="MultiSelect"
+                              AllowSummaries="False"/>
+        </igDP:DataPresenterBase.FieldSettings>
+        <igDP:DataPresenterBase.FieldLayoutSettings>
+          <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                    RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                    FilterRecordLocation="OnTopFixed"/>
+        </igDP:DataPresenterBase.FieldLayoutSettings>
+      </smc:BasicGridView>
+    </Grid>
+  </smc:ConfirmGridView>
+</smc:Form>

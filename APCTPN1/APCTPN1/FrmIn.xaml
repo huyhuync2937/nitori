@@ -1,0 +1,61 @@
+<smc:Form x:Class="APCTPN1.FrmIn"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:SasFormReport="clr-namespace:SasFormReport;assembly=SasFormReport"
+          xmlns:igEditors="http://infragistics.com/Editors"
+          Loaded="Form_Loaded" KeyDown="Form_KeyDown" Title="Danh mục mẫu báo cáo" LanguageID="APCTPN1_2"
+          Height="450" Width="750">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:GridLayout RowCount="5" RowHeights="*,25,0,25,49" ColumnCount="5" Margin="12,4,12,0"
+                  ColumnWidths="152,140,120,120,*">
+        <SasFormReport:ControlFilterReport Name="GridSearch" Grid.ColumnSpan="5"/>
+        <TextBlock Name="lblctu0" Grid.Row="1" Text="Số c.từ gốc kèm theo"/>
+        <smc:NumericTextBox Name="txtctu0" Format="#,0" Grid.Column="1" Grid.Row="1" TabIndex="2"
+                        InvalidValueBehavior="RevertValue" Value="{smc:BindingEx Path=so01}">
+            <igEditors:ValueEditor.ValueConstraint>
+                <igEditors:ValueConstraint ValidateAsType="Integer32" MinInclusive="0" MaxInclusive="99"/>
+            </igEditors:ValueEditor.ValueConstraint>
+        </smc:NumericTextBox>
+        <TextBlock Name="lbllien" Grid.Row="3" Text="Số liên"/>
+        <smc:NumericTextBox Name="txtlien" Format="#,0" Grid.Column="1" Grid.Row="3" TabIndex="3"
+                        InvalidValueBehavior="RevertValue" Value="{smc:BindingEx Path=so02}">
+            <igEditors:ValueEditor.ValueConstraint>
+                <igEditors:ValueConstraint ValidateAsType="Integer16" MinInclusive="1" MaxInclusive="9"/>
+            </igEditors:ValueEditor.ValueConstraint>
+        </smc:NumericTextBox>
+        <smc:GridLayout Row="4" ColumnSpan="5" ColumnCount="6" ColumnWidths="104,104,104,175,125,*">
+            <Button Click="BtnIn_Click" Name="BtnIn" Grid.Column="0" Width="92" Height="25" HorizontalAlignment="Left"
+              TabIndex="4">In</Button>
+            <Button Click="BtnInLT_Click" Name="BtnInLT" Grid.Column="1" Width="92" Height="25"
+              HorizontalAlignment="Left" TabIndex="5">In liên tục</Button>
+            <Button Click="BtnXem_Click" Name="BtnXem" Grid.Column="2" Width="92" Height="25"
+              HorizontalAlignment="Left" TabIndex="6">Xem</Button>
+            <Button Click="btnExport_Click" Name="btnExport" Grid.Column="3" Width="163" HorizontalAlignment="Left"
+              TabIndex="6"/>
+            <Button Click="Btnpdflt_Click"  Name="Btnpdflt" Grid.Column="4" Width="120" Height="25"
+                HorizontalAlignment="Left" TabIndex="7">Xuất PDF liên tục</Button>
+            <Button Click="BtnThoat_Click" Name="BtnThoat" Grid.Column="5" Width="92" Height="25"
+              HorizontalAlignment="Left" TabIndex="8">Quay ra</Button>
+        </smc:GridLayout>
+    </smc:GridLayout>
+</smc:Form>

@@ -1,0 +1,103 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Invb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|d:\\siserpsme2025\\source\\invb\\invb\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|solutionrelative:invb\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|d:\\siserpsme2025\\source\\invb\\invb\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|solutionrelative:invb\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|d:\\siserpsme2025\\source\\invb\\invb\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|solutionrelative:invb\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|d:\\siserpsme2025\\source\\invb\\invb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|solutionrelative:invb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|d:\\siserpsme2025\\source\\invb\\invb\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invb\\Invb.csproj|solutionrelative:invb\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "newForm.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\newForm.xaml.cs",
+              "RelativeDocumentMoniker": "Invb\\newForm.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\newForm.xaml.cs",
+              "RelativeToolTip": "Invb\\newForm.xaml.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAowMMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T06:45:14.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Invb\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\App.xaml.cs",
+              "RelativeToolTip": "Invb\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T06:45:03.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\App.xaml",
+              "RelativeDocumentMoniker": "Invb\\App.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\App.xaml",
+              "RelativeToolTip": "Invb\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-09T06:44:55.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\StartUp.cs",
+              "RelativeDocumentMoniker": "Invb\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\StartUp.cs",
+              "RelativeToolTip": "Invb\\StartUp.cs",
+              "ViewState": "AgIAAEwBAAAAAAAAAAAmwAwBAACPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T06:44:52.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "newForm.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\newForm.xaml",
+              "RelativeDocumentMoniker": "Invb\\newForm.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Invb\\Invb\\newForm.xaml",
+              "RelativeToolTip": "Invb\\newForm.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-09T06:44:50.084Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|d:\\siserpsme2025\\source\\cosxksx.ksxf\\cosxksx.ksxf\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|solutionrelative:cosxksx.ksxf\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|d:\\siserpsme2025\\source\\cosxksx.ksxf\\cosxksx.ksxf\\frmtim.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|solutionrelative:cosxksx.ksxf\\frmtim.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|d:\\siserpsme2025\\source\\cosxksx.ksxf\\cosxksx.ksxf\\frmtim.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|solutionrelative:cosxksx.ksxf\\frmtim.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|d:\\siserpsme2025\\source\\cosxksx.ksxf\\cosxksx.ksxf\\frmtaopxnvl.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B474E5D-4D97-40F3-81A4-558341A0DC72}|COSXKSX.KSXF\\COSXKSX.KSXF.csproj|solutionrelative:cosxksx.ksxf\\frmtaopxnvl.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\StartUp.cs",
+              "RelativeDocumentMoniker": "COSXKSX.KSXF\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\StartUp.cs",
+              "RelativeToolTip": "COSXKSX.KSXF\\StartUp.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAQwDIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T10:48:09.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmTim.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\FrmTim.xaml.cs",
+              "RelativeDocumentMoniker": "COSXKSX.KSXF\\FrmTim.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\FrmTim.xaml.cs",
+              "RelativeToolTip": "COSXKSX.KSXF\\FrmTim.xaml.cs",
+              "ViewState": "AgIAACEBAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T10:47:48.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmTim.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\FrmTim.xaml",
+              "RelativeDocumentMoniker": "COSXKSX.KSXF\\FrmTim.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\FrmTim.xaml",
+              "RelativeToolTip": "COSXKSX.KSXF\\FrmTim.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-18T10:47:41.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmTaoPXNVL.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\FrmTaoPXNVL.xaml.cs",
+              "RelativeDocumentMoniker": "COSXKSX.KSXF\\FrmTaoPXNVL.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSXKSX.KSXF\\COSXKSX.KSXF\\FrmTaoPXNVL.xaml.cs",
+              "RelativeToolTip": "COSXKSX.KSXF\\FrmTaoPXNVL.xaml.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T10:47:23.542Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+<smr:FormFilter x:Class="SasPermission.FrmNewUser"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:src="clr-namespace:SasPermission"
+                xmlns:igwindows="clr-namespace:Infragistics.Windows.Controls;assembly=InfragisticsWPF3.v10.2"
+                xmlns:smc="http://sis.vn/SasControls"
+                xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+                xmlns:input="http://sis.vn/SasControls"
+                xmlns:igEditors="clr-namespace:Infragistics.Windows.Editors;assembly=InfragisticsWPF3.Editors.v10.2"
+                Loaded="FrmNewUser_Loaded" Title="Thêm mới người sử dụng" LanguageID="SasPermission_1"
+                EscToClose="true" Theme="Standard" Height="410" Width="600">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+        <input:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <src:CheckBoxConverter x:Key="IsCheckedConverter"/>
+      <src:CheckBoxCConverter x:Key="IsCheckedCConverter"/>
+      <src:IsEnableCheckBoxConverter x:Key="IsEnableConverter"/>
+      <input:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+      <input:NotNullConverter x:Key="NotNullControl"/>
+      <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+        <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+            <Setter Property="TextBoxBase.IsReadOnly" Value="false"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <input:ConfirmGridView OnOk="ConfirmGridView_OnOk" Name="GrdDetail">
+    <input:GridLayout Name="gridMain" Margin="12,12,12,0">
+      <input:ExTabControl Name="TabInfor" Theme="Generic">
+        <input:ExTabItem Name="TabMain" Header="_1. Thông tin chính" IsTabStop="false">
+          <input:GridLayout RowCount="11" RowHeights="25,25,25,25,25,25,25,25,25,25,25,*" Margin="8,5.5,8,5.5" ColumnCount="4"
+                            ColumnWidths="3*,45,95,3*">
+            <TextBlock Name="tbluser_name" Text="Mã NSD (Tên đăng nhập)" Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <TextBox x:Name="txtuser_name" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" TabIndex="20" Width="140"
+                     Style="{StaticResource ReadOnly}" HorizontalAlignment="Left" CharacterCasing="Upper"
+                     Text="{input:BindingEx user_name}"/>
+            <TextBlock Name="tblcomment" Text="Tên NSD" Grid.Row="1" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <TextBox x:Name="txtcomment" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" TabIndex="30"
+                     Style="{StaticResource ReadOnly}" Text="{input:BindingEx comment}"/>
+            <TextBlock Name="tblpassword" Text="Mật khẩu" Grid.Row="2" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <PasswordBox x:Name="txtpassword" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" TabIndex="40" Width="140"
+                         Height="20" HorizontalAlignment="Left"/>
+            <TextBlock Name="tblgokt" Text="Gõ lại mật khẩu" Grid.Row="3" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <PasswordBox x:Name="txtgokt" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" TabIndex="50" Width="140"
+                         Height="20" HorizontalAlignment="Left"/>
+                        <TextBlock Name="tblis_admin" Text="Là người quản lý" Grid.Row="4" Grid.Column="0" Margin="18,0"
+            Style="{StaticResource ContentTextStyle}"/>
+                        <CheckBox x:Name="chkboxis_admin" Grid.Row="4" Grid.Column="0" TabIndex="60" HorizontalAlignment="Left"
+             IsChecked="{input:BindingEx is_admin, Converter={StaticResource IsCheckedConverter}}"/>
+                        <TextBlock Name="tblislocked" Text="Khóa sử dụng" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="-25,0"
+             Style="{StaticResource ContentTextStyle}"/>
+                        <CheckBox x:Name="chkislocked" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" TabIndex="63" HorizontalAlignment="Stretch" Margin="-50,0"
+             IsChecked="{input:BindingEx islocked, Converter={StaticResource IsCheckedCConverter}}"/>
+
+                        <TextBlock Name="user_ql" Text="Báo cáo đến" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="30,0"
+  Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txtuser_ql"  Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1"  TabIndex="120" Margin="17,0"
+                           ListID="userinfo" AllowEmty="True"  AllowWrong="True" Text="{smc:BindingEx Path=user_ql}" 
+                           ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                           SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tblthuahuong" Text="Thừa hưởng quyền của NSD" Grid.Row="5" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <input:AutoCompleteTextBox Name="txtUser" ListID="userinfo" nRow="10" Grid.ColumnSpan="2" AllowEmty="true" AllowWrong="true"
+                                       Grid.Row="5" Grid.Column="1" TabIndex="70" Height="20"
+                                       ParentControl="{Binding ElementName=TransactionFrm}" Text="{input:BindingEx user_name2}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            <TextBlock Name="lblMa_dvcs" Text="Mã ĐVCS truy nhập" Grid.Row="6" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <input:AutoCompleteTextBox LostFocus="txtMa_dvcs_LostFocus" Name="txtMa_dvcs" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmdvcs0" TabIndex="80"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{input:BindingEx Path=ma_dvcs}"/>
+            <TextBlock Name="lblTen_dvcs" Text="" Grid.Row="6" Grid.Column="3" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <TextBlock Name="tblemail" Text="Thư điện tử" Grid.Row="7" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <TextBox x:Name="txtemail" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" TabIndex="90"
+                     Style="{StaticResource ReadOnly}" Text="{input:BindingEx e_mail}"/>
+           
+            <TextBlock Name="tbldienthoai" Text="Điện thoại" Grid.Row="8" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <TextBox x:Name="txtdienthoai" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" TabIndex="100"
+                     Style="{StaticResource ReadOnly}" Text="{input:BindingEx dien_thoai}"/>
+            
+            <TextBlock Name="tblma_pb" Text="Bộ phận/Phòng ban" Grid.Row="9" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <smc:AutoCompleteTextBox Name="txtma_pb"  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2"  TabIndex="110"
+                                                 ListID="dmbpns" AllowEmty="True"  AllowWrong="True" Text="{smc:BindingEx Path=ma_pb}" PreviewLostFocus="txtbpns_PreviewLostFocus"
+                                                  ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                  SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+            <TextBlock Name="txtTenbpns" Text="" Grid.Row="9" Grid.Column="3" Margin="12,1" Style="{StaticResource ContentTextStyle}"/>
+            <TextBlock Name="tblchucvu" Text="Chức vụ" Grid.Row="10" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <smc:AutoCompleteTextBox Name="txtma_cv"  Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"  TabIndex="120"
+                                                 ListID="dmcv" AllowEmty="True"  AllowWrong="True" Text="{smc:BindingEx Path=ma_cv}" PreviewLostFocus="txtma_cv_PreviewLostFocus"
+                                                  ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                  SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+            <TextBlock Name="txtTencv" Text="" Grid.Row="10" Grid.Column="3" Margin="12,1" Style="{StaticResource ContentTextStyle}"/>            
+          </input:GridLayout>
+        </input:ExTabItem>
+                <smc:ExTabItem Name="TabEx" Header="Thông tin khác" IsTabStop="false">
+                    <smc:GridLayout RowCount="11" RowHeights="25,25,25,25,25,25,25,25,25,*" Margin="8,5.5,8,5.5" ColumnCount="4"
+                            ColumnWidths="120,45,95,3*">
+
+                        <TextBlock Name="lblma_kho" Text="Mã kho" Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox LostFocus="txtma_kho_LostFocus" Name="txtma_kho" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmkho" TabIndex="10"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{smc:BindingEx Path=ma_kho_bl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="lblten_kho" Text="" Grid.Row="0" Grid.Column="3" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                        <TextBlock Name="lblma_bp" Text="Mã NVKD" Grid.Row="1" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox LostFocus="txtma_bp_LostFocus" Name="txtma_bp" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmbp" TabIndex="20"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{smc:BindingEx Path=ma_bp_bl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="lblten_bp" Text="" Grid.Row="1" Grid.Column="3" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                        <TextBlock Name="lblma_nx" Text="Mã nx(Tk nợ)" Grid.Row="2" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox LostFocus="txtma_nx_LostFocus" Name="txtma_nx" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmnx" TabIndex="30"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{smc:BindingEx Path=ma_nx_bl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="lblten_nx" Text="" Grid.Row="2" Grid.Column="3" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                        <TextBlock Name="lblma_kh" Text="Mã khách" Grid.Row="3" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox LostFocus="txtma_kh_LostFocus" Name="txtma_kh" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmkh" TabIndex="40"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{smc:BindingEx Path=ma_kh_bl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="lblten_kh" Text="" Grid.Row="3" Grid.Column="3" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                        <TextBlock Name="lblma_qs" Text="Quyển c.từ(Bán lẻ)" Grid.Row="4" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox LostFocus="txtma_qs_LostFocus" Name="txtma_qs" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmqs" TabIndex="50"
+                                       Filter="ma_cts like '%HDL%' and status=1"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{smc:BindingEx Path=ma_qs_bl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="lblten_qs" Text="" Grid.Row="4" Grid.Column="4" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                        <TextBlock Name="lblma_qs2" Text="Quyển c.từ(Phiếu thu)" Grid.Row="5" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox LostFocus="txtma_qs2_LostFocus" Name="txtma_qs2" AllowEmty="true" AllowWrong="false"
+                                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" Width="140" HorizontalAlignment="Left"
+                                       ListID="dmqs" TabIndex="60"
+                                       Filter="ma_cts like '%PT1%' and status=1"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       Text="{smc:BindingEx Path=ma_qs_bl2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="lblten_qs2" Text="" Grid.Row="5" Grid.Column="3" Margin="12,1"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                    </smc:GridLayout>
+                </smc:ExTabItem>
+            </input:ExTabControl>
+    </input:GridLayout>
+  </input:ConfirmGridView>
+</smr:FormFilter>

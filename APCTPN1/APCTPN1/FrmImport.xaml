@@ -1,0 +1,27 @@
+﻿<smc:Form x:Class="APCTPN1.FrmImport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:smc="http://sis.vn/SasControls"
+        Loaded="FrmImport_Loaded" Name="frmImport" Title="" Width="602" Height="167" EscToClose="false"
+        WindowStartupLocation="CenterScreen">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel">
+        <GroupBox Name="gbInfo" Header="" Margin="12,4,12,0" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0">
+            <smc:GridLayout Name="GrdMain" RowCount="3" RowHeights="25,30,*" ColumnCount="4" ColumnWidths="120,320, 104,*">
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"
+                   Text="1.Chọn tệp hóa đơn điện tử (.xml) -- nhà cung cấp BKAV, VNPT"/>
+                <TextBox Name="txtFile" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,2.5"/>
+                <Button Click="btnBrowse_Click" Name="btnBrowse" Grid.RowSpan="1" Grid.Row="1" Grid.Column="2" Height="22"
+                Width="92" HorizontalAlignment="Left" IsTabStop="false" Margin="12,2,0,2">_Chọn tệp</Button>
+            </smc:GridLayout>
+        </GroupBox>
+    </smc:ConfirmGridView>
+</smc:Form>
+

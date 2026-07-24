@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|d:\\siserpsme2025\\source\\intc_c\u0169\\intc\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|solutionrelative:intc\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|D:\\SISERPSME2025\\Source\\Intc_c\u0169\\intc\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|solutionrelative:intc\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|D:\\SISERPSME2025\\Source\\Intc_c\u0169\\intc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|solutionrelative:intc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|D:\\SISERPSME2025\\Source\\Intc_c\u0169\\intc\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Intc\\Intc.csproj|solutionrelative:intc\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Intc\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\App.xaml.cs",
+              "RelativeToolTip": "Intc\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T03:58:46.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "newForm.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\newForm.xaml",
+              "RelativeDocumentMoniker": "Intc\\newForm.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\newForm.xaml",
+              "RelativeToolTip": "Intc\\newForm.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-23T03:29:33.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "newForm.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\newForm.xaml.cs",
+              "RelativeDocumentMoniker": "Intc\\newForm.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\newForm.xaml.cs",
+              "RelativeToolTip": "Intc\\newForm.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAASwDAAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T03:07:30.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\StartUp.cs",
+              "RelativeDocumentMoniker": "Intc\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Intc_c\u0169\\Intc\\StartUp.cs",
+              "RelativeToolTip": "Intc\\StartUp.cs",
+              "ViewState": "AgIAAKUBAAAAAAAAAADgv7kBAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T03:06:05.35Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

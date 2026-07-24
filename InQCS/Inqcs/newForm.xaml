@@ -1,0 +1,136 @@
+<smc:Form x:Class="Inqcs.newForm"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"          
+              xmlns:smc="http://sis.vn/SasControls"            
+              Loaded="newForm_Loaded" Closed="FormList_Closed" PreviewKeyUp="FormList_PreviewKeyUp" ResizeMode="NoResize"
+              Title="newForm" LanguageID="DMBPNS_0" Height="380" Width="600">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+            <Style x:Key="MaskedTextBoxReadOnly" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyNumericTextBox" TargetType="{x:Type smc:NumericTextBox}"
+             BasedOn="{StaticResource NumericTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteReadOnly" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyDateTime" TargetType="{x:Type smc:DateTextBox}"
+             BasedOn="{StaticResource DateTextBoxStyle}">
+                <Setter Property="smc:DateTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:DateTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="_confirmGridview_OnOk" OnCancel="_confirmGridview_OnCancel" Name="_confirmGridview">
+        <Border Margin="5" BorderBrush="Silver" BorderThickness="1">
+            <smc:GridLayout Margin="10" RowCount="10" RowHeights="27,27,27,27,27,27,27,27,27,27" ColumnCount="4"
+                        ColumnWidths="150,180,10,150">
+
+                <TextBlock Name="tblma_qcs" Text="Mã qcs" Grid.Row="0" Grid.Column="0"/>
+                <TextBox x:Name="txtma_qcs" Grid.Column="1" Grid.Row="0" TabIndex="10"
+                         CharacterCasing="Upper"   Text="{smc:BindingEx ma_qcs,Mode=TwoWay}" TextChanged="txtma_qcs_TextChanged"/>
+
+                <TextBlock Name="tblten_qcs" Text="Tên qcs" Grid.Row="1" Grid.Column="0"/>
+                <TextBox x:Name="txtten_qcs" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="1" TabIndex="20"
+                     Text="{smc:BindingEx ten_qcs  ,Mode=TwoWay}" Style="{StaticResource ReadOnly}" />
+
+                <TextBlock Name="lblMa_vt0" Grid.Row="2" Grid.Column="0" Text="Mã vt mẹ"/>
+                <smc:AutoCompleteTextBox  Name="txtMa_vt0" Grid.Row="2" Grid.Column="1" AllowEmty="true"
+AllowWrong="false" ListID="dmvt" TabIndex="200" Style="{StaticResource AutoCompleteReadOnly}"
+SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+Text="{smc:BindingEx ma_td1 ,Mode=TwoWay}"/>
+
+                <TextBlock Name="lblNgày" Grid.Row="3" Grid.Column="0" Text="Ngày"/>
+                <smc:DateTextBox Name="txtNgay" Grid.Row=" 3" Grid.Column="1" TabIndex="20" 
+                                 Value="{smc:BindingEx ngay_td1  ,Mode=TwoWay}"  Style="{StaticResource ReadOnlyDateTime}"/>
+
+
+
+                <TextBlock Name="lblMa_vt" Grid.Row="4" Grid.Column="0" Text="Mã vt "/>
+                <smc:AutoCompleteTextBox  Name="txtMa_vt" Grid.Row="4" Grid.Column="1" AllowEmty="true"
+AllowWrong="false" ListID="dmvt" TabIndex="200" Style="{StaticResource AutoCompleteReadOnly}"
+SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+Text="{smc:BindingEx ma_td2 ,Mode=TwoWay}"/>
+
+                <TextBlock Name="tblrev" Text="Usage " Grid.Row="5" Grid.Column="0"/>
+                <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txtrev" TabIndex="30"
+Grid.Column="1" Grid.Row="5" Style="{StaticResource ReadOnlyNumericTextBox}"
+Value="{smc:BindingEx sl_td1}"/>
+
+                <TextBlock Name="tblso_tramg" Text="Usage utimae " Grid.Row="6" Grid.Column="0"/>
+                <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txtso_trang" TabIndex="40"
+         Grid.Column="1" Grid.Row="6" Style="{StaticResource ReadOnlyNumericTextBox}"
+         Value="{smc:BindingEx sl_td2}"/>
+
+               
+                <TextBlock Name="lblMa_dvcs" Grid.Row="7" Grid.Column="0" Text="Mã ĐVCS"/>
+                <smc:AutoCompleteTextBox LostFocus="txtMa_dvcs_LostFocus" Name="txtMa_dvcs" Grid.Row="7" Grid.Column="1" AllowEmty="true"
+            AllowWrong="false" ListID="dmdvcs" TabIndex="200" Style="{StaticResource AutoCompleteReadOnly}"
+            SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+            Text="{smc:BindingEx ma_dvcs ,Mode=TwoWay}"/>
+
+             
+
+                <TextBlock Name="txtTen_dvcs" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="4" TextWrapping="NoWrap"/>
+                <TextBlock Name="tblstatus" Text="Trạng thái sử dụng" Grid.Row="8" Grid.Column="0"/>
+                <StackPanel Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="8" Orientation="Horizontal">
+                    <smc:MaskedTextBox LostFocus="txtstatus_LostFocus" Name="txtstatus" Format="M" InputMask="0,1" Width="150"
+        TabIndex="230" Style="{StaticResource MaskedTextBoxReadOnly}" HorizontalContentAlignment="Left"
+        Value="{smc:BindingEx status ,Mode=TwoWay}"/>
+                    <TextBlock Name="txtstatus_ghi_chu" Text="0 - Không sử dụng, 1 - Sử dụng" Margin="12,0,0,0" Width="170" />
+                </StackPanel>
+
+                <TextBlock Name="tbldien_giai" Text="Diễn giải" Grid.Row="9" Grid.Column="0"/>
+                <TextBox x:Name="txtdien_giai" Grid.ColumnSpan="5" Grid.Row="9" Grid.Column="1" TabIndex="30"
+             Text="{smc:BindingEx dien_giai  ,Mode=TwoWay}" Style="{StaticResource ReadOnly}" />
+            </smc:GridLayout>
+        </Border>
+       
+    </smc:ConfirmGridView>
+</smc:Form>

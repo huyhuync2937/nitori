@@ -1,0 +1,119 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\ARCTHD1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|d:\\siserpsme2025\\source\\arcthd1\\arcthd1\\frmarcthd1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|solutionrelative:arcthd1\\frmarcthd1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|d:\\siserpsme2025\\source\\arcthd1\\arcthd1\\frmarcthd1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|solutionrelative:arcthd1\\frmarcthd1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|d:\\siserpsme2025\\source\\arcthd1\\arcthd1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|solutionrelative:arcthd1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|d:\\siserpsme2025\\source\\arcthd1\\arcthd1\\stringempty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|solutionrelative:arcthd1\\stringempty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|d:\\siserpsme2025\\source\\arcthd1\\arcthd1\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|solutionrelative:arcthd1\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|D:\\SISERPSME2025\\Source\\ARCTHD1\\arcthd1\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0941C645-F3B2-44A2-8BA8-7696798B2AE8}|ARCTHD1\\ARCTHD1.csproj|solutionrelative:arcthd1\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmArcthd1.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmArcthd1.xaml",
+              "RelativeDocumentMoniker": "ARCTHD1\\FrmArcthd1.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmArcthd1.xaml",
+              "RelativeToolTip": "ARCTHD1\\FrmArcthd1.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-06T08:05:06.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmArcthd1.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmArcthd1.xaml.cs",
+              "RelativeDocumentMoniker": "ARCTHD1\\FrmArcthd1.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmArcthd1.xaml.cs",
+              "RelativeToolTip": "ARCTHD1\\FrmArcthd1.xaml.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T08:05:05.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\StartUp.cs",
+              "RelativeDocumentMoniker": "ARCTHD1\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\StartUp.cs",
+              "RelativeToolTip": "ARCTHD1\\StartUp.cs",
+              "ViewState": "AgIAANcAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T08:05:00.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StringEmpty.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\StringEmpty.cs",
+              "RelativeDocumentMoniker": "ARCTHD1\\StringEmpty.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\StringEmpty.cs",
+              "RelativeToolTip": "ARCTHD1\\StringEmpty.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T08:04:58.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmIn.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmIn.xaml.cs",
+              "RelativeDocumentMoniker": "ARCTHD1\\FrmIn.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmIn.xaml.cs",
+              "RelativeToolTip": "ARCTHD1\\FrmIn.xaml.cs",
+              "ViewState": "AgIAANgAAAAAAAAAAAAQwOMAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T09:32:09.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmIn.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmIn.xaml",
+              "RelativeDocumentMoniker": "ARCTHD1\\FrmIn.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\ARCTHD1\\ARCTHD1\\FrmIn.xaml",
+              "RelativeToolTip": "ARCTHD1\\FrmIn.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-10T09:30:57.235Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Glnhtk0.csprojAssemblyReference.cache
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\App.baml
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\View\Frm_F3.g.cs
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\App.g.cs
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Gltk0_MarkupCompile.cache
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Gltk0_MarkupCompile.lref
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Gltk0.exe
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Gltk0.pdb
+D:\Product\SASERP.NET\Update\SASERP20\Prog\Gltk0.exe.config
+D:\Product\SASERP.NET\Update\SASERP20\Prog\Gltk0.exe
+D:\Product\SASERP.NET\Update\SASERP20\Prog\Gltk0.pdb
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\View\Frm_F3.baml
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Gltk0.g.resources
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Gltk0.Properties.Resources.resources
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Glnhtk0.csproj.GenerateResource.cache
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glnhtk0\Glnhtk0\obj\Debug\Glnhtk0.csproj.CopyComplete

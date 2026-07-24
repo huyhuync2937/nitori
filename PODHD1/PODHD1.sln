@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PODHD1", "PODHD1\PODHD1.csproj", "{ECBE1E21-BDC6-484E-915E-265E2DA5D402}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECBE1E21-BDC6-484E-915E-265E2DA5D402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECBE1E21-BDC6-484E-915E-265E2DA5D402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECBE1E21-BDC6-484E-915E-265E2DA5D402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECBE1E21-BDC6-484E-915E-265E2DA5D402}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39D8A518-82C0-4505-833A-A418B480668D}
+	EndGlobalSection
+EndGlobal

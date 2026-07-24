@@ -1,0 +1,83 @@
+<smc:Form x:Class="PODMHDM.FrmLocVT"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igEditors="http://infragistics.com/Editors"
+          xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          Theme="Voucher" Loaded="FrmLocVT_Loaded"
+          Title="Chọn vật tư"
+          Height="230" Width="650" ResizeMode="NoResize" EscToClose="true">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="True"/>
+            <Style x:Key="AutoCompleteTextBoxEditModeEnable" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="True" />
+                <Style.Triggers>
+                    <DataTrigger Value="True" Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="False" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="AutoCompleteTextBoxReadOnly" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="_confirmGridview_OnOk" OnCancel="_confirmGridview_OnCancel" Name="_confirmGridview">
+        <Border Margin="10,10" BorderBrush="Silver" BorderThickness="1">
+            <smc:GridLayout Name="Mygrid" Margin="10" RowCount="5" RowHeights="27,27,27,27" ColumnCount="4"
+                        ColumnWidths="110,170,10*,130">
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Từ ngày" VerticalAlignment="Center"></TextBlock>
+                <smc:DateTextBox Name="txtTungay" Grid.Row="0" Grid.Column="1" TabIndex="0" LostFocus="txtTungay_LostFocus"></smc:DateTextBox>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Đến ngày" VerticalAlignment="Center"></TextBlock>
+                <smc:DateTextBox Name="txtDenngay" Grid.Row="1" Grid.Column="1" TabIndex="1" LostFocus="txtDenngay_LostFocus"></smc:DateTextBox>
+
+                <TextBlock Name="tblMa_vt" Text="Mã vật tư" Grid.Row="2" Grid.Column="0" Style="{StaticResource ContentTextStyle}"/>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtMaVT_PreviewLostFocus" Name="txtMaVT" Grid.Column="1" Height="20" Grid.Row="2"
+                                   TabIndex="2" AllowEmty="True" AllowWrong="false" ListID="dmvt"
+                                   Style="{StaticResource AutoCompleteTextBoxEditModeEnable}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="tblTen_vt" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="12,0,0,0" Style="{StaticResource ContentTextStyle}"/>
+
+                <TextBlock Name="tblStatus" Text="Trạng thái" Grid.Row="3" Grid.Column="0" Style="{StaticResource ContentTextStyle}"/>
+                <TextBox Name="txtStatus" Grid.Row="3" Grid.Column="1" Height="20" TabIndex="3"
+                                   MaxLength="1" PreviewTextInput="txtStatus_PreviewTextInput"
+                                   Style="{StaticResource ReadOnly}"/>
+
+            </smc:GridLayout>
+        </Border>
+    </smc:ConfirmGridView>
+</smc:Form>

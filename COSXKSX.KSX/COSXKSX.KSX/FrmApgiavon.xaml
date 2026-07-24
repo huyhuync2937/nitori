@@ -1,0 +1,60 @@
+<smc:Form x:Class="COSXKSX.KSX.FrmApgiavon"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:SasFormReport="clr-namespace:SasFormReport;assembly=SasFormReport"
+          xmlns:igEditors="http://infragistics.com/Editors"
+          Loaded="Form_Loaded" KeyDown="Form_KeyDown" LanguageID="COSXKSX.KSX_0" Title="Ap gia von"
+          Height="170" Width="450">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:GridLayout RowCount="5" RowHeights="25,25,25,25*" ColumnCount="6" Margin="12,4,12,0"
+                  ColumnWidths="100,120,140,120,120,*">        
+        
+        <TextBlock Text="Năm"  Grid.Row="0" Grid.Column="0"></TextBlock>
+        <smc:NumericTextBox Name="txtNam" Grid.Row="0" Grid.Column="1" Mask="{}{number:1900-2600}" TabIndex="1">
+            <igEditors:ValueEditor.ValueConstraint >
+                <igEditors:ValueConstraint ValidateAsType="Integer32" MaxExclusive="2601" ></igEditors:ValueConstraint>
+            </igEditors:ValueEditor.ValueConstraint>
+        </smc:NumericTextBox>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Tháng"></TextBlock>
+        <smc:NumericTextBox Name="txtThang" Grid.Row="1" Grid.Column="1" Mask="{}{number:1-12}" TabIndex="2">
+            <igEditors:ValueEditor.ValueConstraint>
+                <igEditors:ValueConstraint ValidateAsType="Integer32" MaxExclusive="13"></igEditors:ValueConstraint>
+            </igEditors:ValueEditor.ValueConstraint>
+        </smc:NumericTextBox>
+        
+        <TextBlock Name="tblma_kho" Text="Mã kho" Grid.Column="0" Grid.Row="2" Style="{StaticResource ContentTextStyle}"/>
+        <smc:AutoCompleteTextBox PreviewLostFocus="txtKho_PreviewLostFocus"  Name="txtKho" AllowEmty="True" AllowWrong="false"
+                                   Grid.Column="1" Grid.Row="2" TabIndex="5" SelectAllOnFocus="true" ListID="dmkho"                                   
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=smc:Form}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=smc:Form}}"/>
+        <TextBlock Name="txtTen_kho" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="12,0,0,0"  Style="{StaticResource ContentTextStyle}"/>
+        
+        <smc:GridLayout Row="3" ColumnSpan="6" ColumnCount="5" ColumnWidths="104,104,104,200,*">
+            <Button Click="BtnNhan_Click"  Name="BtnNhan" Grid.Column="0" Width="92" Height="25" HorizontalAlignment="Left"
+              TabIndex="6">Nhận</Button>
+            <Button Click="BtnThoat_Click" Name="BtnThoat" Grid.Row="3" Grid.Column="1" Width="92" Height="25"
+              HorizontalAlignment="Left" TabIndex="7">Hủy</Button>
+
+        </smc:GridLayout>
+    </smc:GridLayout>
+</smc:Form>

@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\COSLDHN\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|d:\\siserpsme2025\\source\\cosldhn\\cosldhn\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|solutionrelative:cosldhn\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|d:\\siserpsme2025\\source\\cosldhn\\cosldhn\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|solutionrelative:cosldhn\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|d:\\siserpsme2025\\source\\cosldhn\\cosldhn\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|solutionrelative:cosldhn\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|d:\\siserpsme2025\\source\\cosldhn\\cosldhn\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|solutionrelative:cosldhn\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|d:\\siserpsme2025\\source\\cosldhn\\cosldhn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHN\\COSLDHN.csproj|solutionrelative:cosldhn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmSetValue.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\FrmSetValue.xaml",
+              "RelativeDocumentMoniker": "COSLDHN\\FrmSetValue.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\FrmSetValue.xaml",
+              "RelativeToolTip": "COSLDHN\\FrmSetValue.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-19T21:54:15.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\App.xaml.cs",
+              "RelativeDocumentMoniker": "COSLDHN\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\App.xaml.cs",
+              "RelativeToolTip": "COSLDHN\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-19T21:53:44.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\StartUp.cs",
+              "RelativeDocumentMoniker": "COSLDHN\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\StartUp.cs",
+              "RelativeToolTip": "COSLDHN\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-19T21:53:24.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "COSLDHN\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\FrmLoc.xaml",
+              "RelativeToolTip": "COSLDHN\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-19T21:53:22.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\App.xaml",
+              "RelativeDocumentMoniker": "COSLDHN\\App.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHN\\COSLDHN\\App.xaml",
+              "RelativeToolTip": "COSLDHN\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-19T21:53:20.283Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

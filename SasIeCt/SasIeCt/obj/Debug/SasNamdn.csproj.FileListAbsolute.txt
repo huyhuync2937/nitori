@@ -1,0 +1,15 @@
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.csprojAssemblyReference.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\App.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\App.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn_MarkupCompile.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.g.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.Properties.Resources.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.csproj.GenerateResource.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdnLoc.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdnLoc.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Prog\SasNamdn.exe.config
+D:\Product\SASERP.NET\SASERP20NET35\Prog\SasNamdn.exe
+D:\Product\SASERP.NET\SASERP20NET35\Prog\SasNamdn.pdb
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.csproj.CopyComplete
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.exe
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamdn\SasNamdn\obj\Debug\SasNamdn.pdb

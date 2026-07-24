@@ -1,0 +1,16 @@
+D:\SISERPSME2025\Prog\Invb.exe
+D:\SISERPSME2025\Prog\Invb.pdb
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.csproj.AssemblyReference.cache
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\newForm.baml
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\newForm.g.cs
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\App.g.cs
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb_MarkupCompile.cache
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb_MarkupCompile.lref
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\App.baml
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.g.resources
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.Properties.Resources.resources
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.csproj.GenerateResource.cache
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.csproj.CoreCompileInputs.cache
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.csproj.Up2Date
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.exe
+D:\SISERPSME2025\Source\Invb\Invb\obj\Debug\Invb.pdb

@@ -1,0 +1,85 @@
+<smc:Form x:Class="Socthda.FrmThongTinvc"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:src="clr-namespace:Socthda"
+          xmlns:smc="clr-namespace:SasControls;assembly=SasControls"
+          xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          Loaded="Form_Loaded" Name="SOCTHDAThongTinvc" Title="Thong tin van chuyen" LanguageID="Socthda_vc"
+          EscToClose="true" Height="315" Width="800">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0"/>
+      <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+      <src:NotMaNt0Converter x:Key="NotMaNt0Voucher"/>
+      <smc:CodeValueBindingObject x:Key="IsInEditMode" Value="false"/>
+      <Style x:Key="TextBoxEditModeEnable" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+        <Setter Property="TextBoxBase.IsReadOnly" Value="false"/>
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="DateTextBoxEditModeEnable" TargetType="{x:Type smc:DateTextBox}"
+             BasedOn="{StaticResource DateTextBoxStyle}">
+        <Setter Property="IsReadOnly" Value="false"/>
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGV_OnOk" Name="ConfirmGV">
+    <GroupBox Name="GroupGV" Margin="12,4,12,0" Style="{StaticResource NonHeaderGroupBoxStyle}">
+      <smc:GridLayout Name="gridlayout00" ColumnCount="3" ColumnWidths="*">
+        <smc:GridLayout Name="gridlayout10" Column="0" RowCount="7" ColumnCount="6" ColumnWidths="140,140,140,140,*">
+          <TextBlock Name="tblso_hdg" Text="Số hợp đồng" Grid.Row="0" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtso_hd" TabIndex="51" Grid.Column="1" Grid.Row="0" CharacterCasing="Upper"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=so_hdg}"/>
+          <TextBlock Name="tblngay_hdg" Text="Ngày hợp đồng" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:DateTextBox x:Name="txtngay_hdg" Grid.Column="1" Grid.Row="1" TabIndex="52" AllowEmpty="false"
+                           Style="{StaticResource DateTextBoxEditModeEnable}" Value="{smc:BindingEx Path=ngay_hdg}"/>
+          <TextBlock Name="tbldia_chi_gh" Text="Địa điểm giao hàng" Grid.Row="4" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtdia_chi_gh" TabIndex="55" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=dia_chi_gh}"/>
+          <TextBlock Name="tblso_vd" Text="Số vận đơn" Grid.Row="2" Grid.Column="0" Margin="0,0,0,0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtso_vd" TabIndex="53" Grid.Column="1" Grid.Row="2" CharacterCasing="Upper"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=so_vd}"/>
+          <TextBlock Name="tblso_con" Text="Số container" Grid.Row="3" Grid.Column="0" Margin="0,0,0,0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtso_con" TabIndex="54" Grid.Column="1" Grid.Row="3"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=so_con}"/>
+          <TextBlock Name="tbldia_chi_nh" Text="Địa điểm nhận hàng" Grid.Row="5" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtdia_chi_nh" TabIndex="56" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=dia_chi_nh}"/>
+          <TextBlock Name="tblten_dv_vc" Text="Tên đơn vị vận chuyển" Grid.Row="6" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtten_dv_vc" TabIndex="57" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=ten_dv_vc}"/>
+        </smc:GridLayout>
+      </smc:GridLayout>
+    </GroupBox>
+  </smc:ConfirmGridView>
+</smc:Form>

@@ -1,0 +1,36 @@
+<smc:Form x:Class="PODMHDM.FrmGuiEmail"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="clr-namespace:SasControls;assembly=SasControls"
+          Loaded="Form_Loaded" Title="Gui email hoa don file PDF toi khach hang" Height="400" Width="680" LanguageID="Socthda_Gmail"
+          EscToClose="true" Theme="Voucher">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" Name="GrdOkCancel">
+    <GroupBox Name="Grdgroup" Margin="12,4,12,0" Style="{StaticResource NonHeaderGroupBoxStyle}">
+      <smc:GridLayout Name="GrdInfo" RowCount="4" ColumnCount="3" ColumnWidths="120,140,*" RowHeights="25,25,*,25">
+        <TextBlock Name="tblFEmail" Text="Mail gửi" Grid.Column="0" Grid.Row="0"
+                   Style="{StaticResource ContentTextStyle}"/>
+        <TextBox Name="txtFEmail" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TabIndex="10" IsEnabled="False"/>
+        <TextBlock Name="tblTieude" Text="Tiêu đề" Grid.Column="0" Grid.Row="1"
+                   Style="{StaticResource ContentTextStyle}"/>
+        <TextBox Name="txtTieude" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" TabIndex="20"/>
+                <TextBlock Name="tblNoidung" Text="Nội dung" Grid.Column="0" Grid.Row="2" 
+                   Style="{StaticResource ContentTextStyle}"/>
+                <TextBox Name="txtNoidung" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" TabIndex="30" Height="Auto" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+                <TextBox Visibility="Hidden" Name="txtNoidung1" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" TabIndex="30" Height="Auto" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+
+                <TextBlock Name="tblTEmail" Text="Mail nhận" Grid.Column="0" Grid.Row="3" 
+                   Style="{StaticResource ContentTextStyle}"/>
+                <TextBox Name="txtTEmail" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" TabIndex="40"/>
+            </smc:GridLayout>
+    </GroupBox>
+  </smc:ConfirmGridView>
+</smc:Form>

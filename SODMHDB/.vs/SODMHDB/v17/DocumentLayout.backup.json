@@ -1,0 +1,118 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\SODMHDB\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|d:\\siserpsme2025\\source\\sodmhdb\\sodmhdb\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|d:\\siserpsme2025\\source\\sodmhdb\\sodmhdb\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|d:\\siserpsme2025\\source\\sodmhdb\\sodmhdb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\StartUp.cs",
+              "RelativeDocumentMoniker": "SODMHDB\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\StartUp.cs",
+              "RelativeToolTip": "SODMHDB\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T09:37:48.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\App.xaml.cs",
+              "RelativeDocumentMoniker": "SODMHDB\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\App.xaml.cs",
+              "RelativeToolTip": "SODMHDB\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T09:37:37.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmPoctpna.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmPoctpna.xaml",
+              "RelativeDocumentMoniker": "SODMHDB\\FrmPoctpna.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmPoctpna.xaml",
+              "RelativeToolTip": "SODMHDB\\FrmPoctpna.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-21T02:16:01.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmPoctpna.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmPoctpna.xaml.cs",
+              "RelativeDocumentMoniker": "SODMHDB\\FrmPoctpna.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmPoctpna.xaml.cs",
+              "RelativeToolTip": "SODMHDB\\FrmPoctpna.xaml.cs",
+              "ViewState": "AgIAAM4GAAAAAAAAAAAewGUGAABoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T02:14:40.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmIn.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmIn.xaml.cs",
+              "RelativeDocumentMoniker": "SODMHDB\\FrmIn.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmIn.xaml.cs",
+              "RelativeToolTip": "SODMHDB\\FrmIn.xaml.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAcwBEBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T03:31:43.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmIn.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmIn.xaml",
+              "RelativeDocumentMoniker": "SODMHDB\\FrmIn.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmIn.xaml",
+              "RelativeToolTip": "SODMHDB\\FrmIn.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-15T03:31:40.43Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Command *)",
+      "PowerShell(sqlcmd *)",
+      "PowerShell(sqlcmd -S \"192.168.0.5\\\\sql2019\" -U sas -P 123 -d SISERP_NITORI -Q \"SET NOCOUNT ON; SELECT OBJECT_DEFINITION\\(OBJECT_ID\\('COQCS_ngang'\\)\\)\" -C -y 0 -Y 0 -o \"$env:TEMP\\\\claude\\\\D--SISERPSME2025-Source-QCSN\\\\98840dfa-5fe6-4ded-aeca-fa1d13611233\\\\scratchpad\\\\coqcs_ngang_raw.txt\" -w 65535)",
+      "Bash(python3 *)",
+      "Bash(powershell -NoProfile -Command \"sqlcmd -S '192.168.0.5\\\\sql2019' -U sas -P 123 -d SISERP_NITORI -C -f 65001 -Q \\\\\"SET NOCOUNT ON; SELECT TOP 5 ma_vt FROM dmvt WHERE ma_vt IN \\(SELECT part_no FROM dmvt WHERE part_no IS NOT NULL AND part_no <> ''\\) AND EXISTS \\(SELECT 1 FROM dmvt d2 WHERE d2.part_no = dmvt.ma_vt\\)\\\\\"\")",
+      "Bash(powershell -NoProfile -Command \"sqlcmd -S '192.168.0.5\\\\sql2019' -U sas -P 123 -d SISERP_NITORI -C -f 65001 -Q \\\\\"SET NOCOUNT ON; SELECT MIN\\(ngay_kh1\\), MAX\\(ngay_kh1\\) FROM ksxsanphamk\\\\\"\")",
+      "Bash(powershell -NoProfile -Command \"\n\\\\$content = Get-Content -Raw -Encoding UTF8 'C:\\\\Users\\\\LONGPT1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--SISERPSME2025-Source-QCSN\\\\98840dfa-5fe6-4ded-aeca-fa1d13611233\\\\scratchpad\\\\COQCS_ngang_refactored.sql'\n\\\\$testContent = \\\\$content -replace '\\\\[dbo\\\\]\\\\.\\\\[COQCS_ngang\\\\]\\\\s*\\\\r?\\\\n', '[dbo].[COQCS_ngang_refactored_test]' -replace 'CREATE OR ALTER PROC \\\\[dbo\\\\]\\\\.\\\\[COQCS_ngang_refactored_test\\\\]', 'CREATE OR ALTER PROC [dbo].[COQCS_ngang_refactored_test]'\n[System.IO.File]::WriteAllText\\('C:\\\\Users\\\\LONGPT1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--SISERPSME2025-Source-QCSN\\\\98840dfa-5fe6-4ded-aeca-fa1d13611233\\\\scratchpad\\\\COQCS_ngang_test.sql', \\\\$testContent, [System.Text.Encoding]::UTF8\\)\n\")",
+      "Bash(powershell -NoProfile -Command \"sqlcmd -S '192.168.0.5\\\\sql2019' -U sas -P 123 -d SISERP_NITORI -C -f 65001 -i 'C:\\\\Users\\\\LONGPT1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--SISERPSME2025-Source-QCSN\\\\98840dfa-5fe6-4ded-aeca-fa1d13611233\\\\scratchpad\\\\COQCS_ngang_test.sql'\")",
+      "Bash(powershell -NoProfile -Command 'sqlcmd -S '\\\\''192.168.0.5\\\\sql2019'\\\\'' -U sas -P 123 -d SISERP_NITORI -C -f 65001 -w 65535 -Q \"EXEC dbo.COQCS_ngang @hdTuNg='\\\\''20260105'\\\\'', @hdDenNg='\\\\''20260525'\\\\'', @ma_vt='\\\\''14204014'\\\\''\" -o '\\\\''C:\\\\Users\\\\LONGPT1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--SISERPSME2025-Source-QCSN\\\\98840dfa-5fe6-4ded-aeca-fa1d13611233\\\\scratchpad\\\\orig_out.txt'\\\\''')",
+      "Bash(powershell -NoProfile -Command 'sqlcmd -S '\\\\''192.168.0.5\\\\sql2019'\\\\'' -U sas -P 123 -d SISERP_NITORI -C -f 65001 -w 65535 -Q \"EXEC dbo.COQCS_ngang_refactored_test @hdTuNg='\\\\''20260105'\\\\'', @hdDenNg='\\\\''20260525'\\\\'', @ma_vt='\\\\''14204014'\\\\''\" -o '\\\\''C:\\\\Users\\\\LONGPT1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--SISERPSME2025-Source-QCSN\\\\98840dfa-5fe6-4ded-aeca-fa1d13611233\\\\scratchpad\\\\test_out.txt'\\\\''')"
+    ]
+  }
+}

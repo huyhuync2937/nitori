@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import xml.dom.minidom as m; m.parse\\('newForm.xaml'\\); print\\('OK'\\)\")",
+      "PowerShell(Out-Null *)"
+    ]
+  }
+}

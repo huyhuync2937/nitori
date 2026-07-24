@@ -1,0 +1,111 @@
+<smc:Form x:Class="Socthda.FrmSocthda_Pn"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:smc="clr-namespace:SasControls;assembly=SasControls"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:System="clr-namespace:System;assembly=mscorlib"
+          xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          Loaded="FrmPoctpxf_PN_Loaded" x:Name="frmSOCTHDA_PN" LanguageID="Socthda_6" Height="600"
+          Width="800" WindowStartupLocation="CenterScreen">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+      <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0"/>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" RowCount="2" Margin="0"
+                       RowHeights="*,50">
+    <smc:DataGridView Name="GrdSOCTHDA_PN" Grid.Row="0" Margin="12,12,12,0">
+      <igDP:DataPresenterBase.FieldSettings>
+        <igDP:FieldSettings AllowEdit="False"/>
+      </igDP:DataPresenterBase.FieldSettings>
+      <igDP:DataPresenterBase.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" AllowDelete="False"/>
+      </igDP:DataPresenterBase.FieldLayoutSettings>
+      <igDP:DataPresenterBase.FieldLayouts>
+        <igDP:FieldLayout>
+          <igDP:Field Label="Số lượng" Name="so_luong" Width="140">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditorType="{x:Type smc:NumericTextBox}">
+                <igDP:FieldSettings.EditorStyle>
+                  <Style TargetType="{x:Type smc:NumericTextBox}">
+                    <Setter Property="Format"
+                            Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                  </Style>
+                </igDP:FieldSettings.EditorStyle>
+              </igDP:FieldSettings>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Giá nt" Name="gia_nt" Width="130">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center">
+                <igDP:FieldSettings.EditorStyle>
+                  <Style TargetType="{x:Type smc:NumericTextBox}">
+                    <Setter Property="Format"
+                            Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_GIA_NT}"/>
+                  </Style>
+                </igDP:FieldSettings.EditorStyle>
+              </igDP:FieldSettings>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Giá" Name="gia" Width="130">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center">
+                <igDP:FieldSettings.EditorStyle>
+                  <Style TargetType="{x:Type smc:NumericTextBox}">
+                    <Setter Property="Format"
+                            Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_GIA}"/>
+                  </Style>
+                </igDP:FieldSettings.EditorStyle>
+              </igDP:FieldSettings>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Ngày c.từ" Name="ngay_ct" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:DateTime}"
+                                  EditorType="{x:Type smc:DateTextBox}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Số c.từ" Name="so_ct" Width="70">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Diễn giải" Name="dien_giai" Width="225">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã khách" Name="ma_kh" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã kho" Name="ma_kho" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã dự án" Name="ma_vv" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Chứng từ" Name="ten_ct" Width="225">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã nt" Name="ma_nt" Width="80">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+        </igDP:FieldLayout>
+      </igDP:DataPresenterBase.FieldLayouts>
+    </smc:DataGridView>
+  </smc:ConfirmGridView>
+</smc:Form>

@@ -1,0 +1,106 @@
+<SasFormReport:FormFilter x:Class="Poctpna.FrmTim"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:local="clr-namespace:Poctpna"
+                     xmlns:smc="http://sis.vn/SasControls"
+                     xmlns:igDP="http://infragistics.com/DataPresenter"
+                     xmlns:my="clr-namespace:System;assembly=mscorlib"
+                     xmlns:SasFormReport="clr-namespace:SasFormReport;assembly=SasFormReport"
+                     xmlns:igEditors="http://infragistics.com/Editors"
+                     xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+                     Loaded="FrmTim_Loaded" KeyUp="FrmTim_KeyUp" Name="FrmFilter" LanguageID="PoctpnaTim"
+                     Title="Loc chung tu" Height="680" Width="960">
+  <FrameworkElement.Resources>
+    <smc:NotNullConverter x:Key="NotNullControl"/>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" Name="grdConfirm">
+    <FrameworkElement.Resources>
+      <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        </ResourceDictionary.MergedDictionaries>
+        <smvc:BindingStatusVoucher x:Key="StatusVoucher"/>
+      </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:GridLayout RowCount="2" RowHeights="230,*">
+      <GroupBox Name="grpLocCT" Header="Điều kiện lọc" Grid.Column="0" Grid.Row="0" Margin="12,4,12,0">
+        <smc:GridLayout Name="GrdPhLoc" RowCount="8" HeightPerRow="25" ColumnCount="7"
+                        ColumnWidths="100,140,12,100,140,12,*" Margin="0">
+          <TextBlock Name="tblngay_ct1" Grid.Column="0" Grid.Row="0" Text="C.từ từ ngày"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <smc:DateTextBox Name="txtNgay_ct1" DisplayMode="IncludeBoth" Grid.Column="1" Grid.Row="0" IsAlwaysInEditMode="true"
+                           TabIndex="1" Margin="0,2" Value="{smc:BindingEx Path=M_NGAY_CT1, ElementName=FrmFilter}"/>
+          <TextBlock Name="tblngay_ct2" Grid.Column="3" Grid.Row="0" Text="Đến ngày"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:DateTextBox Name="txtNgay_ct2" DisplayMode="IncludeBoth" Grid.Column="4" Grid.Row="0" IsAlwaysInEditMode="true"
+                           TabIndex="5" Margin="0,2" Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=FrmFilter}"/>
+          <TextBlock Name="tblma_qs" Grid.Column="0" Grid.Row="1" Text="Quyển c.từ"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_qs_PreviewLostFocus" Name="txtMa_qs" Grid.Column="1" Grid.Row="1"
+                                   TabIndex="10" AllowEmty="true" AllowWrong="false" ListID="dmqs"
+                                   Filter="ma_cts like '%PNA%' and status =1" Margin="0,2"
+                                   Text="{smc:BindingEx Path=M_MA_QS, ElementName=FrmFilter}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="lbltenqs" Grid.Column="3" Grid.ColumnSpan="4" Grid.Row="1"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <TextBlock Name="tblso_ct1" Grid.Column="0" Grid.Row="2" Text="Số c.từ từ số"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <TextBox Name="txtSo_ct1" Grid.Column="1" Grid.Row="2" TabIndex="15" Margin="0,2"/>
+          <TextBlock Name="tblso_ct2" Grid.Column="3" Grid.Row="2" Text="Đến số"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <TextBox Name="txtSo_ct2" Grid.Column="4" Grid.Row="2" TabIndex="20" Margin="0,2"/>
+          <TextBlock Name="tblma_kh" Grid.Column="0" Grid.Row="3" Text="Mã khách"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <smc:AutoCompleteTextBox LostFocus="txtMa_kh_LostFocus" Name="txtMa_kh" Grid.Column="1" Grid.Row="3" TabIndex="25"
+                                   AllowEmty="true" AllowWrong="false" ListID="dmkh" Margin="0,2"
+                                   Text="{smc:BindingEx Path=M_MA_KH, ElementName=FrmFilter}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="tblten_kh" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <TextBlock Name="tbltk_co" Grid.Column="0" Grid.Row="4" Text="Mã nx (tk có)"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <smc:AutoCompleteTextBox LostFocus="txtTk_co_LostFocus" Name="txtTk_co" Grid.Column="1" Grid.Row="4" TabIndex="30"
+                                   AllowEmty="true" AllowWrong="false" ListID="dmtk" Margin="0,2"
+                                   Text="{smc:BindingEx Path=M_TK, ElementName=FrmFilter}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="tblten_tk" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="4"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <TextBlock Name="lblStatus" Text="Trạng thái" Grid.Column="0" Grid.Row="5"/>
+          <igEditors:XamComboEditor Name="txtStatus" ValuePath="ma_post" Grid.Column="1" Height="20" Margin="0" Grid.Row="5"
+                                    TabIndex="35" SelectedIndex="{Binding Path=status, Converter={StaticResource StatusVoucher}}"/>
+          <TextBlock Name="lblMaDVCS" Text="Mã ĐVCS" Grid.Column="0" Grid.Row="6"/>
+          <smc:AutoCompleteTextBox LostFocus="txtMaDVCS_LostFocus" Name="txtMaDVCS" Grid.Column="1" Grid.Row="6" TabIndex="40"
+                                   AllowEmty="true" AllowWrong="false" ListID="dmdvcs"
+                                   Text="{smc:BindingEx Path=M_MA_DVCS, ElementName=FrmFilter}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="lblTenDVCS" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="6"/>
+          <TextBlock Name="tblUser" Grid.Column="0" Grid.Row="7" Text="Lọc theo NSD"
+                     Style="{StaticResource ContentTextStyle}" Margin="0"/>
+          <smc:MaskedTextBox TextChanged="txtUser_TextChanged" Name="txtUser" Grid.Column="1" Grid.Row="7" TabIndex="45"
+                             Format="M" InputMask="0,1" Margin="0,2" Style="{StaticResource MaskedTextBoxStyle}"/>
+          <TextBlock Name="tblUserCoKhong" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="4"
+                     Text="0 - Không lọc theo NSD, 1 - Lọc theo NSD" Style="{StaticResource ContentTextStyle}"
+                     Margin="0"/>
+        </smc:GridLayout>
+      </GroupBox>
+      <smc:GridLayout Row="1" Margin="12,4,12,0">
+        <SasFormReport:ControlDetailFilter3 x:Name="GridSearch" FontWeight="Normal"/>
+      </smc:GridLayout>
+    </smc:GridLayout>
+    <Canvas Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,100,33"/>
+    <TextBlock Name="tbltk_tracuu" Text="F5 - Tra cứu" HorizontalAlignment="Right" Margin="0,17.259,12,17.258"
+               Grid.Row="1" Width="75"/>
+  </smc:ConfirmGridView>
+</SasFormReport:FormFilter>

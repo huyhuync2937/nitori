@@ -1,0 +1,132 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Poctpxf\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\cotkth2dvcs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\cotkth2dvcs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\cotkth2dvcs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\cotkth2dvcs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|d:\\siserpsme2025\\source\\poctpxf\\poctpxf\\frmpoctpxf.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmpoctpxf.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\frmpoctpxf.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmpoctpxf.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\StartUp.cs",
+              "RelativeDocumentMoniker": "Poctpxf\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\StartUp.cs",
+              "RelativeToolTip": "Poctpxf\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-01T02:32:44.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmPoctpxf.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmPoctpxf.xaml",
+              "RelativeDocumentMoniker": "Poctpxf\\FrmPoctpxf.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmPoctpxf.xaml",
+              "RelativeToolTip": "Poctpxf\\FrmPoctpxf.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-01T02:26:50.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmPoctpxf.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmPoctpxf.xaml.cs",
+              "RelativeDocumentMoniker": "Poctpxf\\FrmPoctpxf.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmPoctpxf.xaml.cs",
+              "RelativeToolTip": "Poctpxf\\FrmPoctpxf.xaml.cs",
+              "ViewState": "AgIAAKcHAAAAAAAAAAAewL0HAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-01T02:26:48.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "COTKTH2Dvcs.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\COTKTH2Dvcs.xaml",
+              "RelativeDocumentMoniker": "Poctpxf\\COTKTH2Dvcs.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\COTKTH2Dvcs.xaml",
+              "RelativeToolTip": "Poctpxf\\COTKTH2Dvcs.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-01T01:57:07.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "COTKTH2Dvcs.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\COTKTH2Dvcs.xaml.cs",
+              "RelativeDocumentMoniker": "Poctpxf\\COTKTH2Dvcs.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\COTKTH2Dvcs.xaml.cs",
+              "RelativeToolTip": "Poctpxf\\COTKTH2Dvcs.xaml.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwEYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T18:20:45.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "Poctpxf\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "Poctpxf\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAMwEIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T18:19:11.582Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "Poctpxf\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmLoc.xaml",
+              "RelativeToolTip": "Poctpxf\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-30T18:19:07.238Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

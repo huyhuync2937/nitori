@@ -1,0 +1,16 @@
+C:\Temp\Prog\POBK1.exe
+C:\Temp\Prog\POBK1.pdb
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.csprojAssemblyReference.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\FormLoc.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\App.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1_MarkupCompile.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1_MarkupCompile.lref
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\App.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\FormLoc.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.g.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.Properties.Resources.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.csproj.GenerateResource.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.csproj.CoreCompileInputs.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.csproj.CopyComplete
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.exe
+D:\Product\SASERP.NET\SASERP20NET35\Source_Repo\POBK1\POBK1\obj\Release\POBK1.pdb

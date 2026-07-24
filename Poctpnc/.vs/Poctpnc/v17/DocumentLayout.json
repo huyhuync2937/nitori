@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Product\\2025\\SISERPSME2025\\Source\\Poctpnc\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4FB127F3-9086-4C10-8C18-167F7ED7F113}|Poctpnc\\Poctpnc.csproj|d:\\product\\2025\\siserpsme2025\\source\\poctpnc\\poctpnc\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4FB127F3-9086-4C10-8C18-167F7ED7F113}|Poctpnc\\Poctpnc.csproj|solutionrelative:poctpnc\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FB127F3-9086-4C10-8C18-167F7ED7F113}|Poctpnc\\Poctpnc.csproj|d:\\product\\2025\\siserpsme2025\\source\\poctpnc\\poctpnc\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FB127F3-9086-4C10-8C18-167F7ED7F113}|Poctpnc\\Poctpnc.csproj|solutionrelative:poctpnc\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmIn.xaml.cs",
+              "DocumentMoniker": "D:\\Product\\2025\\SISERPSME2025\\Source\\Poctpnc\\Poctpnc\\FrmIn.xaml.cs",
+              "RelativeDocumentMoniker": "Poctpnc\\FrmIn.xaml.cs",
+              "ToolTip": "D:\\Product\\2025\\SISERPSME2025\\Source\\Poctpnc\\Poctpnc\\FrmIn.xaml.cs",
+              "RelativeToolTip": "Poctpnc\\FrmIn.xaml.cs",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAAABUBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T15:11:53.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmIn.xaml",
+              "DocumentMoniker": "D:\\Product\\2025\\SISERPSME2025\\Source\\Poctpnc\\Poctpnc\\FrmIn.xaml",
+              "RelativeDocumentMoniker": "Poctpnc\\FrmIn.xaml",
+              "ToolTip": "D:\\Product\\2025\\SISERPSME2025\\Source\\Poctpnc\\Poctpnc\\FrmIn.xaml",
+              "RelativeToolTip": "Poctpnc\\FrmIn.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-14T15:11:53.957Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+D:\SISERPSME2025\Prog\Inqcs.exe
+D:\SISERPSME2025\Prog\Inqcs.pdb
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.csproj.AssemblyReference.cache
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\newForm.baml
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\newForm.g.cs
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\App.g.cs
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs_MarkupCompile.cache
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs_MarkupCompile.lref
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\App.baml
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.g.resources
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.Properties.Resources.resources
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.csproj.GenerateResource.cache
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.csproj.CoreCompileInputs.cache
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.csproj.Up2Date
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.exe
+D:\SISERPSME2025\Source\InQCS\Inqcs\obj\Debug\Inqcs.pdb

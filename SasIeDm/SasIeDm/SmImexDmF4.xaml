@@ -1,0 +1,51 @@
+﻿<smr:FormFilter x:Class="SasIeDm.SmImexDmF4" 
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+          xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:smc="http://sis.vn/SasControls" 
+                xmlns:smr ="clr-namespace:SasFormReport;assembly=SasFormReport"
+          Theme="Standard" EscToClose="True" LanguageID="SasIeDmLoc_0" 
+          Title="Sao chép số liệu vào" Height="346" Width="668" ResizeMode="CanMinimize">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml" />
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <smc:NegativeConverter x:Key="mau_bcConverter" />
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="True" />
+            </Style>
+            <Style x:Key="UnReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}" />
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk">
+        <GroupBox Name="grbmain" Grid.Row="0" Grid.Column="1" Margin="12,4,12,0">
+            <smc:GridLayout RowCount="5" ColumnCount="5" ColumnWidths="140,140, *, 38,46" RowHeights="25,0,25,25,25">
+                <TextBlock Name="lblTen" Grid.Row="0" Grid.Column="0" Text="Dữ liệu cần chuyển" />
+                <TextBox Name="txtName" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ReadOnly}" IsEnabled="True" Margin="1" Text="{smc:BindingEx Path=ten, Path2=ten2}" />
+                <TextBlock Name="lblEx_mau" Grid.Row="1" Grid.Column="0" Text="Tập tin mẫu" />
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <TextBox Name="txtdbf_mau" Width="140" Style="{StaticResource ReadOnly}" Text="{Binding dbf_mau}" />
+                    <Button Name="btnXuatMau" Width="110" IsTabStop="False" Margin="12,0,0,0" Click="btnXuatMau_Click">Xuất (export) mẫu</Button>
+                </StackPanel>
+                <TextBlock Name="lblFileName" Grid.Row="2" Grid.Column="0" Text="Tên tệp dữ liệu" />
+                <TextBox Name="txtFileName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource UnReadOnly}" />
+                <Button Name="btnOpen" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Width="26" IsTabStop="False" Click="btnOpen_Click">...</Button>
+                <Button Name="btnReview" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Width="36" IsTabStop="False" Click="btnReview_Click">Xem</Button>
+                <TextBlock Name="tblBangMa" Grid.Row="3" Grid.Column="0" Text="Bảng mã ký tự sử dụng" />
+                <smc:MaskedTextBox Name="txtBANGMA" Grid.Row="3" Grid.Column="1" Text="1" Format="M" InputMask="1,2" HorizontalContentAlignment="Right" />
+                <TextBlock Name="tblghichu2" Grid.Row="3" Grid.Column="2" Text="1 - Unicode, 2 - TCVN3" Margin="12,0,0,0" />
+                <TextBlock Name="tblchepde" Grid.Row="4" Grid.Column="0" Text="Chép đè mã đã có" />
+                <smc:MaskedTextBox Name="txtOverWrite" Grid.Row="4" Grid.Column="1" Text="0" Format="M" InputMask="0,1" HorizontalContentAlignment="Right" />
+                <TextBlock Name="tblGhichu1" Grid.Row="4" Grid.Column="2" Text="0 - Không, 1 - Có" Margin="12,0,0,0" />
+            </smc:GridLayout>
+        </GroupBox>
+    </smc:ConfirmGridView>
+</smr:FormFilter>

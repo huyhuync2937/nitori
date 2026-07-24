@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\PODHD1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|d:\\siserpsme2025\\source\\podhd1\\podhd1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|solutionrelative:podhd1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|D:\\SISERPSME2025\\Source\\PODHD1\\podhd1\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|solutionrelative:podhd1\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|D:\\SISERPSME2025\\Source\\PODHD1\\podhd1\\arttkb1pbg.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|solutionrelative:podhd1\\arttkb1pbg.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|D:\\SISERPSME2025\\Source\\PODHD1\\podhd1\\arttkb1f3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|solutionrelative:podhd1\\arttkb1f3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|D:\\SISERPSME2025\\Source\\PODHD1\\podhd1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|solutionrelative:podhd1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|D:\\SISERPSME2025\\Source\\PODHD1\\podhd1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|PODHD1\\PODHD1.csproj|solutionrelative:podhd1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Arttkb1PBG.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\Arttkb1PBG.xaml",
+              "RelativeDocumentMoniker": "PODHD1\\Arttkb1PBG.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\Arttkb1PBG.xaml",
+              "RelativeToolTip": "PODHD1\\Arttkb1PBG.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:25:56.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Arttkb1F3.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\Arttkb1F3.xaml",
+              "RelativeDocumentMoniker": "PODHD1\\Arttkb1F3.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\Arttkb1F3.xaml",
+              "RelativeToolTip": "PODHD1\\Arttkb1F3.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:25:54.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\FormLoc.xaml",
+              "RelativeDocumentMoniker": "PODHD1\\FormLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\FormLoc.xaml",
+              "RelativeToolTip": "PODHD1\\FormLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:25:49.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\StartUp.cs",
+              "RelativeDocumentMoniker": "PODHD1\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\StartUp.cs",
+              "RelativeToolTip": "PODHD1\\StartUp.cs",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAswIgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T08:25:25.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\App.xaml.cs",
+              "RelativeDocumentMoniker": "PODHD1\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\App.xaml.cs",
+              "RelativeToolTip": "PODHD1\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T08:25:13.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\App.xaml",
+              "RelativeDocumentMoniker": "PODHD1\\App.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODHD1\\PODHD1\\App.xaml",
+              "RelativeToolTip": "PODHD1\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:25:12.058Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

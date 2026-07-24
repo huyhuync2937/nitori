@@ -1,0 +1,35 @@
+﻿<smr:FormFilter x:Class="PODHD1.Arttkb1F3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:smc="http://sis.vn/SasControls"
+                     xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+                     Title="Khai bao trang thai don hang" Height="186" Width="496" EscToClose="true"
+                     LanguageID="PODHD1_2">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:NegativeConverter x:Key="mau_bcConverter"/>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" Name="grdMain">
+        <GroupBox Name="gpMain" Style="{StaticResource TabGroupBoxStyle}" Margin="12,4,12,0">
+            <smc:GridLayout Name="grdLayout" RowCount="4" RowHeights="25,25,25,*">
+                <CheckBox Checked="chk_Checked" Unchecked="chk_Unchecked" Name="chk1" HorizontalAlignment="Left"
+                  Content="Cập nhật &quot;Đóng&quot; cho các đh đã đánh dấu và sl đã nhận đủ" Grid.Row="0"
+                  IsChecked="True"/>
+                <CheckBox Checked="chk_Checked" Unchecked="chk_Unchecked" Name="chk2" HorizontalAlignment="Left"
+                  Content="Cập nhật &quot;Đóng&quot; cho các đh đã đánh dấu" Grid.Row="1"/>
+                <CheckBox Checked="chk_Checked" Unchecked="chk_Unchecked" Name="chk3" HorizontalAlignment="Left"
+                  Content="Hủy &quot;Đóng&quot; cho các đh đã đánh dấu nhưng sl chưa nhận đủ" Grid.Row="2"/>
+            </smc:GridLayout>
+        </GroupBox>
+    </smc:ConfirmGridView>
+</smr:FormFilter>

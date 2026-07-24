@@ -1,0 +1,73 @@
+<smc:Form x:Class="PODMHDM.FrmSetValue"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igEditors="http://infragistics.com/Editors"
+                    
+          LanguageID="SasFormBrowes_SetValue" EscToClose="true" Height="300" Width="716">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/FormStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+
+            <Style x:Key="ReadOnlyNumericTextBox" TargetType="{x:Type smc:NumericTextBox}"
+BasedOn="{StaticResource NumericTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+       
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" Name="GridMain">
+        <GroupBox Name="GroupMain" Header="Thông tin chung" Margin="10">
+            <smc:GridLayout ColumnCount="3" ColumnWidths="120,160,*" RowCount="6" RowHeights="30,30,30,30,30,30" >
+
+
+                <TextBlock Name="tblngay_bh" Text="Ngày ban hành" Grid.Column="0" Grid.Row="0"
+   Style="{StaticResource ContentTextStyle}"/>
+                <smc:DateTextBox x:Name="txtNgay_bh" AllowEmpty="false" Grid.Column="1"
+         Grid.Row="0" TabIndex="1" Value="{smc:BindingEx Path=ngay_bh}"/>
+
+                <TextBlock Name="lblDvt1" Grid.Row="1">Đvt</TextBlock>
+
+                <smc:AutoCompleteTextBox  x:Name="txtDvt1" Grid.Column="1" Grid.Row="1"
+                                       TabIndex="10" AllowEmty="False" AllowWrong="False" ListID="dmvtdvt"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                </smc:AutoCompleteTextBox>
+                
+                <TextBlock Name="tblpacking" Text="Packing" Grid.Row="2" Grid.Column="0"
+Style="{StaticResource ContentTextStyle}"/>
+                <smc:NumericTextBox GotFocus="txtNum_GotFocus"  LostFocus="txtpacking_LostFocus"  Name="txtpacking" TabIndex="20"
+         Grid.Column="1" Grid.Row="2" 
+         Value="{smc:BindingEx packing}"/>
+
+                <TextBlock Name="tblhe_so" Text="Hệ số" Grid.Row="3" Grid.Column="0"
+  Style="{StaticResource ContentTextStyle}"/>
+                <smc:NumericTextBox GotFocus="txtNum_GotFocus"   LostFocus="txthe_so_LostFocus"  Name="txthe_so" TabIndex="30"
+           Grid.Column="1" Grid.Row="3" 
+           Value="{smc:BindingEx he_so}"/>
+
+                <TextBlock Name="tblso_luong" Text="Số lượng " Grid.Row="4" Grid.Column="0"
+  Style="{StaticResource ContentTextStyle}"/>
+                <smc:NumericTextBox GotFocus="txtNum_GotFocus"  LostFocus="txtso_luong_LostFocus"  Name="txtso_luong" TabIndex="40"
+           Grid.Column="1" Grid.Row="4" 
+           Value="{smc:BindingEx so_luong}"/>
+                
+            </smc:GridLayout>
+        </GroupBox>
+    </smc:ConfirmGridView>
+</smc:Form>

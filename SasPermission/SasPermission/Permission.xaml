@@ -1,0 +1,120 @@
+<smc:Form x:Class="SasPermission.Permission"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:src="clr-namespace:SasPermission"
+          xmlns:igWindows="http://infragistics.com/Windows"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:System="clr-namespace:System;assembly=mscorlib"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          Loaded="Permission_Loaded" PreviewKeyDown="Form_PreviewKeyDown" LanguageID="SasPermission_3"
+          Height="600" Width="1050" EscToClose="true" WindowStartupLocation="CenterScreen">
+  <smc:GridLayout RowCount="2" RowHeights="5*,49">
+    <FrameworkElement.Resources>
+      <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+          <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+        </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
+    </FrameworkElement.Resources>
+        <smc:DataGridView RecordActivated="GrdUserInfo_RecordActivated" Name="GrdUserInfo" Grid.Row="0" IsFilterExcelStyle="true"
+                      GroupByAreaLocation="None" BorderThickness="1" BorderBrush="#ff808080" Margin="12,12,12,0">
+            <igDP:DataPresenterBase.FieldSettings>
+                <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="True" AllowSummaries="False"
+                                LabelClickAction="SortByMultipleFieldsTriState"/>
+            </igDP:DataPresenterBase.FieldSettings>
+            <igDP:DataPresenterBase.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                  RecordSelectorStyle="{StaticResource StyleRecordSelector}" AllowDelete="False"/>
+      </igDP:DataPresenterBase.FieldLayoutSettings>
+      <igDP:DataPresenterBase.FieldLayouts>
+        <igDP:FieldLayout>
+          <igDP:FieldLayout.Fields>
+            <igDP:Field Name="user_name" Label="Mã NSD" Width="140">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="comment" Label="Tên NSD" Width="225">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="is_admin" Label="Quyền quản lý" Width="100">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" EditAsType="{x:Type System:Int16}" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="islocked" Label="Khóa sử dụng" Width="100">
+                <igDP:Field.Settings>
+                    <igDP:FieldSettings AllowEdit="False" EditAsType="{x:Type System:Int16}" LabelTextAlignment="Center"/>
+                </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="user_name2" Label="Quyền thừa hưởng" Width="120">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="ma_dvcs" Label="Mã ĐVCS" Width="110">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="e_mail" Label="Thư điện tử" Width="110">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="chuc_vu" Label="Vị trí công việc" Width="110">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="dien_thoai" Label="Điện thoại" Width="110">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="user_id" Label="Số hiệu NSD" Width="100">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" EditAsType="{x:Type System:Int16}" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+              <igDP:Field Name="ma_pb" Label="Phòng ban" Width="110">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+            <igDP:Field Name="ma_cv" Label="Chức vụ" Width="110">
+              <igDP:Field.Settings>
+                <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center"/>
+              </igDP:Field.Settings>
+            </igDP:Field>
+          </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+      </igDP:DataPresenterBase.FieldLayouts>
+    </smc:DataGridView>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="12">
+      <Button Click="btnPhanQuyen_Click" x:Name="btnPhanQuyen" Content="_Phân quyền"
+              Style="{StaticResource ButtonStyle}" Width="90" ToolTip="Alt + P"/>
+      <Button Click="btnThemNSD_Click" x:Name="btnThemNSD" Content="_Thêm NSD"
+              Style="{StaticResource ButtonStyle}" Margin="6,0,0,0" Width="90" ToolTip="F4"/>
+      <Button Click="btnSuaDoiNSD_Click" x:Name="btnSuaDoiNSD" Content="_Sửa đổi NSD"
+              Style="{StaticResource ButtonStyle}" Margin="6,0,0,0" Width="90" ToolTip="F3"/>
+      <Button Click="btnChangePass_Click" x:Name="btnChangePass" Content="Sửa _mật khẩu"
+              Style="{StaticResource ButtonStyle}" Margin="6,0,0,0" Width="90" ToolTip="F5"/>
+      <Button Click="btnXoaNSD_Click" x:Name="btnXoaNSD" Content="_Xóa NSD" Style="{StaticResource ButtonStyle}"
+              Margin="6,0,0,0" Width="90" ToolTip="F8"/>
+       <Button Click="btnPhanQuyenW_Click" x:Name="btnPhanQuyenW" Content="_Phân quyền Web" Margin="6,0,0,0"
+              Style="{StaticResource ButtonStyle}" Width="110" ToolTip="Alt + W"/>
+      <Button Click="btnPhanQuyenA_Click" x:Name="btnPhanQuyenA" Content="_Phân quyền App" Margin="6,0,0,0"
+        Style="{StaticResource ButtonStyle}" Width="110" ToolTip="Alt + A"/>
+      <Button Click="btnExport_Click" x:Name="btnExport" Content="Xuất _Excel"
+              Style="{StaticResource ButtonStyle}" Margin="6,0,0,0" Width="90" ToolTip="Export"/>
+      <Button Click="btnImport_Click" x:Name="btnImport" Content="Nhập từ Excel"
+              Style="{StaticResource ButtonStyle}" Margin="6,0,0,0" Width="90" ToolTip="Import"/>
+      <Button Click="btnQuayRa_Click" x:Name="btnQuayRa" Content="_Quay ra" Style="{StaticResource ButtonStyle}"
+              Margin="6,0,0,0" Width="90" ToolTip="Esc"/>
+    </StackPanel>
+  </smc:GridLayout>
+</smc:Form>

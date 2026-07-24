@@ -1,0 +1,88 @@
+﻿<smc:Form x:Class="DMBPNS.newForm"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"          
+              xmlns:smc="http://sis.vn/SasControls"            
+              Loaded="newForm_Loaded" Closed="FormList_Closed" PreviewKeyUp="FormList_PreviewKeyUp" ResizeMode="NoResize"
+              Title="newForm" LanguageID="DMBPNS_0" Height="270" Width="600">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+          
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="True" />
+                <Style.Triggers>
+                    <DataTrigger Value="True" Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="False" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyMaskedTextBox" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                    <Trigger Property="UIElement.IsEnabled" Value="false">
+                        <Setter Property="Control.Background" Value="#FFF4F4F4"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteTextBoxReadOnly" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="_confirmGridview_OnOk" OnCancel="_confirmGridview_OnCancel" Name="_confirmGridview">
+        <Border Margin="5" BorderBrush="Silver" BorderThickness="1">
+            <smc:GridLayout Margin="10" RowCount="10" RowHeights="27,27,27,27,27,27,27,27,27,27" ColumnCount="4"
+                        ColumnWidths="150,150,10,150">
+
+                <TextBlock Text="Mã ĐVCS" Grid.Row="0" Grid.Column="0" />
+                <smc:AutoCompleteTextBox Name="txtma_dvcs" Grid.Column="1" Grid.Row="0" TabIndex="1" CharacterCasing="Upper"
+                                     AllowEmty="false" AllowWrong="false" ListID="dmdvcs"                                
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" PreviewLostFocus="txtma_dvcs_PreviewLostFocus"
+                                     Text="{smc:BindingEx ma_dvcs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="tblten_dvcs"  Grid.Row="0" Grid.Column="2" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Mã bộ phận"></TextBlock>
+                <TextBox Name="txtMabpns" Grid.Row="1" Grid.Column="1" Text="{smc:BindingEx ma_bpns,Mode=TwoWay}" Style="{StaticResource ReadOnly}" CharacterCasing="Upper" TabIndex="1"></TextBox>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Tên bộ phận"></TextBlock>
+                <TextBox Name="txtTenbpns" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"  Text="{smc:BindingEx ten_bpns,Mode=TwoWay}" TabIndex="2"></TextBox>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Tên bộ phận 2"></TextBlock>
+                <TextBox  Name="txtTenbpns2"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="{smc:BindingEx ten_bpns2,Mode=TwoWay}" TabIndex="3"></TextBox>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Ghi chú"></TextBlock>
+                <TextBox Name="txt_ghichu" Grid.Row="4" Grid.Column="1" Text="{smc:BindingEx ghi_chu,Mode=TwoWay}" Grid.ColumnSpan="3" TabIndex="4"></TextBox>
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Trạng thái"></TextBlock>
+                <smc:MaskedTextBox Name="txtstatus" Grid.Row="5" Grid.Column="1" InputMask="0,1" Format="M" SelectionLength="1" Value="{smc:BindingEx status,Mode=TwoWay}"></smc:MaskedTextBox>
+                <TextBlock Grid.Row="5" Grid.Column="3" Text="0- Không, 1- Có sử dụng"></TextBlock>
+
+            </smc:GridLayout>
+        </Border>
+       
+    </smc:ConfirmGridView>
+</smc:Form>

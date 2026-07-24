@@ -1,0 +1,53 @@
+<smc:Form x:Class="FxTinhKH.COTKTH2Dvcs"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+          xmlns:igEditors="http://infragistics.com/Editors"
+          xmlns:local="clr-namespace:FxTinhKH"
+          EscToClose="true" Title="Danh muc cong cu" LanguageID="FXTinhKH_3" Height="500" Width="470">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel">
+        <smc:GridLayout Name="grdMain" Margin="12,0,12,0">
+            <smc:BasicGridView KeyUp="GrdCt_KeyUp" Name="GrdCt">
+                <igDP:DataPresenterBase.FieldLayoutSettings>
+                    <igDP:FieldLayoutSettings AutoGenerateFields="False" FilterRecordLocation="OnTopFixed"/>
+                </igDP:DataPresenterBase.FieldLayoutSettings>
+                <igDP:DataPresenterBase.FieldSettings>
+                    <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="True" LabelTextAlignment="Center"/>
+                </igDP:DataPresenterBase.FieldSettings>
+                <igDP:DataPresenterBase.FieldLayouts>
+                    <igDP:FieldLayout>
+                        <igDP:Field Name="tag" Label="Chọn" Width="45">
+                            <igDP:Field.Settings>
+                                <igDP:FieldSettings AllowEdit="True"/>
+                            </igDP:Field.Settings>
+                        </igDP:Field>
+                        <igDP:Field Name="ma_cc_me" Label="Mã cc" Width="130"/>
+                        <igDP:Field Name="ten_cc" Label="Tên cc" Width="250"/>
+                        <igDP:Field Name="ten_cc2" Label="Tên cc 2" Width="250"/>
+                    </igDP:FieldLayout>
+                </igDP:DataPresenterBase.FieldLayouts>
+            </smc:BasicGridView>
+        </smc:GridLayout>
+    </smc:ConfirmGridView>
+</smc:Form>

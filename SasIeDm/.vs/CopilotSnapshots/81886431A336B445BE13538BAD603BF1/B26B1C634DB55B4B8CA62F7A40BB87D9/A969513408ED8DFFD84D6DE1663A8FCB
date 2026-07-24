@@ -1,0 +1,2317 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows;
+using SasControls;
+using SasFormBrowes;
+using SasErrorLib;
+
+namespace SasIeDm
+{
+    public class C_ImportVoucher
+
+	{
+		public static string strException = "";
+
+		public static bool UploadTable(string tableName, DataSet db, string strbrowse)
+		{
+			strException = "";
+			DeleteTableOld(tableName);
+			DataTable dataTable = db.Tables["DataExcel"].Clone();
+			dataTable.Columns.Add("ly_do");
+			foreach (DataRow row in db.Tables["DataExcel"].Rows)
+			{
+				SqlConnection sqlConnection = new SqlConnection(GetConnectionString(10000));
+				sqlConnection.Open();
+				try
+				{
+					SqlCommand uploadCommand = GetUploadCommand(tableName, row);
+					uploadCommand.Connection = sqlConnection;
+					uploadCommand.ExecuteNonQuery();
+				}
+				catch (SqlException ex)
+				{
+					strException = strException + ex.Message + "\n";
+					DataRow dataRow2 = dataTable.NewRow();
+					dataRow2.ItemArray = row.ItemArray;
+					dataRow2["ly_do"] = ex.Message;
+					dataTable.Rows.Add(dataRow2);
+				}
+				catch (Exception ex2)
+				{
+					ErrorLog.CatchMessage(ex2);
+				}
+				finally
+				{
+					sqlConnection.Close();
+				}
+			}
+			if (dataTable.Rows.Count > 0)
+			{
+				DeleteTableOld(tableName);
+				if (StartUp.waiting != null)
+				{
+					StartUp.waiting.Close();
+				}
+				FormBrowse formBrowse = new FormBrowse(StartupBase.SasObj, dataTable.DefaultView, (StartupBase.M_LAN.Equals("V") ? "ly_do:H=Lý do lỗi:300;" : "ly_do:H=Error description:300;") + strbrowse);
+				formBrowse.frmBrw.Title = (StartupBase.M_LAN.Equals("V") ? "So lieu loi" : "The data errors");
+				formBrowse.frmBrw.LanguageID = "SmImexCt_5";
+				formBrowse.ShowDialog();
+				return false;
+			}
+			return true;
+		}
+
+		private static SqlCommand GetUploadCommand(string tableName, DataRow row)
+		{
+			string text = "";
+			SqlCommand sqlCommand = new SqlCommand();
+			for (int i = 0; i < row.Table.Columns.Count; i++)
+			{
+				string text2 = row.Table.Columns[i].ColumnName.Trim();
+				text = ((!(text == "")) ? (text + $",@{text2}") : $"@{text2}");
+				sqlCommand.Parameters.Add(new SqlParameter($"@{text2}", row[text2]));
+				sqlCommand.CommandText = string.Format("INSERT INTO {0} ({1}) VALUES ({2})", tableName, text.Replace("@", ""), text);
+			}
+			return sqlCommand;
+		}
+
+		private static void DeleteTableOld(string tableName)
+		{
+			SqlConnection sqlConnection = new SqlConnection(GetConnectionString(10000));
+			sqlConnection.Open();
+			SqlCommand sqlCommand = new SqlCommand();
+			sqlCommand.CommandText = $"Delete from {tableName}";
+			sqlCommand.Connection = sqlConnection;
+			sqlCommand.ExecuteNonQuery();
+			sqlConnection.Close();
+		}
+
+		public static string GetConnectionString(int _time)
+		{
+			string text = "";
+			DataSet dataSet = new DataSet();
+			try
+			{
+				text = StartupBase.SasObj.M_ConnectString;
+				if (!text.ToUpper().Contains("TIMEOUT"))
+				{
+					text = text + ";Connect Timeout = " + _time;
+				}
+			}
+			catch (Exception ex)
+			{
+				ErrorLog.CatchMessage(ex);
+				return "";
+			}
+			return text;
+		}
+
+		public static bool Post(ImportInfo info)
+		{
+			try
+			{
+				SqlConnection sqlConnection = new SqlConnection(GetConnectionString(500000));
+				SqlCommand sqlCommand = new SqlCommand();
+				string text = info.CheckLong;
+				if (StartUp.M_CHECK_LONG.Equals("1"))
+				{
+					text = "0";
+				}
+				sqlCommand.CommandText = $"EXEC {info.PostProc} '{info.CheckTrung}', '{text}', {StartUp._User_id}, '{info.OverWrite}', '{StartupBase.SasObj.M_ma_dvcs.Trim()}'";
+				sqlCommand.Connection = sqlConnection;
+				sqlCommand.CommandTimeout = 600000;
+				SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+				DataSet dataSet = new DataSet();
+				sqlDataAdapter.Fill(dataSet);
+				sqlConnection.Close();
+				return CheckError(dataSet, info.Ma_Imex);
+			}
+			catch (Exception ex)
+			{
+				if (StartUp.waiting != null)
+				{
+					StartUp.waiting.Close();
+				}
+				ExMessageBox.Show(6200, StartupBase.SasObj, ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Hand);
+				return false;
+			}
+		}
+
+		private static bool CheckError(DataSet dsError, string maImex)
+		{
+			switch (maImex.Trim())
+			{
+				case "AP01":
+					return ShowError_AP01(dsError);
+				case "AP02":
+					return ShowError_AP02(dsError);
+				case "AP03":
+					return ShowError_AP03(dsError);
+				case "CO01":
+					return ShowError_CO01(dsError);
+				case "CO02":
+					return ShowError_CO02(dsError);
+				case "CO03":
+					return ShowError_CO03(dsError);
+				case "CO04":
+					return ShowError_CO04(dsError);
+				case "GL01":
+					return ShowError_GL01(dsError);
+				case "GL02":
+					return ShowError_GL02(dsError);
+				case "IN01":
+					return ShowError_IN01(dsError);
+				case "IN02":
+					return ShowError_IN02(dsError);
+				case "IN03":
+					return ShowError_IN03(dsError);
+				case "IN04":
+					return ShowError_IN04(dsError);
+				case "IN05":
+					return ShowError_IN05(dsError);
+				case "IN06":
+					return ShowError_IN06(dsError);
+				case "TN01":
+					return ShowError_TN01(dsError);
+				case "TN02":
+					return ShowError_TN02(dsError);
+				case "FA01":
+					return ShowError_FA01(dsError);
+				case "FX01":
+					return ShowError_FX01(dsError);
+				case "CA01":
+					return ShowError_CA01(dsError);
+				case "SPDD":
+					return ShowError_SPDD(dsError);
+				case "GTDD":
+					return ShowError_GTDD(dsError);
+				case "NVLDD":
+					return ShowError_NVLDD(dsError);
+				default:
+					return false;
+			}
+		}
+
+		private static bool ShowError_NVLDD(DataSet ds)
+		{
+			bool result = true;
+			foreach (DataTable table in ds.Tables)
+			{
+				if (table.Rows.Count != 0)
+				{
+					switch (table.Columns[0].ColumnName)
+					{
+						case "trung":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_dvcs:H=Mã ĐVCS;nam:H=Năm;thang:H=Tháng;ma_sp:H=Mã sản phẩm;ma_vt:H=Mã vật tư;so_lsx:H=Số lsx;ma_bpht:H=Mã bpht;ma_ytcp:H=Mã thpbcp;lan:H=Lần", "Danh sách dữ liệu bị trùng");
+							}
+							else
+							{
+								ShowError(table, "ma_dvcs:H=Unit code;nam:H=Year;thang:H=Month;ma_sp:H=Product code;ma_vt:H=Item code;so_lsx:H=Manufacturing order no.;ma_bpht:H=Dept. code;ma_ytcp:H=Cost factor code;lan:H=Times", "List data duplicate");
+							}
+							result = false;
+							break;
+						case "ma_sp":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp:H=Mã sản phẩm", "Danh sách mã sản phẩm không có trong danh mục sản phẩm");
+							}
+							else
+							{
+								ShowError(table, "ma_sp:H=Product code", "List the product not in list product");
+							}
+							result = false;
+							break;
+						case "ma_vt":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_vt:H=Mã vật tư", "Danh sách mã vật tư không có trong danh mục vật tư");
+							}
+							else
+							{
+								ShowError(table, "ma_vt:H=Item code", "List the item code not in list item");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_lsx":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_lsx:H=Mã sản phẩm;so_lsx:H=Số lsx", "Danh sách mã sản phẩm không có lsx hoặc lsx không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_lsx:H=Product code;so_lsx:H=Manufacturing order no.", "List the product is have manufacturing order no. is not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_1_have":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_1_have:H=Mã sản phẩm;so_lsx:H=Số lsx;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Sản phẩm, có khai báo lsx hoặc mã bpht");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_1_have:H=Product code;so_lsx:H=Manufacturing order no.;ma_bpht:H=Dept. code", "List the product of cost object calculation is: product, have MO no. or dept. code");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_lsx1":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_lsx1:H=Mã sản phẩm;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Lsx - sản phẩm, có khai báo mã bpht");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_lsx1:H=Product code;ma_bpht:H=Dept. code", "List the product of cost object calculation is: MO - product, have dept. code");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_bpht":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_bpht:H=Mã sản phẩm;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm không có mã bpht hoặc mã bpht không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_bpht:H=Product code;ma_bpht:H=Dept. code", "List the product is have dept. code is not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_bpht1":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_bpht1:H=Mã sản phẩm;so_lsx:H=Số lsx", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Bpht - sản phẩm, có khai báo số lsx");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_bpht1:H=Product code;so_lsx:H=Manufacturing order no.", "List the product of cost object calculation is: Mnfg - product, have MO no.");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_ytcp":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_ytcp:H=Mã sản phẩm;ma_ytcp:H=Mã thpbcp", "Danh sách mã sản phẩm chưa vào mã thpbcp hoặc mã thpbcp không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_ytcp:H=Product code;ma_ytcp:H=Cost factor code", "List the product code have no cost factor code or cost factor code is valid");
+							}
+							result = false;
+							break;
+						case "ma_dvcs":
+							if (StartupBase.M_LAN.Equals("V"))
+							{
+								ShowError(table, "ma_dvcs:H=Mã ĐVCS", "Danh sách mã đvcs không có trong danh mục đvcs");
+							}
+							else
+							{
+								ShowError(table, "ma_dvcs:H=Unit code", "List the unit code not in unit list");
+							}
+							result = false;
+							break;
+					}
+				}
+			}
+			return result;
+		}
+
+		private static bool ShowError_GTDD(DataSet ds)
+		{
+			bool result = true;
+			foreach (DataTable table in ds.Tables)
+			{
+				if (table.Rows.Count != 0)
+				{
+					switch (table.Columns[0].ColumnName)
+					{
+						case "trung":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_dvcs:H=Mã ĐVCS;nam:H=Năm;thang:H=Tháng;ma_sp:H=Mã sản phẩm;so_lsx:H=Số lsx;ma_bpht:H=Mã bpht;ma_ytcp:H=Mã thpbcp;lan:H=Lần", "Danh sách dữ liệu bị trùng");
+							}
+							else
+							{
+								ShowError(table, "ma_dvcs:H=Unit code;nam:H=Year;thang:H=Month;ma_sp:H=Product code;so_lsx:H=Manufacturing order no.;ma_bpht:H=Dept. code;ma_ytcp:H=Cost factor code;lan:H=Times", "List data duplicate");
+							}
+							result = false;
+							break;
+						case "ma_sp":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp:H=Mã sản phẩm", "Danh sách mã sản phẩm không có trong danh mục sản phẩm");
+							}
+							else
+							{
+								ShowError(table, "ma_sp:H=Product code", "List the product not in list product");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_lsx":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_lsx:H=Mã sản phẩm;so_lsx:H=Số lsx", "Danh sách mã sản phẩm không có lsx hoặc lsx không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_lsx:H=Product code;so_lsx:H=Manufacturing order no.", "List code of product has no manufacturing order no. or not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_1_have":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_1_have:H=Mã sản phẩm;so_lsx:H=Số lsx;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Sản phẩm, có khai báo lsx hoặc mã bpht");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_1_have:H=Product code;so_lsx:H=Manufacturing order no.;ma_bpht:H=Dept. code", "List product of cost object calculation is: product which declared manufacturing order entry or department code");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_lsx1":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_lsx1:H=Mã sản phẩm;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Lsx - sản phẩm, có khai báo mã bpht");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_lsx1:H=Product code;ma_bpht:H=Dept. code", "List product of cost object calculation is: MO - product which declared department code");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_bpht":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_bpht:H=Mã sản phẩm;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm không có mã bpht hoặc mã bpht không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_bpht:H=Product code;ma_bpht:H=Dept. code", "List code of product has no department code or not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_bpht1":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_bpht1:H=Mã sản phẩm;so_lsx:H=Số lsx", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Bpht - sản phẩm, có khai báo số lsx");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_bpht1:H=Product code;so_lsx:H=Department code", "List product of cost object calculation is: Mnfg - product which declared manufacturing order entry");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_ytcp":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_ytcp:H=Mã sản phẩm;ma_ytcp:H=Mã thpbcp", "Danh sách mã sản phẩm chưa vào mã thpbcp hoặc mã thpbcp không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_ytcp:H=Product code;ma_ytcp:H=Cost factor code", "List code of product has no cost factor code or not valid");
+							}
+							result = false;
+							break;
+						case "ma_dvcs":
+							if (StartupBase.M_LAN.Equals("V"))
+							{
+								ShowError(table, "ma_dvcs:H=Mã ĐVCS", "Danh sách mã đvcs không có trong danh mục đvcs");
+							}
+							else
+							{
+								ShowError(table, "ma_dvcs:H=Unit code", "The list of unit code not in unit list");
+							}
+							result = false;
+							break;
+					}
+				}
+			}
+			return result;
+		}
+
+		private static bool ShowError_SPDD(DataSet ds)
+		{
+			bool result = true;
+			foreach (DataTable table in ds.Tables)
+			{
+				if (table.Rows.Count != 0)
+				{
+					switch (table.Columns[0].ColumnName)
+					{
+						case "trung":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_dvcs:H=Mã ĐVCS;nam:H=Năm;thang:H=Tháng;ma_sp:H=Mã sản phẩm;so_lsx:H=Số lsx;ma_bpht:H=Mã bpht;loai_yt:H=Nhóm tỷ lệ ht;lan:H=Lần", "Danh sách dữ liệu bị trùng");
+							}
+							else
+							{
+								ShowError(table, "ma_dvcs:H=Unit code;nam:H=Year;thang:H=Month;ma_sp:H=Product code;so_lsx:H=Manufacturing order no.;ma_bpht:H=Dept. code;loai_yt:H=% completion group;lan:H=Times", "List data duplicate");
+							}
+							result = false;
+							break;
+						case "ma_sp":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp:H=Mã sản phẩm", "Danh sách mã sản phẩm không có trong danh mục sản phẩm");
+							}
+							else
+							{
+								ShowError(table, "ma_sp:H=Product code", "List the product not in list product");
+							}
+							result = false;
+							break;
+						case "ma_sp_1_have":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_1_have:H=Mã sản phẩm;so_lsx:H=Số lsx;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Sản phẩm, có khai báo lsx hoặc mã bpht");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_1_have:H=Product code;so_lsx:H=Manufacturing order no.;ma_bpht:H=Dept. code", "List product of cost object calculation is: product which declared manufacturing order entry or department code");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_lsx":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_lsx:H=Mã sản phẩm;so_lsx:H=Số lsx", "Danh sách mã sản phẩm không có lsx hoặc lsx không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_lsx:H=Product code;so_lsx:H=Manufacturing order no.", "List code of product has no manufacturing order no. or not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_lsx1":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_lsx1:H=Mã sản phẩm;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Lsx - sản phẩm, có khai báo mã bpht");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_lsx1:H=Product code;ma_bpht:H=Dept. code", "List product of cost object calculation is: MO - product which declared department code");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_bpht":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_bpht:H=Mã sản phẩm;ma_bpht:H=Mã bpht", "Danh sách mã sản phẩm không có mã bpht hoặc mã bpht không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_bpht:H=Product code;ma_bpht:H=Dept. code", "List code of product has no department code or not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_bpht1":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_bpht1:H=Mã sản phẩm;so_lsx:H=Số lsx", "Danh sách mã sản phẩm thuộc đối tượng tính giá thành là: Bpht - sản phẩm, có khai báo số lsx");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_bpht1:H=Product code;so_lsx:H=Manufacturing order no.", "List product of cost object calculation is: Mnfg - product which declared manufacturing order entry");
+							}
+							result = false;
+							break;
+						case "loai_yt":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "loai_yt:H=Nhóm tỷ lệ ht", "Danh sách nhóm tỷ lệ hoàn thành không hợp lệ");
+							}
+							else
+							{
+								ShowError(table, "loai_yt:H=% completion group", "List group of % completion is not valid");
+							}
+							result = false;
+							break;
+						case "ma_sp_not_sl_qd":
+							if (StartupBase.M_LAN == "V")
+							{
+								ShowError(table, "ma_sp_not_sl_qd:H=Mã sản phẩm", "Danh sách mã sản phẩm không có số lượng quy đổi");
+							}
+							else
+							{
+								ShowError(table, "ma_sp_not_sl_qd:H=Product code", "List cost of product has no convertible quantity");
+							}
+							result = false;
+							break;
+						case "ma_dvcs":
+							if (StartupBase.M_LAN.Equals("V"))
+							{
+								ShowError(table, "ma_dvcs:H=Mã ĐVCS", "Danh sách mã đvcs không có trong danh mục đvcs");
+							}
+							else
+							{
+								ShowError(table, "ma_dvcs:H=Unit code", "The list of unit code not in unit list");
+							}
+							result = false;
+							break;
+					}
+				}
+			}
+			return result;
+		}
+
+		private static bool ShowError_CA01(DataSet ds)
+		{
+			bool flag = true;
+			flag = ((!StartupBase.M_LAN.Equals("V")) ? ShowTrung(ds, "ma_ku:H=Loan contract code", "ma_ku_imex:H=Loan contract code;ma_ku_long:H=Duplicate loan contract code") : ShowTrung(ds, "ma_ku:H=Mã Khế ước", "ma_ku_imex:H=Mã Khế ước;ma_ku_long:H=Mã Khế ước lồng"));
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk:H=Tài khoản ngầm định", "Những tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk:H=Account default", "These accounts are not included in the list of accounts");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_ku:H=Mã Khế ước;tinh_tra:h=Tính ngày trả", "Danh sách khế ước khai báo không đúng tính ngày trả");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_ku:H=Loan contract code;tinh_tra:h=As of the date of payment", "List contractual right not to declare the return date");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "ma_ku:H=Mã Khế ước;ngay_ku1:h=Ngày vay", "Danh sách khế ước khai báo không đúng ngày vay");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "ma_ku:H=Loan contract code;ngay_ku1:h=Loan date", "List contractual right not to declare the loan date");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "ma_ku:H=Mã Khế ước;status:h=Trạng thái", "Danh sách khế ước khai báo không đúng trạng thái");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "ma_ku:H=Loan contract code;status:h=Status", "List contractual right not to declare state");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "ma_ku:H=Mã Khế ước;status1:h=Trạng thái sử dụng", "Danh sách khế ước khai báo không đúng trạng thái sử dụng");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "ma_ku:H=Loan contract code;status1:h=Status using", "List contractual status report improper use");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "ma_ku:H=Mã Khế ước;ma_kh:h=Mã khách", "Danh sách khế ước khai báo không đúng mã khách cho vay");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "ma_ku:H=Loan contract code;ma_kh:h=Customer ID", "List Escrow guests declared incorrect code lender");
+				}
+				flag = false;
+			}
+			return flag;
+		}
+
+		private static bool ShowError_FX01(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "ma_cc:H=Số thẻ;lan:H=Số dòng bị trùng", "Những mã trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "ma_cc:H=T&S;lan:H=Duplicate line numbers", "The same code from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_cc_me:H=Công cụ;lan:H=Số dòng bị trùng", "Những mã trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_cc_me:H=T&S;lan:H=Duplicate line numbers", "The same code from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_cc_imex:H=Công cụ;ma_cc_long:H=Công cụ lồng", "Những mã lồng nhau");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_cc_imex:H=T&S;ma_cc_long:H=Duplicate T&S", "Duplicate code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "tk_cc:H=Tài khoản công cụ;ten_tk:250:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "tk_cc:H=T&S account;ten_tk2:250:H=Account name", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "tk_kh:H=Tài khoản khấu hao;ten_tk:250:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "tk_kh:H=Depreciation account;ten_tk2:250:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "tk_cp:H=Tài khoản chi phí;ten_tk:250:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "tk_cp:H=Fee account;ten_tk2:250:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "nh_cc1:H=Nhóm Công cụ 1", "Những Nhóm Công cụ không có trong danh mục Nhóm Công cụ 1");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "nh_cc1:H=T&S group 1", "The Tools Group is not in the list of Group 1");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "nh_cc2:H=Nhóm Công cụ 2", "Những Nhóm Công cụ không có trong danh mục Nhóm Công cụ 2");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "nh_cc2:H==T&S group 2", "The Tools Group is not in the list of Group 2");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 8 && ds.Tables[8].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[8], "nh_cc3:H=Nhóm Công cụ 3", "Những Nhóm Công cụ không có trong danh mục Nhóm Công cụ 3");
+				}
+				else
+				{
+					ShowError(ds.Tables[8], "nh_cc3:H==T&S group 3", "The Tools Group is not in the list of Group 3");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 9 && ds.Tables[9].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[9], "loai_cc:H=Loại công cụ", "Những phân loại công cụ không có trong danh mục loại Công cụ");
+				}
+				else
+				{
+					ShowError(ds.Tables[9], "loai_cc:H=tool type", "Tool type not exist in list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 10 && ds.Tables[10].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[10], "ma_tg_cc:H=Mã tăng giảm công cụ", "Những phân loại công cụ không có trong danh mục");
+				}
+				else
+				{
+					ShowError(ds.Tables[10], "ma_tg_cc:H=Tool increase type", "Tool increase type not exist in list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 11 && ds.Tables[11].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[11], "ma_bpcc:H=Bộ phân sử dụng", "Những bộ phận sử dụng công cụ không có trong danh mục");
+				}
+				else
+				{
+					ShowError(ds.Tables[11], "ma_bpcc:H=Using dept. ID", "Tool increase type not exist in list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 12 && ds.Tables[12].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[12], "ma_dvcs:H=Mã ĐVCS;ten_dvcs:H=Tên ĐVCS", "Danh sách mã đvcs không có trong danh mục đvcs");
+				}
+				else
+				{
+					ShowError(ds.Tables[12], "ma_dvcs:H=Unit code;ten_dvcs:H=Unit name", "Unit code list is not in the list of Unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 13 && ds.Tables[13].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[13], "nh_cc:H=Nhóm công cụ", "Danh sách nhóm công cụ không có trong danh mục nhóm công cụ");
+				}
+				else
+				{
+					ShowError(ds.Tables[13], "nh_cc:H=T&S Group", "List of tool group is not in the list of tools");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_FA01(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "so_the_ts:H=Số thẻ tài sản;lan:H=Số dòng bị trùng", "Những mã trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "so_the_ts:H=FA card no.;lan:H=Number of duplicate lines", "The duplicate code from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "so_the_ts_imex:H=Số thẻ tài sản;so_the_ts_long:H=Số thẻ tài sản lồng", "Những mã lồng nhau");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "so_the_ts_imex:H=FA card no.;so_the_ts_long:H=Duplicate FA card no.", "Duplicate code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk_ts:H=Tài khoản tài sản;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk_ts:H=Asset account;ten_tk2:H=Account name", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "tk_kh:H=Tài khoản khấu hao;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "tk_kh:H=Depreciation account;ten_tk2:H=Account name", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "tk_cp:H=Tài khoản chi phí;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "tk_cp:H=Fee account;ten_tk2:H=Account name", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "nh_ts1:H=Nhóm tài sản 1", "Những Nhóm tài sản không có trong danh mục Nhóm tài sản 1");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "nh_ts1:H=Asset group 1", "The Group has no assets in the portfolio Group of assets 1");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "nh_ts2:H=Nhóm tài sản 2", "Những Nhóm tài sản không có trong danh mục Nhóm tài sản 2");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "nh_ts2:H=Asset group 2", "The Group has no assets in the portfolio Group of assets 2");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "nh_ts3:H=Nhóm tài sản 3", "Những Nhóm tài sản không có trong danh mục Nhóm tài sản 3");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "nh_ts3:H=Asset group 3", "The Group has no assets in the portfolio Group of assets 3");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 8 && ds.Tables[8].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[8], "ma_dvcs:H=Mã ĐVCS;ten_dvcs:H=Tên ĐVCS", "Danh sách mã đvcs không có trong danh mục đvcs");
+				}
+				else
+				{
+					ShowError(ds.Tables[8], "ma_dvcs:H=Unit code;ten_dvcs:H=Unit name", "Unit code list is not in the list of Unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 9 && ds.Tables[9].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[9], "loai_ts:H=Loại tài sản", "Danh sách loại tài sản không có trong danh mục phân loại tài sản");
+				}
+				else
+				{
+					ShowError(ds.Tables[9], "loai_ts:H=Asset type", "List of assets not in the catalog asset");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 10 && ds.Tables[10].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[10], "ma_tg_ts:H=Lý do tăng", "Danh sách lý do tăng không có trong danh mục lý do tăng giảm tài sản");
+				}
+				else
+				{
+					ShowError(ds.Tables[10], "ma_tg_ts:H=Increasing reason", "Increasing list of reasons not included in the list of reasons for increasing or decreasing asset");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 11 && ds.Tables[11].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[11], "ma_bpts:H=Bộ phận sử dụng", "Danh sách bộ phận sử dụng không có trong danh mục bộ phận sử dụng tài sản");
+				}
+				else
+				{
+					ShowError(ds.Tables[11], "ma_bpts:H=Using department", "List of no use in the parts catalog uses assets");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 12 && ds.Tables[12].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[12], "ma_nv:H=Nguồn vốn", "Danh sách nguồn vốn không có trong danh mục nguồn vốn");
+				}
+				else
+				{
+					ShowError(ds.Tables[12], "ma_nv:H=Capital", "List of categories which are not included in capital");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 13 && ds.Tables[13].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[13], "nh_ts:H=Nhóm tài sản", "Danh sách nhóm tài sản không có trong danh mục nhóm tài sản");
+				}
+				else
+				{
+					ShowError(ds.Tables[13], "nh_ts:H=FA Group", "List of asset group is not in the list of group assets");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_AP01(DataSet ds)
+		{
+			bool flag = true;
+			flag = ShowTrung(ds, GetImexMessage(StartupBase.M_LAN, "AP01", "001", 0), GetImexMessage(StartupBase.M_LAN, "AP01", "001", 1));
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				ShowError(ds.Tables[2], GetImexMessage(StartupBase.M_LAN, "AP01", "002", 0), GetImexMessage(StartupBase.M_LAN, "AP01", "002", 1));
+				flag = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				ShowError(ds.Tables[3], GetImexMessage(StartupBase.M_LAN, "AP01", "003", 0), GetImexMessage(StartupBase.M_LAN, "AP01", "003", 1));
+				flag = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				ShowError(ds.Tables[4], GetImexMessage(StartupBase.M_LAN, "AP01", "004", 0), GetImexMessage(StartupBase.M_LAN, "AP01", "004", 1));
+				flag = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				ShowError(ds.Tables[5], GetImexMessage(StartupBase.M_LAN, "AP01", "005", 0), GetImexMessage(StartupBase.M_LAN, "AP01", "005", 1));
+				flag = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				ShowError(ds.Tables[6], GetImexMessage(StartupBase.M_LAN, "AP01", "006", 0), GetImexMessage(StartupBase.M_LAN, "AP01", "006", 1));
+				flag = false;
+			}
+			return flag;
+		}
+
+		private static bool ShowError_AP02(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "loai_nh")
+			{
+				ShowError(ds.Tables[0], GetImexMessage(StartupBase.M_LAN, "AP02", "000", 0), "Duplicate customer group data in Excel");
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "loai_nh")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "loai_nh:H=Loại nhóm", "Loại nhóm khách hàng không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "loai_nh:H=Group type", "Type an invalid customer group");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_AP03(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "nam:H=Năm;tk:H=Tài khoản;ma_kh:H=Mã khách hàng;ma_dvcs:H=Mã ĐVCS;lan:H=Số dòng bị trùng", "Những số dư trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "nam:H=Year;tk:H=Account;ma_kh:H=Cust ID;ma_dvcs:H=Unit code;lan:H=Number of duplicate lines", "Duplicate balance from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "kh0")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_kh:H=Mã khách hàng", "Danh sách mã khách hàng không có trong danh mục khách hàng");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_kh:H=Cust ID", "List the Cust ID is not in the list of customers");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0 && ds.Tables[2].Columns[0].ColumnName == "tk0")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk:H=Tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp hoặc không phải tài khoản công nợ");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk:H=Account", "List of no account in the chart of accounts or consolidated accounts or accounts not liabilities");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Năm", "Danh sách năm nhỏ hơn năm mở sổ");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Year", "List of open windows in smaller");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "nam:H=Năm;tk:H=Tài khoản;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;du_no1:H=Dư nợ đầu năm:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Không được phép nhập đồng thời dư nợ và dư có");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "nam:H=Year;tk:H=Account;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Cr. balance:N1;du_no1:H=Year-opening Dr. balance:N0;du_co1:H=Year-opening Cr. balance:N0;du_no_nt1:H=FC Year-opening Dr. balance:N1;du_co_nt1:H=FC Year-opening Cr. balance:N1", "Not allowed to enter simultaneously and outstanding balances");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "ma_nt:60:H=Mã n.tệ", "Mã ngoại tệ không tồn tại");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "ma_nt:60:H=Currency", "Currency is not exists");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "nam:H=Năm;tk:H=Tài khoản;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;du_no1:H=Dư nợ đầu năm:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Dư đầu năm, dư đầu kỳ phải cùng là nợ hoặc là có");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "nam:H=Year;tk:H=Account;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Cr. balance:N1;du_no1:H=Year-opening Dr. balance:N0;du_co1:H=Year-opening Cr. balance:N0;du_no_nt1:H=FC Year-opening Dr. balance:N1;du_co_nt1:H=Year-opening Cr. balance:N1", "Opening balance, beginning balance to the debt or is there");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[8].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "nam:H=Năm;tk:H=Tài khoản;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;du_no1:H=Dư nợ đầu năm:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Không phải tài khoản n.tệ, không được phép nhập số dư ngoại tệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "nam:H=Year;tk:H=Account;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Dr. balance:N1;du_no1:H=Year-opening Dr. balance:N0;du_co1:H=Year-opening Cr. balance:N0;du_no_nt1:H=FC Year-opening Dr. balance:N1;du_co_nt1:H=FC Year-opening Cr. balance:N1", "Do not have a foreign currency account, not allowed to enter the foreign currency balances");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_CO01(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "ma_vv:H=Mã dự án;lan:H=Số dòng bị trùng", "Những mã trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "ma_vv:H=Project code;lan:H=Number of duplicate lines", "The duplicate code from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_vv_imex:H=Mã dự án;ma_vv_long:H=Mã dự án lồng", "Những mã lòng nhau");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_vv_imex:HProject code;ma_vv_long:H=Duplicate project code", "The nested code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0 && ds.Tables[2].Columns[0].ColumnName == "ma_kh")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_kh:H=Mã khách hàng", "Danh sách mã khách hàng không có trong danh mục khách hàng");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_kh:H=Cust ID", "List the client code is not in the list of customers");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Mã ĐVCS", "Danh sách đơn vi cơ sở không có trong danh mục đơn vi cơ sở");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Unit code", "List the unit code is not in the list of unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "ma_bpkd:H=Mã nvbh", "Danh sách nvbh không có trong danh mục nvbh");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "ma_bpkd:H=Salesman code", "List the Salesman code is not in the list of Salesman code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "ma_bpth:H=Mã bpth", "Danh sách mã bpth không có trong danh mục bpth");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "ma_bpth:H=Department code", "List the department code is not in the list of department code");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_CO02(DataSet ds)
+		{
+			bool flag = true;
+			if (StartupBase.M_LAN.Equals("V"))
+			{
+				return ShowTrung(ds, "ma_phi:H=Mã phí", "ma_phi_imex:H=Mã phí;ma_phi_long:H=Mã phí lồng");
+			}
+			return ShowTrung(ds, "ma_phi:H=Fee code", "ma_phi_imex:H=Fee code;ma_phi_long:H=Duplicate fee code");
+		}
+
+		private static bool ShowError_CO03(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "nam:H=Năm;tk:H=Tài khoản;ma_vv:H=Mã dự án;ma_kh:H=Mã khách hàng;ma_dvcs:H=Mã ĐVCS;lan:H=Số dòng bị trùng", "Những số dư trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "nam:H=Year;tk:H=Account ;ma_vv:H=Project code;ma_kh:H=Cust ID;ma_dvcs:H=Unit code;lan:H=Number of duplicate lines", "The duplicate balance from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "ma_vv")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_vv:H=Mã dự án", "Danh sách mã dự án không có trong danh mục dự án");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_vv:H=Project code", "List of project code is not in the list of projects");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0 && ds.Tables[2].Columns[0].ColumnName == "ma_kh")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_kh:H=Mã khách hàng", "Danh sách mã khách hàng không có trong danh mục khách hàng");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_kh:H=Cust ID", "List the client code is not in the list of customers");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0 && ds.Tables[3].Columns[0].ColumnName == "tk")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "tk:H=Tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "tk:H=Account", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "ma_dvcs:H=Unit code", "Unit code list is not in the list of Unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "nam_ngay_ky1:H=Năm", "Danh sách năm nhỏ hơn năm mở sổ");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "nam_ngay_ky1:H=Year", "List of open windows in smaller");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "nam:H=Năm;tk:H=Tài khoản;ma_vv:H=Mã dự án;ma_kh:H=Mã khách hàng;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;ma_dvcs:H=Mã ĐVCS", "Không được phép nhập đồng thời dư nợ và dư có");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "nam:H=Year;tk:H=Account;ma_vv:H=Project code;ma_kh:H=Cust ID;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Cr. balance:N1;ma_dvcs:H=Unit code", "Not allowed to enter simultaneously and outstanding balances");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0 && ds.Tables[7].Columns[0].ColumnName == "ma_vv_kh")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "ma_vv_kh:H=Mã dự án;ma_kh:H=Mã khách hàng", "Không được bỏ trống mã khách hàng đối với mã dự án có theo dõi số dư theo khách hàng");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "ma_vv_kh:H=Project code;ma_kh:H=Cust ID", "No customer is vacant code for code tracking projects according to customer balances");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_CO04(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "nam:H=Năm;;ma_vv:H=Mã dự án;ma_gd:H=Mã giai đoạn;ma_dvcs:H=Mã ĐVCS;lan:H=Số dòng bị trùng", "Những số dư trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "nam:H=Year;ma_vv:H=Project code;ma_gd:H=Phase Code;ma_dvcs:H=Unit code;lan:H=Number of duplicate lines", "The duplicate balance from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "ma_vv")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_vv:H=Mã dự án", "Danh sách mã dự án không có trong danh mục dự án");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_vv:H=Project code", "List of project code is not in the list of projects");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0 && ds.Tables[2].Columns[0].ColumnName == "ma_gd")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_gd:H=Mã giai đoạn", "Danh sách mã giai đoạn không có trong danh mục giai đoạn");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_gd:H=Phase Code", "List the phase code is not in the list of phase");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Unit code", "Unit code list is not in the list of Unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Năm", "Danh sách năm nhỏ hơn năm mở sổ");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Year", "List of open windows in smaller");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_GL01(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "tk0:H=Tài khoản;lan:H=Số dòng bị trùng", "Những tài khoản trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "tk0:H=Account;lan:H=Number of duplicate lines", "The duplicate accounts from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "tk0_imex:H=Tài khoản;tk0_long:H=Tài khoản lồng;tk_me:H=Tài khoản mẹ", "Những tài khoản lồng nhau hay không đúng tài khoản mẹ");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "tk0_imex:H=Account;tk0_long:H=Duplicate account;tk_me:H=Parent account", "These accounts are not properly nested or parent account");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk0_imex:H=Tài khoản;nh_tk0:H=Nhóm tài khoản", "Những tài khoản chưa khai báo nhóm tài khoản hoặc nhóm tài khoản không đúng");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk0_imex:H=Account;nh_tk0:H=Account group", "The group declared no account or group of accounts not properly account");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "tk0_imex:H=Tài khoản;ma_nt:H=Mã n.tệ", "Những tài khoản chưa khai báo mã n.tệ hoặc mã n.tệ không đúng");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "tk0_imex:H=Account;ma_nt:H=Currency", "These accounts have not declared or Currency code Currency code is not correct");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "tk0_imex:H=Tài khoản;ma_nt:H=Mã n.tệ;loai_cl_no:H=PP tính tggs nợ", "Những tài khoản chưa khai báo PP tính tggs nợ hoặc PP tính tggs nợ không đúng");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "tk0_imex:H=Account;ma_nt:H=Currency;loai_cl_no:H=Dr. booked rate calc. option", "These accounts have not declared the percentage method or book value method of calculating debt ratio is not correct book value of debt");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "tk0_imex:H=Tài khoản;ma_nt:H=Mã n.tệ;loai_cl_co:H=PP tính tggs có", "Những tài khoản chưa khai báo PP tính tggs có hoặc PP tính tggs có không đúng");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "tk0_imex:H=Account;ma_nt:H=Currency;loai_cl_co:H=Cr. booked rate calc. option", "These accounts have not declared the percentage method or book value method of recording the rates have not right");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_GL02(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "nam:H=Năm;tk:H=Tài khoản;ma_dvcs:H=Mã ĐVCS;lan:H=Số dòng bị trùng", "Những số dư trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "nam:H=Year;tk:H=Account;ma_dvcs:H=Unit code;lan:H=Number of duplicate lines", "The duplicate balance from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "tk:H=Tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "tk:H=Account", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk:H=Tài khoản", "Danh sách tài khoản là tài khoản công nợ");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk:H=Account", "List the financial account liabilities");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Năm", "Danh sách năm nhỏ hơn năm mở sổ");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Year", "List of open windows in smaller");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "nam:H=Năm;tk:H=Tài khoản;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;du_no1:H=Dư nợ đầu năm:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Không được phép nhập đồng thời dư nợ và dư có");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "nam:H=Year;tk:H=Account;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Cr. balance:N1;du_no1:H=Year-opening Dr. balance:N0;du_co1:H=Year-opening Cr. balance:N0;du_no_nt1:H=FC Year-opening Dr. balance:N1;du_co_nt1:H=FC Year-opening Cr. balance:N1", "Not allowed to enter simultaneously and outstanding balances");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "nam:H=Năm;tk:H=Tài khoản;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;du_no1:H=Dư nợ đầu năm:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Dư đầu năm, dư đầu kỳ phải cùng là nợ hoặc là có");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "nam:H=Year;tk:H=Account;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Cr. balance:N1;du_no1:H=Year-opening Dr. balance:N0;du_co1:H=Year-opening Cr. balance:N0;du_no_nt1:H=FC Year-opening Dr. balance:N1;du_co_nt1:H=FC Year-opening Dr. balance:N1", "Opening balance, beginning balance to the debt or is there");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "nam:H=Năm;tk:H=Tài khoản;du_no00:H=Dư nợ đầu kỳ:N0;du_co00:H=Dư có đầu kỳ:N0;du_no_nt00:H=Dư nợ đầu kỳ n.tệ:N1;du_co_nt00:H=Dư có đầu kỳ n.tệ:N1;du_no1:H=Dư nợ đầu năm:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Không phải tài khoản n.tệ, không được phép nhập số dư ngoại tệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "nam:H=Year;tk:H=Account;du_no00:H=Opening Dr. balance:N0;du_co00:H=Opening Cr. balance:N0;du_no_nt00:H=FC Opening Dr. balance:N1;du_co_nt00:H=FC Opening Cr. balance:N1;du_no1:H=Year-opening Dr. balance:N0;du_co1:H=Dư có đầu năm:N0;du_no_nt1:H=Dư nợ đầu năm n.tệ:N1;du_co_nt1:H=Dư có đầu năm n.tệ:N1", "Không phải tài khoản n.tệ, không được phép nhập số dư ngoại tệ");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_IN01(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "ma_vt:H=Mã vật tư;lan:H=Số dòng bị trùng", "Những mã trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "ma_vt:H=Item code;lan:H=Number of duplicate lines", "The duplicate code from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_vt_imex:H=Mã vật tư;ma_vt_long:H=Mã vật tư lồng", "Những mã lồng nhau");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_vt_imex:H=Item code;ma_vt_long:H=Nested item code", "Nested code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk_vt:H=Tài khoản vật tư;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk_vt:H=Item account e;ten_tk2:H=Account name", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "tk_gv:H=Tài khoản giá vốn;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "tk_gv:H=COGS account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "tk_dt:H=Tài khoản doanh thu;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "tk_dt:H=Revenue account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "tk_tl:H=Tài khoản trả lại;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "tk_tl:H=Sales return account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "tk_spdd:H=Tài khoản spdd;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "tk_spdd:H=WIP product account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "tk_nvl:H=Tài khoản NVL;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "tk_nvl:H=Material account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 8 && ds.Tables[8].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[8], "tk_ck:H=Tài khoản chiết khấu;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[8], "tk_ck:H=Discount account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 9 && ds.Tables[9].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[9], "tk_km:H=Tài khoản khuyến mại;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[9], "tk_km:H=Promotion account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 10 && ds.Tables[10].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[10], "tk_dtnb:H=Tài khoản doanh thu nội bộ;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[10], "tk_dtnb:H=Internal revenue account;ten_tk2:H=Account name", "List of no account in the accounts list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 11 && ds.Tables[11].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[11], "nh_vt1:H=Nhóm vật tư 1", "Những nhóm vật tư không có trong danh mục nhóm vật tư 1");
+				}
+				else
+				{
+					ShowError(ds.Tables[11], "nh_vt1:H=Item group 1", "The group supplies not included in the list of material groups 1");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 12 && ds.Tables[12].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[12], "nh_vt2:H=Nhóm vật tư 2", "Những nhóm vật tư không có trong danh mục nhóm vật tư 2");
+				}
+				else
+				{
+					ShowError(ds.Tables[12], "nh_vt2:H=Item group 2", "The group supplies not included in the list of material groups 2");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 13 && ds.Tables[13].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[13], "nh_vt3:H=Nhóm vật tư 3", "Những nhóm vật tư không có trong danh mục nhóm vật tư 3");
+				}
+				else
+				{
+					ShowError(ds.Tables[13], "nh_vt3:H=Item group 3", "The group supplies not included in the list of material groups 3");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 14 && ds.Tables[14].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[14], "tk_cl_vt:H=Tài khoản chênh lệch giá vật tư;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[14], "tk_cl_vt:H=Difference cost account;ten_tk:H=Account name", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 15 && ds.Tables[15].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[15], "tk_gg:H=Tài khoản giảm giá;ten_tk:H=Tên tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[15], "tk_gg:H=Devaluation account;ten_tk:H=Account name", "List of no account in the chart of accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 16 && ds.Tables[16].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[16], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[16], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_IN02(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "ma_kho:H=Mã kho;lan:H=Số dòng bị trùng", "Những mã trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "ma_kho:H=Site code;lan:H=Number of duplicate lines", "The duplicate code from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_kho_imex:H=Mã kho;ma_kho_long:H=Mã kho lồng", "Những mã lòng nhau");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_kho_imex:H=Site code;ma_kho_long:H=Nested site code", "Nested code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "tk_dl:H=Tài khoản đại lý", "Danh sách tài khoản không có trong danh mục tài khoản hoặc là tài khoản tổng hợp");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "tk_dl:H=Consignment acct.", "List of no account in the chart of accounts or consolidated accounts");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_IN03(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "loai_nh")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "loai_nh:H=Loại nhóm;ma_nh:H=Mã nhóm;lan:H=Số dòng bị trùng", "Những nhóm vật tư trùng số liệu trong Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "loai_nh:H=Group type;ma_nh:H=Group code;lan:H=Number of duplicate lines", "The duplicate group of materials data in Excel");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "loai_nh")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "loai_nh:H=Loại nhóm", "Loại nhóm vật tư không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "loai_nh:H=Group type", "Type materials group invalid");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_IN04(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "nam:H=Năm;ma_kho:H=Mã kho;ma_vt:H=Mã vật tư;lan:H=Số dòng bị trùng", "Những số dư trùng từ dữ liệu Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "nam:H=Year;ma_kho:H=Site code;ma_vt:H=Item code;lan:H=Number of duplicate lines", "The duplicate balance from Excel data");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "kho0")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_kho:H=Mã kho", "Danh sách mã kho không có trong danh mục kho hoặc chọn mã kho theo dõi tồn theo dự án");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_kho:H=Site code", "List of code repositories is not in the list of repositories");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0 && ds.Tables[2].Columns[0].ColumnName == "vt0")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_vt:H=Mã vật tư", "Danh sách mã vật tư không có trong danh mục vật tư");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_vt:H=Item code", "List of supplies code is not in the list of materials");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0 && ds.Tables[3].Columns[0].ColumnName == "ma_vt")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_vt:H=Mã vật tư", "Danh sách mã vật tư tính NTXT");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_vt:H=Item code", "List of supplies and the code first in first out");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Năm", "Danh sách năm nhỏ hơn năm mở sổ");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Year", "List of open windows in smaller");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_IN05(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "nam:H=Năm;ma_dvcs:H=Mã ĐVCS;tk:H=Tài khoản;tk_du:H=Tài khoản đối ứng;ma_vv:H=Mã dự án;lan:H=Số dòng bị trùng", "Những số liệu trùng nhau trong file Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "nam:H=Year;ma_dvcs:H=Unit code;tk:H=Account;tk_du:H=Ref Account;ma_vv:H=Project code;lan:H=Number of duplicate lines", "The duplicate data in Excel file");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_vv:H=Mã dự án", "Những mã dự án không có trong danh mục dự án");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_vv:H=Project code", "The project code is not in the list of projects");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "tk:H=Tài khoản", "Danh sách tài khoản không có trong danh mục tài khoản theo dõi số lũy kế của dự án");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "tk:H=Account", "List of no account in the chart of accounts to track cumulative number of projects");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Năm", "Danh sách năm nhỏ hơn năm mở sổ");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "nam_ngay_ky1:H=Year", "List of open windows in smaller");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], C_GetDataExcel.StrBrowse, "Số liệu lũy kế nợ hoặc có không phù hợp với tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], C_GetDataExcel.StrBrowse, "Data accumulated debt or inconsistent with the account");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "tk_du:H=Tài khoản đối ứng", "Danh sách tài khoản đối ứng không có trong danh mục tài khoản");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "tk_du:H=Ref Account", "List of no ref account in the chart of accounts");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_IN06(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "ngay_ct:H=Ngày c.từ", "Ngày c.từ trong file excel phải nhỏ hơn kỳ mở sổ và không được bỏ trống");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "ngay_ct:H=Voucher date", "On evidence from the excel file must be smaller than the window opening and not be empty");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0 && ds.Tables[1].Columns[0].ColumnName == "trung")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ngay_ct:H=Ngày c.từ;ma_kho:H=Mã kho;ma_vt:H=Mã vật tư;so_ct:H= Số c.từ;lan:H=Số dòng bị trùng", "Số liệu trùng trong file Excel");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ngay_ct:H=Voucher date;ma_kho:H=Site code;ma_vt:H=Item code;so_ct:H=Voucher no.;lan:H=Number of duplicate lines", "Duplicate data in Excel file");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0 && ds.Tables[2].Columns[0].ColumnName == "kho0")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_kho:H=Mã kho", "Danh sách mã kho không có trong danh mục kho hoặc không thuộc đơn vị cơ sở hiện thời");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_kho:H=Site code", "List of code repositories is not in the list of repositories or non-current base unit");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0 && ds.Tables[3].Columns[0].ColumnName == "vt0")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_vt:H=Mã vật tư", "Danh sách mã vật tư không có trong danh mục vật tư");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_vt:H=Item code", "List of supplies code is not in the list of materials");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0 && ds.Tables[4].Columns[0].ColumnName == "ma_vt")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "ma_vt:H=Mã vật tư", "Danh sách mã vật không phải vật tư NTXT");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "ma_vt:H=Item code", "Code list is not material objects first in first out");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0 && ds.Tables[5].Columns[0].ColumnName == "ma_nt")
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "ma_nt:H=Mã ngoại tệ", "Danh sách mã ngoại tệ không có trong danh mục ngoại tệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "ma_nt:H=Foreign currency code", "Currency code list is not in the list of foreign currencies");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowError_TN01(DataSet ds)
+		{
+			bool flag = true;
+			flag = ((!StartupBase.M_LAN.Equals("V")) ? ShowTrung(ds, "ma_ns:H=Staff ID", "ma_ns_imex:H=Staff ID;ma_ns_long:H=Nested Staff ID") : ShowTrung(ds, "ma_ns:H=Mã nhân viên", "ma_ns_imex:H=Mã nhân viên;ma_ns_long:H=Mã nhân viên lồng"));
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_bpns:H=Mã bộ phận", "Những mã bộ phận không có trong danh mục bộ phận");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_bpns:H=Department ID", "The department code is not in the parts list");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[3], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[4], "dt_cu_tru:H=Đối tượng cư trú", "Đối tượng cư trú không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[4], "dt_cu_tru:H=Resident", "Resident is not valid");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 5 && ds.Tables[5].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[5], "thue_ck:H=Tính thuế TNCN", "Tính thuế TNCN không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[5], "thue_ck:H=Taxable personal income", "Personal income tax is invalid");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 6 && ds.Tables[6].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[6], "uq_qt_ck:H=Ủy quyền quyết toán", "Ủy quyền quyết toán không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[6], "uq_qt_ck:H=Authorizing settlement", "Authorizing settlement invalid");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 7 && ds.Tables[7].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[7], "hdld3thang:H = Ký hdld hơn 3 tháng", "Ký hợp đồng lao động hơn 3 tháng không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[7], "hdld3thang:H = Signing the contract to more than 3 months", "Signed labor contract is not valid for more than 3 months");
+				}
+				flag = false;
+			}
+			if (ds.Tables.Count > 8 && ds.Tables[8].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[8], "status:H=Trạng thái", "Trạng thái không hợp lệ");
+				}
+				else
+				{
+					ShowError(ds.Tables[8], "status:H=Status", "Invalid status");
+				}
+				flag = false;
+			}
+			return flag;
+		}
+
+		private static bool ShowError_TN02(DataSet ds)
+		{
+			bool result = true;
+			if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[0], "ma_ns:H=Mã nhân viên", "Những mã nhân viên không có trong danh mục nhân viên");
+				}
+				else
+				{
+					ShowError(ds.Tables[0], "ma_ns:H=Staff ID", "The code does not have staff in the staff list");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[1], "ma_gt:H=Mã giảm trừ", "Những mã giảm trừ không có trong danh mục giảm trừ");
+				}
+				else
+				{
+					ShowError(ds.Tables[1], "ma_gt:H=Deduction code", "The losers in the portfolio but no reduction");
+				}
+				result = false;
+			}
+			if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+			{
+				if (StartupBase.M_LAN.Equals("V"))
+				{
+					ShowError(ds.Tables[2], "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+				}
+				else
+				{
+					ShowError(ds.Tables[2], "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+				}
+				result = false;
+			}
+			return result;
+		}
+
+		private static bool ShowTrung(DataSet dsResult, string fields_trung, string fields_long)
+		{
+			int num = 0;
+			if (dsResult.Tables.Count > 0 && dsResult.Tables[0].Rows.Count > 0)
+			{
+				if (StartUp.waiting != null)
+				{
+					StartUp.waiting.Close();
+				}
+				FormBrowse formBrowse = new FormBrowse(StartupBase.SasObj, dsResult.Tables[0].DefaultView, fields_trung + ";lan:H=Số dòng bị trùng");
+				formBrowse.frmBrw.Title = (StartupBase.M_LAN.Equals("V") ? SysFunc.Cat_Dau("Những mã trùng từ dữ liệu Excel") : "The same code excel data");
+				formBrowse.frmBrw.LanguageID = "SasIeDm_5";
+				formBrowse.ShowDialog();
+				num++;
+			}
+			if (dsResult.Tables.Count > 1 && dsResult.Tables[1].Rows.Count > 0)
+			{
+				if (StartUp.waiting != null)
+				{
+					StartUp.waiting.Close();
+				}
+				FormBrowse formBrowse = new FormBrowse(StartupBase.SasObj, dsResult.Tables[1].DefaultView, fields_long);
+				formBrowse.frmBrw.Title = (StartupBase.M_LAN.Equals("V") ? SysFunc.Cat_Dau("Những mã lòng nhau") : "The nested code");
+				formBrowse.frmBrw.LanguageID = "SasIeDm_6";
+				formBrowse.ShowDialog();
+				num++;
+			}
+			return num == 0;
+		}
+
+		public static void ShowError(DataTable data, string fields, string title)
+		{
+			if (StartUp.waiting != null)
+			{
+				StartUp.waiting.Close();
+			}
+			FormBrowse formBrowse = new FormBrowse(StartupBase.SasObj, data.DefaultView, fields);
+			formBrowse.frmBrw.Title = SysFunc.Cat_Dau(title);
+			formBrowse.frmBrw.LanguageID = "SasIeDm_4";
+			formBrowse.ShowDialog();
+		}
+
+		public static string GetImexMessage(string M_LAN, string ma_imex, string stt, int flag)
+		{
+			string empty = string.Empty;
+			DataRow[] array = StartUp.dtImexMessage.Select($"ma_imex = '{ma_imex.Trim()}' and stt = '{stt.Trim()}'");
+			if (M_LAN.Equals("V"))
+			{
+				if (flag == 0)
+				{
+					return array[0]["field"].ToString().Trim();
+				}
+				return array[0]["title"].ToString().Trim();
+			}
+			if (flag == 0)
+			{
+				return array[0]["field2"].ToString().Trim();
+			}
+			return array[0]["title2"].ToString().Trim();
+		}
+	}
+}

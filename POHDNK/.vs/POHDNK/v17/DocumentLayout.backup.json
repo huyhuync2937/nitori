@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source\\POHDNK\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{30A347D7-F3AC-4993-8208-00267277B1F5}|POHDNK\\POHDNK.csproj|e:\\product\\saserp.net\\2025\\siserpsme2025\\source\\pohdnk\\pohdnk\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{30A347D7-F3AC-4993-8208-00267277B1F5}|POHDNK\\POHDNK.csproj|solutionrelative:pohdnk\\frmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A347D7-F3AC-4993-8208-00267277B1F5}|POHDNK\\POHDNK.csproj|e:\\product\\saserp.net\\2025\\siserpsme2025\\source\\pohdnk\\pohdnk\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A347D7-F3AC-4993-8208-00267277B1F5}|POHDNK\\POHDNK.csproj|solutionrelative:pohdnk\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmIn.xaml",
+              "DocumentMoniker": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source\\POHDNK\\POHDNK\\FrmIn.xaml",
+              "RelativeDocumentMoniker": "POHDNK\\FrmIn.xaml",
+              "ToolTip": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source\\POHDNK\\POHDNK\\FrmIn.xaml",
+              "RelativeToolTip": "POHDNK\\FrmIn.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-15T03:28:59.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmIn.xaml.cs",
+              "DocumentMoniker": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source\\POHDNK\\POHDNK\\FrmIn.xaml.cs",
+              "RelativeDocumentMoniker": "POHDNK\\FrmIn.xaml.cs",
+              "ToolTip": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source\\POHDNK\\POHDNK\\FrmIn.xaml.cs",
+              "RelativeToolTip": "POHDNK\\FrmIn.xaml.cs",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAcwA8BAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T03:28:58.373Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

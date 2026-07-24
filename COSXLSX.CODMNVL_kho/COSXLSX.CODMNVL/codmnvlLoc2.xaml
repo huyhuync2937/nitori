@@ -1,0 +1,92 @@
+<smr:FormFilter x:Class="COSXLSX.CODMNVL.codmnvlLoc2"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:smc="http://sis.vn/SasControls"
+                     xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+                     xmlns:igEditors="http://infragistics.com/Editors"
+                     xmlns:local="clr-namespace:COSXLSX.CODMNVL"
+                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                     Loaded="FrmcodmnvlLoc_Loaded" Name="FrmcodmnvlLoc" LanguageID="COSXLSX.CODMNVL_0" Title="Window1"
+                     Height="130" Width="602">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamMaskedEditorStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" Name="grd">
+        <Border BorderBrush="Gray" BorderThickness="0.5" Margin="12,12,12,0">
+            <smc:GridLayout Name="gridLayout" RowCount="1" RowHeights="*" ColumnCount="6"
+                      ColumnWidths="100,140,12,100,140,*" Margin="12,10,12,0">
+                <TextBlock Name="lbma_ky" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Grid.ColumnSpan="1"
+                   HorizontalAlignment="Left">Mã kỳ</TextBlock>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_ky_PreviewLostFocus" Name="txtMa_ky" Grid.Column="1" Grid.Row="0"
+                                 TabIndex="10" AllowEmty="false" AllowWrong="false"
+                                 ListID="dmkygt" SelectAllOnFocus="true"
+                                 ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                 SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="tblTen_ky" Grid.Row="0" Grid.Column="2" Margin="12,0,0,0"
+                   Style="{StaticResource ContentTextStyle}"/>
+                
+                <TextBlock Name="tblSp" Text="Mã sản phẩm" Grid.Column="0" Grid.Row="1" Visibility="Hidden"/>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtSp_PreviewLostFocus" Name="txtSp" AllowEmty="true" AllowWrong="false" Visibility="Hidden"
+                                 Grid.Column="1" Grid.Row="1" ListID="dmsp" IsFocus="true" CharacterCasing="Upper" TabIndex="20"
+                                 Style="{StaticResource AutoCompleteTextBoxStyle}" Height="20" Margin="0,0,0,2.5"
+                                 VerticalAlignment="Bottom"
+                                 ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                 SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="lblTenSp" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="3" Visibility="Hidden"/>
+                <TextBlock Name="lblTuDen" Text="" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Margin="5,0"
+                   VerticalAlignment="Center"/>
+                <TextBlock Name="tblSo_lsx" Text="Số lsx" Grid.Column="0" Grid.Row="2" Visibility="Hidden"/>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtSo_lsx_PreviewLostFocus" Name="txtSo_lsx" AllowEmty="true" AllowWrong="false" Visibility="Hidden"
+                                 Grid.Column="1" Grid.Row="2" ListID="lsxph" CharacterCasing="Upper" TabIndex="30"
+                                 Style="{StaticResource AutoCompleteTextBoxStyle}" Height="20" Margin="0,0,0,2.5"
+                                 VerticalAlignment="Bottom"
+                                 ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                 SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="lblTenSo_lsx" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="3" Visibility="Hidden"/>
+                <smc:DateTextBox Name="lblNgayLsx" Grid.Row="2" Grid.Column="3" Width="140" IsEnabled="false"
+                         HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent" IsReadOnly="true"
+                         IsTabStop="false"/>
+
+                <TextBlock Name="tblMa_hd" Text="Số đh" Grid.Column="0" Grid.Row="3" Visibility="Hidden"/>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_hd_PreviewLostFocus" Name="txtMa_hd" AllowEmty="true" AllowWrong="false" Visibility="Hidden"
+                                 Grid.Column="1" Grid.Row="3" ListID="dmhd" CharacterCasing="Upper" TabIndex="40"
+                                 Style="{StaticResource AutoCompleteTextBoxStyle}" Height="20" Margin="0,0,0,2.5"
+                                 VerticalAlignment="Bottom"
+                                 ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                 SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <smc:DateTextBox Name="lblNgayCt" Grid.Row="3" Grid.Column="3" Width="140" IsEnabled="false"
+                         HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent" IsReadOnly="true"
+                         IsTabStop="false"/>
+
+                <TextBlock Name="tblMa_bpht" Text="Mã bpht" Grid.Column="0" Grid.Row="4" Visibility="Hidden"/>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtbpht_PreviewLostFocus" Name="txtMa_bpht" AllowEmty="true" AllowWrong="false" Visibility="Hidden"
+                                 Grid.Column="1" Grid.Row="4" ListID="dmbpht" CharacterCasing="Upper" TabIndex="50"
+                                 Style="{StaticResource AutoCompleteTextBoxStyle}" Height="20" Margin="0,0,0,2.5"
+                                 VerticalAlignment="Bottom"
+                                 ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                 SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="lblTen_bpht" Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="3" Visibility="Hidden"/>
+            </smc:GridLayout>
+        </Border>
+        <Canvas Grid.Row="1" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,33">
+            <TextBlock Name="lblF5TraCuu" Text="F5 - Tra cứu" Width="150" HorizontalAlignment="Right"
+                 TextAlignment="Right"/>
+        </Canvas>
+    </smc:ConfirmGridView>
+</smr:FormFilter>

@@ -1,0 +1,79 @@
+<smc:FormList x:Class="CrmDmEmailcr.DanhSachNhanVien"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:igDP="http://infragistics.com/DataPresenter"
+              xmlns:smc="http://sis.vn/SasControls"
+              PreviewKeyUp="FormList_PreviewKeyUp" Loaded="DanhSachMaCT_Loaded" Closing="DanhSachMaCT_Closing"
+              Theme="Standard" Title="Danh sach nhan vien" LanguageID="CrmDmEmailcr_dmns" Height="450" Width="800">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:CodeValueBindingObject x:Key="Voucher_Lan0"/>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="grdMain_OnOk" Name="grdConfirm">
+        <smc:GridLayout Margin="12">
+            <smc:BasicGridView PreviewKeyDown="GrdDsCT_PreviewKeyDown" Name="GrdDsCT" Grid.Row="0" BorderBrush="Gray"
+                         BorderThickness="1" GroupByAreaLocation="None" DataSource="{Binding Users}">
+                <FrameworkElement.Resources>
+                    <Style TargetType="{x:Type igDP:RecordSelector}">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type igDP:RecordSelector}">
+                                    <CheckBox x:Name="chkSelect" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            IsChecked="{Binding Path=DataItem.IsChecked, Mode=TwoWay}"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style TargetType="{x:Type igDP:HeaderPrefixArea}">
+                        <Setter Property="UIElement.Visibility" Value="Visible"/>
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type igDP:HeaderPrefixArea}">
+                                    <CheckBox x:Name="chkSelectAll" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            IsChecked="{Binding Path=DataPresenter.DataContext.AllVouchersAreChecked, Mode=TwoWay}"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </FrameworkElement.Resources>
+                <igDP:DataPresenterBase.FieldSettings>
+                    <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="True" AllowSummaries="False" LabelClickAction="SortByMultipleFieldsTriState" />
+                </igDP:DataPresenterBase.FieldSettings>
+                <igDP:DataPresenterBase.FieldLayoutSettings>
+                    <igDP:FieldLayoutSettings AutoGenerateFields="False" FilterAction="Default" FilterRecordLocation="OnTopFixed" />
+                </igDP:DataPresenterBase.FieldLayoutSettings>
+                <igDP:DataPresenterBase.FieldLayouts>
+                    <igDP:FieldLayout>
+                        <igDP:FieldLayout.Fields>
+                            <igDP:Field Name="ma_kh" Label="Mã khách hàng">
+                                <igDP:Field.Settings>
+                                    <igDP:FieldSettings AllowEdit="False" Width="150"/>
+                                </igDP:Field.Settings>
+                            </igDP:Field>
+                            <igDP:Field Name="ten_kh" Label="Tên khách hàng">
+                                <igDP:Field.Settings>
+                                    <igDP:FieldSettings AllowEdit="False" Width="325"/>
+                                </igDP:Field.Settings>
+                            </igDP:Field>
+                            <igDP:Field Name="e_mail" Label="Email">
+                                <igDP:Field.Settings>
+                                    <igDP:FieldSettings AllowEdit="False" Width="200"/>
+                                </igDP:Field.Settings>
+                            </igDP:Field>
+                            <igDP:Field Name="dien_thoai" Label="Điện thoại">
+                                <igDP:Field.Settings>
+                                    <igDP:FieldSettings AllowEdit="False" Width="200"/>
+                                </igDP:Field.Settings>
+                            </igDP:Field>
+                        </igDP:FieldLayout.Fields>
+                    </igDP:FieldLayout>
+                </igDP:DataPresenterBase.FieldLayouts>
+            </smc:BasicGridView>
+        </smc:GridLayout>
+    </smc:ConfirmGridView>
+</smc:FormList>

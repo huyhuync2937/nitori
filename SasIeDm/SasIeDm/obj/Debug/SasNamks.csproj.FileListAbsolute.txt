@@ -1,0 +1,17 @@
+D:\Product\SASERP.NET\SASERP20NET35\Prog\SasNamks.exe.config
+D:\Product\SASERP.NET\SASERP20NET35\Prog\SasNamks.exe
+D:\Product\SASERP.NET\SASERP20NET35\Prog\SasNamks.pdb
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.csprojAssemblyReference.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamksLoc.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\App.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamksLoc.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\App.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks_MarkupCompile.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.g.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.Properties.Resources.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.csproj.GenerateResource.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.csproj.CopyComplete
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.exe
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamks.pdb
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamksLoc_CT.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_System\SasNamks\SasNamks\obj\Debug\SasNamksLoc_CT.g.cs

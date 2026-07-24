@@ -1,0 +1,1009 @@
+<smvc:FormTrans x:Class="ARCTHD1.FrmArcthd1"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:src="clr-namespace:ARCTHD1"
+                xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+                xmlns:smc="http://sis.vn/SasControls"
+                xmlns:igEditors="http://infragistics.com/Editors"
+                xmlns:igWindows="http://infragistics.com/Windows"
+                xmlns:igThemes="http://infragistics.com/Themes"
+                xmlns:igDP="http://infragistics.com/DataPresenter"
+                xmlns:DebugBinding="clr-namespace:System.Diagnostics;assembly=mscorlib"
+                xmlns:System="clr-namespace:System;assembly=mscorlib"
+                Cm_Sua="V_Sua" Cm_Huy="V_Huy" Cm_HuyHD="V_HuyHD" Cm_Xoa="V_Xoa" Cm_Moi="V_Moi" Cm_Nhan="V_Nhan"
+                Cm_Xem="V_Xem" Cm_Cuoi="V_Cuoi" Cm_Dau="V_Dau" Cm_Truoc="V_Truoc" Cm_Sau="V_Sau" Cm_Copy="V_Copy"
+                Cm_Tim="V_Tim" Cm_In="V_In" EditModeEnded="FormMain_EditModeEnded" Name="FormMain"
+                AssignMaxLengthControlList="txtSo_ct;txtDia_chi;txtOng_ba;txtDien_giai;txtSo_seri;txtNhom_hh;txtGhiChuThue;txtghi_chu"
+                LanguageID="ARCTHD1_0" Theme="Voucher" Height="680" Width="960">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smvc:BindingVisibility x:Key="VisibilityConverter"/>
+      <smc:BoolInverter x:Key="BoolInverter"/>
+      <smc:CheckBoxConverter x:Key="IsCheckedConverter"/>
+      <smvc:BindingStatusVoucher x:Key="StatusVoucher"/>
+      <src:StringEmpty x:Key="StringEmpty"/>
+      <src:BindingReadonly x:Key="ReadOnlyConverter"/>
+      <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+      <smc:CodeValueBindingObject x:Key="IsInEditMode" Value="false"/>
+      <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0"/>
+      <smc:CodeValueBindingObject x:Key="Voucher_Lan0"/>
+      <smc:CodeValueBindingObject x:Key="M_Ngay_lct" Value="false"/>
+      <smc:CodeValueBindingObject x:Key="M_BP_BH" Value="true"/>
+      <smc:CodeValueBindingObject x:Key="IsCheckedSua_tien" Value="false"/>
+      <smc:CodeValueBindingObject x:Key="IsCheckedSua_HT_Thue" Value="false"/>
+      <smc:CodeValueBindingObject x:Key="IsCheckedSua_Thue" Value="false"/>
+      <smc:CodeValueBindingObject x:Key="Ty_Gia_ValueChange" Value="false"/>
+      <smc:CodeValueBindingObject x:Key="IsUseCK" Value="false"/>
+      <Style x:Key="ExRateTextBoxEditModeEnable" TargetType="{x:Type smc:ExRateTextBox}"
+             BasedOn="{StaticResource ExRateTextBoxStyle}">
+        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+        <Style.Triggers>
+          <MultiDataTrigger>
+            <MultiDataTrigger.Conditions>
+              <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+              <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource Voucher_Ma_nt0}}" Value="False"/>
+            </MultiDataTrigger.Conditions>
+            <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="false"/>
+          </MultiDataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="MaskedTextBoxReadOnly" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="True">
+            <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="false"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="ButtonEditModeEnable" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="UIElement.IsEnabled" Value="false"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="TextBoxEditModeEnable" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="AutoCompleteTextBoxEditModeEnable" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="NumericTextBoxrEditModeEnable" TargetType="{x:Type smc:NumericTextBox}"
+             BasedOn="{StaticResource NumericTextBoxStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="CheckBoxEditModeEnable" TargetType="{x:Type CheckBox}"
+             BasedOn="{StaticResource CheckBoxStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="UIElement.IsEnabled" Value="false"/>
+            <Setter Property="Control.Foreground" Value="Black"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="CheckBoxCKEditModeEnable" TargetType="{x:Type CheckBox}"
+             BasedOn="{StaticResource CheckBoxStyle}">
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+        <Setter Property="Control.Foreground" Value="Black"/>
+        <Style.Triggers>
+          <MultiDataTrigger>
+            <MultiDataTrigger.Conditions>
+              <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+              <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource IsUseCK}}" Value="True"/>
+            </MultiDataTrigger.Conditions>
+            <Setter Property="UIElement.IsEnabled" Value="true"/>
+          </MultiDataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="DateTextBoxEditModeEnable" TargetType="{x:Type smc:DateTextBox}"
+             BasedOn="{StaticResource DateTextBoxStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="ComboBoxEditModeEnable" TargetType="{x:Type igEditors:XamComboEditor}"
+             BasedOn="{StaticResource XamComboEditorStyle}">
+        <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_act"/>
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+        <Style.Triggers>
+          <MultiDataTrigger>
+            <MultiDataTrigger.Conditions>
+              <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="False"/>
+              <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+                         Value="E"/>
+            </MultiDataTrigger.Conditions>
+            <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_act2"/>
+          </MultiDataTrigger>
+          <MultiDataTrigger>
+            <MultiDataTrigger.Conditions>
+              <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+              <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+                         Value="V"/>
+            </MultiDataTrigger.Conditions>
+            <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_post"/>
+          </MultiDataTrigger>
+          <MultiDataTrigger>
+            <MultiDataTrigger.Conditions>
+              <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+              <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+                         Value="E"/>
+            </MultiDataTrigger.Conditions>
+            <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_post2"/>
+          </MultiDataTrigger>
+          <DataTrigger Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}" Value="True">
+            <Setter Property="UIElement.IsEnabled" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="MaskedTextBoxEditModeEnable" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+        <Style.Triggers>
+          <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+            <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:GridLayout x:Name="GrdLayout00" Margin="0" RowCount="5" RowHeights="35,193,*,25,165">
+    <Grid Name="notUsed" Visibility="Hidden" Row="2">
+      <TextBlock Name="tblso_seri" Grid.Row="3" Grid.Column="0" Text="Số seri"
+                 Style="{StaticResource ContentTextStyle}"/>
+      <TextBox GotFocus="txtSo_seri_GotFocus" x:Name="txtSo_seri" Grid.Column="1" Grid.Row="3" TabIndex="100"
+               Style="{StaticResource TextBoxEditModeEnable}" CharacterCasing="Upper"
+               Text="{smc:BindingEx Path=so_seri}"/>
+    </Grid>
+    <smc:GridLayout Name="GrdPh" Row="1" RowCount="3" RowHeights="*" ColumnCount="5" ColumnWidths="23*,10,45*,12,276"
+                    Margin="12,4,12,12">
+      <GroupBox Name="gbInfo" Header="Thông tin chung" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+        <smc:GridLayout Name="GrdLayout10" RowCount="7" RowHeights="25,25,25,25,25,25,25" ColumnCount="5"
+                        ColumnWidths="100,140,*,100,140">
+          <TextBlock Name="tblma_kh" Text="Mã khách" Grid.Row="0" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_kh_PreviewLostFocus" Name="txtMa_kh" Grid.Column="1" Grid.Row="0"
+                                   TabIndex="20" AllowEmty="false" AllowWrong="false"
+                                   Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmkh"
+                                   Text="{smc:BindingEx Path=ma_kh}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=smvc:FormTrans}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=smvc:FormTrans}}"/>
+          <TextBlock Name="txtTen_kh" Grid.Row="0" Margin="12,0,0,0" Grid.Column="2" Grid.ColumnSpan="3"
+                     Style="{StaticResource ContentTextStyle}"
+                     Text="{smc:BindingEx Path=ten_kh, Path2=ten_kh2, Mode=OneWay}"/>
+          <TextBlock Name="tbldia_chi" Text="Địa chỉ" Grid.Row="1" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox GotFocus="txtDia_chi_GotFocus" x:Name="txtDia_chi" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
+                   TabIndex="30" Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=dia_chi}"/>
+          <TextBlock Name="tblma_so_thue" Text="MST" Grid.Row="1" Grid.Column="3"
+                     Style="{StaticResource ContentTextStyle}" Margin="12,0,0,0"/>
+          <TextBox x:Name="txtma_so_thue" Grid.Column="4" IsTabStop="false" Grid.Row="1" IsReadOnly="true"
+                   Text="{smc:BindingEx Path=ma_so_thue}"/>
+          <TextBlock Name="tblong_ba" Text="Ng. mua hàng" Grid.Row="2" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox x:Name="txtOng_ba" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" TabIndex="40"
+                   Text="{smc:BindingEx Path=ong_ba}">
+            <FrameworkElement.Style>
+              <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly">
+                  <Setter.Value>
+                    <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="PH;ong_ba" Mode="OneWay">
+                      <Binding Source="{StaticResource IsInEditMode}" Path="Value"/>
+                    </MultiBinding>
+                  </Setter.Value>
+                </Setter>
+                <Setter Property="Control.IsTabStop" Value="true"/>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding Path=IsReadOnly, ElementName=txtOng_ba}" Value="True">
+                    <Setter Property="Control.IsTabStop" Value="false"/>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </FrameworkElement.Style>
+          </TextBox>
+          <TextBlock Name="tblSoDuKH" Text="Số dư" Grid.Row="2" Grid.Column="3" Margin="12,0,0,0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox x:Name="txtSoDuKH" Grid.Column="4" Grid.Row="2" IsTabStop="false" IsReadOnly="true"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+          <TextBlock Name="tbldien_giai" Text="Diễn giải" Grid.Row="3" Grid.Column="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <TextBox Name="txtDien_giai" TabIndex="50" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=dien_giai}"/>
+          <TextBlock Name="tblma_nx" Text="Tk nợ" Grid.Row="4" Grid.Column="0" Style="{StaticResource ContentTextStyle}"/>
+          <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_nx_PreviewLostFocus" x:Name="txtMa_nx" Grid.Column="1" Grid.Row="4"
+                                   TabIndex="60" AllowEmty="false" AllowWrong="false" ListID="dmnx"
+                                   Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" Text="{smc:BindingEx Path=ma_nx}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="txtTen_nx" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Margin="12,0,0,0"
+                     Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx Path=ten_nx, Path2=ten_nx2}"/>
+          <TextBlock Name="tblma_bp" Grid.Column="0" Grid.Row="5" Style="{StaticResource ContentTextStyle}"
+                     Text="Mã NVBH"/>
+          <smc:AutoCompleteTextBox PreviewLostFocus="txtma_bp_PreviewLostFocus" x:Name="txtma_bp" Grid.Column="1" Grid.Row="5"
+                                   TabIndex="65" AllowEmty="true" AllowWrong="false" ListID="dmbp" Text="{smc:BindingEx Path=ma_bp}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            <FrameworkElement.Style>
+              <Style TargetType="{x:Type smc:AutoCompleteTextBox}" BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                  <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                      <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+                      <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource M_BP_BH}}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                  </MultiDataTrigger>
+                </Style.Triggers>
+              </Style>
+            </FrameworkElement.Style>
+          </smc:AutoCompleteTextBox>
+          <TextBlock Name="lblTenNVBH" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="5" Margin="12,0,0,0"
+                     Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx Path=ten_bp, Path2=ten_bp2}"/>
+        </smc:GridLayout>
+      </GroupBox>
+      <GroupBox Name="gbVoucher" Header="Chứng từ" Grid.Column="4" Grid.Row="0">
+        <smc:GridLayout Name="GrdVoucher" ColumnCount="2" ColumnWidths="*,140" RowCount="7"
+                        RowHeights="25,25,25,25,25,25,25">
+          <TextBlock Name="tblngay_ct" Text="Ngày ht" Grid.Column="0" Grid.Row="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:DateTextBox LostFocus="txtNgay_ct_LostFocus" x:Name="txtNgay_ct" AllowEmpty="false" Grid.Column="1"
+                           Grid.Row="0" TabIndex="70" Style="{StaticResource DateTextBoxEditModeEnable}"
+                           Value="{smc:BindingEx Path=ngay_ct}"/>
+          <TextBlock Name="tblngay_lhd" Grid.Column="0" Grid.Row="1" Text="Ngày lập hđ"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:DateTextBox LostFocus="txtNgay_lhd_LostFocus" GotFocus="txtNgay_lhd_GotFocus" x:Name="txtNgay_lhd"
+                           Grid.Column="1" Grid.Row="1" TabIndex="80" Value="{smc:BindingEx Path=ngay_lct}">
+            <FrameworkElement.Style>
+              <Style TargetType="{x:Type smc:DateTextBox}" BasedOn="{StaticResource DateTextBoxStyle}">
+                <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                <Setter Property="Control.IsTabStop" Value="false"/>
+                <Style.Triggers>
+                  <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                      <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+                      <Condition Binding="{smc:BindingEx Path=Value, Source={StaticResource M_Ngay_lct}}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="false"/>
+                    <Setter Property="Control.IsTabStop" Value="true"/>
+                  </MultiDataTrigger>
+                </Style.Triggers>
+              </Style>
+            </FrameworkElement.Style>
+          </smc:DateTextBox>
+          <TextBlock Name="tblma_qs" Grid.Row="2" Grid.Column="0" Text="Quyển c.từ"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_qs_PreviewLostFocus" x:Name="txtMa_qs" Grid.Column="1" Grid.Row="2"
+                                   TabIndex="90" AllowEmty="false" AllowWrong="false" ListID="dmqs"
+                                   Style="{StaticResource AutoCompleteTextBoxEditModeEnable}"
+                                   Filter="ma_cts like '%HD1%' and status=1" Text="{smc:BindingEx Path=ma_qs}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="tblso_ct" Grid.Row="3" Grid.Column="0" Text="Số hđ" Style="{StaticResource ContentTextStyle}"/>
+          <TextBox x:Name="txtSo_ct" Grid.Column="1" Grid.Row="3" TabIndex="110" CharacterCasing="Upper"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=so_ct}"/>
+          <smc:GridLayout x:Name="GrNT" Row="4" Column="0" ColumnSpan="2" ColumnCount="3" ColumnWidths="*,*,140">
+            <TextBlock Name="tblty_gia" Text="Tỷ giá" Grid.Column="0"/>
+            <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_nt_PreviewLostFocus" Name="txtMa_nt" Grid.Column="1" Width="38"
+                                     Margin="0,0,12,0" HorizontalAlignment="Right" AllowEmty="false" AllowWrong="false" ListID="dmnt"
+                                     TabIndex="111" IsTabStop="false" Style="{StaticResource AutoCompleteTextBoxEditModeEnable}"
+                                     Text="{smc:BindingEx Path=ma_nt}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+            <smc:ExRateTextBox LostFocus="txtTy_gia_LostFocus" GotFocus="txtTy_gia_GotFocus" x:Name="txtTy_gia" Grid.Column="2"
+                               IsAlwaysInEditMode="true" TabIndex="112" Margin="0" RateF="{smc:BindingEx Path=ty_giaf}"
+                               Rate="{smc:BindingEx Path=ty_gia}" KindRate="{smc:BindingEx Path=loai_tg}"
+                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TY_GIA}">
+              <FrameworkElement.Style>
+                <Style TargetType="{x:Type smc:ExRateTextBox}" BasedOn="{StaticResource ExRateTextBoxStyle}">
+                  <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                  <Style.Triggers>
+                    <MultiDataTrigger>
+                      <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}" Value="True"/>
+                        <Condition Binding="{Binding Path=Value, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay}" Value="False"/>
+                      </MultiDataTrigger.Conditions>
+                      <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="false"/>
+                    </MultiDataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </FrameworkElement.Style>
+            </smc:ExRateTextBox>
+          </smc:GridLayout>
+          <smc:GridLayout x:Name="GrStatus" Row="5" Column="0" ColumnSpan="2" ColumnCount="2" ColumnWidths="*,140"
+                          KeyboardNavigation.TabNavigation="None">
+            <TextBlock Name="tblstatus" Grid.Column="0">
+              <FrameworkElement.Style>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ContentTextStyle}">
+                  <Setter Property="TextBlock.Text" Value="Trạng thái / Lần in"/>
+                  <Style.Triggers>
+                    <MultiDataTrigger>
+                      <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="True"/>
+                        <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+                                   Value="V"/>
+                      </MultiDataTrigger.Conditions>
+                      <Setter Property="TextBlock.Text" Value="Xử lý / Lần in"/>
+                    </MultiDataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </FrameworkElement.Style>
+            </TextBlock>
+            <igEditors:XamComboEditor Name="txtStatus" Style="{StaticResource ComboBoxEditModeEnable}" ValuePath="ma_post"
+                                      Grid.Column="1" Margin="0,0,35,0" TabIndex="140" IsTabStop="false"
+                                      SelectedIndex="{smc:BindingEx status, Converter={StaticResource StatusVoucher}}"/>
+            <TextBlock Grid.Column="1" Margin="108,0,0,0" Text="/"/>
+            <TextBox Name="txtLan_In" Grid.Column="1" Margin="115,0,0,0" TextAlignment="Right" IsReadOnly="true"
+                     IsTabStop="false" Text="{smc:BindingEx Path=sl_in}"/>
+          </smc:GridLayout>
+        </smc:GridLayout>
+      </GroupBox>
+    </smc:GridLayout>
+    <smc:GridLayout Name="Grdayout33" Row="2" RowCount="2" RowHeights="20,*" Margin="12,0,12,0"
+                    KeyboardNavigation.TabIndex="120" KeyboardNavigation.TabNavigation="Local">
+      <igWindows:XamTabControl x:Name="TabInfo" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Theme="Generic"
+                               Background="{x:Null}">
+        <Control.BorderBrush>
+          <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="Selected"/>
+        </Control.BorderBrush>
+        <FrameworkElement.Resources>
+          <Style TargetType="{x:Type igWindows:TabItemEx}" BasedOn="{StaticResource TabItemStyle}"/>
+        </FrameworkElement.Resources>
+        <igWindows:TabItemEx Name="tabItemHT" Header="_1. Chi tiết" TabIndex="110">
+          <Control.BorderBrush>
+            <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="BaseColor"/>
+          </Control.BorderBrush>
+          <smc:DragDropBasicGridView x:Name="DragDropGrid" Row="1">
+            <Grid x:Name="XamDataGridLayout">
+              <smc:DataGridView PreviewEditModeEnded="GrdCt_PreviewEditModeEnded"
+                                PreviewGotKeyboardFocus="GrdCt_PreviewGotKeyboardFocus" AddNewRecord="GrdCt_AddNewRecord"
+                                RecordDelete="GrdCt_RecordDelete" PreviewKeyDown="GrdCt_PreviewKeyDown" KeyDown="GrdCt_KeyDown"
+                                KeyUp="GrdCt_KeyUp" Name="GrdCt" Margin="0,0,0,0" TabIndex="113" IsVoucher="true"
+                                Grid.ColumnSpan="2" Tag="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}">
+                <FrameworkElement.Resources>
+                  <DataTemplate x:Key="ControlSearchTk_dt">
+                    <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmtk1"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </DataTemplate>
+                  <DataTemplate x:Key="ControlSearchMaThue">
+                    <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmthue"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </DataTemplate>
+                  <DataTemplate x:Key="ControlSearchTKThue">
+                    <smc:AutoCompleteTextBox LookupMode="true" AllowEmty="true" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" IsBorderTextBox="false" ListID="dmtk1"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                             SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                             Text="{smc:BindingEx Path=Value, RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}}">
+                      <smc:AutoCompleteTextBox.IsReadOnly>
+                        <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;tk_thue_i" Mode="OneWay">
+                          <Binding Source="{StaticResource IsCheckedSua_HT_Thue}" Path="Value" Mode="OneWay"/>
+                          <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                          <Binding Path="Record.Cells[loai_tk_thue].Value" Mode="OneWay"
+                                   RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                        </MultiBinding>
+                      </smc:AutoCompleteTextBox.IsReadOnly>
+                    </smc:AutoCompleteTextBox>
+                  </DataTemplate>
+                  <DataTemplate x:Key="ControlSearchKhoHang">
+                    <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmkho"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </DataTemplate>
+                  <DataTemplate x:Key="ControlSearchTkDt">
+                    <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmtk1"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </DataTemplate>
+                  <DataTemplate x:Key="ControlSearchTkGv">
+                    <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmtk1"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </DataTemplate>
+                  <DataTemplate x:Key="ControlSearchTkCk">
+                    <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
+                                             Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmtk1"
+                                             ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                      <smc:AutoCompleteTextBox.IsReadOnly>
+                        <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;tk_ck" Mode="OneWay">
+                          <Binding Path="Record.Cells[tl_ck].Value" Mode="OneWay"
+                                   RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                          <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                        </MultiBinding>
+                      </smc:AutoCompleteTextBox.IsReadOnly>
+                    </smc:AutoCompleteTextBox>
+                  </DataTemplate>
+                </FrameworkElement.Resources>
+                <igDP:DataPresenterBase.FieldSettings>
+                  <igDP:FieldSettings AllowEdit="True" SummaryDisplayArea="BottomFixed" SummaryUIType="MultiSelect"/>
+                </igDP:DataPresenterBase.FieldSettings>
+                <igDP:DataPresenterBase.FieldLayoutSettings>
+                  <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                            RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                            AllowDelete="False"/>
+                </igDP:DataPresenterBase.FieldLayoutSettings>
+                <igDP:DataPresenterBase.FieldLayouts>
+                  <igDP:FieldLayout>
+                    <igDP:FieldLayout.SummaryDefinitions>
+                      <smc:ExSummaryDefinition SourceFieldName="tien_nt2" Calculator="Sum"
+                                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+                      <smc:ExSummaryDefinition SourceFieldName="tien2" Calculator="Sum"
+                                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                      <smc:ExSummaryDefinition SourceFieldName="thue" Calculator="Sum"
+                                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                      <smc:ExSummaryDefinition SourceFieldName="thue_nt" Calculator="Sum"
+                                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+                      <smc:ExSummaryDefinition SourceFieldName="ck" Calculator="Sum"
+                                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                      <smc:ExSummaryDefinition SourceFieldName="ck_nt" Calculator="Sum"
+                                               Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+                    </igDP:FieldLayout.SummaryDefinitions>
+                    <smc:NotEmptyField FixedLocation="FixedToNearEdge" Name="tk_dt" Label="Tk dt" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="True" LabelTextAlignment="Center">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:ControlHostEditor}" BasedOn="{StaticResource AutoCompleteTextBoxEditor}">
+                              <Setter Property="smc:ControlHostEditor.EditDataTemplate" Value="{StaticResource ControlSearchTk_dt}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </smc:NotEmptyField>
+                    <igDP:Field Label="Tên tk dt" Name="ten_tk_dt" FixedLocation="FixedToNearEdge" Width="180">
+                      <igDP:Field.Visibility>
+                        <MultiBinding Converter="{StaticResource VisibilityConverter}" ConverterParameter="LANV">
+                          <Binding Path="Value" Source="{StaticResource Voucher_Lan0}"/>
+                        </MultiBinding>
+                      </igDP:Field.Visibility>
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Tên tk dt" Name="ten_tk_dt2" FixedLocation="FixedToNearEdge" Width="180">
+                      <igDP:Field.Visibility>
+                        <MultiBinding Converter="{StaticResource VisibilityConverter}" ConverterParameter="LANE">
+                          <Binding Path="Value" Source="{StaticResource Voucher_Lan0}"/>
+                        </MultiBinding>
+                      </igDP:Field.Visibility>
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Tên h.hóa, d.vụ" Name="dien_giaii" Width="225">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
+                                            AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Đvt" Name="dvt" Width="60">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
+                                            AllowEdit="{Binding Path=Value, Source={StaticResource IsInEditMode}}"/>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Số lượng" Name="so_luong" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" LabelTextAlignment="Center"
+                                            AllowEdit="{Binding Path=Value, Source={StaticResource IsInEditMode}}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly"
+                                      Value="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}, Converter={StaticResource BoolInverter}}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Đơn giá nt" Name="gia_nt2" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" AllowSummaries="True" LabelTextAlignment="Center">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;gia_nt2">
+                                    <Binding Path="Record.Cells[so_luong].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_GIA_NT}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Thành tiền" Name="tien_nt2" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" LabelTextAlignment="Center" AllowSummaries="True"
+                                            EditorType="{x:Type smc:NumericTextBox}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type igEditors:XamNumericEditor}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;tien_nt2">
+                                    <Binding Path="Record.Cells[so_luong].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Record.Cells[gia_nt2].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_tien}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Tỷ lệ ck (%)" Name="tl_ck" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:Decimal}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly"
+                                      Value="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}, Converter={StaticResource BoolInverter}}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Ck nt" Name="ck_nt" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" LabelTextAlignment="Center" AllowSummaries="True"
+                                            EditorType="{x:Type smc:NumericTextBox}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type igEditors:XamNumericEditor}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;ck_nt" Mode="OneWay">
+                                    <Binding Path="Record.Cells[tl_ck].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Tk ck" Name="tk_ck" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:ControlHostEditor}" BasedOn="{StaticResource AutoCompleteTextBoxEditor}">
+                              <Setter Property="smc:ControlHostEditor.EditDataTemplate" Value="{StaticResource ControlSearchTkCk}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Mã t.suất" Name="ma_thue_i" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:ControlHostEditor}" BasedOn="{StaticResource AutoCompleteTextBoxEditor}">
+                              <Setter Property="smc:ControlHostEditor.EditDataTemplate" Value="{StaticResource ControlSearchMaThue}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="T.suất (%)" Name="thue_suati" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" EditAsType="{x:Type System:Double}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:NumericTextBox}"/>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Thuế nt" Name="thue_nt" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowSummaries="True" LabelTextAlignment="Center" EditAsType="{x:Type System:Double}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;thue_nt" Mode="OneWay">
+                                    <Binding Path="Record.Cells[tien_nt2].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_Thue}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Tk thuế" Name="tk_thue_i" Width="80">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings LabelTextAlignment="Center">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:ControlHostEditor}">
+                              <Setter Property="smc:ControlHostEditor.EditDataTemplate" Value="{StaticResource ControlSearchTKThue}"/>
+                              <Setter Property="Control.Template"
+                                      Value="{Binding Path=EditTemplate, RelativeSource={RelativeSource Self}}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Đơn giá" Name="gia2" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" LabelTextAlignment="Center" AllowSummaries="True"
+                                            EditorType="{x:Type smc:NumericTextBox}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type igEditors:XamNumericEditor}">
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;gia2">
+                                    <Binding Path="Record.Cells[so_luong].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Record.Cells[gia_nt2].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_tien}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource Ty_Gia_ValueChange}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Tien2" Name="tien2" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" LabelTextAlignment="Center" AllowSummaries="True"
+                                            EditorType="{x:Type smc:NumericTextBox}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type igEditors:XamNumericEditor}">
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;tien2" Mode="OneWay">
+                                    <Binding Path="Record.Cells[tien_nt2].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_tien}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource Ty_Gia_ValueChange}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Ck" Name="ck" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" LabelTextAlignment="Center" AllowSummaries="True"
+                                            EditorType="{x:Type smc:NumericTextBox}">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type igEditors:XamNumericEditor}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;ck" Mode="OneWay">
+                                    <Binding Path="Record.Cells[tien2].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_tien}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Label="Thuế" Name="thue" Width="140">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowSummaries="True" LabelTextAlignment="Center">
+                          <igDP:FieldSettings.EditorStyle>
+                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                              <Setter Property="igEditors:ValueEditor.IsReadOnly">
+                                <Setter.Value>
+                                  <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;thue" Mode="OneWay">
+                                    <Binding Path="Record.Cells.[tien2].Value" Mode="OneWay"
+                                             RelativeSource="{RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_tien}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsCheckedSua_Thue}" Mode="OneWay"/>
+                                    <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+                                  </MultiBinding>
+                                </Setter.Value>
+                              </Setter>
+                              <Setter Property="igEditors:ValueEditor.Format"
+                                      Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                            </Style>
+                          </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Name="tk_cn" Width="0" Visibility="Hidden">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" EditorType="{x:Type smc:NumericTextBox}"/>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                    <igDP:Field Name="loai_tk_thue" Width="0" Visibility="Hidden">
+                      <igDP:Field.Settings>
+                        <igDP:FieldSettings EditAsType="{x:Type System:Decimal}" EditorType="{x:Type smc:NumericTextBox}"/>
+                      </igDP:Field.Settings>
+                    </igDP:Field>
+                  </igDP:FieldLayout>
+                </igDP:DataPresenterBase.FieldLayouts>
+              </smc:DataGridView>
+            </Grid>
+          </smc:DragDropBasicGridView>
+        </igWindows:TabItemEx>
+        <igWindows:TabItemEx Name="tabItemNote" Header="_2. Ghi chú" TabIndex="111">
+          <Control.BorderBrush>
+            <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="BaseColor"/>
+          </Control.BorderBrush>
+          <smc:GridLayout Name="gridlayout50" Column="0" RowCount="5" ColumnCount="2" Margin="7,6,8,8" ColumnWidths="100,*"
+                          RowHeights="25,25,25,*">
+            <TextBlock Name="lbNhom_hh" Grid.Column="0" Grid.Row="0" Style="{StaticResource ContentTextStyle}"
+                       Text="H.hóa, d.vụ"/>
+            <TextBox Name="txtNhom_hh" Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxEditModeEnable}"
+                     TabIndex="560" Text="{smc:BindingEx Path=ten_vtthue}"/>
+            <TextBlock Name="lbGhiChuThue" Grid.Column="0" Grid.Row="1" Style="{StaticResource ContentTextStyle}"
+                       Text="Ghi chú thuế"/>
+            <TextBox Name="txtGhiChuThue" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxEditModeEnable}"
+                     MaxLength="64" Text="{smc:BindingEx Path=gc_thue}"/>
+            <TextBlock x:Name="tblGhi_chu" Grid.Column="0" Grid.Row="2" Margin="0,2.5" Text="Ghi chú c.từ"
+                       Style="{StaticResource ContentTextStyle}"/>
+            <TextBox PreviewKeyDown="txtghi_chu_PreviewKeyDown" x:Name="txtghi_chu" Grid.Column="1" Margin="0,2.5,0,0"
+                     Grid.Row="2" Height="Auto" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
+                     MaxLength="1000" Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx ghi_chu0}"/>
+          </smc:GridLayout>
+        </igWindows:TabItemEx>
+        <igWindows:TabItemEx Name="tabHDDT" Header="_3. Hđ điện tử" Visibility="Hidden" TabIndex="150">
+          <Control.BorderBrush>
+            <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="BaseColor"/>
+          </Control.BorderBrush>
+          <smc:GridLayout Name="gridlayout00" ColumnCount="3" ColumnWidths="*">
+            <smc:GridLayout Name="gridlayout10" Column="0" RowCount="5" ColumnCount="9" Margin="7,6,8,8"
+                            ColumnWidths="100,140,200,12,140,140,140,*, 12" RowHeights="0,25,25,25,0,*">
+              <TextBlock Name="tblsd_hddt_yn" Text="Sử dụng HĐĐT" Grid.Row="0" Grid.Column="0"
+                         Style="{StaticResource ContentTextStyle}"/>
+              <smc:MaskedTextBox LostFocus="txtsd_hddt_yn_LostFocus" Name="txtsd_hddt_yn" Format="M" Grid.Row="0" Grid.Column="1"
+                                 InputMask="0,1" Width="140" TabIndex="60" Text="0" Style="{StaticResource MaskedTextBoxReadOnly}"
+                                 HorizontalContentAlignment="Left" Value="{smc:BindingEx Path=sd_hddt_yn}"/>
+              <TextBlock Name="tblsd_hd_des" Text="0 - Không, 1 - Có" Grid.Row="0" Grid.Column="2" Margin="12,0,0,0"
+                         Style="{StaticResource ContentTextStyle}"/>
+              <TextBlock Name="tblmau_hddt" Text="Mẫu hóa đơn" Grid.Row="1" Grid.Column="0"
+                         Style="{StaticResource ContentTextStyle}"/>
+              <TextBox Name="txtmau_hddt" TabIndex="55" IsReadOnly="true" CharacterCasing="Upper" Grid.Column="1"
+                       Grid.Row="1" Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=mau_hddt}"/>
+              <TextBlock Name="tblso_seri_hddt" Text="Ký hiệu" Grid.Row="2" Grid.Column="0"
+                         Style="{StaticResource ContentTextStyle}"/>
+              <TextBox Name="txtky_hieu" TabIndex="55" IsReadOnly="true" CharacterCasing="Upper" Grid.Column="1"
+                       Grid.Row="2" Style="{StaticResource TextBoxEditModeEnable}"
+                       Text="{smc:BindingEx Path=so_seri_hddt}"/>
+              <TextBlock Name="tblso_ct_hddt" Text="Số hđ" Grid.Row="3" Grid.Column="0"
+                         Style="{StaticResource ContentTextStyle}"/>
+              <TextBox Name="txtso_ct_hddt" TabIndex="55" IsReadOnly="true" Grid.Column="1" Grid.Row="3"
+                       Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=so_ct_hddt}"/>
+              <TextBlock Name="tblstatus_hddt" Text="Tình trạng" Grid.Row="4" Grid.Column="0"
+                         Style="{StaticResource ContentTextStyle}"/>
+              <smc:MaskedTextBox Name="txtstatus" Format="M" Grid.Row="4" Grid.Column="1" InputMask="0,1,2,3,4,8,9" Width="140"
+                                 TabIndex="60" IsReadOnly="true" HorizontalContentAlignment="Left"
+                                 Value="{smc:BindingEx Path=tinh_trang_hddt}"/>
+              <TextBlock Name="tblstatus_des"
+                         Text="0 - Chưa xác thực, 1 - Chờ xác thực, 2 - Đã xác thực, 3 - Điều chỉnh, 4 - Thay thế, 8 - Chờ xác thực, 9 - Hủy"
+                         Grid.ColumnSpan="7" Grid.Row="4" Grid.Column="2" Margin="12,0,0,0"
+                         Style="{StaticResource ContentTextStyle}"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="12,0,0,0" HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="9">
+                                <Button Name="btnAddInvoice"  Click="btnAddInvoice_Click" Content="Thêm mới HĐĐT" Margin="12,0,0,0"/>
+                                <Button Name="btnAddAllInvoice"  Click="btnAddAllInvoice_Click" Content="Thêm mới HĐĐT ALL" Margin="12,0,0,0"/>
+                                <Button Name="btnSendEmail" Click="btnSendEmail_Click" Content="Gửi Email hóa đơn" Margin="12,0,0,0"/>
+                            </StackPanel>
+                        </smc:GridLayout>
+          </smc:GridLayout>
+        </igWindows:TabItemEx>
+      </igWindows:XamTabControl>
+            <StackPanel Name="tbSusTruongTien" HorizontalAlignment="Right" Orientation="Horizontal">
+                <CheckBox Checked="Chksua_tien_Checked" Unchecked="Chksua_tien_Unchecked" Name="Chksua_tien"
+                  Content="Sửa trường tiền" IsTabStop="false" Style="{StaticResource CheckBoxEditModeEnable}"
+                  IsChecked="{smc:BindingEx sua_tien, Converter={StaticResource IsCheckedConverter}}"/>
+        <TextBlock Name="tblF4_F8" Text="Ctrl+Tab - Ra khỏi chi tiết" Margin="12,0,0,0"/>
+      </StackPanel>
+    </smc:GridLayout>
+    <StackPanel Name="tbSuaThue" Grid.Row="3" Margin="12,0" HorizontalAlignment="Left" Orientation="Horizontal">
+      <CheckBox Checked="Chksua_tk_thue_Checked" Unchecked="Chksua_tk_thue_Unchecked" Name="Chksua_tk_thue"
+                Content="Sửa ht thuế" IsTabStop="false" Style="{StaticResource CheckBoxEditModeEnable}"
+                IsChecked="{smc:BindingEx sua_tkthue, Converter={StaticResource IsCheckedConverter}}"/>
+      <CheckBox Checked="Chksua_thue_Checked" Unchecked="Chksua_thue_Unchecked" Name="Chksua_thue"
+                Content="Sửa tiền thuế" Margin="12,0,0,0" IsTabStop="false"
+                Style="{StaticResource CheckBoxEditModeEnable}"
+                IsChecked="{smc:BindingEx sua_thue, Converter={StaticResource IsCheckedConverter}}"/>
+      <CheckBox Checked="Chkthue_ck0_Checked" Unchecked="Chkthue_ck0_Unchecked" Name="Chkthue_ck0"
+                Content="Tính thuế theo giá trước chiết khấu" Margin="12,0,0,0" IsTabStop="false"
+                Foreground="Black" Style="{StaticResource CheckBoxCKEditModeEnable}"
+                IsChecked="{smc:BindingEx thue_ck0, Converter={StaticResource IsCheckedConverter}}"/>
+      <Button Click="btnViewPT1_Click" Name="btnViewPT1" Content="Xem phiếu thu" Grid.Column="0" Grid.Row="5"
+              Width="92" Margin="12,0,0,0" IsTabStop="false" HorizontalAlignment="Left"
+              VerticalAlignment="Center">
+        <FrameworkElement.Style>
+          <Style TargetType="{x:Type Button}">
+            <Setter Property="UIElement.IsEnabled" Value="true"/>
+            <Style.Triggers>
+              <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                  <Condition Binding="{smc:BindingEx stt_rec_pt, Converter={StaticResource StringEmpty}}" Value="true"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="UIElement.IsEnabled" Value="false"/>
+              </MultiDataTrigger>
+            </Style.Triggers>
+          </Style>
+        </FrameworkElement.Style>
+      </Button>
+      <TextBlock x:Name="lblstt_rec_pt" Grid.Row="5" Margin="12,0,0,0" Grid.Column="1"
+                 Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx Path=so_ct_pt}"/>
+    </StackPanel>
+    <GroupBox Name="GroupTotal" Header="Tổng cộng" Margin="12,0,12,12" Grid.Row="4">
+      <smc:GridLayout Name="GrdLayout30" Row="3" RowCount="1" RowHeights="*" ColumnCount="9"
+                      ColumnWidths="0,260,12,235,12*,240,12,140">
+        <smc:GridLayout Name="GrdLayoutThue" Column="1" Row="1" RowCount="5" RowHeights="25,25,25,25,25" ColumnCount="2"
+                        Margin="0" ColumnWidths="*,140">
+          <TextBlock Name="tblt_so_luong" Text="Tk đ.ứng với tk thuế" Grid.Column="0" Grid.Row="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:AutoCompleteTextBox PreviewGotFocus="txtTk_du_voi_Tk_thue_PreviewGotFocus" Name="txtTk_du_voi_Tk_thue" Grid.Column="1"
+                                   Grid.Row="0" TabIndex="550" AllowEmty="false" AllowWrong="false" ListID="dmtk1"
+                                   Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" Text="{smc:BindingEx Path=tk_thue_no}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+          <TextBlock Name="tblHan_tt" Grid.Column="0" Style="{StaticResource ContentTextStyle}" Text="Hạn tt"
+                     Grid.Row="2"/>
+          <smc:NumericTextBox GotFocus="txtHan_tt_GotFocus" Name="txtHan_tt" Grid.Column="1" TabIndex="590" Format="#,0"
+                              Grid.Row="2" Style="{StaticResource NumericTextBoxrEditModeEnable}"
+                              Value="{smc:BindingEx Path=han_tt}"/>
+          <TextBlock Name="lbhttt" Grid.Column="0" Grid.Row="3" Text="Hình thức tt"/>
+          <TextBox Name="txtHTTT" Grid.Column="2" Grid.Row="3" TabIndex="600"
+                   Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=ht_tt}"/>
+          <TextBlock Name="tblHan_ck" Grid.Column="0" Style="{StaticResource ContentTextStyle}" Text="Mã đ/k tt"
+                     Grid.Row="1"/>
+          <smc:AutoCompleteTextBox PreviewLostFocus="txtHan_ck_PreviewLostFocus" Name="txtHan_ck" Grid.Column="1" TabIndex="580"
+                                   Grid.Row="1" AllowWrong="false" AllowEmty="true" ListID="dmthck"
+                                   Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" Text="{smc:BindingEx Path=ma_thck}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+        </smc:GridLayout>
+        <smc:GridLayout Name="GrdLayoutHan_ck" Column="3" Row="1" RowCount="5" RowHeights="25,25,25,25,25" ColumnCount="2"
+                        ColumnWidths="*,140">
+          <TextBlock Name="tblten_han_ck" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ContentTextStyle}"
+                     Text="" Grid.Row="1"/>
+        </smc:GridLayout>
+        <smc:GridLayout Name="GrdLayoutTong_NT" Column="5" Margin="0" Row="1" RowCount="6" RowHeights="25,25,25,25,25,*"
+                        ColumnCount="2" ColumnWidths="*,140">
+          <TextBlock Name="tblt_tien_nt" Text="Cộng tiền hàng" Grid.Column="0" Grid.Row="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_tien_nt" IsReadOnly="true" IsTabStop="false" Grid.Row="0" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=tien_hg_nt}"/>
+          <TextBlock Name="tblt_ck_nt" Text="Tiền ck" Grid.Column="0" Grid.Row="1"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_ck_nt" IsReadOnly="true" IsTabStop="false" Grid.Row="1" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_ck_nt}"/>
+          <TextBlock Name="tbltien_sau_ck_nt" Text="Tiền sau ck" Grid.Column="0" Grid.Row="2"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txttien_sau_ck_nt" IsReadOnly="true" IsTabStop="false" Grid.Row="2" Grid.Column="1"
+                              Value="{smc:BindingEx Path=t_tien_nt2}"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+          <TextBlock Name="tblt_thue_nt" Text="Tiền thuế GTGT" Grid.Column="0" Grid.Row="3"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtT_thue_nt" Grid.Row="3" IsTabStop="false" Grid.Column="1"
+                              Value="{smc:BindingEx Path=t_thue_nt}"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}">
+            <igEditors:ValueEditor.IsReadOnly>
+              <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;t_thue_nt_readOnly"
+                            Mode="OneWay">
+                <Binding Path="IsChecked" ElementName="Chksua_thue" Mode="OneWay"/>
+                <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+              </MultiBinding>
+            </igEditors:ValueEditor.IsReadOnly>
+          </smc:NumericTextBox>
+          <TextBlock Name="tblt_tt_nt" Text="Tổng tiền tt" Grid.Column="0" Grid.Row="4"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtT_tt_nt" IsReadOnly="true" IsTabStop="false" Grid.Row="4" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_tt_nt}"/>
+        </smc:GridLayout>
+        <smc:GridLayout Name="GrdLayoutTong" Column="7" Row="1" RowCount="6" RowHeights="25,25,25,25,25,*" ColumnCount="1">
+          <UIElement.Visibility>
+            <MultiBinding Converter="{StaticResource VisibilityConverter}" ConverterParameter="NotMaNt0">
+              <Binding Path="Value" Source="{StaticResource Voucher_Ma_nt0}"/>
+            </MultiBinding>
+          </UIElement.Visibility>
+          <smc:NumericTextBox Name="txtt_tien" IsReadOnly="true" IsTabStop="false" Grid.Row="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=tien_hg}"/>
+          <smc:NumericTextBox Name="txtt_ck" IsReadOnly="true" IsTabStop="false" Grid.Row="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_ck}"/>
+          <smc:NumericTextBox Name="txttien_sau_ck" IsReadOnly="true" IsTabStop="false" Grid.Row="2"
+                              Value="{smc:BindingEx Path=t_tien2}"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+          <smc:NumericTextBox Name="txtT_thue" Grid.Row="3" IsTabStop="false" Value="{smc:BindingEx Path=t_thue}"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}">
+            <igEditors:ValueEditor.IsReadOnly>
+              <MultiBinding Converter="{StaticResource ReadOnlyConverter}" ConverterParameter="CT;t_thue_readOnly"
+                            Mode="OneWay">
+                <Binding Path="IsChecked" ElementName="Chksua_thue" Mode="OneWay"/>
+                <Binding Path="IsChecked" ElementName="Chksua_tien" Mode="OneWay"/>
+                <Binding Path="Value" Source="{StaticResource IsInEditMode}" Mode="OneWay"/>
+              </MultiBinding>
+            </igEditors:ValueEditor.IsReadOnly>
+          </smc:NumericTextBox>
+          <smc:NumericTextBox Name="txtT_tt" IsReadOnly="true" IsTabStop="false" Grid.Row="4" Height="20" Margin="0,2.5,0,0"
+                              VerticalAlignment="Top" Width="140"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_tt}"/>
+        </smc:GridLayout>
+      </smc:GridLayout>
+    </GroupBox>
+  </smc:GridLayout>
+</smvc:FormTrans>

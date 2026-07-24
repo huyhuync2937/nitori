@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{722E3E7C-EFA1-44ED-A0FD-67C703582F18}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PODMHDM</RootNamespace>
+    <AssemblyName>PODMHDM</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Prog\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="InfragisticsWPF3.DataPresenter.v10.2">
+      <HintPath>..\..\..\Prog\InfragisticsWPF3.DataPresenter.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF3.Editors.v10.2">
+      <HintPath>..\..\..\Prog\InfragisticsWPF3.Editors.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF3.v10.2">
+      <HintPath>..\..\..\Prog\InfragisticsWPF3.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InvtLib">
+      <HintPath>..\..\..\Prog\InvtLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasControls">
+      <HintPath>..\..\..\Prog\SasControls.dll</HintPath>
+    </Reference>
+    <Reference Include="SasDataLib">
+      <HintPath>..\..\..\Prog\SasDataLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasDefine">
+      <HintPath>..\..\..\Prog\SasDefine.dll</HintPath>
+    </Reference>
+    <Reference Include="SasErrorLib">
+      <HintPath>..\..\..\Prog\SasErrorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasFormBrowes">
+      <HintPath>..\..\..\Prog\SasFormBrowes.dll</HintPath>
+    </Reference>
+    <Reference Include="SasFormReport">
+      <HintPath>..\..\..\Prog\SasFormReport.dll</HintPath>
+    </Reference>
+    <Reference Include="SasLanguages">
+      <HintPath>..\..\..\Prog\SasLanguages.dll</HintPath>
+    </Reference>
+    <Reference Include="SasLib">
+      <HintPath>..\..\..\Prog\SasLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Prog\SasUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="SasVoucherLib">
+      <HintPath>..\..\..\Prog\SasVoucherLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="1BindingReadOnly.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BindingFilter.cs" />
+    <Compile Include="BindingReadonly.cs" />
+    <Compile Include="COTKTH2Dvcs.xaml.cs">
+      <DependentUpon>COTKTH2Dvcs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGuiEmail.xaml.cs">
+      <DependentUpon>FrmGuiEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoaddonhang.xaml.cs">
+      <DependentUpon>FrmLoaddonhang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoadVT.xaml.cs">
+      <DependentUpon>FrmLoadVT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoc.xaml.cs">
+      <DependentUpon>FrmLoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLocVT.xaml.cs">
+      <DependentUpon>FrmLocVT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSetValue.xaml.cs">
+      <DependentUpon>FrmSetValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartUp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BindingStatusVoucher.cs" />
+    <Compile Include="BindingTextStatus.cs" />
+    <Compile Include="BindingXamDataGridIdField.cs" />
+    <Compile Include="FrmIn.xaml.cs">
+      <DependentUpon>FrmIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPoctpna.xaml.cs">
+      <DependentUpon>FrmPoctpna.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPoctpnaCopy.xaml.cs">
+      <DependentUpon>FrmPoctpnaCopy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTim.xaml.cs">
+      <DependentUpon>FrmTim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IdRecordConverterXamDataGrid.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="COTKTH2Dvcs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmGuiEmail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmIn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmLoaddonhang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmLoadVT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmLoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmLocVT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmPoctpna.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmPoctpnaCopy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmSetValue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmTim.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,533 @@
+<smc:FormList x:Class="Invt.newForm"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:src="clr-namespace:Invt"
+              xmlns:smc="http://sis.vn/SasControls"
+              xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+              xmlns:igWindows="http://infragistics.com/Windows"
+              xmlns:igDP="http://infragistics.com/DataPresenter"
+              Loaded="newForm_Loaded" Closed="FormList_Closed" PreviewKeyUp="FormList_PreviewKeyUp"
+              Title="newForm" LanguageID="Invt_0" Height="602" Width="740">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+            <src:IsEnabledTon_kho x:Key="EnabledTon_kho"/>
+            <Style x:Key="MaskedTextBoxReadOnly" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyMaskedTextBox" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                    <Trigger Property="UIElement.IsEnabled" Value="false">
+                        <Setter Property="Control.Background" Value="#FFF4F4F4"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyNumericTextBox" TargetType="{x:Type smc:NumericTextBox}"
+             BasedOn="{StaticResource NumericTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Setter Property="UIElement.IsEnabled">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="sl">
+                            <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                            <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Control.Background" Value="White"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                    <Trigger Property="UIElement.IsEnabled" Value="false">
+                        <Setter Property="Control.Background" Value="#FFF4F4F4"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteTextBoxReadOnly" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyDateTime" TargetType="{x:Type smc:DateTextBox}"
+             BasedOn="{StaticResource DateTextBoxStyle}">
+                <Setter Property="smc:DateTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:DateTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGV_OnCancel" Name="ConfirmGV">
+        <smc:GridLayout Margin="12,12,12,0">
+            <igWindows:XamTabControl Name="TabInfor" Margin="0" Theme="Generic">
+                <FrameworkElement.Resources>
+                    <Style TargetType="{x:Type igWindows:TabItemEx}" BasedOn="{StaticResource TabItemStyle}"/>
+                </FrameworkElement.Resources>
+                <igWindows:TabItemEx Name="TabMain" Header="_1. Thông tin vật tư" IsTabStop="false">
+                    <smc:GridLayout Name="gridMain" Margin="8,5.5,8,5.5" ColumnCount="6" ColumnWidths="*,140,12,*,12,140" RowCount="23"
+                          RowHeights="25,25,25,25,25,25,25,25,25,25,7,25,25,25,7,25,7,25,25,0,25,25,*">
+                        <TextBlock Name="tblma_vt" Text="Mã vật tư" Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox GotFocus="txtma_vt_GotFocus" x:Name="txtma_vt" Grid.Column="1" Grid.Row="0" TabIndex="1"
+                     CharacterCasing="Upper" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ma_vt}"/>
+                        <TextBlock Name="tblma_tra_cuu" Text="Mã phụ" Grid.Row="0" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox GotFocus="txtma_tra_cuu_GotFocus" x:Name="txtma_tra_cuu" Grid.Column="5" Grid.Row="0" TabIndex="3"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ma_tra_cuu}"/>
+                        <TextBlock Name="tblten_vt" Text="Tên vật tư" Grid.Row="1" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtten_vt" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" TabIndex="5"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ten_vt}"/>
+                        <TextBlock Name="tblten_vt2" Text="Tên 2" Grid.Row="2" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtten_vt2" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" TabIndex="7"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ten_vt2}"/>
+                        <TextBlock Name="tbldvt" Text="Đơn vị tính" Grid.Row="3" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox LostFocus="txtdvt_LostFocus" x:Name="txtdvt" Grid.Column="1" Grid.Row="3" TabIndex="9"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx dvt}"/>
+                        <TextBlock Name="tblpart_no" Text="Part No(barcode)" Grid.Row="3" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+
+                        <smc:AutoCompleteTextBox  Name="txtpart_no" Grid.Column="5" Grid.Row="3"
+              TabIndex="13" AllowEmty="true" AllowWrong="false" ListID="dmvt"
+              Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+              Text="{smc:BindingEx part_no, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+              SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+
+                        <!--<TextBox GotFocus="txtpart_no_GotFocus" x:Name="txtpart_no" Grid.Column="5" Grid.Row="3" TabIndex="10"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx part_no}"/>-->
+                        <TextBlock Name="tblvt_ton_kho" Text="Theo dõi tồn kho" Grid.Row="4" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5" Orientation="Horizontal">
+                            <smc:MaskedTextBox LostFocus="txtvt_ton_kho_LostFocus" ValueChanged="txtvt_ton_kho_ValueChanged" Name="txtvt_ton_kho"
+                                 TabIndex="11" Format="M" InputMask="0,1" Width="38" Text="{smc:BindingEx vt_ton_kho}">
+                                <FrameworkElement.Style>
+                                    <Style TargetType="{x:Type smc:MaskedTextBox}" BasedOn="{StaticResource ReadOnlyMaskedTextBox}">
+                                        <Setter Property="UIElement.IsEnabled">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="vt_ton_kho">
+                                                    <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </FrameworkElement.Style>
+                            </smc:MaskedTextBox>
+                            <TextBlock Name="tblghi_chu_vt_ton_kho" Text="0 - Không, 1 - Có" Margin="12,0,0,0"
+                         Style="{StaticResource ContentTextStyle}"/>
+                        </StackPanel>
+                        <TextBlock Name="tblgia_ton" Text="Pp tính giá tồn kho" Grid.Row="8" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox PreviewLostFocus="txtgia_ton_PreviewLostFocus" Name="txtgia_ton" Grid.Column="1" Grid.Row="8"
+                                     TabIndex="19" AllowEmty="false" AllowWrong="false" ListID="dmvtgiatk" Filter="status = 1"
+                                     Text="{smc:BindingEx gia_ton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <FrameworkElement.Style>
+                                <Style TargetType="{x:Type smc:AutoCompleteTextBox}"
+                       BasedOn="{StaticResource AutoCompleteTextBoxReadOnly}">
+                                    <Setter Property="UIElement.IsEnabled">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="gia_ton">
+                                                <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Style>
+                        </smc:AutoCompleteTextBox>
+                        <TextBlock x:Name="txtten_gia_ton" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="8"
+                       Text="{smc:BindingEx ten_gia_ton}"/>
+                        <TextBlock Name="tblloai_vt" Text="Loại vật tư" Grid.Row="5" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox PreviewLostFocus="txtloai_vt_PreviewLostFocus" Name="txtloai_vt" Grid.Row="5" Grid.Column="1"
+                                     TabIndex="13" AllowEmty="true" AllowWrong="false" ListID="dmloaivt"
+                                     Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx loai_vt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock x:Name="txtten_loai_vt" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="5"
+                       Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx ten_loai_vt}"/>
+
+                    
+
+                        <TextBlock Name="tbltk_vt" Text="Tk kho" Grid.Row="6" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox PreviewLostFocus="txttk_vt_PreviewLostFocus" Name="txttk_vt" Grid.Row="6" Grid.Column="1"
+                                     TabIndex="15" AllowWrong="false" ListID="dmtk1"
+                                     Text="{smc:BindingEx tk_vt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <FrameworkElement.Style>
+                                <Style BasedOn="{StaticResource AutoCompleteTextBoxReadOnly}"
+                       TargetType="{x:Type smc:AutoCompleteTextBox}">
+                                    <Setter Property="smc:AutoCompleteTextBox.AllowEmty">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="tk_vt">
+                                                <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Style>
+                        </smc:AutoCompleteTextBox>
+                        <TextBlock x:Name="txtten_tk_vt" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="5"
+                       Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx ten_tk_vt}"/>
+                        <TextBlock Name="tblsua_tk_kho" Text="Sửa tk kho" Grid.Row="7" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <StackPanel Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Orientation="Horizontal">
+                            <smc:MaskedTextBox LostFocus="txtsua_tk_kho_LostFocus" Name="txtsua_tk_kho" TabIndex="17" Format="M" InputMask="0,1"
+                                 Width="38" Text="{smc:BindingEx sua_tk_vt}">
+                                <FrameworkElement.Style>
+                                    <Style TargetType="{x:Type smc:MaskedTextBox}" BasedOn="{StaticResource ReadOnlyMaskedTextBox}">
+                                        <Setter Property="UIElement.IsEnabled">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="sua_tk_vt">
+                                                    <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </FrameworkElement.Style>
+                            </smc:MaskedTextBox>
+                            <TextBlock Name="tblghi_chu_sua_tk_kho" Text="0 - Không được sửa, 1 - Được sửa" Margin="12,0,0,0"
+                         Style="{StaticResource ContentTextStyle}"/>
+                        </StackPanel>
+                        <Separator Background="#FFCACACA" Grid.Row="10" Margin="0,0,12,0"/>
+                        <TextBlock Name="tbltk_dt" Text="Tk doanh thu" Grid.Row="11" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_dt" Grid.Row="11" Grid.Column="1" TabIndex="23" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx tk_dt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tbltk_tl" Text="Tk hàng bán bị trả lại" Grid.Row="13" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_tl" Grid.Row="13" Grid.Column="1" TabIndex="31" AllowEmty="true" AllowWrong="false"
+                                     FieldsShow="tk;ten_tk" ListID="dmtk" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx tk_tl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tbltk_cl_vt" Text="Tk chênh lệch giá tb" Grid.Row="9" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_cl_vt" Grid.Row="9" Grid.Column="1" TabIndex="21" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk1" Text="{smc:BindingEx tk_cl_vt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <FrameworkElement.Style>
+                                <Style TargetType="{x:Type smc:AutoCompleteTextBox}"
+                       BasedOn="{StaticResource AutoCompleteTextBoxReadOnly}">
+                                    <Setter Property="UIElement.IsEnabled">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="tk_cl_vt">
+                                                <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Style>
+                        </smc:AutoCompleteTextBox>
+                        <TextBlock Name="tbltk_ck" Text="Tk chiết khấu" Grid.Row="12" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_ck" Grid.Row="12" Grid.Column="1" TabIndex="27" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Text="{smc:BindingEx tk_ck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <FrameworkElement.Style>
+                                <Style TargetType="{x:Type smc:AutoCompleteTextBox}"
+                       BasedOn="{StaticResource AutoCompleteTextBoxReadOnly}">
+                                    <Setter Property="UIElement.IsEnabled">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="tk_ck">
+                                                <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Style>
+                        </smc:AutoCompleteTextBox>
+                        <Separator Background="#FFCACACA" Grid.Row="14" Margin="0,0,12,0"/>
+                        <TextBlock Name="tbltk_nvl" Text="Tk cp nguyên vật liệu" Grid.Row="15" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_nvl" Grid.Row="15" Grid.Column="1" TabIndex="35" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Text="{smc:BindingEx tk_nvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <FrameworkElement.Style>
+                                <Style TargetType="{x:Type smc:AutoCompleteTextBox}"
+                       BasedOn="{StaticResource AutoCompleteTextBoxReadOnly}">
+                                    <Setter Property="UIElement.IsEnabled">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="tk_nvl">
+                                                <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Style>
+                        </smc:AutoCompleteTextBox>
+                        <TextBlock Name="tbltk_gv" Text="Tk giá vốn" Grid.Row="11" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_gv" Grid.Row="11" Grid.Column="5" TabIndex="25" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx tk_gv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tbltk_spdd" Text="Tk cp dở dang" Grid.Row="15" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_spdd" Grid.Row="15" Grid.Column="5" TabIndex="37" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Text="{smc:BindingEx tk_spdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Filter="loai_tk = 1"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <FrameworkElement.Style>
+                                <Style TargetType="{x:Type smc:AutoCompleteTextBox}"
+                       BasedOn="{StaticResource AutoCompleteTextBoxReadOnly}">
+                                    <Setter Property="UIElement.IsEnabled">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource EnabledTon_kho}" ConverterParameter="tk_spdd">
+                                                <Binding Path="Text" ElementName="txtdvt" Mode="OneWay"/>
+                                                <Binding Path="Text" ElementName="txtvt_ton_kho" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Style>
+                        </smc:AutoCompleteTextBox>
+                        <TextBlock Name="tbltk_km" Text="Tk cp khuyến mãi" Grid.Row="12" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_km" Grid.Row="12" Grid.Column="5" TabIndex="29" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Style="{StaticResource AutoCompleteTextBoxReadOnly}" Filter="loai_tk = 1"
+                                     Text="{smc:BindingEx tk_km, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tbltk_gg" Text="Tk giảm giá" Grid.Row="13" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txttk_gg" Grid.Row="13" Grid.Column="6" TabIndex="33" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmtk" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx tk_gg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Filter="loai_tk = 1"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <Separator Background="#FFCACACA" Grid.Row="16" Margin="0,0,12,0"/>
+                        <TextBlock Name="tblnh_vt1" Text="Nhóm vật tư 1, 2, 3" Grid.Row="17" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txtnh_vt1" TabIndex="39" Grid.Column="1" Grid.Row="17" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmnhvt1" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx nh_vt1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <smc:AutoCompleteTextBox Name="txtnh_vt2" TabIndex="41" Grid.Column="3" Grid.Row="17" Width="140" HorizontalAlignment="Left"
+                                     AllowEmty="true" AllowWrong="false" ListID="dmnhvt2"
+                                     Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx nh_vt2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <smc:AutoCompleteTextBox Name="txtnh_vt3" TabIndex="43" Grid.Column="5" Grid.Row="17" AllowEmty="true" AllowWrong="false"
+                                     ListID="dmnhvt3" Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx nh_vt3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tblsl_min" Text="Số lượng tồn tối thiểu" Grid.Row="18" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" LostFocus="txtsl_min_LostFocus" Name="txtsl_min" TabIndex="45"
+                                Grid.Column="1" Grid.Row="18" Style="{StaticResource ReadOnlyNumericTextBox}"
+                                Value="{smc:BindingEx sl_min}"/>
+                        <TextBlock Name="tblsl_max" Text="Số lượng tồn tối đa" Grid.Row="18" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" LostFocus="txtsl_max_LostFocus" Name="txtsl_max" TabIndex="47"
+                                Grid.Column="5" Grid.Row="18" Style="{StaticResource ReadOnlyNumericTextBox}"
+                                Value="{smc:BindingEx sl_max}"/>
+                        <TextBlock Name="tblMaDVCS" Text="Mã đvcs" Grid.Row="20" Grid.Column="0"/>
+                        <smc:AutoCompleteTextBox PreviewLostFocus="txtma_dvcs_PreviewLostFocus" Name="txtma_dvcs" Grid.Column="1" Grid.Row="20"
+                                     TabIndex="51" AllowEmty="true" AllowWrong="false" ListID="dmdvcs"
+                                     Style="{StaticResource AutoCompleteTextBoxReadOnly}" Text="{smc:BindingEx ma_dvcs}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tblten_ma_dvcs" Grid.Row="20" Grid.Column="2" Margin="12,0,0,0" Grid.ColumnSpan="3"
+                       Text="{smc:BindingEx Path=ten_dvcs, Path2=ten_dvcs2}"/>
+                        <TextBlock Name="tblstatus" Text="Trạng thái sử dụng" Grid.Row="21" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="21" Orientation="Horizontal">
+                            <smc:MaskedTextBox LostFocus="txtstatus_LostFocus" Name="txtstatus" Format="M" InputMask="0,1" Width="38"
+                                 TabIndex="53" Style="{StaticResource MaskedTextBoxReadOnly}" HorizontalContentAlignment="Right"
+                                 Value="{smc:BindingEx status}"/>
+                            <TextBlock Name="txtstatus_ghi_chu" Text="0 - Không sử dụng, 1 - Sử dụng" Margin="12,0,0,0"/>
+                        </StackPanel>
+                    </smc:GridLayout>
+                </igWindows:TabItemEx>
+                <igWindows:TabItemEx Name="TabEx" IsTabStop="false" Header="_2. Thông tin khác">
+                    <smc:GridLayout Name="gridMainB" Margin="8,5.5,8,5.5" ColumnCount="6" ColumnWidths="100,140,150,100,140,140"
+                          RowCount="25" RowHeights="50,25,25,25,25,25,25,25,25,25,25,25,7,25,25,25,7,25,7,25,25,50,25,25,*">
+                        <TextBlock Name="tbllead_time" Text="Lead time" Grid.Row="0" Grid.Column="0"
+Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus"  Name="txtlead_time" TabIndex="54"
+         Grid.Column="1" Grid.Row="0" 
+         Value="{smc:BindingEx sl_td1}"/>
+
+                        <TextBlock Name="tblma_ncc" Text="Mã Khách" Grid.Row="0" Grid.Column="3"
+         Style="{StaticResource ContentTextStyle}"/>
+
+                        <smc:AutoCompleteTextBox  Name="txtma_ncc" Grid.Column="4" Grid.Row="0"
+TabIndex="55" AllowEmty="true" AllowWrong="false" ListID="dmkh"
+Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+Text="{smc:BindingEx ma_td1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+
+                        <TextBlock Name="tblpacking" Text="Packing" Grid.Row="1" Grid.Column="0"
+  Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txtpacking" TabIndex="56"
+           Grid.Column="1" Grid.Row="1"
+           Value="{smc:BindingEx packing}"/>
+
+                        <TextBlock Name="tblsafety" Text="Số Safety" Grid.Row="1" Grid.Column="3"
+  Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txtsafety" TabIndex="57"
+           Grid.Column="4" Grid.Row="1"
+           Value="{smc:BindingEx safety}"/>
+
+                        <TextBlock Name="tblqk" Text="Số QK" Grid.Row="2" Grid.Column="0"
+  Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txtqk" TabIndex="58"
+           Grid.Column="1" Grid.Row="2"
+           Value="{smc:BindingEx qk}"/>
+
+                        <TextBlock Name="tbltl" Text="Số TL" Grid.Row="2" Grid.Column="3"
+  Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txttl" TabIndex="59"
+           Grid.Column="4" Grid.Row="2"
+           Value="{smc:BindingEx tl}"/>
+
+                        <TextBlock Name="tblproduction" Text="Production" Grid.Row="3" Grid.Column="0"
+  Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtsx1" Grid.Column="1" Grid.Row="3" TabIndex="60"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx sx1}"/>
+                        <TextBox x:Name="txtsx2" Grid.Column="2" Grid.Row="3" TabIndex="61"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx sx2}"/>
+                        <TextBox x:Name="txtsx3" Grid.Column="3" Grid.Row="3" TabIndex="62"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx sx3}"/>
+                        <TextBox x:Name="txtsx4" Grid.Column="4" Grid.Row="3" TabIndex="63"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx sx4}"/>
+
+                        <TextBlock Name="tblghi_chu" Text="Ghi chú" Grid.Row="4" Grid.Column="0"  VerticalAlignment="Top"
+                       Margin="0,5,0,0"/>
+                        <TextBox PreviewKeyDown="txtghi_chu_PreviewKeyDown" x:Name="txtghi_chu" TabIndex="56" Grid.Column="1"
+                     Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="20" Height="260" VerticalScrollBarVisibility="Auto"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ghi_chu}"/>
+                    </smc:GridLayout>
+                </igWindows:TabItemEx>
+                <!--<igWindows:TabItemEx Name="TabAddition" IsTabStop="false" Header="_3. Thông tin bổ sung">
+                    <smc:GridLayout Name="gridMainC" Margin="8,5.5,8,5.5" ColumnCount="6" ColumnWidths="*,140,12,*,12,140" RowCount="9"
+                          RowHeights="25,25,25,25,25,25,25,25,*">
+                        <TextBlock Name="tblcode_mua" Text="Mã mua hàng" Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtcode_mua" Grid.Column="1" Grid.Row="0" TabIndex="64"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_mua}"/>
+                        <TextBlock Name="tblcode_qcs" Text="Mã QCS" Grid.Row="0" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtcode_qcs" Grid.Column="5" Grid.Row="0" TabIndex="65"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_qcs}"/>
+
+                        <TextBlock Name="tblcode_ncc2" Text="Mã NCC 2" Grid.Row="1" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtcode_ncc2" Grid.Column="1" Grid.Row="1" TabIndex="66"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_ncc2}"/>
+                        <TextBlock Name="tblcode_ncc3" Text="Mã NCC 3" Grid.Row="1" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtcode_ncc3" Grid.Column="5" Grid.Row="1" TabIndex="67"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_ncc3}"/>
+
+                        <TextBlock Name="tblcode_consumpion" Text="Mã tiêu thụ" Grid.Row="2" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtcode_consumpion" Grid.Column="1" Grid.Row="2" TabIndex="68"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_consumpion}"/>
+                        <TextBlock Name="tblcode_ok" Text="Mã OK/duyệt" Grid.Row="2" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtcode_ok" Grid.Column="5" Grid.Row="2" TabIndex="69"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_ok}"/>
+
+                        <TextBlock Name="tblma_nt" Text="Mã ngoại tệ" Grid.Row="3" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:AutoCompleteTextBox Name="txtma_nt" Grid.Column="1" Grid.Row="3"
+                                     TabIndex="70" AllowEmty="true" AllowWrong="false" ListID="dmnt"
+                                     Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+                                     Text="{smc:BindingEx ma_nt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tbltien" Text="Đơn giá" Grid.Row="3" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txttien" Grid.Column="5" Grid.Row="3"
+                                TabIndex="71" Value="{smc:BindingEx tien}"/>
+
+                        <TextBlock Name="tbltolerance" Text="Dung sai" Grid.Row="4" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txttolerance" Grid.Column="1" Grid.Row="4" TabIndex="72"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx tolerance}"/>
+                        <TextBlock Name="tbltrading" Text="Hình thức giao dịch" Grid.Row="4" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txttrading" Grid.Column="5" Grid.Row="4" TabIndex="73"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx trading}"/>
+
+                        <TextBlock Name="tblmaker_name" Text="Tên nhà sản xuất" Grid.Row="5" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtmaker_name" Grid.Column="1" Grid.Row="5" TabIndex="74"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx maker_name}"/>
+                        <TextBlock Name="tblorigin" Text="Xuất xứ" Grid.Row="5" Grid.Column="3"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtorigin" Grid.Column="5" Grid.Row="5" TabIndex="75"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx origin}"/>
+
+                        <TextBlock Name="tblexpiration" Text="Hạn sử dụng" Grid.Row="6" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <smc:DateTextBox Style="{StaticResource ReadOnlyDateTime}" IsInEditMode="true" x:Name="txtexpiration"
+                                         AllowEmpty="True" Grid.Column="1" Grid.Row="6" TabIndex="76"
+                                         Value="{smc:BindingEx expiration}"/>
+
+                        <TextBlock Name="tblspec" Text="Quy cách" Grid.Row="7" Grid.Column="0"
+                       Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtspec" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" TabIndex="77"
+                     Style="{StaticResource ReadOnly}" Text="{smc:BindingEx spec}"/>
+                    </smc:GridLayout>
+                </igWindows:TabItemEx>-->
+            </igWindows:XamTabControl>
+        </smc:GridLayout>
+    </smc:ConfirmGridView>
+</smc:FormList>
+    

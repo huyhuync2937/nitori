@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\InQCS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Inqcs\\Inqcs.csproj|d:\\siserpsme2025\\source\\inqcs\\inqcs\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Inqcs\\Inqcs.csproj|solutionrelative:inqcs\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Inqcs\\Inqcs.csproj|d:\\siserpsme2025\\source\\inqcs\\inqcs\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Inqcs\\Inqcs.csproj|solutionrelative:inqcs\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|InQCS\\InQCS.csproj|D:\\SISERPSME2025\\Source\\InQCS\\inqcs\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|InQCS\\InQCS.csproj|solutionrelative:inqcs\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Inqcs\\Inqcs.csproj|d:\\siserpsme2025\\source\\inqcs\\inqcs\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Inqcs\\Inqcs.csproj|solutionrelative:inqcs\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "newForm.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\InQCS\\Inqcs\\newForm.xaml.cs",
+              "RelativeDocumentMoniker": "Inqcs\\newForm.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\InQCS\\Inqcs\\newForm.xaml.cs",
+              "RelativeToolTip": "Inqcs\\newForm.xaml.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwNQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T04:18:51.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "newForm.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\InQCS\\Inqcs\\newForm.xaml",
+              "RelativeDocumentMoniker": "Inqcs\\newForm.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\InQCS\\Inqcs\\newForm.xaml",
+              "RelativeToolTip": "Inqcs\\newForm.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-26T04:17:24.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\InQCS\\InQCS\\App.xaml.cs",
+              "RelativeDocumentMoniker": "InQCS\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\InQCS\\InQCS\\App.xaml.cs",
+              "RelativeToolTip": "InQCS\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T03:58:53.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\InQCS\\Inqcs\\StartUp.cs",
+              "RelativeDocumentMoniker": "Inqcs\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\InQCS\\Inqcs\\StartUp.cs",
+              "RelativeToolTip": "Inqcs\\StartUp.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACkAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-26T03:58:44.423Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

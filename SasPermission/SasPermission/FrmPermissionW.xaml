@@ -1,0 +1,135 @@
+<smc:Form x:Class="SasPermission.FrmPermissionW"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:scr="clr-namespace:SasPermission"
+          xmlns:smc="http://sis.vn/SasControls"
+          Loaded="FrmPermission_Loaded" PreviewKeyUp="Form_PreviewKeyUp" LanguageID="SasPermission_2"
+          EscToClose="true" Height="600" Width="800" ResizeMode="NoResize">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <scr:IsEnabledConverter x:Key="isEnabled"/>
+      <Style x:Key="gridviewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+              <TextBox Text="{TemplateBinding ContentControl.Content}" Padding="0,5,0,0"
+                       Width="{TemplateBinding FrameworkElement.Width}" Height="25" TextAlignment="Center"
+                       Foreground="Black" BorderThickness="0.3" BorderBrush="#ff808080" IsReadOnly="true">
+                <Control.Background>
+                  <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF2F0F0" Offset="0"/>
+                    <GradientStop Color="#FFD8D7D7" Offset="1"/>
+                  </LinearGradientBrush>
+                </Control.Background>
+              </TextBox>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="true"/>
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:GridLayout RowCount="2" RowHeights="*,49">
+    <smc:GridLayout Margin="12,12,12,0">
+      <scr:TreeListView x:Name="MenuTreeView" AllowsColumnReorder="true" Width="Auto" BorderThickness="1"
+                        BorderBrush="#ff808080" ItemsSource="{Binding}">
+        <ItemsControl.ItemTemplate>
+          <HierarchicalDataTemplate ItemsSource="{Binding Path=SubMenuList}"/>
+        </ItemsControl.ItemTemplate>
+        <scr:TreeListView.Columns>
+          <smc:GridViewColumnEx Header="Menu" Header2="Menu" HeaderContainerStyle="{StaticResource gridviewHeaderStyle}"
+                                Width="460">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal" Height="23">
+                  <scr:TreeListViewExpander/>
+                  <CheckBox Name="chbMenu" IsChecked="{Binding ischecked}" Tag="{Binding menu_id}"/>
+                  <TextBlock VerticalAlignment="Center" Margin="12,0,0,0"
+                             Text="{smc:BindingEx Path=bar, Path2=bar2, Mode=OneWay}"/>
+                </StackPanel>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </smc:GridViewColumnEx>
+          <smc:GridViewColumnEx Header="Mới" Header2="New" HeaderContainerStyle="{StaticResource gridviewHeaderStyle}" Width="60">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <CheckBox x:Name="write" IsChecked="{Binding isWrite}" Tag="{Binding menu_id}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource isEnabled}" ConverterParameter="Write">
+                      <Binding Path="ischecked" Mode="OneWay"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                </CheckBox>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </smc:GridViewColumnEx>
+          <smc:GridViewColumnEx Header="Sửa" Header2="Modify" HeaderContainerStyle="{StaticResource gridviewHeaderStyle}"
+                                Width="60">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <CheckBox x:Name="edit" IsChecked="{Binding isEdit}" Tag="{Binding menu_id}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource isEnabled}" ConverterParameter="Edit">
+                      <Binding Path="ischecked" Mode="OneWay"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                </CheckBox>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </smc:GridViewColumnEx>
+          <smc:GridViewColumnEx Header="Xóa" Header2="Remove" HeaderContainerStyle="{StaticResource gridviewHeaderStyle}"
+                                Width="60">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <CheckBox x:Name="delete" IsChecked="{Binding isDelete}" Tag="{Binding menu_id}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource isEnabled}" ConverterParameter="Delete">
+                      <Binding Path="ischecked" Mode="OneWay"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                </CheckBox>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </smc:GridViewColumnEx>
+          <smc:GridViewColumnEx Header="Xem" Header2="View" HeaderContainerStyle="{StaticResource gridviewHeaderStyle}" Width="60">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <CheckBox x:Name="read" IsChecked="{Binding isRead}" Tag="{Binding menu_id}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource isEnabled}" ConverterParameter="Read">
+                      <Binding Path="ischecked" Mode="OneWay"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                </CheckBox>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </smc:GridViewColumnEx>
+          <smc:GridViewColumnEx Header="Duyệt" Header2="Print" HeaderContainerStyle="{StaticResource gridviewHeaderStyle}" Width="60">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <CheckBox x:Name="print" Tag="{Binding menu_id}" IsChecked="{Binding isPrint}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource isEnabled}" ConverterParameter="Print">
+                      <Binding Path="ischecked" Mode="OneWay"/>
+                      <Binding Path="ma_ct" Mode="OneWay"/>
+                      <Binding Path="SubMenuList" Mode="OneWay"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                </CheckBox>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </smc:GridViewColumnEx>
+        </scr:TreeListView.Columns>
+      </scr:TreeListView>
+    </smc:GridLayout>
+    <StackPanel Grid.Row="1" Orientation="Horizontal">
+      <Button Click="btnOk_Click" x:Name="btnOk" Content="_Nhận" Width="92" Margin="12,0,0,0"/>
+      <Button Click="btnCancel_Click" x:Name="btnCancel" Content="_Hủy bỏ" Width="92" Margin="12,0,0,0"/>
+    </StackPanel>
+  </smc:GridLayout>
+</smc:Form>

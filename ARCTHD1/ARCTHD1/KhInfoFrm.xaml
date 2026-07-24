@@ -1,0 +1,40 @@
+<smc:Form x:Class="ARCTHD1.KhInfoFrm"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          Loaded="Form_Loaded" KeyDown="Form_KeyDown" LanguageID="ARCTHD1_5" Theme="Standard"
+          ShowInTaskbar="true" Title="Khach hang VAT" Height="185" Width="602" ResizeMode="NoResize">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel">
+    <Border BorderBrush="Gray" BorderThickness="0.5" Margin="12,12,12,0">
+      <smc:GridLayout Name="gridLayout" RowCount="3" RowHeights="25,25" ColumnCount="3" ColumnWidths="100,140,*"
+                      Margin="12,10,12,0">
+        <TextBlock Name="lbMa_kh" VerticalAlignment="Center" Grid.ColumnSpan="1" HorizontalAlignment="Left">Tên khách hàng</TextBlock>
+        <TextBlock Name="lbDiaChi" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="1"
+                   HorizontalAlignment="Left">Địa chỉ</TextBlock>
+        <TextBlock Name="lbMaSoThue" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="1"
+                   HorizontalAlignment="Left">Mã số thuế</TextBlock>
+        <TextBox Name="txtTenkh" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2.5,0,2.5" TabIndex="1"/>
+        <TextBox Name="txtDiaChi" TabIndex="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2.5,0,2.5" Grid.Row="1"
+                 VerticalAlignment="Bottom"/>
+        <TextBox Name="txtMaSoThue" Grid.Column="1" Margin="0,2.5,0,2.5" Grid.Row="2" TabIndex="3"
+                 VerticalAlignment="Bottom"/>
+      </smc:GridLayout>
+    </Border>
+  </smc:ConfirmGridView>
+</smc:Form>

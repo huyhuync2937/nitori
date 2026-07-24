@@ -1,0 +1,68 @@
+<SasFormReport:FormFilter x:Class="COTD.CotdLoc"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:smc="http://sis.vn/SasControls"
+                     xmlns:SasFormReport="clr-namespace:SasFormReport;assembly=SasFormReport"
+                     xmlns:igEditors="http://infragistics.com/Editors"
+                     xmlns:local="clr-namespace:COTD"
+                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                     Loaded="FrmCotdLoc_Loaded" Name="FrmCotdLoc" LanguageID="COTD_0" Title="Window1" Height="136"
+                     Width="602">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel">
+        <Border BorderBrush="Gray" BorderThickness="0.5" Margin="12,12,12,0">
+            <smc:GridLayout Name="gridLayout" RowCount="1" RowHeights="25,25,25,25" ColumnCount="6"
+                      ColumnWidths="100,140,12,100,140,*" Margin="12,10,12,0">
+                <FrameworkElement.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+                            <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamMaskedEditorStyles.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </FrameworkElement.Resources>
+                <TextBlock Name="tblTd" Text="Chọn trường" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource ContentTextStyle}"/>
+                <igEditors:XamComboEditor Name="txtTd" TabIndex="7" Grid.Row="0" Grid.Column="1">
+                    <igEditors:XamComboEditor.ItemsProvider>
+                        <igEditors:ComboBoxItemsProvider>
+                            <igEditors:ComboBoxItemsProvider.Items>
+                                <smc:ExComboBoxDataItem DisplayText="Mã tự do 1" DisplayText2="Free code 1" Value="1"/>
+                                <smc:ExComboBoxDataItem DisplayText="Mã tự do 2" DisplayText2="Free code 2" Value="2"/>
+                                <smc:ExComboBoxDataItem DisplayText="Mã tự do 3" DisplayText2="Free code 3" Value="3"/>
+                                <smc:ExComboBoxDataItem DisplayText="Mã tự do 4" DisplayText2="Free code 4" Value="4"/>
+                                <smc:ExComboBoxDataItem DisplayText="Mã tự do 5" DisplayText2="Free code 5" Value="5"/>
+
+                            </igEditors:ComboBoxItemsProvider.Items>
+                        </igEditors:ComboBoxItemsProvider>
+                    </igEditors:XamComboEditor.ItemsProvider>
+                </igEditors:XamComboEditor>
+            </smc:GridLayout>
+        </Border>
+    </smc:ConfirmGridView>
+</SasFormReport:FormFilter>

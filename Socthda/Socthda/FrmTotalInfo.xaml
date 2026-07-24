@@ -1,0 +1,105 @@
+<smc:Form x:Class="Socthda.FrmTotalInfo"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:src="clr-namespace:Socthda"
+          xmlns:smc="clr-namespace:SasControls;assembly=SasControls"
+          xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          Loaded="Form_Loaded" Name="SOCTHDATotalInfo" Title="FrmTotalInfo" LanguageID="Socthda_7"
+          EscToClose="true" Height="363" Width="600">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0"/>
+      <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+      <src:NotMaNt0Converter x:Key="NotMaNt0Voucher"/>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGV_OnOk" Name="ConfirmGV">
+    <GroupBox Name="GroupGV" Margin="12,4,12,0" Style="{StaticResource NonHeaderGroupBoxStyle}">
+      <smc:GridLayout Name="gridlayout00" ColumnCount="3" ColumnWidths="260,12,*">
+        <smc:GridLayout Name="gridlayout10" Column="0" RowCount="10" ColumnCount="2" ColumnWidths="*,140">
+          <TextBlock Name="tblSo_luong" Text="Số lượng" Grid.Column="0" Grid.Row="0"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_so_luong" Grid.Column="1" Grid.Row="0" IsReadOnly="true"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"
+                              Value="{smc:BindingEx t_so_luong}"/>
+          <TextBlock Name="tblSl_km" Text="Số lượng km" Grid.Column="0" Grid.Row="1"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_sl_km" Grid.Column="1" Grid.Row="1" IsReadOnly="true"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"
+                              Value="{smc:BindingEx t_sl_km}"/>
+          <TextBlock Name="tblt_tien_nt" Text="Tiền hàng" Grid.Column="0" Grid.Row="2"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_tien_nt2" IsReadOnly="true" Grid.Row="2" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_tien_nt2}"/>
+          <TextBlock Name="tblt_ck_nt" Text="Tiền ck" Grid.Column="0" Grid.Row="3"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_ck_nt" IsReadOnly="true" Grid.Row="3" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_ck_nt}"/>
+          <TextBlock Name="tblt_tien_sau_ck_nt" Text="Tiền sau ck" Grid.Column="0" Grid.Row="4"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_tien_sau_ck_nt" IsReadOnly="true" Grid.Row="4" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_tien_sau_ck_nt}"/>
+          <TextBlock Name="tblt_thue_nt" Text="Tiền thuế" Grid.Column="0" Grid.Row="5"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtT_thue_nt" IsReadOnly="true" Grid.Row="5" Grid.Column="1"
+                              Value="{smc:BindingEx Path=t_thue_nt}"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"/>
+          <TextBlock Name="tblt_tt_nt" Text="Tổng tt" Grid.Column="0" Grid.Row="6"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtT_tt_nt" IsReadOnly="true" Grid.Row="6" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_tt_nt}"/>
+          <TextBlock Name="tblt_tien_km_nt" Text="Tiền km" Grid.Column="0" Grid.Row="7"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_tien_km_nt" IsReadOnly="true" Grid.Row="7" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_tien_km_nt}"/>
+          <TextBlock Name="tblt_thue_km_nt" Text="Thuế km" Grid.Column="0" Grid.Row="8"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtt_thue_km_nt" IsReadOnly="true" Grid.Row="8" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=t_thue_km_nt}"/>
+          <TextBlock Name="tblTien_tc_nt" Text="Tổng tiền" Grid.Column="0" Grid.Row="9"
+                     Style="{StaticResource ContentTextStyle}"/>
+          <smc:NumericTextBox Name="txtTien_tc_nt" IsReadOnly="true" Grid.Row="9" Grid.Column="1"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN_NT}"
+                              Value="{smc:BindingEx Path=tien_tc_nt}"/>
+        </smc:GridLayout>
+        <smc:GridLayout Name="gridlayout20" Column="2" RowCount="10" ColumnCount="2" ColumnWidths="140,*"
+                        Visibility="{smc:BindingEx Path=ma_nt, Converter={StaticResource NotMaNt0Voucher}}">
+          <smc:NumericTextBox Name="txtt_tien2" IsReadOnly="true" Grid.Row="2" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_tien2}"/>
+          <smc:NumericTextBox Name="txtt_ck" IsReadOnly="true" Grid.Row="3" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_ck}"/>
+          <smc:NumericTextBox Name="txtt_tien_sau_ck" IsReadOnly="true" Grid.Row="4" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_tien_sau_ck}"/>
+          <smc:NumericTextBox Name="txtT_thue" IsReadOnly="true" Grid.Row="5" Grid.Column="0" Value="{smc:BindingEx Path=t_thue}"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+          <smc:NumericTextBox Name="txtT_tt" IsReadOnly="true" Grid.Row="6" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_tt}"/>
+          <smc:NumericTextBox Name="txtt_tien_km" IsReadOnly="true" Grid.Row="7" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_tien_km}"/>
+          <smc:NumericTextBox Name="txtt_thue_km" IsReadOnly="true" Grid.Row="8" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=t_thue_km}"/>
+          <smc:NumericTextBox Name="txtTien_tc" IsReadOnly="true" Grid.Row="9" Grid.Column="0"
+                              Format="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"
+                              Value="{smc:BindingEx Path=tien_tc}"/>
+        </smc:GridLayout>
+      </smc:GridLayout>
+    </GroupBox>
+  </smc:ConfirmGridView>
+</smc:Form>

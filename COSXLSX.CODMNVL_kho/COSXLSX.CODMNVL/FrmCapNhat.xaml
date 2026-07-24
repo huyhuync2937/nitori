@@ -1,0 +1,217 @@
+<smc:Form x:Class="COSXLSX.CODMNVL.FrmCapNhat"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:System="clr-namespace:System;assembly=mscorlib"
+          xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+          xmlns:sys="clr-namespace:System;assembly=mscorlib"
+          xmlns:igThemes="http://infragistics.com/Themes"
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          Loaded="Form_Loaded" Closed="Form_Closed" Closing="Form_Closing"
+          WindowStartupLocation="CenterScreen" LanguageID="COSXLSX.CODMNVL_1" EscToClose="true"
+          Theme="Standard" Height="525" Width="865" ResizeMode="CanResize">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smvc:BindingVisibility x:Key="VisibilityConverter"/>
+            <smc:CodeValueBindingObject x:Key="Voucher_Lan0"/>
+            <smc:CodeValueBindingObject x:Key="M_IP_SL" Text="#.000"/>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyNumericTextBox" TargetType="{x:Type smc:NumericTextBox}"
+             BasedOn="{StaticResource NumericTextBoxStyle}">
+                <Setter Property="smc:NumericTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:NumericTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteReadOnly" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyMaskedTextBox" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="smc:MaskedTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:MaskedTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" GotFocus="GridOkCancel_GotFocus"
+                       Name="GridOkCancel">
+        <smc:GridLayout Name="gridLayout00" RowCount="2" ColumnCount="1" RowHeights="100,*">
+            <GroupBox Name="grbmain" Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Margin="12,4,12,0"
+                Style="{StaticResource TabGroupBoxStyle}">
+                <smc:GridLayout Name="gridLayout10" RowCount="2" RowHeights="*,*" ColumnCount="4"
+                        ColumnWidths="100,140,12,*">
+                    <TextBlock Name="lblMaSp" Grid.Row="0" Text="Mã sản phẩm" VerticalAlignment="Center"
+                     HorizontalAlignment="Left"/>
+                    <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_sp_PreviewLostFocus" x:Name="txtMa_sp" Grid.Column="1" Grid.Row="0"
+                                   TabIndex="1" AllowEmty="false" AllowWrong="false" CharacterCasing="Upper" ListID="dmsp"
+                                   Style="{StaticResource AutoCompleteReadOnly}" Text="{smc:BindingEx Path=ma_sp}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    <TextBlock Name="lblTenSp" Grid.Row="0" Grid.Column="3"/>
+
+                    <TextBlock Name="lblMa_Chuyen" Grid.Row="1" Text="Mã chuyền" VerticalAlignment="Center"
+                     HorizontalAlignment="Left"/>
+                    <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_Chuyen_PreviewLostFocus" x:Name="txtMa_Chuyen" Grid.Column="1" Grid.Row="1"
+                                   TabIndex="1" AllowEmty="false" AllowWrong="false" CharacterCasing="Upper" ListID="dmpx"
+                                   Style="{StaticResource AutoCompleteReadOnly}" Text="{smc:BindingEx Path=ma_px}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    <TextBlock Name="lblTen_Chuyen" Grid.Row="1" Grid.Column="3"/>
+
+                    <TextBlock Name="lblSo_lsx" Grid.Row="1" Text="Số lsx" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Hidden"/>
+                    <smc:AutoCompleteTextBox PreviewLostFocus="txtSo_lsx_PreviewLostFocus" x:Name="txtSo_lsx" Grid.Column="1" Grid.Row="1" Visibility="Hidden"
+                                   TabIndex="3" AllowEmty="true" AllowWrong="false" CharacterCasing="Upper" ListID="lsxph"
+                                   Style="{StaticResource AutoCompleteReadOnly}" Text="{smc:BindingEx Path=so_lsx}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    <TextBlock Name="lblTenLsx" Grid.Row="1" Grid.Column="3" Visibility="Hidden"/>
+                    <smc:DateTextBox Name="lblNgayLsx" Grid.Row="1" Grid.Column="3" Width="140" IsEnabled="false"
+                           HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent" IsReadOnly="true"
+                           IsTabStop="false"/>
+
+                    <TextBlock Name="lblMa_hd" Grid.Row="2" Text="Số đh" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Hidden"/>
+                    <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_hd_PreviewLostFocus" x:Name="txtMa_hd" Grid.Column="1" Grid.Row="2" Visibility="Hidden"
+                                   TabIndex="3" AllowEmty="true" AllowWrong="false" CharacterCasing="Upper" ListID="dmhd"
+                                   Style="{StaticResource AutoCompleteReadOnly}" Text="{smc:BindingEx Path=ma_hd}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    <smc:DateTextBox Name="lblNgayCt" Grid.Row="2" Grid.Column="3" Width="140" IsEnabled="false"
+                           HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent" IsReadOnly="true"
+                           IsTabStop="false"/>
+
+                    <TextBlock Name="lblMabpht" Grid.Row="3" Text="Mã bpht" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Hidden"/>
+                    <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_bpht_PreviewLostFocus" x:Name="txtMa_bpht" Grid.Column="1" Grid.Row="3" Visibility="Hidden"
+                                   TabIndex="4" AllowEmty="true" AllowWrong="false" CharacterCasing="Upper" ListID="dmbpht"
+                                   Style="{StaticResource AutoCompleteReadOnly}" Text="{smc:BindingEx Path=ma_bpht}"
+                                   ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    <TextBlock Name="lblTen_bpht" Grid.Row="3" Grid.Column="3" Visibility="Hidden"/>
+                </smc:GridLayout>
+            </GroupBox>
+            <GroupBox Name="grb2" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Margin="12,4,12,0"
+                Style="{StaticResource TabGroupBoxStyle}">
+                <smc:GridLayout Name="gridLayout20" RowCount="2" ColumnCount="1" RowHeights="25,*" Margin="1,0,1,4"
+                        KeyboardNavigation.TabIndex="20" KeyboardNavigation.TabNavigation="Local">
+                    <TextBlock Name="tblThem_Xoa" Text="F4-Thêm, F8-Xóa" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+                    <smc:DataGridView PreviewEditModeEnded="GrdCt_EditModeEnded" AddNewRecord="GrdCt_AddNewRecord"
+                            RecordDelete="GrdCt_RecordDelete" KeyUp="GrdCt_KeyUp" KeyDown="GrdCt_KeyDown"
+                            GotFocus="GrdCt_GotFocus" x:Name="GrdCt" IsVoucher="true" Grid.Row="1" TabIndex="20"
+                            Margin="0,0,0,0">
+                        <FrameworkElement.Resources>
+                            <DataTemplate x:Key="ControlSearchMa_vt">
+                                <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="true" AllowWrong="false"
+                                         Style="{StaticResource AutoCompleteReadOnly}" ListID="dmvt"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </FrameworkElement.Resources>
+                        <igDP:DataPresenterBase.FieldSettings>
+                            <igDP:FieldSettings AllowEdit="True" AllowRecordFiltering="True"/>
+                        </igDP:DataPresenterBase.FieldSettings>
+                        <igDP:DataPresenterBase.FieldLayoutSettings>
+                            <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                        RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                        FilterRecordLocation="OnTop" AllowRecordFixing="Top" AllowDelete="False"/>
+                        </igDP:DataPresenterBase.FieldLayoutSettings>
+                        <igDP:DataPresenterBase.FieldLayouts>
+                            <igDP:FieldLayout>
+                                <igDP:Field Name="ma_vt" Label="Mã vật tư" FixedLocation="FixedToNearEdge" Width="100">
+                                    <igDP:Field.Settings>
+                                        <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="False"
+                                        AllowEdit="{Binding IsEditMode, Source={StaticResource IsInEditMode}}">
+                                            <igDP:FieldSettings.EditorStyle>
+                                                <Style TargetType="{x:Type smc:ControlHostEditor}">
+                                                    <Setter Property="smc:ControlHostEditor.EditDataTemplate" Value="{StaticResource ControlSearchMa_vt}"/>
+                                                    <Setter Property="Control.Template"
+                                  Value="{Binding Path=EditTemplate, RelativeSource={RelativeSource Self}}"/>
+                                                </Style>
+                                            </igDP:FieldSettings.EditorStyle>
+                                        </igDP:FieldSettings>
+                                    </igDP:Field.Settings>
+                                </igDP:Field>
+                                <igDP:Field Label="Tên vật tư" Name="ten_vt" FixedLocation="FixedToNearEdge" Width="250">
+                                    <igDP:Field.Visibility>
+                                        <MultiBinding Converter="{StaticResource VisibilityConverter}" ConverterParameter="LANV">
+                                            <Binding Path="Value" Source="{StaticResource Voucher_Lan0}"/>
+                                        </MultiBinding>
+                                    </igDP:Field.Visibility>
+                                    <igDP:Field.Settings>
+                                        <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" AllowSummaries="False"
+                                        EditAsType="{x:Type sys:String}"/>
+                                    </igDP:Field.Settings>
+                                </igDP:Field>
+                                <igDP:Field Label="Tên vật tư" Name="ten_vt2" FixedLocation="FixedToNearEdge" Width="250">
+                                    <igDP:Field.Visibility>
+                                        <MultiBinding Converter="{StaticResource VisibilityConverter}" ConverterParameter="LANE">
+                                            <Binding Path="Value" Source="{StaticResource Voucher_Lan0}"/>
+                                        </MultiBinding>
+                                    </igDP:Field.Visibility>
+                                    <igDP:Field.Settings>
+                                        <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" AllowSummaries="False"
+                                        EditAsType="{x:Type sys:String}"/>
+                                    </igDP:Field.Settings>
+                                </igDP:Field>
+                                <igDP:Field Label="Đvt" Name="dvt" FixedLocation="FixedToNearEdge" Width="60">
+                                    <igDP:Field.Settings>
+                                        <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" AllowSummaries="False"
+                                        EditAsType="{x:Type sys:String}"/>
+                                    </igDP:Field.Settings>
+                                </igDP:Field>
+                                <igDP:Field Label="Sl định mức" Name="sl_dm" Width="80">
+                                    <igDP:Field.Settings>
+                                        <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="False"
+                                        AllowEdit="{Binding IsEditMode, Source={StaticResource IsInEditMode}}">
+                                            <igDP:FieldSettings.EditorStyle>
+                                                <Style TargetType="{x:Type smc:NumericTextBox}">
+                                                    <Setter Property="smc:NumericTextBox.Format"
+                                  Value="{Binding Path=Text, Source={StaticResource M_IP_SL}, Mode=OneWay}"/>
+                                                </Style>
+                                            </igDP:FieldSettings.EditorStyle>
+                                        </igDP:FieldSettings>
+                                    </igDP:Field.Settings>
+                                </igDP:Field>
+                            </igDP:FieldLayout>
+                        </igDP:DataPresenterBase.FieldLayouts>
+                    </smc:DataGridView>
+                </smc:GridLayout>
+            </GroupBox>
+
+        </smc:GridLayout>
+    </smc:ConfirmGridView>
+</smc:Form>

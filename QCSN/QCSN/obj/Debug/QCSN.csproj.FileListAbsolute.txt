@@ -1,0 +1,16 @@
+D:\SISERPSME2025\Prog\QCSN.exe
+D:\SISERPSME2025\Prog\QCSN.pdb
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.csproj.AssemblyReference.cache
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\FormLoc.g.cs
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\App.g.cs
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN_MarkupCompile.cache
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN_MarkupCompile.lref
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\App.baml
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\FormLoc.baml
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.g.resources
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.Properties.Resources.resources
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.csproj.GenerateResource.cache
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.csproj.CoreCompileInputs.cache
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.csproj.Up2Date
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.exe
+D:\SISERPSME2025\Source\QCSN\QCSN\obj\Debug\QCSN.pdb

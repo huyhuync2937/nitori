@@ -1,0 +1,103 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\SasPermission\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|d:\\siserpsme2025\\source\\saspermission\\saspermission\\frmpermission.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|solutionrelative:saspermission\\frmpermission.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|D:\\SISERPSME2025\\Source\\SasPermission\\saspermission\\permission.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|solutionrelative:saspermission\\permission.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|d:\\siserpsme2025\\source\\saspermission\\saspermission\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|solutionrelative:saspermission\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|D:\\SISERPSME2025\\Source\\SasPermission\\saspermission\\permission.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|solutionrelative:saspermission\\permission.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|d:\\siserpsme2025\\source\\saspermission\\saspermission\\frmnewuser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3F6020AA-621D-4048-9919-D3D12FAF8E83}|SasPermission\\SasPermission.csproj|solutionrelative:saspermission\\frmnewuser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmPermission.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\FrmPermission.xaml.cs",
+              "RelativeDocumentMoniker": "SasPermission\\FrmPermission.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\FrmPermission.xaml.cs",
+              "RelativeToolTip": "SasPermission\\FrmPermission.xaml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-19T05:54:18.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\StartUp.cs",
+              "RelativeDocumentMoniker": "SasPermission\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\StartUp.cs",
+              "RelativeToolTip": "SasPermission\\StartUp.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-19T05:54:04.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmNewUser.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\FrmNewUser.xaml",
+              "RelativeDocumentMoniker": "SasPermission\\FrmNewUser.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\FrmNewUser.xaml",
+              "RelativeToolTip": "SasPermission\\FrmNewUser.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:05:49.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Permission.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\Permission.xaml.cs",
+              "RelativeDocumentMoniker": "SasPermission\\Permission.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\Permission.xaml.cs",
+              "RelativeToolTip": "SasPermission\\Permission.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAIwDIAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T02:02:25.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Permission.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\Permission.xaml",
+              "RelativeDocumentMoniker": "SasPermission\\Permission.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasPermission\\SasPermission\\Permission.xaml",
+              "RelativeToolTip": "SasPermission\\Permission.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-04T02:02:21.811Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

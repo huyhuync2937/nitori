@@ -1,0 +1,17 @@
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.csprojAssemblyReference.cache
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\App.baml
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\View\Frm_F3.g.cs
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\App.g.cs
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\View\Frm_F3.baml
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.csproj.GenerateResource.cache
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.csproj.CopyComplete
+D:\Product\SASERP.NET\Update\SASERP20\Prog\Glbpht.exe.config
+D:\Product\SASERP.NET\Update\SASERP20\Prog\Glbpht.exe
+D:\Product\SASERP.NET\Update\SASERP20\Prog\Glbpht.pdb
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht_MarkupCompile.cache
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht_MarkupCompile.lref
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.g.resources
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.Properties.Resources.resources
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.exe
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\Glbpht.pdb
+D:\Product\SASERP.NET\Update\SASERP20\Source\Glbpht\Glbpht\obj\Debug\GeneratedInternalTypeHelper.g.cs

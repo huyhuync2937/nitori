@@ -1,0 +1,118 @@
+<smc:Form x:Class="INCTPND.FrmINCTPND_PX"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:System="clr-namespace:System;assembly=mscorlib"
+          xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+          KeyDown="Form_KeyDown" x:Name="frmINCTPND_PX" LanguageID="INCTPND_3" Height="600" Width="800"
+          WindowStartupLocation="CenterScreen">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+      <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0"/>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" RowCount="2" Margin="0"
+                       RowHeights="*,50">
+    <smc:DataGridView Name="GrdINCTPND_PX" Grid.Row="0" Margin="12,12,12,0">
+      <igDP:DataPresenterBase.FieldSettings>
+        <igDP:FieldSettings AllowEdit="False"/>
+      </igDP:DataPresenterBase.FieldSettings>
+      <igDP:DataPresenterBase.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" AllowDelete="False"/>
+      </igDP:DataPresenterBase.FieldLayoutSettings>
+      <igDP:DataPresenterBase.FieldLayouts>
+        <igDP:FieldLayout>
+          <igDP:Field Label="Số lượng" Name="sl_xuat" Width="140">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditorType="{x:Type smc:NumericTextBox}">
+                <igDP:FieldSettings.EditorStyle>
+                  <Style TargetType="{x:Type smc:NumericTextBox}">
+                                        <Setter Property="Format"
+                            Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                  </Style>
+                </igDP:FieldSettings.EditorStyle>
+              </igDP:FieldSettings>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Giá n.tệ" Name="gia_nt" Width="130">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center">
+                <igDP:FieldSettings.EditorStyle>
+                  <Style TargetType="{x:Type smc:NumericTextBox}">
+                    <Setter Property="Format"
+                            Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_GIA_NT}"/>
+                  </Style>
+                </igDP:FieldSettings.EditorStyle>
+              </igDP:FieldSettings>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Giá" Name="gia" Width="130">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center">
+                <igDP:FieldSettings.EditorStyle>
+                  <Style TargetType="{x:Type smc:NumericTextBox}">
+                    <Setter Property="Format"
+                            Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_GIA}"/>
+                  </Style>
+                </igDP:FieldSettings.EditorStyle>
+              </igDP:FieldSettings>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Ngày c.từ" Name="ngay_ct" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:DateTime}"
+                                  EditorType="{x:Type smc:DateTextBox}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Số c.từ" Name="so_ct" Width="70">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Diễn giải" Name="dien_giai" Width="225">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã khách" Name="ma_kh" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã kho" Name="ma_kho" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã dự án" Name="ma_vv" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+          <igDP:Field Label="Mã c.từ" Name="ma_ct" Width="100">
+            <igDP:Field.Settings>
+              <igDP:FieldSettings LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
+            </igDP:Field.Settings>
+          </igDP:Field>
+        </igDP:FieldLayout>
+      </igDP:DataPresenterBase.FieldLayouts>
+    </smc:DataGridView>
+  </smc:ConfirmGridView>
+</smc:Form>
