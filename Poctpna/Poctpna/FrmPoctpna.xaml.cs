@@ -647,7 +647,23 @@ namespace Poctpna
             int.TryParse(obj != null ? obj.ToString() : defaultvalue.ToString(), out result);
             return result;
         }
+        public static DataRow GetDVTKL(string ma_vt, string dvt, string dvt1)
+        {
+            string sql = "SELECT * FROM v_dmvtdvt WHERE ma_vt = @ma_vt and dvt =  @dvt and dvt1 =  @dvt1";
 
+            using (SqlCommand sqlCommand = new SqlCommand(sql))
+            {
+                sqlCommand.Parameters.Add("@ma_vt", SqlDbType.Char, 16).Value = ma_vt;
+                sqlCommand.Parameters.Add("@dvt", SqlDbType.Char, 16).Value = dvt;
+                sqlCommand.Parameters.Add("@dvt1", SqlDbType.Char, 16).Value = dvt1;
+
+
+                DataSet dataSet = StartupBase.SasObj.ExcuteReader(sqlCommand);
+                return (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+                    ? dataSet.Tables[0].Rows[0]
+                    : null;
+            }
+        }
         private void GrdCt_EditModeEnded(object sender, EditModeEndedEventArgs e)
         {
             try
@@ -780,7 +796,16 @@ namespace Poctpna
                                 autoCompleteControlDvt1.SearchInit();
                                 if (autoCompleteControlDvt1.RowResult != null && (autoCompleteControlDvt1.RowResult["hs_qd"] != DBNull.Value))
                                 {
-                                    dataItemDvt1["he_so1"] = (decimal)autoCompleteControlDvt1.RowResult["hs_qd"];
+                                    autoCompleteControlDvt1.SearchInit();
+                                    Decimal heSo1Dvt1 = new Decimal(0);
+                                    if (autoCompleteControlDvt1.RowResult != null && (autoCompleteControlDvt1.RowResult["hs_qd"] != DBNull.Value))
+                                        heSo1Dvt1 = (decimal)autoCompleteControlDvt1.RowResult["hs_qd"];
+                                    dataItemDvt1["he_so1"] = heSo1Dvt1;
+
+                                    string dvt1Value = e.Cell.Record.Cells["dvt1"].Value?.ToString().Trim();
+                                    string dvtValue = e.Cell.Record.Cells["dvt"].Value?.ToString().Trim();
+                                    Decimal.TryParse(e.Cell.Record.Cells["so_luong"].Value?.ToString(), out Decimal soLuongDvt1);
+                                    e.Cell.Record.Cells["sl_td1_i"].Value = dvt1Value == dvtValue ? soLuongDvt1 : soLuongDvt1 * heSo1Dvt1;
                                 }
                                 else
                                 {
@@ -869,6 +894,23 @@ namespace Poctpna
                             Decimal result1 = new Decimal(0);
                             Decimal result2 = new Decimal(0);
                             Decimal nValue = (e.Editor as NumericTextBox).nValue;
+
+                            Decimal nValue1 = (e.Editor as NumericTextBox).nValue;
+
+                            DataRow rowQD = GetDVTKL(
+                                e.Cell.Record.Cells["ma_vt"].Value.ToString(),
+                                 e.Cell.Record.Cells["dvt"].Value.ToString(),
+                                 e.Cell.Record.Cells["dvt1"].Value.ToString()
+
+                            );
+
+                            if (rowQD != null && decimal.TryParse(rowQD["hs_qd"]?.ToString(), out decimal hs_qd) && hs_qd != 0)
+                            {
+
+                                nValue1 *= hs_qd;
+                            }
+                            e.Cell.Record.Cells["sl_td1_i"].Value = nValue1;
+
                             if (nValue == new Decimal(0))
                             {
                                 AutoCompleteTextBox autoCompleteControl2 = ControlFunction.GetAutoCompleteControl(CellValuePresenter.FromCell(e.Cell.Record.Cells["ma_vt"]).Editor as ControlHostEditor);
@@ -3036,7 +3078,13 @@ namespace Poctpna
                     for (int i = 0; i < frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView.Count; ++i)
                     {
                         StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_kh"] = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["ma_kh"];
-                      
+                        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["dia_chi"] = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["dia_chi"];
+                        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_so_thue"] = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["ma_so_thue"];
+                        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_nt"] = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["ma_nt"];
+                        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ty_gia"] = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["ty_giaf"];
+                        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ty_giaf"] = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["ty_giaf"];
+
+                        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_nx"] = "331";
                         StartUpTrans.DsTrans.Tables[1].AcceptChanges();
                         string upper1 = this.cbMa_nt.Text.ToUpper();
                         string upper2 = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[0]["ma_nt"].ToString().ToUpper();

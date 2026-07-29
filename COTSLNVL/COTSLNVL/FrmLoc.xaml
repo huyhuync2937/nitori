@@ -40,7 +40,7 @@
                                Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=frmLoc}"/>
                             <TextBlock Name="tblloai_dh" Text="Loại NVL" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
                             <smc:MaskedTextBox  Name="txtps_ck" TabIndex="10" Format="M" InputMask="1,2"
-        Grid.Row="1" Grid.Column="1" Text="*"/>
+        Grid.Row="1" Grid.Column="1" Text="1"/>
                             <TextBlock Name="lblTenPs_ck" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1"
 Text="1 - Cacton, 2 - Khác"/> 
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>

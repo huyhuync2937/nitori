@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7967D0C9-24C3-4506-AE3C-B661B481E9D1}</ProjectGuid>
+    <ProjectGuid>{78E82E8D-A014-427B-AB58-46FE69C82B81}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>COSLNVL</RootNamespace>
     <AssemblyName>COSLNVL</AssemblyName>

@@ -1,0 +1,115 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\COLGH\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|d:\\siserpsme2025\\source\\colgh\\colgh\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|solutionrelative:colgh\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|D:\\SISERPSME2025\\Source\\COLGH\\colgh\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|solutionrelative:colgh\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|D:\\SISERPSME2025\\Source\\COLGH\\colgh\\frmsetvalue.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|solutionrelative:colgh\\frmsetvalue.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|D:\\SISERPSME2025\\Source\\COLGH\\colgh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|solutionrelative:colgh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|D:\\SISERPSME2025\\Source\\COLGH\\colgh\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|solutionrelative:colgh\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|D:\\SISERPSME2025\\Source\\COLGH\\colgh\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COLGH\\COLGH.csproj|solutionrelative:colgh\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmSetValue.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmSetValue.xaml",
+              "RelativeDocumentMoniker": "COLGH\\FrmSetValue.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmSetValue.xaml",
+              "RelativeToolTip": "COLGH\\FrmSetValue.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-26T11:35:20.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmSetValue.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmSetValue.xaml.cs",
+              "RelativeDocumentMoniker": "COLGH\\FrmSetValue.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmSetValue.xaml.cs",
+              "RelativeToolTip": "COLGH\\FrmSetValue.xaml.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-26T11:35:18.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\StartUp.cs",
+              "RelativeDocumentMoniker": "COLGH\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\StartUp.cs",
+              "RelativeToolTip": "COLGH\\StartUp.cs",
+              "ViewState": "AgIAAPMBAAAAAAAAAAA8wAUCAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T14:29:34.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\App.xaml.cs",
+              "RelativeDocumentMoniker": "COLGH\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\App.xaml.cs",
+              "RelativeToolTip": "COLGH\\App.xaml.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T13:50:55.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "COLGH\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "COLGH\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAowG8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T13:25:33.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "COLGH\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COLGH\\COLGH\\FrmLoc.xaml",
+              "RelativeToolTip": "COLGH\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-20T03:42:20.487Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

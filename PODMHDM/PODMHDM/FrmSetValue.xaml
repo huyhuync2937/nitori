@@ -37,9 +37,11 @@ BasedOn="{StaticResource NumericTextBoxStyle}">
 
 
                 <TextBlock Name="tblngay_bh" Text="Ngày ban hành" Grid.Column="0" Grid.Row="0"
-   Style="{StaticResource ContentTextStyle}"/>
+    Style="{StaticResource ContentTextStyle}"/>
                 <smc:DateTextBox x:Name="txtNgay_bh" AllowEmpty="false" Grid.Column="1"
-         Grid.Row="0" TabIndex="1" Value="{smc:BindingEx Path=ngay_bh}"/>
+    Grid.Row="0" TabIndex="1" 
+    Value="{smc:BindingEx Path=ngay_bh}"
+    LostFocus="txtNgay_bh_LostFocus"/>
 
                 <TextBlock Name="lblDvt1" Grid.Row="1">Đvt</TextBlock>
 

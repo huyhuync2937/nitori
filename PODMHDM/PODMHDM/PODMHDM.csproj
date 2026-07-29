@@ -109,9 +109,6 @@
     <Compile Include="FrmLoaddonhang.xaml.cs">
       <DependentUpon>FrmLoaddonhang.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FrmLoadVT.xaml.cs">
-      <DependentUpon>FrmLoadVT.xaml</DependentUpon>
-    </Compile>
     <Compile Include="FrmLoc.xaml.cs">
       <DependentUpon>FrmLoc.xaml</DependentUpon>
     </Compile>
@@ -178,10 +175,6 @@
     <Page Include="FrmLoaddonhang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FrmLoadVT.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="FrmLoc.xaml">
       <SubType>Designer</SubType>

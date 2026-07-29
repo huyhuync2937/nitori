@@ -11,10 +11,6 @@
       "RelativeMoniker": "D:0:0:{302C5D41-B476-4142-9570-A53530102F9E}|SasIeCt\\SasIeCt.csproj|solutionrelative:sasiect\\c_importvoucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{302C5D41-B476-4142-9570-A53530102F9E}|SasIeCt\\SasIeCt.csproj|D:\\SISERPSME2025\\Source\\SasIeCt\\sasiect\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{302C5D41-B476-4142-9570-A53530102F9E}|SasIeCt\\SasIeCt.csproj|solutionrelative:sasiect\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{302C5D41-B476-4142-9570-A53530102F9E}|SasIeCt\\SasIeCt.csproj|D:\\SISERPSME2025\\Source\\SasIeCt\\sasiect\\c_getdataexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{302C5D41-B476-4142-9570-A53530102F9E}|SasIeCt\\SasIeCt.csproj|solutionrelative:sasiect\\c_getdataexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -26,45 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "C_ImportVoucher.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_ImportVoucher.cs",
-              "RelativeDocumentMoniker": "SasIeCt\\C_ImportVoucher.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_ImportVoucher.cs",
-              "RelativeToolTip": "SasIeCt\\C_ImportVoucher.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAkwLUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-09T02:22:23.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "C_GetDataExcel.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_GetDataExcel.cs",
-              "RelativeDocumentMoniker": "SasIeCt\\C_GetDataExcel.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_GetDataExcel.cs",
-              "RelativeToolTip": "SasIeCt\\C_GetDataExcel.cs",
-              "ViewState": "AgIAAEgBAAAAAAAAAAAjwCgBAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-09T02:22:19.239Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\App.xaml.cs",
-              "RelativeDocumentMoniker": "SasIeCt\\App.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\App.xaml.cs",
-              "RelativeToolTip": "SasIeCt\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T03:13:44.856Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -73,9 +32,35 @@
               "RelativeDocumentMoniker": "SasIeCt\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\StartUp.cs",
               "RelativeToolTip": "SasIeCt\\StartUp.cs",
-              "ViewState": "AgIAANsAAAAAAAAAAAAkwP4AAAADAAAAAAAAAA==",
+              "ViewState": "AgIAANIAAAAAAAAAAAAkwOMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T01:40:11.081Z",
+              "WhenOpened": "2026-07-25T02:27:29.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "C_ImportVoucher.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_ImportVoucher.cs",
+              "RelativeDocumentMoniker": "SasIeCt\\C_ImportVoucher.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_ImportVoucher.cs",
+              "RelativeToolTip": "SasIeCt\\C_ImportVoucher.cs",
+              "ViewState": "AgIAAKIAAAAAAAAAAIA7wLUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T02:22:23.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "C_GetDataExcel.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_GetDataExcel.cs",
+              "RelativeDocumentMoniker": "SasIeCt\\C_GetDataExcel.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SasIeCt\\SasIeCt\\C_GetDataExcel.cs",
+              "RelativeToolTip": "SasIeCt\\C_GetDataExcel.cs",
+              "ViewState": "AgIAAEgBAAAAAAAAAAAjwCgBAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T02:22:19.239Z",
               "EditorCaption": ""
             }
           ]

@@ -36,11 +36,17 @@ namespace PODMHDM
             DateTime fromDate = Convert.ToDateTime(this.txtTungay.Value);
             DateTime toDate = Convert.ToDateTime(this.txtDenngay.Value);
             string maVT = this.txtMaVT.Text.Trim();
+            string maNcc = this.txtMaNcc.Text.Trim();
+            string maPic = this.txtMaPic.Text.Trim();
             string status = this.txtStatus.Text.Trim();
             string prog ="";
             string filter = " 1=1 ";
             if (!string.IsNullOrEmpty(maVT))
                 filter += " and ma_vt = ''" + maVT.Trim().Replace("'", "''") + "''";
+            if (!string.IsNullOrEmpty(maNcc))
+                filter += " and ma_kh = ''" + maNcc.Trim().Replace("'", "''") + "''";
+            if (!string.IsNullOrEmpty(maPic))
+                filter += " and pic = ''" + maPic.Trim().Replace("'", "''") + "''";
             if (!string.IsNullOrEmpty(status))
             {
                 if (status.Equals("1"))

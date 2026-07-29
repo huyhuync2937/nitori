@@ -10,16 +10,17 @@ using SasControls.ControlLib;
 using SasDefine;
 using SasErrorLib;
 using SasFormBrowes;
-using SasVoucherLib;
 using SasLib;
+using SasVoucherLib;
 using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -1673,14 +1674,14 @@ namespace CACTPC1
                                                                       select b into x
                                                                       select new
                                                                       {
-                                                                          tien_nt = x.Field<decimal>("tien_nt"),
-                                                                          tt_nt = x.Field<decimal>("tt_nt"),
-                                                                          thue_nt = x.Field<decimal>("thue_nt"),
-                                                                          tien = x.Field<decimal>("tien"),
-                                                                          tt = x.Field<decimal>("tt"),
-                                                                          thue = x.Field<decimal>("thue"),
-                                                                          tien_tt = x.Field<decimal>("tien_tt"),
-                                                                          tien_cltg = x.Field<decimal>("tien_cltg")
+                                                                          tien_nt = x.Field<decimal?>("tien_nt") ?? 0m,
+                                                                          tt_nt = x.Field<decimal?>("tt_nt") ?? 0m,
+                                                                          thue_nt = x.Field<decimal?>("thue_nt") ?? 0m,
+                                                                          tien = x.Field<decimal?>("tien") ?? 0m,
+                                                                          tt = x.Field<decimal?>("tt") ?? 0m,
+                                                                          thue = x.Field<decimal?>("thue") ?? 0m,
+                                                                          tien_tt = x.Field<decimal?>("tien_tt") ?? 0m,
+                                                                          tien_cltg = x.Field<decimal?>("tien_cltg") ?? 0m
                                                                       };
                                         if (enumerableRowCollection != null)
                                         {
@@ -3596,8 +3597,18 @@ namespace CACTPC1
         {
             if (this.IsEditMode)
             {
-                string sql = "Exec [COHDMTH43]" + "  '', '" + (DateTime.Now).ToString("yyyyMMdd") + "'  ,'', '" + (DateTime.Now).ToString("yyyyMMdd") + "' ,'1=1 and ma_dvcs like ''" + this.Ma_dvcs + "%''' ,'1 = 1',1,0";
-                StartUp.HDBData = StartupBase.SasObj.ExcuteReader(new SqlCommand(sql));
+
+                DateTime endDate = DateTime.Today;
+                DateTime startDate = endDate.AddMonths(-1);
+                SqlCommand sqlcmd = new SqlCommand("Exec [POBK1_PC] @StartDate, @EndDate, @Condition, @LoaiPhieuNhap");
+                sqlcmd.Parameters.Add("@StartDate", SqlDbType.VarChar, 8).Value =
+                    startDate.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
+
+                sqlcmd.Parameters.Add("@EndDate", SqlDbType.VarChar, 8).Value =
+                    endDate.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
+                sqlcmd.Parameters.Add("@Condition", SqlDbType.NVarChar).Value = (object)("and nxt = 1  and ma_dvcs like '" + this.Ma_dvcs + "%'");
+                sqlcmd.Parameters.Add("@LoaiPhieuNhap", SqlDbType.VarChar).Value = (object)"331,341,111,141";
+                StartUp.HDBData = StartupBase.SasObj.ExcuteReader(sqlcmd);
 
                 DataTable dataTable = StartUp.HDBData.Tables[0];
 
@@ -3615,6 +3626,10 @@ namespace CACTPC1
                     foreach (DataRow dataRow in StartUp.PO)
                     {
                         this.NewRowCtPO(dataRow);
+                    }
+                    foreach (DataRow blankRow in StartUpTrans.DsTrans.Tables[1].Select("so_ct0 IS NULL"))
+                    {
+                        StartUpTrans.DsTrans.Tables[1].Rows.Remove(blankRow);
                     }
                 }
             }
@@ -3635,13 +3650,38 @@ namespace CACTPC1
                 dataRow["stt_rec0"] = (object)string.Format(StartupBase.SasObj.GetSysvar("M_FORMAT_stt_rec0").ToString(), (object)result);
                 dataRow["ma_ct"] = (object)StartUpTrans.Ma_ct;
                 dataRow["ngay_ct"] = this.txtNgay_ct.Value == null ? (object)DateTime.Now.Date : this.txtNgay_ct.Value;
-                if (StartUpTrans.DsTrans.Tables[1].DefaultView.Count > 0)
-                    dataRow["ma_kho_i"] = StartUpTrans.DsTrans.Tables[1].DefaultView[StartUpTrans.DsTrans.Tables[1].DefaultView.Count - 1]["ma_kho_i"];
+                //if (StartUpTrans.DsTrans.Tables[1].DefaultView.Count > 0)
+                //    dataRow["ma_kho_i"] = StartUpTrans.DsTrans.Tables[1].DefaultView[StartUpTrans.DsTrans.Tables[1].DefaultView.Count - 1]["ma_kho_i"];
                 dataRow["gia_nt"] = (object)0;
                 dataRow["gia"] = (object)0;
-                dataRow["tien_nt"] = (object)data["tien_cn"];
+                dataRow["tien_con_pt0"] = (object)0;
+                dataRow["tien_hd"] = (object)0;
+                dataRow["t_tien_dt"] = (object)0;
+
+                dataRow["tien_nt"] = data["t_tt"] == DBNull.Value
+                    ? (object)0m
+                    : data["t_tt"];
+                dataRow["tien_tt"]=(object)0;
+                dataRow["tt_nt"]=(object)0;
+                dataRow["thue"] = (object)0;
+
+                dataRow["thue_nt"] = (object)0;
+
+                dataRow["so_ct0"] = (object)data["so_ct"];
                 dataRow["tien"] = (object)0;
-                dataRow["ton13"] = (object)0;
+
+                txtMa_kh.Text = data["ma_kh"] == DBNull.Value ? "" : data["ma_kh"].ToString();
+
+                DataSet dsKh = StartupBase.SasObj.ExcuteReader(new SqlCommand(string.Format("SELECT dia_chi, ma_so_thue FROM dmkh WHERE ma_kh = '{0}'", txtMa_kh.Text.Trim())));
+                if (dsKh != null && dsKh.Tables.Count > 0 && dsKh.Tables[0].Rows.Count > 0)
+                {
+                    txtDia_chi.Text = dsKh.Tables[0].Rows[0]["dia_chi"] == DBNull.Value ? "" : dsKh.Tables[0].Rows[0]["dia_chi"].ToString();
+                    txtMaSoThue.Text = dsKh.Tables[0].Rows[0]["ma_so_thue"] == DBNull.Value ? "" : dsKh.Tables[0].Rows[0]["ma_so_thue"].ToString();
+                }
+
+
+
+                //dataRow["ton13"] = (object)0;
                 //dataRow["ma_vt"] = (object)data["ma_vt"];
                 //dataRow["ten_vt"] = (object)data["ten_vt"];
                 //dataRow["dvt"] = (object)data["dvt"];

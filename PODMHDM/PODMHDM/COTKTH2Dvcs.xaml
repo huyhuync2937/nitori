@@ -6,7 +6,7 @@
           xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
           xmlns:igEditors="http://infragistics.com/Editors"
           xmlns:local="clr-namespace:PODMHDM"
-          EscToClose="true" Title="Danh muc vat tu" LanguageID="FXTinhKH_3" Height="500" Width="470">
+          EscToClose="true" Title="Danh muc vat tu" LanguageID="FXTinhKH_3" Height="500" Width="800">
     <FrameworkElement.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -44,9 +44,12 @@
                         </igDP:Field>
                         <igDP:Field Name="ma_vt" Label="Mã vt" Width="130"/>
                         <igDP:Field Name="ten_vt" Label="Tên vt" Width="250"/>
-                        <igDP:Field Name="dvt" Label="DVT" Width="250"/>
-                        <igDP:Field Name="so_luong" Label="Số lượng" Width="250"/>
-                        <igDP:Field Name="eat" Label="ETA" Width="250"/>
+                        <igDP:Field Name="dvt" Label="DVT" Width="130"/>
+                        <igDP:Field Name="so_luong" Label="Số lượng" Width="160"/>
+                        <igDP:Field Name="ngay_gh" Label="Ngày giao hàng" Width="130"/>
+                        <igDP:Field Name="eta" Label="ETA" Width="130"/>
+                        <igDP:Field Name="ma_kh" Label="Mã NCC" Width="130"/>
+                        <igDP:Field Name="pic" Label="Mã PIC" Width="130"/>
 
                     </igDP:FieldLayout>
                 </igDP:DataPresenterBase.FieldLayouts>

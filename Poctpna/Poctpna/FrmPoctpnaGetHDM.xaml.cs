@@ -96,7 +96,7 @@ namespace Poctpna
                 str = str + " AND ma_kh LIKE '" + this.txtMa_kh.Text.Trim() + "%'";
             if (!string.IsNullOrEmpty(this.txtma_hdm.Text.Trim()))
                 str = str + " AND ma_hdm LIKE '" + this.txtma_hdm.Text.Trim() + "%'";          
-            return str + " AND status = '2' And isnull(status2,'') <> '2'";
+            return str + " AND status != '0' and status != '5' and status != '6' and status != '7' and status != '8' And isnull(status2,'') <> '2'";
         }
     }
 }

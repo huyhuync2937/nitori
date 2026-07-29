@@ -1,0 +1,84 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|d:\\siserpsme2025\\source\\coslnvlss\\coslnvlss\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|solutionrelative:coslnvlss\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|D:\\SISERPSME2025\\Source\\COSLNVLSS\\coslnvlss\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|solutionrelative:coslnvlss\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|D:\\SISERPSME2025\\Source\\COSLNVLSS\\coslnvlss\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|solutionrelative:coslnvlss\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|D:\\SISERPSME2025\\Source\\COSLNVLSS\\coslnvlss\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COSLNVLSS\\COSLNVLSS.csproj|solutionrelative:coslnvlss\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "COSLNVLSS\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "COSLNVLSS\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAYwJsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-26T02:35:32.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "COSLNVLSS\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\FrmLoc.xaml",
+              "RelativeToolTip": "COSLNVLSS\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-26T02:35:13.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\App.xaml.cs",
+              "RelativeDocumentMoniker": "COSLNVLSS\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\App.xaml.cs",
+              "RelativeToolTip": "COSLNVLSS\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-26T02:24:07.235Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\StartUp.cs",
+              "RelativeDocumentMoniker": "COSLNVLSS\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COSLNVLSS\\COSLNVLSS\\StartUp.cs",
+              "RelativeToolTip": "COSLNVLSS\\StartUp.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAAFYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-26T02:23:52.302Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

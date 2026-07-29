@@ -207,7 +207,6 @@ D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\PODMHDM.csproj.AssemblyReferen
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmGuiEmail.baml
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmIn.baml
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLoaddonhang.baml
-D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLoadVT.baml
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLoc.baml
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLocVT.baml
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmPoctpnaCopy.baml
@@ -216,7 +215,6 @@ D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\COTKTH2Dvcs.g.cs
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmGuiEmail.g.cs
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmIn.g.cs
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLoaddonhang.g.cs
-D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLoadVT.g.cs
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLoc.g.cs
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmLocVT.g.cs
 D:\SISERPSME2025\Source\PODMHDM\PODMHDM\obj\Debug\FrmPoctpna.g.cs

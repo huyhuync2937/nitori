@@ -397,7 +397,7 @@
                      Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx Path=ten_nx, Path2=ten_nx2}"/>
                    
                     <Button Click="btnPO_Click" Name="btnPO" Content="Lấy PO" Grid.Row="0" Grid.Column="4"
-HorizontalAlignment="Left" Width="75"/>
+HorizontalAlignment="Left" Width="75" Style="{StaticResource ButtonEditModeEnable}"/>
 
                 </smc:GridLayout>
             </GroupBox>

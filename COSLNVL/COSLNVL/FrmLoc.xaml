@@ -26,7 +26,7 @@
     <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="gridMain_OnCancel" x:Name="gridMain">
         <smc:ExTabControl Name="TabInfo" Theme="Generic" Margin="12,12,12,0">
             <smc:ExTabItem Name="TabMain" Header="Thông tin chung">
-                <smc:GridLayout Margin="8,0,8,8" ColumnCount="2" ColumnWidths="*,12" RowCount="3" RowHeights="60,4,*">
+                <smc:GridLayout Margin="8,0,8,8" ColumnCount="2" ColumnWidths="*,12" RowCount="3" RowHeights="90,4,*">
                     <GroupBox Name="gbdk_loc" Header="Điều kiện lọc" Style="{StaticResource TabGroupBoxStyle}" Grid.Column="0"
                     Grid.Row="0">
                         <smc:GridLayout ColumnCount="4" ColumnWidths="90,140,90,140" RowCount="7" RowHeights="25,25,25,25,25,25,25,*">
@@ -38,6 +38,11 @@
                             <smc:DateTextBox x:Name="txtHDDenNgay" Grid.Row="0" Grid.Column="3" TabIndex="2"
                                Style="{StaticResource DateTextBoxStyle}"
                                Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=frmLoc}"/>
+                            <TextBlock Name="tblloai_dh" Text="Loại NVL" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <smc:MaskedTextBox  Name="txtps_ck" TabIndex="10" Format="M" InputMask="1,2"
+        Grid.Row="1" Grid.Column="1" Text="" />
+                            <TextBlock Name="lblTenPs_ck" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1"
+Text="1 - Cacton, 2 - Khác"/>
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>
                             <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="1" ListID="dmhd"
                                        AllowEmty="true" AllowWrong="true" TabIndex="3" IsTabStop="true"

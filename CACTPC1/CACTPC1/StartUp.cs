@@ -40,6 +40,7 @@ namespace CACTPC1
         public static DataTable dtRegInfo;        
         public static string M_SUA_MANT_PTC = "0";
         public static DataSet HDBData = null;
+        public static bool isOk = false;
 
         public static DataRow[] PO = null;
         public override void Run()

@@ -1,5 +1,7 @@
 ﻿using SasControls;
+using SasDefine;
 using SasFormBrowes;
+using SasVoucherLib;
 using System;
 using System.Data;
 using System.Windows;
@@ -73,7 +75,16 @@ namespace PODMHDM
             this.DialogResult = new bool?(true);
             this.Close();
         }
-
+        private void txtNgay_bh_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.txtNgay_bh.Value == DBNull.Value)
+                this.txtNgay_bh.Value = (object)DateTime.Now;
+            if (this.txtNgay_bh.IsFocusWithin || FormTrans.currActionTask != ActionTask.Add && FormTrans.currActionTask != ActionTask.Edit && FormTrans.currActionTask != ActionTask.Copy)
+                return;
+            if (!(this.txtNgay_bh.dValue == new DateTime()))
+            { }
+           
+        }
         private void ConfirmGridView_OnCancel(object sender, RoutedEventArgs e)
         {
             this.DialogResult = new bool?(false);

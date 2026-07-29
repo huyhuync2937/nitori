@@ -224,7 +224,7 @@
                                    SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=smvc:FormTrans}}"/>
 
                     <Button Click="btnNG_Click" Name="btnNG" Content="Lấy NG" Grid.Row="0" Grid.Column="4"
-HorizontalAlignment="Left" Width="75"/>
+HorizontalAlignment="Left" Width="75" Style="{StaticResource ButtonEditModeEnable}"/>
 
                     <TextBlock Name="txtTen_kh" Grid.Row="0" Margin="12,0" Grid.Column="2" Grid.ColumnSpan="2"
                      Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx Path=ten_kh, Path2=ten_kh2}"/>

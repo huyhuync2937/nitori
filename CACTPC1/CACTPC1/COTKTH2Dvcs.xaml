@@ -6,7 +6,7 @@
           xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
           xmlns:igEditors="http://infragistics.com/Editors"
           xmlns:local="clr-namespace:CACTPC1"
-          EscToClose="true" Title="Danh muc ncc" LanguageID="FXTinhKH_3" Height="500" Width="800">
+          EscToClose="true" Title="Danh sách đơn hàng" LanguageID="FXTinhKH_3" Height="500" Width="800">
     <FrameworkElement.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -42,14 +42,17 @@
                                 <igDP:FieldSettings AllowEdit="True"/>
                             </igDP:Field.Settings>
                         </igDP:Field>
-                        <igDP:Field Name="ma_hdm" Label="Số PO" Width="100"/>
-                        <igDP:Field Name="tien_kh" Label="Tiền PO" Width="200"/>
-                        <igDP:Field Name="tien" Label="Tiền đã thanh toán" Width="100"/>
-                        <igDP:Field Name="tien_cn" Label="Tiền còn lại" Width="150">
+                        <igDP:Field Name="so_ct" Label="Số PO" Width="100"/>
+                        <igDP:Field Name="ma_kh" Label="Mã khách hàng" Width="200"/>
+                        <igDP:Field Name="ten_kh" Label="Tên khách hàng" Width="100"/>
+                        <igDP:Field Name="t_tt" Label="Tiền " Width="100"/>
+
+                        <!--<igDP:Field Name="t_tt" Label="Số tiền" Width="150">
                             <igDP:Field.Settings>
                                 <igDP:FieldSettings EditorType="{x:Type igEditors:XamNumericEditor}" />
                             </igDP:Field.Settings>
                         </igDP:Field>
+                        <igDP:Field Name="ten_kh" Label="Tên NCC" Width="130"/>-->
 
 
                     </igDP:FieldLayout>
