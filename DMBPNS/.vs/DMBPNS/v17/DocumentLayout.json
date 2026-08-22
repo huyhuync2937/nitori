@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\DMBPNS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|DMBPNS\\DMBPNS.csproj|d:\\siserpsme2025\\source\\dmbpns\\dmbpns\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|DMBPNS\\DMBPNS.csproj|solutionrelative:dmbpns\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|DMBPNS\\DMBPNS.csproj|d:\\siserpsme2025\\source\\dmbpns\\dmbpns\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|DMBPNS\\DMBPNS.csproj|solutionrelative:dmbpns\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\DMBPNS\\DMBPNS\\App.xaml.cs",
+              "RelativeDocumentMoniker": "DMBPNS\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\DMBPNS\\DMBPNS\\App.xaml.cs",
+              "RelativeToolTip": "DMBPNS\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-10T08:00:57.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\DMBPNS\\DMBPNS\\StartUp.cs",
+              "RelativeDocumentMoniker": "DMBPNS\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\DMBPNS\\DMBPNS\\StartUp.cs",
+              "RelativeToolTip": "DMBPNS\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-10T07:44:18.188Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

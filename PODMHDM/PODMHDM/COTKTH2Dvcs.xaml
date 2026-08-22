@@ -46,7 +46,7 @@
                         <igDP:Field Name="ten_vt" Label="Tên vt" Width="250"/>
                         <igDP:Field Name="dvt" Label="DVT" Width="130"/>
                         <igDP:Field Name="so_luong" Label="Số lượng" Width="160"/>
-                        <igDP:Field Name="ngay_gh" Label="Ngày giao hàng" Width="130"/>
+                        <igDP:Field Name="ngay_order" Label="Ngày giao hàng" Width="130"/>
                         <igDP:Field Name="eta" Label="ETA" Width="130"/>
                         <igDP:Field Name="ma_kh" Label="Mã NCC" Width="130"/>
                         <igDP:Field Name="pic" Label="Mã PIC" Width="130"/>

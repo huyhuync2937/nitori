@@ -55,7 +55,7 @@ namespace Poctpxf
                 filter += " and ma_kh =''" + this.txtma_kh.Text.Trim() + "''";
             }
             string sql = "Exec [INCD1_realtime]" + " '" + ((DateTime)this.txtTungay.Value).ToString("yyyyMMdd") + "', '" + ((DateTime)this.txtDenngay.Value).ToString("yyyyMMdd") + "', 0 ," +
-                " '1=1  and ma_kho in (Select ma_kho From "+ link+ ".dbo.dmkho Where ma_dvcs like ''NITORI%'') " + filter + "'" + " ,1," +
+                " '1=1   " + filter + "'" + " ,1," +
                 "' 1=1  AND  ma_kho in (Select ma_kho From "+ link+ ".dbo.dmkho Where ma_dvcs like ''NITORI%'')" + conditionSD + "'";
             StartUp.HDBData = StartupBase.SasObj.ExcuteReader(new SqlCommand(sql));
 

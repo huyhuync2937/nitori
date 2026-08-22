@@ -474,6 +474,7 @@ namespace COSXKSX.KSX
                 dataRow["ngay_kh1"] = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ngay_kh1"];
                 dataRow["ngay_kh2"] = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ngay_kh2"];
                 dataRow["so_ct"] = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"];
+                dataRow["ma_bp"] = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_bp"];
                 int result = 0;
                 int num1 = 0;
                 if (this.GrdCt.Records.Count > 0)
@@ -680,6 +681,15 @@ namespace COSXKSX.KSX
                             e.Cell.Record.Cells["ten_cd"].Value = autoCompleteControl1.RowResult["ten_px"];
                             e.Cell.Record.Cells["ten_cd2"].Value = autoCompleteControl1.RowResult["ten_px2"];
                         }
+                        break;
+                    case "ngay_kh1":
+                    case "so_ngay":
+                        if (e.Editor.Value == null)
+                            break;
+                        object ngayTuValue = e.Cell.Field.Name == "ngay_kh1" ? e.Editor.Value : e.Cell.Record.Cells["ngay_kh1"].Value;
+                        object soNgayValue = e.Cell.Field.Name == "so_ngay" ? e.Editor.Value : e.Cell.Record.Cells["so_ngay"].Value;
+                        if (ngayTuValue != null && ngayTuValue != DBNull.Value && soNgayValue != null && soNgayValue != DBNull.Value)
+                            e.Cell.Record.Cells["ngay_kh2"].Value = Convert.ToDateTime(ngayTuValue).AddDays(Convert.ToDouble(soNgayValue));
                         break;
                 }
             }
@@ -950,6 +960,8 @@ namespace COSXKSX.KSX
                 this.tblList_Bp.Text = "";
             else
                 this.tblList_Bp.Text = StartUpTrans.M_LAN.Equals("V") ? this.txtMabpht.RowResult["ten_bp"].ToString() : this.txtMabpht.RowResult["ten_bp2"].ToString();
+            foreach (DataRowView rowView in StartUpTrans.DsTrans.Tables[1].DefaultView)
+                rowView["ma_bp"] = (object)this.txtMabpht.Text;
         }
 
         private void txtMa_qs_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)

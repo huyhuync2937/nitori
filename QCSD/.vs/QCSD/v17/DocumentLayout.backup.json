@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\QCSD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|d:\\siserpsme2025\\source\\qcsd\\qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|d:\\siserpsme2025\\source\\qcsd\\qcsd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -30,45 +30,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "StartUp.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\StartUp.cs",
               "RelativeDocumentMoniker": "QCSD\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\StartUp.cs",
               "RelativeToolTip": "QCSD\\StartUp.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAswJgAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAvwE0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T02:06:13.426Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "FormLoc.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\FormLoc.xaml.cs",
               "RelativeDocumentMoniker": "QCSD\\FormLoc.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\FormLoc.xaml.cs",
               "RelativeToolTip": "QCSD\\FormLoc.xaml.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAcwGkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T02:06:08.107Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "FormLoc.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\FormLoc.xaml",
               "RelativeDocumentMoniker": "QCSD\\FormLoc.xaml",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\FormLoc.xaml",
               "RelativeToolTip": "QCSD\\FormLoc.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-06T02:05:59.347Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-06T02:05:59.347Z"
             },
             {
               "$type": "Document",
@@ -79,18 +78,17 @@
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\App.xaml",
               "RelativeToolTip": "QCSD\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-06T02:05:52.122Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-06T02:05:52.122Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\App.xaml.cs",
               "RelativeDocumentMoniker": "QCSD\\App.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\App.xaml.cs*",
-              "RelativeToolTip": "QCSD\\App.xaml.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAB6AAAAAAAAAA==",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\App.xaml.cs",
+              "RelativeToolTip": "QCSD\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T02:05:19.172Z",
               "EditorCaption": ""

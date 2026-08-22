@@ -518,6 +518,10 @@ namespace Poctpna
 
         private void V_In()
         {
+            SqlCommand sqlcmd = new SqlCommand("exec [dbo].[GetDataIn] @stt_rec");
+            sqlcmd.Parameters.Add("@stt_rec", SqlDbType.VarChar).Value = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"];
+            DataTable printExcel = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Copy();
+
             FrmIn frmIn = new FrmIn();
             if (StartUpTrans.M_LAN != "V")
                 frmIn.Title = "Report form list";
@@ -3072,8 +3076,6 @@ namespace Poctpna
                 if (frmPoctpnaGetHdm.isOk)
                 {
                     int count = StartUpTrans.DsTrans.Tables[1].DefaultView.Count;
-                    for (int index = 0; index < count; ++index)
-                        StartUpTrans.DsTrans.Tables[1].DefaultView.Delete(0);
 
                     for (int i = 0; i < frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView.Count; ++i)
                     {
@@ -3092,7 +3094,7 @@ namespace Poctpna
                         string sttRec = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["stt_rec"].ToString();
 
                         DataRow[] rows = frmPoctpnaGetHdm.dsHdm.Tables[1].Select(
-                            $"stt_rec = '{sttRec.Replace("'", "''")}'");
+                            $"stt_rec = '{sttRec.Replace("'", "''")}' AND chon = true");
                         for (int index = 0; index < rows.Length; ++index)
                         {
                             DataRow row1 = rows[index];
@@ -3162,6 +3164,8 @@ namespace Poctpna
                         }
                     }
 
+                    foreach (DataRow rowRemove in StartUpTrans.DsTrans.Tables[1].Select("ISNULL(ma_vt, '') = ''"))
+                        StartUpTrans.DsTrans.Tables[1].Rows.Remove(rowRemove);
 
                     this.Sum_ALL();
                     //this.GrdCt.Focus();

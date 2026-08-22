@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Incd1over\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1over\\Incd1over.csproj|d:\\siserpsme2025\\source\\incd1over\\incd1over\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1over\\Incd1over.csproj|solutionrelative:incd1over\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1over\\Incd1over.csproj|d:\\siserpsme2025\\source\\incd1over\\incd1over\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1over\\Incd1over.csproj|solutionrelative:incd1over\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1over\\Incd1over\\StartUp.cs",
+              "RelativeDocumentMoniker": "Incd1over\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1over\\Incd1over\\StartUp.cs",
+              "RelativeToolTip": "Incd1over\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T10:21:16.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1over\\Incd1over\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Incd1over\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1over\\Incd1over\\App.xaml.cs",
+              "RelativeToolTip": "Incd1over\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T10:21:10.849Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,15 +1,19 @@
-﻿using System;
+﻿using SasControls;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Data;
-using System.Collections;
-using System.Data.SqlClient;
-using System.Data.OleDb;
-using System.Diagnostics;
-using SasControls;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace SasIeDm
 {
@@ -22,8 +26,11 @@ namespace SasIeDm
 		public static string StrBrowseKhoa_dac_biet = "";
 
 		public static string TCNV3String = "ÊÈèÉÌéÐÒÕúóÓÔíÝáãìõâêòµ\u00b8¶·¹\u00a8»¾¼½Æ©ÇË®ÎÏÑªÖ×ØÜÞßäôù«åæç¬ëîïñ­øö÷ýûüþ¡¢§£¤¥¦";
+        private static readonly XNamespace NsMain = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
 
-		public static string UnicodeString = "ấẩốẫèộéềếỳúểễớíỏóỡừõờũàáảãạăằắẳẵặâầậđẻẽẹêệìỉĩịòọụựôồổỗơởợùủưứửữýỷỹỵĂÂĐÊÔƠƯ";
+        private static readonly XNamespace NsOfficeRel = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+
+        public static string UnicodeString = "ấẩốẫèộéềếỳúểễớíỏóỡừõờũàáảãạăằắẳẵặâầậđẻẽẹêệìỉĩịòọụựôồổỗơởợùủưứửữýỷỹỵĂÂĐÊÔƠƯ";
 
 		public static DataSet GetData(ImportInfo info, string convertFont)
 		{
@@ -94,102 +101,379 @@ namespace SasIeDm
 			}
 		}
 
-		public static DataTable GetDataFromExcel(string _fileName, string ma_imex, string key)
-		{
-			string text = "Yes";
-			string text2 = "";
-			text2 = ((!_fileName.Contains(".xlsx")) ? ("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + _fileName + ";Extended Properties=\"Excel 8.0;HDR=" + text + ";IMEX=1\"") : ("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + _fileName + ";Extended Properties=\"Excel 12.0;HDR=" + text + ";IMEX=1\""));
-			DataSet dataSet = new DataSet();
-			using (OleDbConnection oleDbConnection = new OleDbConnection(text2))
-			{
-				bool flag = false;
-				try
-				{
-					oleDbConnection.Open();
-					flag = true;
-				}
-				catch (Exception ex)
-				{
-					if (ex.Message.Contains("OLEDB"))
-					{
-						try
-						{
-							string text3 = "AccessDatabaseEngine.exe";
-							StartupBase.SasObj.SynchroFile(".", text3);
-							Process process = new Process();
-							process.StartInfo.FileName = text3;
-							process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-							process.StartInfo.Arguments = "/quiet";
-							process.Start();
-							process.WaitForExit();
-							oleDbConnection.Open();
-							flag = true;
-						}
-						catch (Exception ex2)
-						{
-							ExMessageBox.Show(210, StartupBase.SasObj, "[" + ex2.Message + "]", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-							return null;
-						}
-					}
-				}
-				if (flag)
-				{
-					try
-					{
-						DataTable oleDbSchemaTable = oleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[4]
-						{
-							null,
-							null,
-							null,
-							"TABLE"
-						});
-						IEnumerator enumerator = oleDbSchemaTable.Rows.GetEnumerator();
-						try
-						{
-							if (enumerator.MoveNext())
-							{
-								DataRow dataRow = (DataRow)enumerator.Current;
-								string text4 = dataRow["TABLE_NAME"].ToString();
-								OleDbCommand oleDbCommand = new OleDbCommand("SELECT * FROM [" + text4 + "]", oleDbConnection);
-								oleDbCommand.CommandType = CommandType.Text;
-								DataTable dataTable = new DataTable(text4);
-								dataSet.Tables.Add(dataTable);
-								new OleDbDataAdapter(oleDbCommand).Fill(dataTable);
-							}
-						}
-						finally
-						{
-							IDisposable disposable = enumerator as IDisposable;
-							if (disposable != null)
-							{
-								disposable.Dispose();
-							}
-						}
-					}
-					catch (Exception ex)
-					{
-						if (StartUp.waiting != null)
-						{
-							StartUp.waiting.Close();
-						}
-						ExMessageBox.Show(150, StartupBase.SasObj, "[" + ex.Message + "]", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-						oleDbConnection.Close();
-						return null;
-					}
-					oleDbConnection.Close();
-				}
-			}
-			if (dataSet.Tables.Count == 0)
-			{
-				return null;
-			}
-			DataTable tbExcel = XoaDongTrang(dataSet.Tables[0]);
-			XoaCotTrang(ref tbExcel);
-			tbExcel.TableName = "DataExcel";
-			return SetColumnName(tbExcel, ma_imex, key);
-		}
+        public static DataTable GetDataFromExcel(string _fileName, string ma_imex, string key)
+        {
+            DataTable dataTable;
+            try
+            {
+                dataTable = ReadExcelFirstSheet(_fileName);
+            }
+            catch (Exception ex3)
+            {
+                if (StartUp.waiting != null)
+                {
+                    StartUp.waiting.Close();
+                }
+                ExMessageBox.Show(150, StartupBase.SasObj, "[" + ex3.Message + "]", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return null;
+            }
+            if (dataTable == null)
+            {
+                return null;
+            }
+            DataTable tbExcel = XoaDongTrang(dataTable);
+            XoaCotTrang(ref tbExcel);
+            tbExcel.TableName = "DataExcel";
+            return SetColumnName(tbExcel, ma_imex,key);
+        }
+        private static DataTable ReadExcelFirstSheet(string fileName)
+        {
+            try
+            {
+                return ReadExcelFirstSheetOpc(fileName);
+            }
+            catch
+            {
+            }
+            try
+            {
+                return ReadExcelFirstSheetSpreadsheetMl(fileName);
+            }
+            catch
+            {
+            }
+            return ReadExcelFirstSheetOleDb(fileName);
+        }
+        private static XDocument LoadXml(PackagePart part)
+        {
+            using (Stream stream = part.GetStream(FileMode.Open, FileAccess.Read))
+            using (System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stream))
+            {
+                return XDocument.Load(xmlReader);
+            }
+        }
 
-		private static DataTable SetColumnName(DataTable tb, string ma_imex, string key)
+        private static string[] ReadSharedStrings(Package package, PackagePart workbookPart)
+        {
+            PackageRelationship rel = workbookPart.GetRelationshipsByType("http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings").FirstOrDefault();
+            if (rel == null)
+            {
+                return new string[0];
+            }
+            Uri uri = PackUriHelper.ResolvePartUri(workbookPart.Uri, rel.TargetUri);
+            if (!package.PartExists(uri))
+            {
+                return new string[0];
+            }
+            XDocument doc = LoadXml(package.GetPart(uri));
+            List<string> list = new List<string>();
+            foreach (XElement si in doc.Root.Elements(NsMain + "si"))
+            {
+                XElement tEl = si.Element(NsMain + "t");
+                string text = (tEl != null) ? tEl.Value : string.Concat(si.Elements(NsMain + "r").Select((XElement r) => (string)r.Element(NsMain + "t")));
+                list.Add(text);
+            }
+            return list.ToArray();
+        }
+
+        // Excel lưu ô ngày dưới dạng số serial (số ngày kể từ 1899-12-30), định dạng hiển thị
+        // nằm ở styles.xml (cellXfs -> numFmtId), không nằm trong sheet.xml. Phải đọc styles.xml
+        // để biết style index nào ứng với numFmt kiểu ngày thì mới convert đúng, nếu không số
+        // serial (vd 45885) sẽ bị đưa thẳng ra ngoài thay vì chuỗi ngày.
+        private static readonly int[] BuiltInDateNumFmtIds = new int[] { 14, 15, 16, 17, 18, 19, 20, 21, 22, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 45, 46, 47, 50, 51, 52, 53, 54, 55, 56, 57, 58 };
+
+        private static bool[] ReadCellStyleIsDate(Package package, PackagePart workbookPart)
+        {
+            PackageRelationship rel = workbookPart.GetRelationshipsByType("http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles").FirstOrDefault();
+            if (rel == null)
+            {
+                return new bool[0];
+            }
+            Uri uri = PackUriHelper.ResolvePartUri(workbookPart.Uri, rel.TargetUri);
+            if (!package.PartExists(uri))
+            {
+                return new bool[0];
+            }
+            XDocument doc = LoadXml(package.GetPart(uri));
+            Dictionary<int, string> customFormats = new Dictionary<int, string>();
+            XElement numFmtsEl = doc.Root.Element(NsMain + "numFmts");
+            if (numFmtsEl != null)
+            {
+                foreach (XElement numFmtEl in numFmtsEl.Elements(NsMain + "numFmt"))
+                {
+                    int fmtId = int.Parse(numFmtEl.Attribute("numFmtId").Value, CultureInfo.InvariantCulture);
+                    customFormats[fmtId] = (string)numFmtEl.Attribute("formatCode") ?? "";
+                }
+            }
+            XElement cellXfsEl = doc.Root.Element(NsMain + "cellXfs");
+            if (cellXfsEl == null)
+            {
+                return new bool[0];
+            }
+            List<XElement> xfs = cellXfsEl.Elements(NsMain + "xf").ToList();
+            bool[] result = new bool[xfs.Count];
+            for (int i = 0; i < xfs.Count; i++)
+            {
+                XAttribute numFmtIdAttr = xfs[i].Attribute("numFmtId");
+                int numFmtId = (numFmtIdAttr != null) ? int.Parse(numFmtIdAttr.Value, CultureInfo.InvariantCulture) : 0;
+                result[i] = IsDateNumFmt(numFmtId, customFormats);
+            }
+            return result;
+        }
+
+        private static bool IsDateNumFmt(int numFmtId, Dictionary<int, string> customFormats)
+        {
+            if (BuiltInDateNumFmtIds.Contains(numFmtId))
+            {
+                return true;
+            }
+            if (numFmtId < 164)
+            {
+                return false;
+            }
+            string code;
+            if (!customFormats.TryGetValue(numFmtId, out code) || string.IsNullOrEmpty(code))
+            {
+                return false;
+            }
+            string stripped = Regex.Replace(code, "\"[^\"]*\"", "");
+            stripped = Regex.Replace(stripped, "\\[[^\\]]*\\]", "");
+            return Regex.IsMatch(stripped, "[dmyhs]", RegexOptions.IgnoreCase);
+        }
+        private static string GetColumnLetter(string cellRef)
+        {
+            int i = 0;
+            while (i < cellRef.Length && char.IsLetter(cellRef[i]))
+            {
+                i++;
+            }
+            return cellRef.Substring(0, i);
+        }
+
+        private static int ColumnLetterToIndex(string columnLetter)
+        {
+            int index = 0;
+            foreach (char c in columnLetter)
+            {
+                index = index * 26 + (c - 'A' + 1);
+            }
+            return index;
+        }
+
+        private static readonly DateTime ExcelEpoch = new DateTime(1899, 12, 30);
+
+        private static string GetCellValue(XElement cell, string[] sharedStrings, bool[] dateStyles)
+        {
+            string t = (string)cell.Attribute("t");
+            if (t == "inlineStr")
+            {
+                XElement isEl = cell.Element(NsMain + "is");
+                return (isEl != null) ? string.Concat(isEl.Descendants(NsMain + "t").Select((XElement x) => x.Value)) : "";
+            }
+            XElement vEl = cell.Element(NsMain + "v");
+            if (vEl == null)
+            {
+                return "";
+            }
+            if (t == "s")
+            {
+                int idx;
+                if (int.TryParse(vEl.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out idx) && idx >= 0 && idx < sharedStrings.Length)
+                {
+                    return sharedStrings[idx];
+                }
+                return "";
+            }
+            if (string.IsNullOrEmpty(t) || t == "n")
+            {
+                XAttribute styleAttr = cell.Attribute("s");
+                int styleIndex = (styleAttr != null) ? int.Parse(styleAttr.Value, CultureInfo.InvariantCulture) : 0;
+                double serial;
+                if (styleIndex >= 0 && styleIndex < dateStyles.Length && dateStyles[styleIndex]
+                    && double.TryParse(vEl.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out serial))
+                {
+                    return ExcelEpoch.AddDays(serial).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                return NormalizeNumericCellValue(vEl.Value);
+            }
+            return vEl.Value;
+        }
+        private static string NormalizeNumericCellValue(string raw)
+        {
+            double d;
+            if (!double.TryParse(raw, NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            {
+                return raw;
+            }
+            string formatted = d.ToString("G15", CultureInfo.InvariantCulture);
+            if (formatted.IndexOf('E') < 0)
+            {
+                return formatted;
+            }
+            decimal dec;
+            return decimal.TryParse(raw, NumberStyles.Float, CultureInfo.InvariantCulture, out dec)
+                ? dec.ToString(CultureInfo.InvariantCulture)
+                : formatted;
+        }
+        private static DataTable ReadExcelFirstSheetOpc(string fileName)
+        {
+            using (Package package = Package.Open(fileName, FileMode.Open, FileAccess.Read))
+            {
+                PackagePart workbookPart = package.GetPart(new Uri("/xl/workbook.xml", UriKind.Relative));
+                XDocument workbookDoc = LoadXml(workbookPart);
+                XElement firstSheetEl = workbookDoc.Root.Element(NsMain + "sheets").Elements(NsMain + "sheet").FirstOrDefault();
+                if (firstSheetEl == null)
+                {
+                    return null;
+                }
+                string rId = firstSheetEl.Attribute(NsOfficeRel + "id").Value;
+                PackageRelationship sheetRel = workbookPart.GetRelationship(rId);
+                Uri sheetUri = PackUriHelper.ResolvePartUri(workbookPart.Uri, sheetRel.TargetUri);
+                PackagePart sheetPart = package.GetPart(sheetUri);
+                string[] sharedStrings = ReadSharedStrings(package, workbookPart);
+                bool[] dateStyles = ReadCellStyleIsDate(package, workbookPart);
+                XDocument sheetDoc = LoadXml(sheetPart);
+                List<XElement> rowElements = sheetDoc.Root.Element(NsMain + "sheetData").Elements(NsMain + "row").ToList();
+                if (rowElements.Count == 0)
+                {
+                    return null;
+                }
+                Dictionary<int, string> headers = new Dictionary<int, string>();
+                int maxCol = 0;
+                foreach (XElement cell in rowElements[0].Elements(NsMain + "c"))
+                {
+                    int colIndex = ColumnLetterToIndex(GetColumnLetter(cell.Attribute("r").Value));
+                    headers[colIndex] = GetCellValue(cell, sharedStrings, dateStyles);
+                    if (colIndex > maxCol)
+                    {
+                        maxCol = colIndex;
+                    }
+                }
+                DataTable dataTable = new DataTable("DataExcel");
+                for (int col = 1; col <= maxCol; col++)
+                {
+                    string headerName = headers.ContainsKey(col) ? headers[col] : ("F" + col);
+                    dataTable.Columns.Add(headerName, typeof(string));
+                }
+                for (int r = 1; r < rowElements.Count; r++)
+                {
+                    DataRow row = dataTable.NewRow();
+                    foreach (XElement cell in rowElements[r].Elements(NsMain + "c"))
+                    {
+
+                        int colIndex = ColumnLetterToIndex(GetColumnLetter(cell.Attribute("r").Value));
+                        if (colIndex >= 1 && colIndex <= maxCol)
+                        {
+                            row[colIndex - 1] = GetCellValue(cell, sharedStrings, dateStyles);
+                        }
+                    }
+                    dataTable.Rows.Add(row);
+                }
+                return dataTable;
+            }
+        }
+
+        private static readonly XNamespace NsSpreadsheetMl = "urn:schemas-microsoft-com:office:spreadsheet";
+
+        private static DataTable ReadExcelFirstSheetSpreadsheetMl(string fileName)
+        {
+            XDocument doc = XDocument.Load(fileName);
+            XElement worksheetEl = doc.Root.Elements(NsSpreadsheetMl + "Worksheet").FirstOrDefault();
+            XElement tableEl = worksheetEl?.Element(NsSpreadsheetMl + "Table");
+            if (tableEl == null)
+            {
+                return null;
+            }
+            List<XElement> rowElements = tableEl.Elements(NsSpreadsheetMl + "Row").ToList();
+            if (rowElements.Count == 0)
+            {
+                return null;
+            }
+            Dictionary<int, string> headers = new Dictionary<int, string>();
+            int maxCol = 0;
+            foreach (KeyValuePair<int, string> cell in GetSpreadsheetMlRowCells(rowElements[0]))
+            {
+                headers[cell.Key] = cell.Value;
+                if (cell.Key > maxCol)
+                {
+                    maxCol = cell.Key;
+                }
+            }
+            DataTable dataTable = new DataTable("DataExcel");
+            for (int col = 1; col <= maxCol; col++)
+            {
+                string headerName = headers.ContainsKey(col) ? headers[col] : ("F" + col);
+                dataTable.Columns.Add(headerName, typeof(string));
+            }
+            for (int r = 1; r < rowElements.Count; r++)
+            {
+                DataRow row = dataTable.NewRow();
+                foreach (KeyValuePair<int, string> cell in GetSpreadsheetMlRowCells(rowElements[r]))
+                {
+                    if (cell.Key >= 1 && cell.Key <= maxCol)
+                    {
+                        row[cell.Key - 1] = cell.Value;
+                    }
+                }
+                dataTable.Rows.Add(row);
+            }
+            return dataTable;
+        }
+
+        // Cell "ss:Index" đánh dấu vị trí cột thực khi cột trước đó bị bỏ trống (không ghi
+        // <Cell>), nên phải cộng dồn thủ công thay vì dùng thứ tự phần tử.
+        private static IEnumerable<KeyValuePair<int, string>> GetSpreadsheetMlRowCells(XElement rowEl)
+        {
+            int currentIndex = 0;
+            foreach (XElement cellEl in rowEl.Elements(NsSpreadsheetMl + "Cell"))
+            {
+                XAttribute indexAttr = cellEl.Attribute(NsSpreadsheetMl + "Index");
+                currentIndex = (indexAttr != null) ? int.Parse(indexAttr.Value, CultureInfo.InvariantCulture) : (currentIndex + 1);
+                XElement dataEl = cellEl.Element(NsSpreadsheetMl + "Data");
+                yield return new KeyValuePair<int, string>(currentIndex, (dataEl != null) ? dataEl.Value : "");
+            }
+        }
+
+        // Phương án cuối cùng: dùng driver OLEDB (khoan dung nhất với các file lệch chuẩn),
+        // chỉ dùng khi cả hai cách đọc XML ở trên đều thất bại.
+        private static DataTable ReadExcelFirstSheetOleDb(string fileName)
+        {
+            string excelFormat = string.Equals(Path.GetExtension(fileName), ".xls", StringComparison.OrdinalIgnoreCase) ? "Excel 8.0" : "Excel 12.0 Xml";
+            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties=\"" + excelFormat + ";HDR=Yes;IMEX=1\"";
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                DataTable schemaTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+                if (schemaTable == null || schemaTable.Rows.Count == 0)
+                {
+                    return null;
+                }
+                string sheetName = schemaTable.Rows[0]["TABLE_NAME"].ToString();
+                DataTable rawTable = new DataTable();
+                using (OleDbCommand command = new OleDbCommand("SELECT * FROM [" + sheetName + "]", connection))
+                using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
+                {
+                    adapter.Fill(rawTable);
+                }
+                DataTable dataTable = new DataTable("DataExcel");
+                foreach (DataColumn column in rawTable.Columns)
+                {
+                    dataTable.Columns.Add(column.ColumnName, typeof(string));
+                }
+                foreach (DataRow rawRow in rawTable.Rows)
+                {
+                    DataRow row = dataTable.NewRow();
+                    for (int i = 0; i < rawTable.Columns.Count; i++)
+                    {
+                        row[i] = rawRow[i]?.ToString() ?? "";
+                    }
+                    dataTable.Rows.Add(row);
+                }
+                return dataTable;
+            }
+        }
+
+        private static DataTable SetColumnName(DataTable tb, string ma_imex, string key)
 		{
 			try
 			{
@@ -251,13 +535,15 @@ namespace SasIeDm
 		{
 			if (tableName == null || tableName == "")
 			{
+				ExMessageBox.Show(214, StartupBase.SasObj, "Chưa khai báo tên bảng cấu trúc (TableTemplate).", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 				return null;
 			}
 			SqlCommand sqlCommand = new SqlCommand();
 			sqlCommand.CommandText += $"SELECT * FROM information_schema.columns WHERE table_name like '{tableName.Trim()}'";
 			DataSet dataSet = StartupBase.SasObj.ExcuteReader(sqlCommand);
-			if (dataSet == null || dataSet.Tables.Count == 0)
+			if (dataSet == null || dataSet.Tables.Count == 0 || dataSet.Tables[0].Rows.Count == 0)
 			{
+				ExMessageBox.Show(215, StartupBase.SasObj, $"Không tìm thấy cấu trúc bảng [{tableName.Trim()}] trong database.", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 				return null;
 			}
 			dataSet.Tables[0].TableName = "StrucImex";

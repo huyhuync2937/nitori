@@ -681,6 +681,15 @@ namespace COSXKSX.KSXF
                             e.Cell.Record.Cells["ten_cd2"].Value = autoCompleteControl1.RowResult["ten_px2"];
                         }
                         break;
+                    case "ngay_kh1":
+                    case "so_ngay":
+                        if (e.Editor.Value == null)
+                            break;
+                        object ngayTuValue = e.Cell.Field.Name == "ngay_kh1" ? e.Editor.Value : e.Cell.Record.Cells["ngay_kh1"].Value;
+                        object soNgayValue = e.Cell.Field.Name == "so_ngay" ? e.Editor.Value : e.Cell.Record.Cells["so_ngay"].Value;
+                        if (ngayTuValue != null && ngayTuValue != DBNull.Value && soNgayValue != null && soNgayValue != DBNull.Value)
+                            e.Cell.Record.Cells["ngay_kh2"].Value = Convert.ToDateTime(ngayTuValue).AddDays(Convert.ToDouble(soNgayValue));
+                        break;
                 }
             }
             catch (Exception ex)

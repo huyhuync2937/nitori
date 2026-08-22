@@ -207,24 +207,32 @@ namespace PODMHDM
                     formView.ShowDialog();
                     StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
                     StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
+                    StartUpTrans.DsTrans.Tables[2].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
                     int count2 = StartUpTrans.DsTrans.Tables[0].Rows.Count;
                     int count3 = StartUpTrans.DsTrans.Tables[1].Rows.Count;
+                    int count4 = StartUpTrans.DsTrans.Tables[2].Rows.Count;
                     for (int index = count2 - 1; index >= 1; --index)
                         StartUpTrans.DsTrans.Tables[0].Rows.RemoveAt(index);
                     for (int index = 0; index < count3; ++index)
                         StartUpTrans.DsTrans.Tables[1].Rows.RemoveAt(0);
-                    int count4 = dataSet.Tables[0].Rows.Count;
                     for (int index = 0; index < count4; ++index)
-                        StartUpTrans.DsTrans.Tables[0].Rows.Add(dataSet.Tables[0].Rows[index].ItemArray);
-                    int count5 = dataSet.Tables[1].Rows.Count;
+                        StartUpTrans.DsTrans.Tables[2].Rows.RemoveAt(0);
+                    int count5 = dataSet.Tables[0].Rows.Count;
                     for (int index = 0; index < count5; ++index)
+                        StartUpTrans.DsTrans.Tables[0].Rows.Add(dataSet.Tables[0].Rows[index].ItemArray);
+                    int count6 = dataSet.Tables[1].Rows.Count;
+                    for (int index = 0; index < count6; ++index)
                         StartUpTrans.DsTrans.Tables[1].Rows.Add(dataSet.Tables[1].Rows[index].ItemArray);
+                    int count7 = dataSet.Tables[2].Rows.Count;
+                    for (int index = 0; index < count7; ++index)
+                        StartUpTrans.DsTrans.Tables[2].Rows.Add(dataSet.Tables[2].Rows[index].ItemArray);
                     if (dataSet.Tables[0].Rows.Count > 0)
                     {
                         if (FrmPoctpna.iRow > dataSet.Tables[0].Rows.Count - 1)
                             FrmPoctpna.iRow = dataSet.Tables[0].Rows.Count - 1;
                         StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
                         StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
+                        StartUpTrans.DsTrans.Tables[2].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
                     }
                     if (formView.DataGrid.ActiveRecord != null)
                     {
@@ -235,6 +243,7 @@ namespace PODMHDM
                             FrmPoctpna.iRow = dataItemIndex + 1;
                             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + str3 + "'";
                             StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str3 + "'";
+                            StartUpTrans.DsTrans.Tables[2].DefaultView.RowFilter = "stt_rec= '" + str3 + "'";
                         }
                     }
                     this.Close();

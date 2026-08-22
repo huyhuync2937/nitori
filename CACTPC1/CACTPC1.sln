@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37027.9 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CACTPC1", "CACTPC1\CACTPC1.csproj", "{69E07AE4-F161-4F30-B321-B5CDA3996CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SasVoucherLib", "..\SasVoucherLib\SasVoucherLib\SasVoucherLib.csproj", "{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{69E07AE4-F161-4F30-B321-B5CDA3996CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E07AE4-F161-4F30-B321-B5CDA3996CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69E07AE4-F161-4F30-B321-B5CDA3996CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,64 @@
+<smr:FormFilter x:Class="SasVoucherLib.VoucherContextMenuDel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:smc="http://sis.vn/SasControls"
+                xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+                xmlns:igEditors="http://infragistics.com/Editors"
+                Loaded="this_Loaded" Name="FrmVoucherContextMenuDel"
+                Title="Khai bao cac but toan ket chuyen tu dong" Height="600" Width="800" EscToClose="true"
+                LanguageID="SasVoucherLib_0">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smc:NegativeConverter x:Key="negativeConverter"/>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk">
+    <smc:ExTabControl Name="TabControl1" Margin="12,12,12,0">
+      <smc:ExTabItem Name="TabItem1" Header="Thông tin chung">
+        <smc:GridLayout Margin="8,0,8,8" RowCount="3" RowHeights="100,4,*">
+          <GroupBox Name="gbdk_loc" Header="Điều kiện lọc" Style="{StaticResource TabGroupBoxStyle}" Grid.Row="0">
+            <smc:GridLayout RowCount="3" RowHeights="25,25,25,25" ColumnCount="6" ColumnWidths="120, 140,12,120, 140,*">
+              <TextBlock Name="lblSo_ct1" Grid.Row="0" Text="C.từ từ số"/>
+              <TextBox Name="txtSo_ct1" Grid.Row="0" Grid.Column="1"/>
+              <TextBlock Name="lblSo_ct2" Grid.Row="0" Grid.Column="3" Text="Đến số"/>
+              <TextBox Name="txtSo_ct2" Grid.Row="0" Grid.Column="4"/>
+              <TextBlock Name="lblNgay_ct1" Grid.Row="1" Text="C.từ từ ngày"/>
+              <smc:DateTextBox Name="txtNgay_ct1" Grid.Row="1" Grid.Column="1" AllowEmpty="false"
+                               Value="{smc:BindingEx Path=M_NGAY_CT1, ElementName=FrmVoucherContextMenuDel}"/>
+              <TextBlock Name="lblNgay_ct2" Grid.Row="1" Grid.Column="3" Text="Đến ngày"/>
+              <smc:DateTextBox Name="txtNgay_ct2" Grid.Row="1" Grid.Column="4" AllowEmpty="false"
+                               Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=FrmVoucherContextMenuDel}"/>
+              <TextBlock Name="lblMa_DVCS" Grid.Row="2" Text="Mã ĐVCS"/>
+              <smc:AutoCompleteTextBox PreviewLostFocus="txtMaDVCS_LostFocus" Name="txtMaDVCS" Grid.Column="1" Grid.Row="2"
+                                       AllowEmty="true" AllowWrong="false" ListID="dmdvcs"
+                                       Text="{smc:BindingEx Path=M_MA_DVCS, ElementName=FrmVoucherContextMenuDel}"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+              <TextBlock Name="lblTenDVCS" Margin="0,0,0,0" Grid.Column="3" Grid.ColumnSpan="4" Grid.Row="2"/>
+            </smc:GridLayout>
+          </GroupBox>
+          <smr:ControlDetailFilter3 Name="GridSearch" GroupBoxStyleResourceKey="TabGroupBoxStyle" Grid.Column="0" Grid.ColumnSpan="3"
+                                    Grid.Row="2" filterID="this" IsEnabled="false" IsTabStop="false"
+                                    SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=smc:Form}}"/>
+        </smc:GridLayout>
+      </smc:ExTabItem>
+    </smc:ExTabControl>
+    <Grid Name="pnl" Row="2">
+      <TextBlock Name="lblSearch" Text="F5 - Tra cứu" HorizontalAlignment="Right" Margin="0,0,12,0"/>
+    </Grid>
+  </smc:ConfirmGridView>
+</smr:FormFilter>

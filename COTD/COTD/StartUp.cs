@@ -319,7 +319,18 @@ namespace COTD
       return this.Extend_oBrowse_Command(SasObj, Mode, Current_Ma_kh);
     }
 
-    public DataTable Extend_oBrowse_Command_tudo3(
+        public DataTable Extend_oBrowse_Command_tudo4(
+     SasObject SasObj,
+     ActionTask Mode,
+     string Current_Ma_kh)
+        {
+            StartUp.sqlTableName = "dmtd40";
+            StartUp.sqlTableView = "v_dmtd4";
+            StartUp._parameter = "4";
+            return this.Extend_oBrowse_Command(SasObj, Mode, Current_Ma_kh);
+        }
+
+        public DataTable Extend_oBrowse_Command_tudo3(
       SasObject SasObj,
       ActionTask Mode,
       string Current_Ma_kh)

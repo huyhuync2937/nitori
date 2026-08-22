@@ -199,6 +199,8 @@ namespace QCSD
                     StartUp.DataSourceReport.Tables.Add(table1);
                     StartUp.oBrowse.frmBrw.oBrowse.FieldLayouts[0].SummaryDefinitions.Clear();
                     StartUp.oBrowse.UpdateSumaryFields();
+                    StartUp._frmLoc.Close();
+
                 }
             }
             catch (Exception ex)

@@ -39,14 +39,7 @@ namespace PODMHDM
             string maNcc = this.txtMaNcc.Text.Trim();
             string maPic = this.txtMaPic.Text.Trim();
             string status = this.txtStatus.Text.Trim();
-            string prog ="";
-            string filter = " 1=1 ";
-            if (!string.IsNullOrEmpty(maVT))
-                filter += " and ma_vt = ''" + maVT.Trim().Replace("'", "''") + "''";
-            if (!string.IsNullOrEmpty(maNcc))
-                filter += " and ma_kh = ''" + maNcc.Trim().Replace("'", "''") + "''";
-            if (!string.IsNullOrEmpty(maPic))
-                filter += " and pic = ''" + maPic.Trim().Replace("'", "''") + "''";
+            string prog = "";
             if (!string.IsNullOrEmpty(status))
             {
                 if (status.Equals("1"))
@@ -58,10 +51,16 @@ namespace PODMHDM
                     prog = "COSLDHN";
                 }
             }
-            //filter += " and status = ''" + this.Status.Trim() + "''";
 
-            string sql = "Exec " + prog + " '" + fromDate.ToString("yyyy-MM-dd") + "', '" + toDate.ToString("yyyy-MM-dd") +  "'";
-            DataTable dataTable = StartupBase.SasObj.ExcuteReader(new SqlCommand(sql)).Tables[0].Copy();
+            SqlCommand cmd = new SqlCommand(prog);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@hdTuNg", fromDate.ToString("yyyyMMdd"));
+            cmd.Parameters.AddWithValue("@hdDenNg", toDate.ToString("yyyyMMdd"));
+            cmd.Parameters.AddWithValue("@maVt", string.IsNullOrEmpty(maVT) ? (object)DBNull.Value : maVT);
+            cmd.Parameters.AddWithValue("@ma_kh", string.IsNullOrEmpty(maNcc) ? (object)DBNull.Value : maNcc);
+            cmd.Parameters.AddWithValue("@pic", string.IsNullOrEmpty(maPic) ? (object)DBNull.Value : maPic);
+            cmd.Parameters.AddWithValue("@mode", 2);
+            DataTable dataTable = StartupBase.SasObj.ExcuteReader(cmd).Tables[0].Copy();
             COTKTH2Dvcs cotktH2Dvcs = new COTKTH2Dvcs();
             //dataTable.DefaultView.RowFilter = !string.IsNullOrEmpty(this.txtMa_dvcs.Text.Trim()) ? "ma_dvcs LIKE '" + this.txtMa_dvcs.Text + "'" : "1=1";
             cotktH2Dvcs.GrdCt.DataSource = dataTable.DefaultView;
@@ -91,7 +90,7 @@ namespace PODMHDM
                 MessageBox.Show("Từ ngày phải <= đến ngày.", "Thông báo");
                 this.txtTungay.Focus();
             }
-            else if (txtStatus.Text.Trim() != "0" && txtStatus.Text.Trim() != "1")
+            else if (txtStatus.Text.Trim() != "1" && txtStatus.Text.Trim() != "2")
             {
                 flag = true;
                 MessageBox.Show("Trạng thái chỉ được nhập 0 hoặc 1.", "Thông báo");
@@ -102,7 +101,7 @@ namespace PODMHDM
 
         private void txtStatus_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = e.Text != "0" && e.Text != "1";
+            e.Handled = e.Text != "1" && e.Text != "2";
         }
 
         private void _confirmGridview_OnCancel(object sender, RoutedEventArgs e)

@@ -41,10 +41,6 @@ namespace Incd1
 
         public string GetFilter(out string filterSD)
         {
-            SqlCommand sqlcmd = new SqlCommand();
-            sqlcmd.CommandText = "SELECT link from dmlink where rtrim(ma_link) like 'code'";
-            DataSet dataSet = StartupBase.SasObj.ExcuteReader(sqlcmd);
-            string link = dataSet.Tables[0].Rows[0]["link"].ToString().Trim();
             string str = "1=1";
             filterSD = "1=1";
             if (!string.IsNullOrEmpty(this.txtMa_kho.Text))
@@ -61,12 +57,9 @@ namespace Incd1
             }
             if (!string.IsNullOrEmpty(this.txtMaDVCS.Text))
             {
-                //str = str + " and ma_dvcs like  '" + this.txtMaDVCS.Text + "%'";
-                //ref string local = ref filterSD;
-                //local = local + " and ma_kho in (Select ma_kho From SQL04.SISERP2022_NITORI_QLKHO.dbo.dmkho Where ma_dvcs like '" + this.txtMaDVCS.Text + "%') ";
-                str = str + " and ma_dvcs like  '" + "NITORI" + "%'";
+                str = str + " and ma_dvcs like  '" + this.txtMaDVCS.Text + "%'";
                 ref string local = ref filterSD;
-                local = local + " and ma_kho in (Select ma_kho From "+ link+".dbo.dmkho Where ma_dvcs like '" + "NITORI" + "%') ";
+                local = local + " and ma_kho in (Select ma_kho From dmkho Where ma_dvcs like '" + this.txtMaDVCS.Text + "%') ";
             }
             this.GridSearch._GenerateSQLString();
             if (this.GridSearch.arrStrFilter != null && !string.IsNullOrEmpty(this.GridSearch.arrStrFilter[0]))

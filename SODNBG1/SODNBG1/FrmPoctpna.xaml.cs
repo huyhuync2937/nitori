@@ -1221,7 +1221,7 @@ namespace SODNBG1
                     DataTable dt = null;
                     using (SqlCommand sqlcmd = new SqlCommand())
                     {
-                        sqlcmd.CommandText = string.Format("select top 1 * from dmemail where user_id = {0}", StartUpTrans.M_User_Id);
+                        sqlcmd.CommandText = string.Format("select top 1 * from dmemail");
                         dt = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0];
                     }
                     string EmailFrom = string.Empty;

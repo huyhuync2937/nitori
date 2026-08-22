@@ -135,7 +135,7 @@
                         <FrameworkElement.Resources>
                             <DataTemplate x:Key="ControlSearchMa_vt">
                                 <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="true" AllowWrong="false"
-                                         Style="{StaticResource AutoCompleteReadOnly}" ListID="dmvt"
+                                         Style="{StaticResource AutoCompleteReadOnly}" ListID="dmvt" Filter="tk_vt = '152' "
                                          ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                          SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                          Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

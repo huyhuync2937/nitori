@@ -72,7 +72,7 @@
               <smc:GridLayout ColumnCount="2" ColumnWidths="110,140*" RowCount="2" RowHeights="25,*">
                 <TextBlock Name="lblma_dvcs" Text="Mã ĐVCS" Grid.Row="0" Grid.Column="0" Margin="0,2"
                            VerticalAlignment="Center"/>
-                <smc:AutoCompleteTextBox Name="txtma_dvcs" AllowEmty="true" AllowWrong="false" Grid.Column="1" Grid.Row="0" ListID="dmdvcs"
+                <smc:AutoCompleteTextBox Name="txtma_dvcs" AllowEmty="false" AllowWrong="false" Grid.Column="1" Grid.Row="0" ListID="dmdvcs"
                                          LookupMode="true" Margin="1" TabIndex="25"
                                          ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                          SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"

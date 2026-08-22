@@ -1,0 +1,30 @@
+<ToolBar x:Class="SasVoucherLib.VoucherToolBar"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:local="clr-namespace:SasVoucherLib"
+         Height="Auto" Width="Auto" Background="WhiteSmoke" >
+  <local:ToolBarButton x:Name="btnNew" Text="Mới" ToolTip="F4, Ctrl+N" ImagePath="VoucherToolBarImages\New.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnEdit" Text="Sửa" ToolTip="F3" ImagePath="VoucherToolBarImages\Edit.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnSave" Text="Lưu" ToolTip="Ctrl+S" ImagePath="VoucherToolBarImages\Save.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnCopy" Text="Copy" ToolTip="F5" ImagePath="VoucherToolBarImages\Copy.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnPrint" Text="In" ToolTip="F7, Ctrl+P" ImagePath="VoucherToolBarImages\Printer.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnCancel" Text="Hủy" ImagePath="VoucherToolBarImages\Cancel.png" BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnDelete" Text="Xóa" ToolTip="F8" ImagePath="VoucherToolBarImages\Delete.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnView" Text="Xem" ToolTip="F2" ImagePath="VoucherToolBarImages\View.png"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnSearch" Text="Tìm" ToolTip="F9" ImagePath="VoucherToolBarImages\Search.png"
+                       BorderBrush="{x:Null}"/>
+  <Separator/>
+  <local:ToolBarButton x:Name="btnTop" ImagePath="VoucherToolBarImages\First.png" ToolTip="Home" BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnPrevious" ImagePath="VoucherToolBarImages\Previous.png" ToolTip="PageUp"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnNext" ImagePath="VoucherToolBarImages\Next.png" ToolTip="PageDown"
+                       BorderBrush="{x:Null}"/>
+  <local:ToolBarButton x:Name="btnBottom" ImagePath="VoucherToolBarImages\Last.png" ToolTip="End" BorderBrush="{x:Null}"/>
+</ToolBar>

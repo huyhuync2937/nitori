@@ -617,9 +617,9 @@ namespace QCCNCC
                             flag = true;
                             this.txtNgay_ct.Focus();
                         }
-                        else if (StartUpTrans.DsTrans.Tables[1].DefaultView.Count == 0 || string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[0]["ma_vt_i"].ToString()))
+                        else if (StartUpTrans.DsTrans.Tables[1].DefaultView.Count == 0 || string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[0]["ma_tieu_chi"].ToString()))
                         {
-                            int num2 = (int)ExMessageBox.Show(2250, StartupBase.SasObj, "Chưa vào chi tiết vật tư, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            int num2 = (int)ExMessageBox.Show(2250, StartupBase.SasObj, "Chưa vào tiêu chí, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                             this.TabInfo.SelectedIndex = 0;
                             this.GrdCt.ExecuteCommand(DataPresenterCommands.CellFirstOverall);
                             this.GrdCt.Focus();
@@ -637,27 +637,27 @@ namespace QCCNCC
                     {
                         for (int index = 0; index < StartUpTrans.DsTrans.Tables[1].DefaultView.Count; ++index)
                         {
-                            if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["ma_vt_i"].ToString()))
+                            if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["ma_tieu_chi"].ToString()))
                             {
                                 int num = (int)ExMessageBox.Show(2270, StartupBase.SasObj, "Chưa vào chi tiết, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                                this.GrdCt.ActiveCell = (this.GrdCt.Records[index] as DataRecord).Cells["ma_vt_i"];
+                                this.GrdCt.ActiveCell = (this.GrdCt.Records[index] as DataRecord).Cells["ma_tieu_chi"];
                                 this.GrdCt.Focus();
                                 return;
                             }
-                            if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["so_luong"].ToString()))
-                            {
-                                int num = (int)ExMessageBox.Show(2270, StartupBase.SasObj, "Chưa vào số lượng, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                                this.GrdCt.ActiveCell = (this.GrdCt.Records[index] as DataRecord).Cells["so_luong"];
-                                this.GrdCt.Focus();
-                                return;
-                            }
-                            if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["so_luong1"].ToString()))
-                            {
-                                int num = (int)ExMessageBox.Show(2270, StartupBase.SasObj, "Chưa vào số lượng mẫu yêu cầu, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                                this.GrdCt.ActiveCell = (this.GrdCt.Records[index] as DataRecord).Cells["so_luong"];
-                                this.GrdCt.Focus();
-                                return;
-                            }
+                            //if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["so_luong"].ToString()))
+                            //{
+                            //    int num = (int)ExMessageBox.Show(2270, StartupBase.SasObj, "Chưa vào số lượng, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            //    this.GrdCt.ActiveCell = (this.GrdCt.Records[index] as DataRecord).Cells["so_luong"];
+                            //    this.GrdCt.Focus();
+                            //    return;
+                            //}
+                            //if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["so_luong1"].ToString()))
+                            //{
+                            //    int num = (int)ExMessageBox.Show(2270, StartupBase.SasObj, "Chưa vào số lượng mẫu yêu cầu, không lưu được!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            //    this.GrdCt.ActiveCell = (this.GrdCt.Records[index] as DataRecord).Cells["so_luong"];
+                            //    this.GrdCt.Focus();
+                            //    return;
+                            //}
                         }
                     }
                 }

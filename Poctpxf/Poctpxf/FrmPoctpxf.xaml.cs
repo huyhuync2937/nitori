@@ -1605,7 +1605,6 @@ namespace Poctpxf
                 dataRow["ma_vt"] = (object)data["ma_vt"];
                 dataRow["ten_vt"] = (object)data["ten_vt"];
                 dataRow["dvt"] = (object)data["dvt"];
-                dataRow["ma_kho"] = (object)data["ma_kho"];
                 dataRow["so_luong"] = (object)data["ton_cuoi"];
 
 

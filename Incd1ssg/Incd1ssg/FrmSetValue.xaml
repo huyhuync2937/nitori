@@ -1,0 +1,60 @@
+<smc:Form x:Class="Incd1ssg.FrmSetValue"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igEditors="http://infragistics.com/Editors"
+          LanguageID="SasFormBrowes_SetValue" EscToClose="true" Height="200" Width="716">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/FormStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            <smc:CodeValueBindingObject x:Key="IsInEditMode" Value="false"/>
+
+            <Style x:Key="DateTextBoxEditModeEnable" TargetType="{x:Type smc:DateTextBox}"
+  BasedOn="{StaticResource DateTextBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}"
+            Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" Name="GridMain">
+        <GroupBox Name="GroupMain" Header="Thông tin chung" Margin="12,4,12,0">
+            <smc:GridLayout ColumnCount="3" ColumnWidths="120,160,*" RowCount="3" RowHeights="25">
+                <TextBlock Name="lblField" Grid.Row="0">Tên cột</TextBlock>
+                <igEditors:XamComboEditor Name="cbField" Grid.Column="1" Grid.Row="0" Margin="0,2,0,2" IsReadOnly="true"/>
+                <TextBlock Name="lblNewValue" Grid.Row="1">Giá trị</TextBlock>
+
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtNewValue_PreviewLostFocus" x:Name="txtNewValue" Grid.Column="1" Grid.Row="1"
+                                       TabIndex="10" AllowEmty="true" AllowWrong="False" ListID="dmkh"
+                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                       SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="txtTen_bp" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
+                         Style="{StaticResource ContentTextStyle}"/>
+
+                <TextBlock Name="lblNgaybd" Grid.Row="2">Ngày bắt đầu</TextBlock>
+
+                <smc:DateTextBox LostFocus="txtNgay_bd_LostFocus" x:Name="txtNgay_bd" Grid.Column="1" Grid.Row="2" TabIndex="50"
+         AllowEmpty="false" 
+         Value="{smc:BindingEx Path=ngay_bd}"/>
+
+                <TextBlock Name="tblsl" Text="Số lượng" Grid.Row="1" Grid.Column="0"
+   Style="{StaticResource ContentTextStyle}"/>
+                <smc:NumericTextBox GotFocus="txtNum_GotFocus"  Name="txtsl" TabIndex="45"
+            Grid.Column="1" Grid.Row="1" 
+            Value="{smc:BindingEx Path=sl}"/>
+
+            </smc:GridLayout>
+        </GroupBox>
+    </smc:ConfirmGridView>
+</smc:Form>

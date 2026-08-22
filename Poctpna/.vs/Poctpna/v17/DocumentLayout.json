@@ -7,28 +7,20 @@
       "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpnagethdm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpnagethdm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpnagethdm.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|d:\\siserpsme2025\\source\\poctpna\\poctpna\\frmpoctpnagethdm.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpnagethdm.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|d:\\siserpsme2025\\source\\poctpna\\poctpna\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|d:\\siserpsme2025\\source\\poctpna\\poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|d:\\siserpsme2025\\source\\poctpna\\poctpna\\frmpoctpnagethdm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpnagethdm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,48 +38,50 @@
               "Title": "FrmPoctpna.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml.cs",
               "RelativeDocumentMoniker": "Poctpna\\FrmPoctpna.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml.cs",
-              "RelativeToolTip": "Poctpna\\FrmPoctpna.xaml.cs",
-              "ViewState": "AgIAAOYLAAAAAAAAAAAswPsLAAAQAAAAAAAAAA==",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml.cs*",
+              "RelativeToolTip": "Poctpna\\FrmPoctpna.xaml.cs*",
+              "ViewState": "AgIAAOwBAAAAAAAAAAAQwAgCAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T03:23:29.967Z",
+              "WhenOpened": "2026-08-21T02:51:30.128Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FrmPoctpna.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpna.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml",
-              "RelativeToolTip": "Poctpna\\FrmPoctpna.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-14T03:23:26.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "FrmView.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml.cs",
               "RelativeDocumentMoniker": "Poctpna\\FrmView.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml.cs",
               "RelativeToolTip": "Poctpna\\FrmView.xaml.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAABsAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAiwCoAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-02T01:37:45.939Z",
+              "WhenOpened": "2026-08-21T01:44:46.276Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FrmView.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml",
-              "RelativeDocumentMoniker": "Poctpna\\FrmView.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml",
-              "RelativeToolTip": "Poctpna\\FrmView.xaml",
+              "DocumentIndex": 1,
+              "Title": "FrmPoctpnaGetHDM.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml",
+              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpnaGetHDM.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml",
+              "RelativeToolTip": "Poctpna\\FrmPoctpnaGetHDM.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-02T01:37:40.032Z"
+              "WhenOpened": "2026-08-21T01:44:43.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmPoctpnaGetHDM.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
+              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
+              "RelativeToolTip": "Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T01:40:18.222Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -97,34 +91,10 @@
               "RelativeDocumentMoniker": "Poctpna\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\StartUp.cs",
               "RelativeToolTip": "Poctpna\\StartUp.cs",
-              "ViewState": "AgIAANoAAAAAAAAAAADwv/EAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAOYAAAAAAAAAAAAAwPMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-02T01:35:45.03Z",
+              "WhenOpened": "2026-08-21T01:39:59.863Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FrmPoctpnaGetHDM.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "RelativeToolTip": "Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAIwGYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-02T01:33:51.191Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FrmPoctpnaGetHDM.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "RelativeToolTip": "Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-02T01:33:47.034Z"
             }
           ]
         }

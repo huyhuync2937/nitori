@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\SisTCT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}|SisTCT\\SisTCT.csproj|d:\\siserpsme2025\\source\\sistct\\sistct\\web.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}|SisTCT\\SisTCT.csproj|solutionrelative:sistct\\web.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}|SisTCT\\SisTCT.csproj|d:\\siserpsme2025\\source\\sistct\\sistct\\hddv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}|SisTCT\\SisTCT.csproj|solutionrelative:sistct\\hddv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Web.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SisTCT\\SisTCT\\Web.cs",
+              "RelativeDocumentMoniker": "SisTCT\\Web.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SisTCT\\SisTCT\\Web.cs",
+              "RelativeToolTip": "SisTCT\\Web.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T07:11:10.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Hddv.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SisTCT\\SisTCT\\Hddv.cs",
+              "RelativeDocumentMoniker": "SisTCT\\Hddv.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\SisTCT\\SisTCT\\Hddv.cs",
+              "RelativeToolTip": "SisTCT\\Hddv.cs",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAkwAwBAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T03:36:52.532Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

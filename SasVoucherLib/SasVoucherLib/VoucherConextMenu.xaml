@@ -1,0 +1,34 @@
+<ContextMenu x:Class="SasVoucherLib.VoucherConextMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:smc="http://sis.vn/SasControls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="ContextMenu_Loaded">
+    <smc:ExMenuItem Click="mnuCopyData_Click" Name="mnuCopyData" Header="Copy sang dữ liệu khác"
+                  Header2="Copy data to tax version" Foreground="OrangeRed" FontWeight="DemiBold" FontSize="12" />
+    <smc:ExMenuItem Click="mnuRePost_Click" Name="mnuRePost" Header="Lưu các sổ" Visibility="Visible"
+                  Header2="Post the books"/>
+    <Separator/>
+    <smc:ExMenuItem Click="mnuFile_Click"  Name="mnuFile" Header="File đính kèm"
+                  Header2="Attach file"/>    
+    <smc:ExMenuItem Click="mnuInfo_Click" Name="mnuInfo" Header="Xem thông tin người cập nhật"
+                  Header2="See the updated information"/>    
+    <smc:ExMenuItem Click="mnuIn_Click" Name="mnuInInfo" Header="Xem thông tin in hóa đơn"
+                  Header2="See the printed invoice information" Visibility="Collapsed"/>
+    <smc:ExMenuItem Click="mnuDel_Click" Name="mnuDel" Header="Chứng từ bị xoá" Header2="Invoice to be deleted"/>
+    <Separator/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCt00" Header="Xem sổ cái" Header2="View general ledger"
+                  Tag="01.10.02"/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCt70" Header="Xem thẻ kho" Header2="View stock book"
+                  Tag="01.10.04"/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCt70_PNA" Header="Xem thông tin Nhập mua - ct70"
+                  Header2="Stock card - Purchasing" Tag="01.10.14"/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCtgt30" Header="Xem thuế đầu vào" Header2="View input tax"
+                  Tag="01.10.06"/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCtgt20" Header="Xem thuế đầu ra" Header2="View output tax"
+                  Tag="01.10.08"/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCttt30" Header="Xem hoá đơn phải trả" Header2="View payable book"
+                  Tag="01.10.10"/>
+    <smc:ExMenuItem Click="mnuReport_Click" Name="mnuCttt20" Header="Xem hoá đơn phải thu"
+                  Header2="View receivable book" Tag="01.10.12"/>
+    <smc:ExMenuItem Click="mnuVcIn_Click" Name="mnuVcIn" Header="In phiếu hạch toán" Header2="Print general voucher"/>
+</ContextMenu>

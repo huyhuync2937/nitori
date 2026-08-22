@@ -1632,7 +1632,7 @@ namespace CACTPC1
                                     decimal d5 = 0m;
                                     decimal? num3 = (from b in this.CtData.AsEnumerable()
                                                      where b.Field<string>("stt_rec") == this.PhView[0]["stt_rec"].ToString()
-                                                     select b).Sum((DataRow x) => x.Field<decimal>("tien_nt"));
+                                                     select b).Sum((DataRow x) => x.Field<decimal?>("tien_nt") ?? 0m);
                                     if (num3 != null)
                                     {
                                         decimal.TryParse(num3.ToString(), out d5);
@@ -1648,12 +1648,12 @@ namespace CACTPC1
                                     }
                                     decimal? num4 = (from b in this.CtData.AsEnumerable()
                                                      where b.Field<string>("stt_rec") == this.PhView[0]["stt_rec"].ToString()
-                                                     select b).Sum((DataRow x) => x.Field<decimal>("tien_tt"));
+                                                     select b).Sum((DataRow x) => x.Field<decimal?>("tien_tt") ?? 0m);
                                     decimal d7 = FNum.ToDec(num4);
                                     decimal num5 = FNum.ToDec(this.CtView[0]["tien_tt"]);
                                     num5 += d6 - d7;
                                     this.CtView[0]["tien_tt"] = num5;
-                                    if (this.CtData.AsEnumerable().All((DataRow x) => this.isEquals(FNum.ToDec(x.Field<decimal>("ty_gia_ht2")), this.Ty_gia, x["stt_rec"].ToString())))
+                                    if (this.CtData.AsEnumerable().All((DataRow x) => this.isEquals(FNum.ToDec(x.Field<decimal?>("ty_gia_ht2")), this.Ty_gia, x["stt_rec"].ToString())))
                                     {
                                         this.CtView[0]["tien"] = num5;
                                     }
@@ -1665,7 +1665,7 @@ namespace CACTPC1
                                                 where b.Field<string>("stt_rec") == this.PhView[0]["stt_rec"].ToString() && b.Field<string>("loai_hd") == "2"
                                                 select b).Count<DataRow>();
                                     int num7 = (from b in this.CtData.AsEnumerable()
-                                                where b.Field<string>("stt_rec") == this.PhView[0]["stt_rec"].ToString() && (b.Field<decimal>("tien_nt") == 0m || _ty_gia == 0m) && b.Field<decimal>("tien") != 0m && b.Field<string>("loai_hd") != "2"
+                                                where b.Field<string>("stt_rec") == this.PhView[0]["stt_rec"].ToString() && ((b.Field<decimal?>("tien_nt") ?? 0m) == 0m || _ty_gia == 0m) && (b.Field<decimal?>("tien") ?? 0m) != 0m && b.Field<string>("loai_hd") != "2"
                                                 select b).Count<DataRow>();
                                     if (num7 + num6 < this.GrdCt.Records.Count)
                                     {
@@ -1749,14 +1749,14 @@ namespace CACTPC1
                                                        select b into x
                                                        select new
                                                        {
-                                                           tien_nt = x.Field<decimal>("tien_nt"),
-                                                           tt_nt = x.Field<decimal>("tt_nt"),
-                                                           thue_nt = x.Field<decimal>("thue_nt"),
-                                                           tien = x.Field<decimal>("tien"),
-                                                           tt = x.Field<decimal>("tt"),
-                                                           thue = x.Field<decimal>("thue"),
-                                                           tien_tt = x.Field<decimal>("tien_tt"),
-                                                           tien_cltg = x.Field<decimal>("tien_cltg")
+                                                           tien_nt = x.Field<decimal?>("tien_nt") ?? 0m,
+                                                           tt_nt = x.Field<decimal?>("tt_nt") ?? 0m,
+                                                           thue_nt = x.Field<decimal?>("thue_nt") ?? 0m,
+                                                           tien = x.Field<decimal?>("tien") ?? 0m,
+                                                           tt = x.Field<decimal?>("tt") ?? 0m,
+                                                           thue = x.Field<decimal?>("thue") ?? 0m,
+                                                           tien_tt = x.Field<decimal?>("tien_tt") ?? 0m,
+                                                           tien_cltg = x.Field<decimal?>("tien_cltg") ?? 0m
                                                        };
                         if (enumerableRowCollection2 != null)
                         {
@@ -3667,7 +3667,10 @@ namespace CACTPC1
 
                 dataRow["thue_nt"] = (object)0;
 
+                dataRow["ma_hdm_i"] = (object)data["so_ct"];
                 dataRow["so_ct0"] = (object)data["so_ct"];
+                dataRow["ty_gia_ht2"] =(object)0;
+
                 dataRow["tien"] = (object)0;
 
                 txtMa_kh.Text = data["ma_kh"] == DBNull.Value ? "" : data["ma_kh"].ToString();

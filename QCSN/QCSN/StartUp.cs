@@ -120,6 +120,8 @@ namespace QCSN
                 if (Process.GetCurrentProcess().ProcessName.Equals("SasProcess"))
                     return;
                 Application.Current.Shutdown();
+                StartUp._frmLoc.Close();
+
             }
             catch (Exception ex)
             {

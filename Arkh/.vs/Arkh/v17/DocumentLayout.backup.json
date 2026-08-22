@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|solutionrelative:arkh\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|D:\\SISERPSME2025\\Source\\Arkh\\arkh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|solutionrelative:arkh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|D:\\SISERPSME2025\\Source\\Arkh\\arkh\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|solutionrelative:arkh\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|D:\\SISERPSME2025\\Source\\Arkh\\arkh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|solutionrelative:arkh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{617A8002-C086-4ED9-BC67-1A9975DA1D8C}|Arkh\\Arkh.csproj|D:\\SISERPSME2025\\Source\\Arkh\\arkh\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,19 +42,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "newForm.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Arkh\\Arkh\\newForm.xaml.cs",
               "RelativeDocumentMoniker": "Arkh\\newForm.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Arkh\\Arkh\\newForm.xaml.cs",
               "RelativeToolTip": "Arkh\\newForm.xaml.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAswCsAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAANECAAAAAAAAAAAlwPgCAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T14:38:55.306Z"
+              "WhenOpened": "2025-03-11T14:38:55.306Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Arkh\\Arkh\\App.xaml.cs",
               "RelativeDocumentMoniker": "Arkh\\App.xaml.cs",

@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{E435F1BF-280A-4A95-A777-40D009394254}|COHDMTH43\\COHDMTH43.csproj|solutionrelative:cohdmth43\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E435F1BF-280A-4A95-A777-40D009394254}|COHDMTH43\\COHDMTH43.csproj|d:\\siserpsme2025\\source\\cohdmth43\\cohdmth43\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E435F1BF-280A-4A95-A777-40D009394254}|COHDMTH43\\COHDMTH43.csproj|D:\\SISERPSME2025\\Source\\COHDMTH43\\cohdmth43\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E435F1BF-280A-4A95-A777-40D009394254}|COHDMTH43\\COHDMTH43.csproj|solutionrelative:cohdmth43\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "COHDMTH43\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\COHDMTH43\\COHDMTH43\\StartUp.cs",
               "RelativeToolTip": "COHDMTH43\\StartUp.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAQwF8AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-01T04:05:35.917Z",
               "EditorCaption": ""
@@ -43,8 +43,7 @@
               "RelativeToolTip": "COHDMTH43\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T04:04:55.403Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T04:04:55.403Z"
             }
           ]
         }

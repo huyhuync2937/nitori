@@ -31,7 +31,7 @@ namespace Incd1
             else
             {
                 StartUp startUp = new StartUp();
-                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "25.12.04";
+                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "25.12.31";
                 startUp.Run();
             }
         }

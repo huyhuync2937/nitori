@@ -62,10 +62,10 @@ namespace Invt
             TextBox KeyTextBox = SysFunc.FindChild<TextBox>((DependencyObject)this, "txt" + StartUp.SqlTableKey);
             if (KeyTextBox != null)
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Background, (Delegate)new Action(() =>
-               {
-                   KeyTextBox.SelectAll();
-                   KeyTextBox.Focus();
-               }));
+                {
+                    KeyTextBox.SelectAll();
+                    KeyTextBox.Focus();
+                }));
             else
                 Debug.Write("Findchild not found");
             switch (StartUp.currActionTask)
@@ -141,15 +141,15 @@ namespace Invt
                             if (Convert.ToInt16(this.OldRow.Rows[0]["vt_ton_kho"]) != (short)1)
                             {
 
-                            }    
+                            }
                         }
                         TextBox NameTextBox = SysFunc.FindChild<TextBox>((DependencyObject)this, "txtten_vt");
                         if ((KeyTextBox == null || KeyTextBox.IsReadOnly) && NameTextBox != null)
                             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, (Delegate)new Action(() =>
-                           {
-                               NameTextBox.SelectAll();
-                               NameTextBox.Focus();
-                           }));
+                            {
+                                NameTextBox.SelectAll();
+                                NameTextBox.Focus();
+                            }));
                         else if (KeyTextBox != null)
                             KeyTextBox.Focus();
                         this.ktraPS();
@@ -188,24 +188,24 @@ namespace Invt
             }
             if (this.newDataTable.Columns.Contains("user_id3") && this.newDataTable.Rows[0]["user_id3"].ToString() == "")
                 this.newDataTable.Rows[0]["user_id3"] = StartupBase.SasObj.UserInfo.Rows[0]["user_id"];
-            this.gridMain.DataContext = this.gridMainB.DataContext = (object)this.newDataTable;
+            this.gridMain.DataContext = this.gridMainB.DataContext = this.gridMainC.DataContext = (object)this.newDataTable;
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, (Delegate)new Action(() =>
-           {
-               if (this.txtgia_ton.Text == "0")
-                   this.txtgia_ton.Text = "";
-               if (!string.IsNullOrEmpty(this.txtgia_ton.Text.Trim()))
-               {
-                   this.txtgia_ton.SearchInit();
-                   if (this.txtgia_ton.RowResult != null)
-                       this.txtgia_ton_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
-               }
-               this.txtma_dvcs.SearchInit();
-               this.txtma_dvcs_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
-               this.txtloai_vt.SearchInit();
-               this.txtloai_vt_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
-               this.txttk_vt.SearchInit();
-               this.txttk_vt_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
-           }));
+            {
+                if (this.txtgia_ton.Text == "0")
+                    this.txtgia_ton.Text = "";
+                if (!string.IsNullOrEmpty(this.txtgia_ton.Text.Trim()))
+                {
+                    this.txtgia_ton.SearchInit();
+                    if (this.txtgia_ton.RowResult != null)
+                        this.txtgia_ton_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
+                }
+                this.txtma_dvcs.SearchInit();
+                this.txtma_dvcs_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
+                this.txtloai_vt.SearchInit();
+                this.txtloai_vt_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
+                this.txttk_vt.SearchInit();
+                this.txttk_vt_PreviewLostFocus((object)null, (KeyboardFocusChangedEventArgs)null);
+            }));
         }
 
         public void ktraPS()
@@ -241,6 +241,8 @@ namespace Invt
             this.newDataTable.AcceptChanges();
             if (this.newDataTable.Columns.Contains("search"))
                 SysFunc.SetStrSearch(StartupBase.SasObj, StartUp.sqlTableName, ref this.newDataTable);
+            this.FixEmptyDate(this.newDataTable.Rows[0], "ngay_hieu_luc");
+            this.FixEmptyDate(this.newDataTable.Rows[0], "expiration");
             if (this.newDataTable.Rows[0]["vt_ton_kho"].ToString().Equals("0"))
                 this.newDataTable.Rows[0]["gia_ton"] = (object)0;
             if (StartUp.currActionTask == ActionTask.Edit)
@@ -249,6 +251,12 @@ namespace Invt
                 this.newDataTable.Rows[0]["time"] = (object)DateTime.Now.ToString("HH:mm:ss");
                 this.newDataTable.Rows[0]["user_id"] = (object)num;
                 this.newDataTable.Rows[0]["user_name"] = (object)str;
+
+                foreach (DataColumn col in this.newDataTable.Columns)
+                {
+                    Debug.WriteLine($"{col.ColumnName} : {col.DataType}");
+                }
+
                 if (this.OldRow != null)
                     ListFunc.updateRowInDatabaseByKey(StartUp.sqlTableName, StartUp.SqlTableKey, this.OldRow.Rows[0], this.newDataTable.Rows[0], StartupBase.SasObj);
             }
@@ -267,13 +275,26 @@ namespace Invt
             StartUp.LastEditRow = this.newDataTable.Select()[0];
         }
 
+        private void FixEmptyDate(DataRow row, string columnName)
+        {
+            if (!row.Table.Columns.Contains(columnName))
+                return;
+            object value = row[columnName];
+            if (value == null || value == DBNull.Value)
+                return;
+            if (value is DateTime dateTime && dateTime < new DateTime(1753, 1, 1))
+                row[columnName] = (object)DBNull.Value;
+            else if (value is string text && string.IsNullOrEmpty(text))
+                row[columnName] = (object)DBNull.Value;
+        }
+
         private bool CheckValid()
         {
             bool flag1 = true;
             if (flag1 && this.txtma_vt.Text.Trim() == string.Empty)
             {
                 this.TabInfor.SelectedIndex = 0;
-                int num = (int)ExMessageBox.Show(2215, StartupBase.SasObj, "Chưa vào mã [" + StartUp.TableName + "]!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                int num = (int)ExMessageBox.Show(2215, StartupBase.SasObj, "Chua v�o m� [" + StartUp.TableName + "]!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 this.txtma_vt.Focus();
                 flag1 = false;
             }
@@ -283,7 +304,7 @@ namespace Invt
                 if (str != "" && flag1)
                 {
                     this.TabInfor.SelectedIndex = 0;
-                    int num = (int)ExMessageBox.Show(2220, StartupBase.SasObj, "Mã không được chứa các ký tự [" + str + "] !", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    int num = (int)ExMessageBox.Show(2220, StartupBase.SasObj, "M� kh�ng du?c ch?a c�c k� t? [" + str + "] !", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     this.txtma_vt.SelectAll();
                     this.txtma_vt.Focus();
                     flag1 = false;
@@ -305,7 +326,7 @@ namespace Invt
                         if ((int)StartupBase.SasObj.ExcuteScalar(sqlcmd) > 0 && flag2)
                         {
                             this.TabInfor.SelectedIndex = 0;
-                            int num = (int)ExMessageBox.Show(2225, StartupBase.SasObj, "Mã đã có hoặc mã lồng nhau!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            int num = (int)ExMessageBox.Show(2225, StartupBase.SasObj, "M� d� c� ho?c m� l?ng nhau!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                             this.txtma_vt.SelectAll();
                             this.txtma_vt.Focus();
                             flag1 = false;
@@ -318,7 +339,7 @@ namespace Invt
                             if (SysFunc.CheckStringContain(StartupBase.SasObj, StartUp.sqlTableName, StartUp.SqlTableKey, this.txtma_vt.Text.Trim(), Value_old))
                             {
                                 this.TabInfor.SelectedIndex = 0;
-                                int num = (int)ExMessageBox.Show(2230, StartupBase.SasObj, "Mã đã có hoặc mã lồng nhau!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                                int num = (int)ExMessageBox.Show(2230, StartupBase.SasObj, "M� d� c� ho?c m� l?ng nhau!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                                 this.txtma_vt.SelectAll();
                                 this.txtma_vt.Focus();
                                 flag1 = false;
@@ -341,7 +362,7 @@ namespace Invt
             if (flag1 && this.isError && (this.OldRow.Rows[0]["dvt"].ToString().Trim() != "" && this.txtdvt.Text.Trim() == ""))
             {
                 this.TabInfor.SelectedIndex = 0;
-                int num = (int)ExMessageBox.Show(2240, this.BindingSasObj, "Đã có phát sinh, đơn vị tính không được để trống!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                int num = (int)ExMessageBox.Show(2240, this.BindingSasObj, "�� c� ph�t sinh, don v? t�nh kh�ng du?c d? tr?ng!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 this.txtdvt.Focus();
                 flag1 = false;
             }
@@ -399,7 +420,7 @@ namespace Invt
                         if (StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Rows.Count > 0)
                         {
                             this.TabInfor.SelectedIndex = 0;
-                            if (ExMessageBox.Show(2265, StartupBase.SasObj, "Tài khoản kho cũ đã có phát sinh, có tiếp tục không?", "Xac nhan nhap lieu", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
+                            if (ExMessageBox.Show(2265, StartupBase.SasObj, "T�i kho?n kho cu d� c� ph�t sinh, c� ti?p t?c kh�ng?", "Xac nhan nhap lieu", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
                             {
                                 this.txttk_vt.IsFocus = true;
                                 flag1 = false;
@@ -466,7 +487,7 @@ namespace Invt
             if (flag1 && Checkdmtk(this.txttk_km.Text))
             {
                 this.TabInfor.SelectedIndex = 0;
-                int num = (int)ExMessageBox.Show(2310, StartupBase.SasObj, "Tài khoản cp khuyến mãi không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                int num = (int)ExMessageBox.Show(2310, StartupBase.SasObj, "T�i kho?n cp khuy?n m�i kh�ng h?p l?!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 this.txttk_km.IsFocus = true;
                 flag1 = false;
             }
@@ -531,12 +552,10 @@ namespace Invt
             if (flag1 && !this.txttk_km.CheckLostFocus())
             {
                 this.TabInfor.SelectedIndex = 0;
-                int num = (int)ExMessageBox.Show(2310, StartupBase.SasObj, "Tài khoản cp khuyến mãi không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                int num = (int)ExMessageBox.Show(2310, StartupBase.SasObj, "T�i kho?n cp khuy?n m�i kh�ng h?p l?!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 this.txttk_km.IsFocus = true;
                 flag1 = false;
             }
-
-
 
             if (flag1 && !this.txtnh_vt1.CheckLostFocus())
             {
@@ -552,13 +571,27 @@ namespace Invt
                 this.txtnh_vt2.IsFocus = true;
                 flag1 = false;
             }
-            if (flag1 && !this.txtnh_vt3.CheckLostFocus())
-            {
-                this.TabInfor.SelectedIndex = 0;
-                int num = (int)ExMessageBox.Show(2325, StartupBase.SasObj, "Nhóm vật tư 3 không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.txtnh_vt3.IsFocus = true;
-                flag1 = false;
-            }
+            //if (flag1 && !this.txtnh_vt3.CheckLostFocus())
+            //{
+            //    this.TabInfor.SelectedIndex = 0;
+            //    int num = (int)ExMessageBox.Show(2325, StartupBase.SasObj, "Nhóm vật tư 3 không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //    this.txtnh_vt3.IsFocus = true;
+            //    flag1 = false;
+            //}
+            //if (flag1 && this.newDataTable.Columns.Contains("dinh_dang_qcs"))
+            //{
+            //    string dinhDangQcs = Convert.ToInt32(this.newDataTable.Rows[0]["dinh_dang_qcs"]).ToString().Trim();
+            //    if (dinhDangQcs != string.Empty && dinhDangQcs != "1" && dinhDangQcs != "2")
+            //    {
+            //        this.TabInfor.SelectedIndex = 2;
+            //        int num = (int)ExMessageBox.Show(2325, StartupBase.SasObj,
+            //            "Định dạng QCS chỉ được nhập 1 - Dọc hoặc 2 - Ngang!",
+            //            "Xác nhận nhập liệu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //        this.txtdinh_dang_qcs.Focus();
+            //        flag1 = false;
+            //    }
+            //}
+
             return flag1;
         }
 
@@ -662,7 +695,7 @@ namespace Invt
             {
                 if (!(this.OldRow.Rows[0]["dvt"].ToString().Trim() != "") || !(this.txtdvt.Text.Trim() == ""))
                     return;
-                int num = (int)ExMessageBox.Show(2330, this.BindingSasObj, "Đã có phát sinh, đơn vị tính không được để trống!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                int num = (int)ExMessageBox.Show(2330, this.BindingSasObj, "�� c� ph�t sinh, don v? t�nh kh�ng du?c d? tr?ng!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             else
             {
@@ -722,7 +755,7 @@ namespace Invt
         {
             bool flag = false;
             if (!string.IsNullOrEmpty(strtk))
-            {     
+            {
                 DataTable dt = this.BindingSasObj.ExcuteReader(new SqlCommand(string.Format("SELECT tk_me FROM dmtk where tk_me like '{0}' and tk_me <> ''", strtk.ToString().Trim()))).Tables[0];
                 if (dt != null && dt.Rows.Count > 0)
                     flag = true;
@@ -730,8 +763,9 @@ namespace Invt
             else
             {
                 flag = false;
-            }    
+            }
             return flag;
         }
     }
 }
+

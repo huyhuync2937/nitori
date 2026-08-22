@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SasVoucherLib</RootNamespace>
+    <AssemblyName>SasVoucherLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Prog\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="InfragisticsWPF3.DataPresenter.v10.2, Version=10.2.20102.2035, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\InfragisticsWPF3.DataPresenter.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF3.Editors.v10.2, Version=10.2.20102.2035, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\InfragisticsWPF3.Editors.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF3.v10.2, Version=10.2.20102.2035, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\InfragisticsWPF3.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Prog\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="SasControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasControls.dll</HintPath>
+    </Reference>
+    <Reference Include="SasDataLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasDataLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasDefine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasDefine.dll</HintPath>
+    </Reference>
+    <Reference Include="SasErrorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasErrorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasFormBrowes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasFormBrowes.dll</HintPath>
+    </Reference>
+    <Reference Include="SasFormReport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasFormReport.dll</HintPath>
+    </Reference>
+    <Reference Include="SasLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SasReport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program\SasReport.dll</HintPath>
+    </Reference>
+    <Reference Include="SisSQLClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Prog\SisSQLClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BindingStatusVoucher.cs" />
+    <Compile Include="BindingVisibility.cs" />
+    <Compile Include="ButtonCollection.cs" />
+    <Compile Include="DanhSachUsers.xaml.cs">
+      <DependentUpon>DanhSachUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataProvider.cs" />
+    <Compile Include="DebugDummyConverter.cs" />
+    <Compile Include="FormatMaskNumberConverter.cs" />
+    <Compile Include="FormTrans.cs" />
+    <Compile Include="FormView.cs" />
+    <Compile Include="FreeCodeFieldLib.cs" />
+    <Compile Include="FrmView.xaml.cs">
+      <DependentUpon>FrmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFrm.xaml.cs">
+      <DependentUpon>NewFrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SelectTime.xaml.cs">
+      <DependentUpon>SelectTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SqlHelper.cs" />
+    <Compile Include="StartUpTrans.cs" />
+    <Compile Include="ToolBarButton.cs" />
+    <Compile Include="ToolBarControl.xaml.cs">
+      <DependentUpon>ToolBarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserCommunityViewModel.cs" />
+    <Compile Include="UserModel.cs" />
+    <Compile Include="VoucherConextMenu.xaml.cs">
+      <DependentUpon>VoucherConextMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherContextMenuDel.xaml.cs">
+      <DependentUpon>VoucherContextMenuDel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherContextMenuMouseRightClick.xaml.cs">
+      <DependentUpon>VoucherContextMenuMouseRightClick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherToolBar.xaml.cs">
+      <DependentUpon>VoucherToolBar.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DanhSachUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectTime.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToolBarControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VoucherConextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VoucherContextMenuDel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VoucherContextMenuMouseRightClick.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VoucherToolBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VoucherToolBarImages\New.png" />
+    <Resource Include="VoucherToolBarImages\book.png" />
+    <Resource Include="VoucherToolBarImages\bookmark.png" />
+    <Resource Include="VoucherToolBarImages\calculator.png" />
+    <Resource Include="VoucherToolBarImages\Cancel.png" />
+    <Resource Include="VoucherToolBarImages\Copy.png" />
+    <Resource Include="VoucherToolBarImages\Delete.png" />
+    <Resource Include="VoucherToolBarImages\Edit.png" />
+    <Resource Include="VoucherToolBarImages\favorites-icon.png" />
+    <Resource Include="VoucherToolBarImages\FeedBack.png" />
+    <Resource Include="VoucherToolBarImages\First.png" />
+    <Resource Include="VoucherToolBarImages\Help.png" />
+    <Resource Include="VoucherToolBarImages\Last.png" />
+    <Resource Include="VoucherToolBarImages\Next.png" />
+    <Resource Include="VoucherToolBarImages\Option.png" />
+    <Resource Include="VoucherToolBarImages\preview.png" />
+    <Resource Include="VoucherToolBarImages\Previous.png" />
+    <Resource Include="VoucherToolBarImages\Printer.png" />
+    <Resource Include="VoucherToolBarImages\Report.png" />
+    <Resource Include="VoucherToolBarImages\Save.png" />
+    <Resource Include="VoucherToolBarImages\Search.png" />
+    <Resource Include="VoucherToolBarImages\template.png" />
+    <Resource Include="VoucherToolBarImages\View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VoucherToolBarImages\addnew.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

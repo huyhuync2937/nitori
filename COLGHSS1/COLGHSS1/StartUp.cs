@@ -95,10 +95,14 @@ namespace COLGHSS1
 
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                 DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
+                DataTable dataTableString  = StartUp.dsReport.Tables[1].Copy();
+
                 StartUp.dsReport.Tables[0].TableName = "tbtong";
+                StartUp.dsReport.Tables[1].TableName = "headstring";
+                
                 dataTable.TableName = "tbDetail";
                 StartUp.dsReport.Tables.Add(StartUp.CreateTableInfo().Copy());
-                StartUp.oBrowse = new SasFormBrowes.FormBrowse(StartupBase.SasObj, dataTable.DefaultView, StartUp.fieldShow(1, 0));
+                StartUp.oBrowse = new SasFormBrowes.FormBrowse(StartupBase.SasObj, dataTable.DefaultView, dataTableString.Rows[0]["HeaderString"].ToString());
                 //StartUp.oBrowse.F3 += new SasFormBrowes.FormBrowse.GridKeyUp_F3(StartUp.oBrowse_F3);
                 StartUp.oBrowse.F7 += new SasFormBrowes.FormBrowse.GridKeyUp_F7(StartUp.oBrowse_F7);
                 StartUp.oBrowse.frmBrw.PreviewKeyDown += new KeyEventHandler(StartUp.FrmBrw_PreviewKeyDown);
@@ -140,7 +144,7 @@ namespace COLGHSS1
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                 DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
                 StartUp.dsReport.Tables[0].TableName = "tbDetail";
-                StartUp.dsReport.Tables[0].TableName = "tbtong";
+                StartUp.dsReport.Tables[1].TableName = "headstring";
                 dataTable.TableName = "tbDetail";
                 StartUp.dsReport.Tables.Add(StartUp.CreateTableInfo().Copy());
                 StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)dataTable.DefaultView;

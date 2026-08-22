@@ -1,0 +1,37 @@
+<SasFormReport:FormFilter x:Class="SasVoucherLib.SelectTime"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:smc="http://sis.vn/SasControls"
+                     xmlns:SasFormReport="clr-namespace:SasFormReport;assembly=SasFormReport"
+                     xmlns:igEditors="http://infragistics.com/Editors"
+                     xmlns:local="clr-namespace:SasVoucherLib"
+                     Loaded="FrmSelectTime_Loaded" x:Name="FrmSelectTime" LanguageID="SasVoucherLib_0" EscToClose="true"
+                     Title="Chon thoi gian lam viec" Height="161" Width="350" ResizeMode="CanMinimize">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <smc:NegativeConverter x:Key="mau_bcConverter"/>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" Name="GrdMain">
+    <GroupBox Name="GroupMain" Grid.Row="0" Grid.Column="1" Margin="12,4,12,0">
+      <smc:GridLayout RowCount="3" RowHeights="25,25,*" ColumnCount="2" ColumnWidths="*,140">
+        <TextBlock Name="lblNgay_ct1" Grid.Row="0" Grid.Column="0" Text="Từ ngày"/>
+        <smc:DateTextBox Name="txtNgay_ct1" Grid.Row="0" Grid.Column="1" Margin="0, 1, 0, 0" TabIndex="10"
+                         Value="{smc:BindingEx Path=M_NGAY_CT1, ElementName=FrmSelectTime}"/>
+        <TextBlock Name="lblNgay_ct2" Grid.Row="1" Grid.Column="0" Text="Đến ngày"/>
+        <smc:DateTextBox Name="txtNgay_ct2" Grid.Row="1" Grid.Column="1" Margin="0, 1, 0, 0" TabIndex="20"
+                         Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=FrmSelectTime}"/>
+      </smc:GridLayout>
+    </GroupBox>
+  </smc:ConfirmGridView>
+</SasFormReport:FormFilter>

@@ -1,0 +1,94 @@
+<smc:Form x:Class="SasVoucherLib.FrmView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="clr-namespace:SasControls;assembly=SasControls"
+          xmlns:local="clr-namespace:SasVoucherLib"
+          xmlns:sm="clr-namespace:SasFormBrowes;assembly=SasFormBrowes"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          Loaded="Window_Loaded" Title="FrmBrowse" Theme="Standard" Height="680" Width="960"
+          EscToClose="true" WindowStartupLocation="CenterScreen">
+  <FrameworkElement.Resources>
+    <ResourceDictionary/>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0"/>
+      <RowDefinition Height="320*"/>
+      <RowDefinition Height="320*"/>
+      <RowDefinition Height="25"/>
+    </Grid.RowDefinitions>
+    <FrameworkElement.Resources>
+      <ResourceDictionary/>
+    </FrameworkElement.Resources>
+    <Grid Row="1" RowSpan="2">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="100*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="100*"/>
+      </Grid.RowDefinitions>
+      <smc:BasicGridView Name="GrdBrowse" Grid.Row="0" Margin="0,0,0,12">
+        <FrameworkElement.Resources>
+          <LinearGradientBrush x:Key="HeaderBackGround" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFEFF7F7" Offset="0"/>
+            <GradientStop Color="#FF9CF1F5" Offset="0.115"/>
+            <GradientStop Color="#FFEFF5F5" Offset="0.996"/>
+            <GradientStop Color="#FFD7F6F7" Offset="0.385"/>
+          </LinearGradientBrush>
+        </FrameworkElement.Resources>
+        <igDP:DataPresenterBase.FieldSettings>
+          <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="True" AllowGroupBy="True" SummaryUIType="MultiSelect"
+                              AllowSummaries="False"/>
+        </igDP:DataPresenterBase.FieldSettings>
+        <igDP:DataPresenterBase.FieldLayoutSettings>
+          <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                    RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                    FilterRecordLocation="OnTopFixed"/>
+        </igDP:DataPresenterBase.FieldLayoutSettings>
+      </smc:BasicGridView>
+      <smc:BasicGridView Name="GrdBrowseCt" Grid.Row="2" Margin="0,0,0,12">
+        <FrameworkElement.Resources>
+          <LinearGradientBrush x:Key="HeaderBackGround" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFEFF7F7" Offset="0"/>
+            <GradientStop Color="#FF9CF1F5" Offset="0.115"/>
+            <GradientStop Color="#FFEFF5F5" Offset="0.996"/>
+            <GradientStop Color="#FFD7F6F7" Offset="0.385"/>
+          </LinearGradientBrush>
+        </FrameworkElement.Resources>
+        <igDP:DataPresenterBase.FieldSettings>
+          <igDP:FieldSettings AllowEdit="False" AllowRecordFiltering="False" AllowGroupBy="True" SummaryUIType="MultiSelect"
+                              AllowSummaries="False"/>
+        </igDP:DataPresenterBase.FieldSettings>
+        <igDP:DataPresenterBase.FieldLayoutSettings>
+          <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
+                                    RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                    FilterRecordLocation="OnTopFixed"/>
+        </igDP:DataPresenterBase.FieldLayoutSettings>
+      </smc:BasicGridView>
+      <GridSplitter ResizeDirection="Rows" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Width="Auto" Height="2"
+                    ShowsPreview="true" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
+        <Control.Background>
+          <RadialGradientBrush GradientOrigin="0.75,0.25">
+            <GradientStop Color="#FFFF6700" Offset="0.0"/>
+            <GradientStop Color="Orange" Offset="0.75"/>
+            <GradientStop Color="SkyBlue" Offset="1.0"/>
+          </RadialGradientBrush>
+        </Control.Background>
+      </GridSplitter>
+    </Grid>
+    <Border Name="statusBorder" Grid.Row="3" BorderThickness="0.5" BorderBrush="Gray">
+      <smc:GridLayout Name="GrdStatus" Row="3" ColumnCount="10" ColumnWidths="130,100,1,150,1,240*,1,140,1,140">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+          <TextBlock Name="lblSoChungTu" Height="20" Padding="2" Text="Số chứng từ: "/>
+          <TextBlock Name="numSoChungTu" Height="20" Padding="2" Text="55 "/>
+        </StackPanel>
+        <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="2"/>
+        <TextBlock Name="lblTongPhatSinh" Height="20" Padding="2" Grid.Column="3" Text="Tổng ps "/>
+        <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="4"/>
+        <TextBlock Name="numTongPhatSinh" Grid.Column="5" Height="20" Padding="2" Text="55 "/>
+        <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="6"/>
+        <TextBlock Name="lblNgay" Height="20" Padding="2" Grid.Column="7" Text="Ngày "/>
+        <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="8"/>
+      </smc:GridLayout>
+    </Border>
+  </Grid>
+</smc:Form>

@@ -38,10 +38,10 @@
                             <smc:DateTextBox x:Name="txtHDDenNgay" Grid.Row="0" Grid.Column="3" TabIndex="2"
                                Style="{StaticResource DateTextBoxStyle}"
                                Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=frmLoc}"/>
-                            <TextBlock Name="tblloai_dh" Text="Trạng thái" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
-                            <smc:MaskedTextBox  Name="txtps_ck" TabIndex="10" Format="M" InputMask="1,2"
-         Grid.Row="1" Grid.Column="1" Text="*"/>
-                            <TextBlock Name="lblTenPs_ck" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1"
+                            <TextBlock Visibility="Hidden" Name="tblloai_dh" Text="Trạng thái" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <smc:MaskedTextBox Visibility="Hidden" Name="txtps_ck" TabIndex="10" Format="M" InputMask="1,2"
+         Grid.Row="1" Grid.Column="1" Text="1"/>
+                            <TextBlock Visibility="Hidden" Name="lblTenPs_ck" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1"
        Text="1 - Kế hoạc, 2 - FC"/>
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>
                             <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="1" ListID="dmhd"

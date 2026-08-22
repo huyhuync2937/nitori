@@ -88,7 +88,7 @@ namespace COSLNVLSS
 
             if (isFirstLoad)
             {
-                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg, @loai_nvl";
+                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg";
                 StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
                 StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
                 //StartUp.cmd.Parameters.Add("@loai_nvl", SqlDbType.VarChar).Value = loaiNvl == null || string.IsNullOrEmpty(loaiNvl.ToString()) ? (object)"" : (object)loaiNvl.ToString().Trim();

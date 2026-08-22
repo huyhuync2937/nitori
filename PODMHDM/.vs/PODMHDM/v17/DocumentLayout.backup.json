@@ -3,40 +3,36 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\PODMHDM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmtim.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmtim.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\frmlocvt.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmlocvt.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmlocvt.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmlocvt.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\cotkth2dvcs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\cotkth2dvcs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmloaddonhang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmloaddonhang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|d:\\siserpsme2025\\source\\podmhdm\\podmhdm\\frmloaddonhang.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmloaddonhang.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\cotkth2dvcs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\cotkth2dvcs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\frmguiemail.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\frmguiemail.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|D:\\SISERPSME2025\\Source\\PODMHDM\\podmhdm\\cotkth2dvcs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{722E3E7C-EFA1-44ED-A0FD-67C703582F18}|PODMHDM\\PODMHDM.csproj|solutionrelative:podmhdm\\cotkth2dvcs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,20 +42,78 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmTim.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmTim.xaml.cs",
+              "RelativeDocumentMoniker": "PODMHDM\\FrmTim.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmTim.xaml.cs",
+              "RelativeToolTip": "PODMHDM\\FrmTim.xaml.cs",
+              "ViewState": "AgIAAMkAAAAAXGZmZuYvwNwAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T08:28:04.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "PODMHDM\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "PODMHDM\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T08:27:26.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\StartUp.cs",
+              "RelativeDocumentMoniker": "PODMHDM\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\StartUp.cs",
+              "RelativeToolTip": "PODMHDM\\StartUp.cs",
+              "ViewState": "AgIAAEMBAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T08:26:02.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FrmGuiEmail.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmGuiEmail.xaml.cs",
+              "RelativeDocumentMoniker": "PODMHDM\\FrmGuiEmail.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmGuiEmail.xaml.cs",
+              "RelativeToolTip": "PODMHDM\\FrmGuiEmail.xaml.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowBkAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T22:03:14.207Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "COTKTH2Dvcs.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\COTKTH2Dvcs.xaml",
+              "RelativeDocumentMoniker": "PODMHDM\\COTKTH2Dvcs.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\COTKTH2Dvcs.xaml",
+              "RelativeToolTip": "PODMHDM\\COTKTH2Dvcs.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-08-04T22:03:12.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "FrmPoctpna.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmPoctpna.xaml",
               "RelativeDocumentMoniker": "PODMHDM\\FrmPoctpna.xaml",
               "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmPoctpna.xaml",
               "RelativeToolTip": "PODMHDM\\FrmPoctpna.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-25T15:02:20.889Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-30T22:59:50.151Z"
             },
             {
               "$type": "Document",
@@ -69,98 +123,21 @@
               "RelativeDocumentMoniker": "PODMHDM\\FrmPoctpna.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmPoctpna.xaml.cs",
               "RelativeToolTip": "PODMHDM\\FrmPoctpna.xaml.cs",
-              "ViewState": "AgIAACEGAAAAAAAAAAAAAJ8JAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAOUCAAAAAAAAAAAAAPkCAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-25T15:02:19.79Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-07-30T22:59:48.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FrmLocVT.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLocVT.xaml.cs",
-              "RelativeDocumentMoniker": "PODMHDM\\FrmLocVT.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLocVT.xaml.cs",
-              "RelativeToolTip": "PODMHDM\\FrmLocVT.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T02:05:24.195Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FrmLoc.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoc.xaml.cs",
-              "RelativeDocumentMoniker": "PODMHDM\\FrmLoc.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoc.xaml.cs",
-              "RelativeToolTip": "PODMHDM\\FrmLoc.xaml.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAA0wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T01:59:11.063Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FrmLoaddonhang.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoaddonhang.xaml.cs",
-              "RelativeDocumentMoniker": "PODMHDM\\FrmLoaddonhang.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoaddonhang.xaml.cs",
-              "RelativeToolTip": "PODMHDM\\FrmLoaddonhang.xaml.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T01:58:50.383Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FrmLoaddonhang.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoaddonhang.xaml",
-              "RelativeDocumentMoniker": "PODMHDM\\FrmLoaddonhang.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoaddonhang.xaml",
-              "RelativeToolTip": "PODMHDM\\FrmLoaddonhang.xaml",
+              "Title": "FrmLocVT.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLocVT.xaml",
+              "RelativeDocumentMoniker": "PODMHDM\\FrmLocVT.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLocVT.xaml",
+              "RelativeToolTip": "PODMHDM\\FrmLocVT.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-29T01:57:32.219Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "COTKTH2Dvcs.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\COTKTH2Dvcs.xaml",
-              "RelativeDocumentMoniker": "PODMHDM\\COTKTH2Dvcs.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\COTKTH2Dvcs.xaml",
-              "RelativeToolTip": "PODMHDM\\COTKTH2Dvcs.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-28T09:27:24.337Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FrmLoc.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoc.xaml",
-              "RelativeDocumentMoniker": "PODMHDM\\FrmLoc.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\FrmLoc.xaml",
-              "RelativeToolTip": "PODMHDM\\FrmLoc.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-29T01:59:12.516Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "COTKTH2Dvcs.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\COTKTH2Dvcs.xaml.cs",
-              "RelativeDocumentMoniker": "PODMHDM\\COTKTH2Dvcs.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\PODMHDM\\PODMHDM\\COTKTH2Dvcs.xaml.cs",
-              "RelativeToolTip": "PODMHDM\\COTKTH2Dvcs.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T09:21:33.023Z"
+              "WhenOpened": "2026-08-11T08:27:38.647Z"
             }
           ]
         }

@@ -19,6 +19,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
@@ -139,7 +140,7 @@ namespace PODMHDM
                                 DataRowView dataItem1 = e.Cell.Record.DataItem as DataRowView;
                                 //CellCollection cells = e.Cell.Record.Cells;
                                 if (e.Cell.Record.Cells["ngay_giao"].Value == DBNull.Value)
-                                    e.Cell.Record.Cells["ngay_giao"].Value = (object)DateTime.Now.Date.ToString("yyyy-mm-dd");
+                                    e.Cell.Record.Cells["ngay_giao"].Value = (object)DateTime.Now.Date;
                             }
                             break;
 
@@ -768,6 +769,7 @@ namespace PODMHDM
 
         private void V_In()
         {
+          
             FrmIn frmIn = new FrmIn();
             if (this.M_LAN != "V")
                 frmIn.Title = "Print";
@@ -1451,11 +1453,11 @@ namespace PODMHDM
                                 }
                             }
                         }
-                        if (!this.CheckNgayGiaoTruocKhiLuu())
-                        {
-                            flag = true;
-                            return;
-                        }
+                        //if (!this.CheckNgayGiaoTruocKhiLuu())
+                        //{
+                        //    flag = true;
+                        //    return;
+                        //}
                         if (!this.CheckSoLuongTruocKhiLuu())
                         {
                             flag = true;
@@ -2650,7 +2652,7 @@ namespace PODMHDM
                     DataTable dt = null;
                     using (SqlCommand sqlcmd = new SqlCommand())
                     {
-                        sqlcmd.CommandText = string.Format("select top 1 * from dmemail where user_id = {0}", StartUpTrans.M_User_Id);
+                        sqlcmd.CommandText = string.Format("select top 1 * from dmemail ");
                         dt = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0];
                     }
                     string EmailFrom = string.Empty;

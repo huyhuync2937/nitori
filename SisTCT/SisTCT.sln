@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34114.132
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisTCT", "SisTCT\SisTCT.csproj", "{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87BD306-7C7F-4CC1-B1CE-62E74806AE3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0C6F6E0-BE23-4AFA-8943-E947E0C4BDA2}
+	EndGlobalSection
+EndGlobal

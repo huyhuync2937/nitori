@@ -190,23 +190,24 @@
                     <TextBox x:Name="txtDien_giai" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" TabIndex="10"
                    Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingEx Path=dien_giai}"/>
                     <TextBlock Name="lblNgaybd_kh" Text="Kế hoạch thực hiện từ ngày" Grid.Row="2" Grid.Column="0" Margin="0,2"
-                     VerticalAlignment="Center"/>
+                     VerticalAlignment="Center" Visibility="Collapsed"/>
                     <smc:DateTextBox Name="txtNgaybd_kh" Grid.Column="1" Grid.Row="2" TabIndex="11"
-                           Style="{StaticResource DateTextBoxEditModeEnable}" Value="{smc:BindingEx Path=ngay_kh1}"/>
+                           Style="{StaticResource DateTextBoxEditModeEnable}" Value="{smc:BindingEx Path=ngay_kh1}" Visibility="Collapsed"/>
                     <TextBlock Name="lblNgaykt_kh" Text="đến ngày" Grid.Row="2" Grid.Column="3" Margin="0,2"
-                     VerticalAlignment="Center"/>
+                     VerticalAlignment="Center" Visibility="Collapsed"/>
                     <smc:DateTextBox Name="txtNgaykt_kh" Grid.Column="4" Grid.Row="2" TabIndex="12"
-                           Style="{StaticResource DateTextBoxEditModeEnable}" Value="{smc:BindingEx Path=ngay_kh2}"/>
-                    
-                    <TextBlock Name="tbldoi_tac" Text="Đối tác" Grid.Row="3" Grid.Column="0"/>
+                           Style="{StaticResource DateTextBoxEditModeEnable}" Value="{smc:BindingEx Path=ngay_kh2}" Visibility="Collapsed"/>
+
+                    <TextBlock Name="tbldoi_tac" Text="Đối tác" Grid.Row="3" Grid.Column="0" Visibility="Collapsed"/>
                     <smc:AutoCompleteTextBox PreviewLostFocus="txtDoitac_PreviewLostFocus"  Name="txtDoitac" AllowEmty="true" AllowWrong="false"
-                                   Grid.Column="1" Grid.Row="3" ListID="dmkh" 
+                                   Grid.Column="1" Grid.Row="3" ListID="dmkh"
                                    CharacterCasing="Upper" TabIndex="15" Style="{StaticResource AutoCompleteTextBoxEditModeEnable}"
                                    Text="{smc:BindingEx ma_dt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                   SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                   SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                   Visibility="Collapsed"/>
                     <TextBlock Name="tblTenDt" Grid.Row="3" Grid.Column="2" Margin="12,0,0,0" Grid.ColumnSpan="4"
-                     Text="{smc:BindingEx Path=ten_kh, Path2=ten_kh2}"/>
+                     Text="{smc:BindingEx Path=ten_kh, Path2=ten_kh2}" Visibility="Collapsed"/>
                     
                     <TextBlock Name="tblma_dvcs" Grid.Column="0" Grid.Row="8" Text="Mã ĐVCS"/>
                     <smc:AutoCompleteTextBox PreviewLostKeyboardFocus="txtMa_dvcs_PreviewLostKeyboardFocus" Name="txtMa_dvcs" AllowEmty="true"
@@ -385,7 +386,7 @@
                                               EditAsType="{x:Type sys:String}"/>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
-                                            <smc:NotEmptyField Name="ma_bp" Label="Mã bộ phận" Width="100">
+                                            <smc:NotEmptyField Name="ma_bp" Label="Mã bộ phận" Width="0" Visibility="Hidden">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings AllowEdit="True" LabelTextAlignment="Center" AllowSummaries="False">
                                                         <igDP:FieldSettings.EditorStyle>
@@ -397,8 +398,8 @@
                                                         </igDP:FieldSettings.EditorStyle>
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
-                                            </smc:NotEmptyField>      
-                                            
+                                            </smc:NotEmptyField>
+
                                             <igDP:Field Label="Đvt" Name="dvt" Width="0" Visibility="Hidden">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" AllowSummaries="False"
@@ -429,6 +430,19 @@
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
+                                            <igDP:Field Label="Số ngày làm việc" Name="so_ngay" Width="100">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="False">
+                                                        <igDP:FieldSettings.EditorStyle>
+                                                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                                                                <Setter Property="igEditors:ValueEditor.Format"
+                                                                    Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0},
+                                                                    Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                                                            </Style>
+                                                        </igDP:FieldSettings.EditorStyle>
+                                                    </igDP:FieldSettings>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>
                                             <igDP:Field Label="Ghi chú" Name="ghi_chu" Width="150">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings AllowEdit="True" LabelTextAlignment="Center" AllowSummaries="False"
@@ -442,7 +456,7 @@
                         </smc:DragDropBasicGridView>
                     </smc:GridLayout>
                 </igWindows:TabItemEx>
-                <igWindows:TabItemEx x:Name="tabnguyenlieu" Header="_2. Nguyên liệu" TabIndex="60" Background="{x:Null}">
+                <igWindows:TabItemEx x:Name="tabnguyenlieu" Header="_2. Nguyên liệu" TabIndex="60" Background="{x:Null}" Visibility="Collapsed">
                     <Control.BorderBrush>
                         <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="BaseColor"/>
                     </Control.BorderBrush>
@@ -726,7 +740,7 @@
                         </smc:DragDropBasicGridView>
                     </smc:GridLayout>
                 </igWindows:TabItemEx>
-                <igWindows:TabItemEx x:Name="tabmaymoc" Header="_3. Máy móc" TabIndex="70" Background="{x:Null}">
+                <igWindows:TabItemEx x:Name="tabmaymoc" Header="_3. Máy móc" TabIndex="70" Background="{x:Null}" Visibility="Collapsed">
                     <Control.BorderBrush>
                         <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="BaseColor"/>
                     </Control.BorderBrush>
@@ -918,7 +932,7 @@
                         </smc:DragDropBasicGridView>
                     </smc:GridLayout>
                 </igWindows:TabItemEx>
-                <igWindows:TabItemEx x:Name="tabnguonluc" Header="_4. Nguồn lực" TabIndex="80" Background="{x:Null}">
+                <igWindows:TabItemEx x:Name="tabnguonluc" Header="_4. Nguồn lực" TabIndex="80" Background="{x:Null}" Visibility="Collapsed">
                     <Control.BorderBrush>
                         <SolidColorBrush Color="#FFD0D0BF" igThemes:ResourceWasher.WashGroup="BaseColor"/>
                     </Control.BorderBrush>
@@ -1057,9 +1071,9 @@
             </igWindows:XamTabControl>
             <StackPanel Name="stackIsChecked" HorizontalAlignment="Right" Margin="12,0" Orientation="Horizontal">
                 <!--<Button Click="BtnDMNVL_Click" Name="btnDMNVL" Margin="12,0,12,0" Width="90" Content="_Định mức NVL" Height="20" IsTabStop="false"> </Button>-->
-                <Button Click="BtnXuatNVL_Click" Name="btnXuatNVL" Margin="12,0,12,0" Width="90" Content="_Xuất NVL" Height="20" IsTabStop="false"/>
+                <Button Click="BtnXuatNVL_Click" Name="btnXuatNVL" Margin="12,0,12,0" Width="90" Content="_Xuất NVL" Height="20" IsTabStop="false" Visibility="Collapsed"/>
                 <Button Click="BtnViewNVL_Click" Name="btnViewNVL" Margin="12,0,12,0" Width="90" Content="Xem phiếu xuất" Height="20"
-                            IsTabStop="false" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            IsTabStop="false" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed">
                     <FrameworkElement.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonStyle}">
                             <Setter Property="UIElement.IsEnabled" Value="true"/>

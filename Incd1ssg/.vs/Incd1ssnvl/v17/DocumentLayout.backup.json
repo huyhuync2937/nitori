@@ -1,0 +1,72 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1ssnvl\\Incd1ssnvl.csproj|d:\\siserpsme2025\\source\\incd1ssnvl\\incd1ssnvl\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1ssnvl\\Incd1ssnvl.csproj|solutionrelative:incd1ssnvl\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1ssnvl\\Incd1ssnvl.csproj|d:\\siserpsme2025\\source\\incd1ssnvl\\incd1ssnvl\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1ssnvl\\Incd1ssnvl.csproj|solutionrelative:incd1ssnvl\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Incd1ssnvl||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1ssnvl\\Incd1ssnvl.csproj|d:\\siserpsme2025\\source\\incd1ssnvl\\incd1ssnvl\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\Incd1ssnvl\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Incd1ssnvl\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\Incd1ssnvl\\App.xaml.cs",
+              "RelativeToolTip": "Incd1ssnvl\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T17:00:34.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\Incd1ssnvl\\StartUp.cs",
+              "RelativeDocumentMoniker": "Incd1ssnvl\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\Incd1ssnvl\\StartUp.cs",
+              "RelativeToolTip": "Incd1ssnvl\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T17:00:13.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Incd1ssnvl",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\Incd1ssnvl\\Incd1ssnvl.csproj",
+              "RelativeDocumentMoniker": "Incd1ssnvl\\Incd1ssnvl.csproj",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1ssnvl\\Incd1ssnvl\\Incd1ssnvl.csproj",
+              "RelativeToolTip": "Incd1ssnvl\\Incd1ssnvl.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-08-03T17:00:04.831Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

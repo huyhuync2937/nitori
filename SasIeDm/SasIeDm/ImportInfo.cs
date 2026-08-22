@@ -78,5 +78,10 @@ namespace SasIeDm
 			get;
 			set;
 		}
-	}
+        public string FieldNotNull
+        {
+            get;
+            set;
+        }
+    }
 }

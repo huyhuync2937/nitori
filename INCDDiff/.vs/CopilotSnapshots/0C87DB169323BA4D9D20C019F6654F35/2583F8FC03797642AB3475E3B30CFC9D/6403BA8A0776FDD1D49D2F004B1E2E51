@@ -1,0 +1,891 @@
+﻿using COHDTH43_1;
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.Editors;
+using SasControls;
+using SasErrorLib;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+public static class UpdateFieldHandler
+{
+    private const string TABLE_NAME = "KHSX3_1";
+    private const string DATE_FORMAT = "yyyyMMdd";
+
+    // Field constants to avoid magic strings
+    private static class FieldNames
+    {
+        public const string CHON = "chon";
+        public const string MA_NVL_GOP = "ma_nvl_gop";
+        public const string VUNG_MAY = "vung_may";
+        public const string NHOM_MAY = "nhom_may";
+        public const string NGAY_BD = "ngay_bd";
+        public const string NGAY_KT = "ngay_kt";
+        public const string SO_CA = "so_ca";
+        public const string MA_MAY = "ma_may";
+        public const string MA_CA = "ma_ca";
+        public const string MA_CA_KT = "ma_ca_kt";
+        public const string SS = "ss";
+        public const string SL_KG_LENH = "sl_kg_lenh";
+        public const string SL_CAI_LENH = "sl_cai_lenh";
+        public const string NSC = "nsc";
+        public const string SO_CA_LENH = "so_ca_lenh";
+        public const string HS_QD = "hs_qd";
+        public const string DM_TS = "dmts";
+        public const string DM_CA = "dmca";
+    }
+
+    private static class Messages
+    {
+        public const int UPDATE_ONE_BY_ONE = 556;
+        public const int MACHINE_CONFLICT = 555;
+        public const int CONFIRM_UPDATE = 1122;
+    }
+
+    // Main entry point
+    public static void Execute()
+    {
+        try
+        {
+            // Validation
+            if (!ValidatePrerequisites())
+                return;
+
+            CellInfo cellInfo = ExtractCellInfo();
+            if (cellInfo == null)
+                return;
+
+            FrmSetValue frmSetValue = CreateAndConfigureForm(cellInfo.Value.ToString(), cellInfo.FieldName);
+
+            if (!ShowFormDialog(frmSetValue))
+                return;
+
+            if (!ConfirmUpdate())
+                return;
+
+            UpdateData updateData = ExtractUpdateData(frmSetValue, cellInfo);
+            ExecuteUpdates(updateData);
+        }
+        catch (Exception ex)
+        {
+            HandleException(ex);
+        }
+    }
+
+    #region Validation Methods
+
+    private static bool ValidatePrerequisites()
+    {
+        return StartUp.CanChangeValueFields != null &&
+               StartUp.CanChangeValueFields.Length > 0 &&
+               StartUp.oBrowse.frmBrw.oBrowse.ActiveCell != null;
+    }
+
+    private static bool IsValidEditableField(string fieldName)
+    {
+        string[] validFields = new[]
+        {
+            FieldNames.NGAY_BD, FieldNames.MA_MAY, FieldNames.MA_CA,
+            FieldNames.NGAY_KT, FieldNames.MA_CA_KT, FieldNames.SL_KG_LENH,
+            FieldNames.SL_CAI_LENH
+        };
+
+        foreach (string field in validFields)
+        {
+            if (field == fieldName)
+                return true;
+        }
+        return false;
+    }
+
+    private static bool CanChangeField(string fieldName)
+    {
+        foreach (string field in StartUp.CanChangeValueFields)
+        {
+            if (field == fieldName)
+                return true;
+        }
+        return false;
+    }
+
+    #endregion
+
+    #region Cell Info Extraction
+
+    private class CellInfo
+    {
+        public string FieldName { get; set; }
+        public object Value { get; set; }
+        public DataRecord Record { get; set; }
+    }
+
+    private static CellInfo ExtractCellInfo()
+    {
+        Cell cell = StartUp.oBrowse.frmBrw.oBrowse.ActiveCell;
+        string fieldName = cell.Field.Name.ToString();
+
+        if (!IsValidEditableField(fieldName))
+            return null;
+
+        if (StartUp.oBrowse.ActiveRecord != null)
+        {
+            EndEditMode();
+            StartUp.oBrowse.ActiveRecord.Update();
+        }
+
+        CellInfo cellInfo = new CellInfo();
+        cellInfo.FieldName = fieldName;
+        cellInfo.Value = CanChangeField(fieldName) ? cell.Value : "";
+        cellInfo.Record = cell.Record as DataRecord;
+
+        return cellInfo;
+    }
+
+    private static void EndEditMode()
+    {
+        Cell activeCell = StartUp.oBrowse.DataGrid.ActiveCell;
+        if (activeCell != null && activeCell.IsInEditMode)
+            activeCell.EndEditMode();
+    }
+
+    #endregion
+
+    #region Form Creation and Configuration
+
+    private static FrmSetValue CreateAndConfigureForm(string oldValue, string fieldName)
+    {
+        FrmSetValue frm = new FrmSetValue(oldValue, fieldName);
+        frm.cbField.ItemsProvider = new ComboBoxItemsProvider();
+        frm.cbField.ValuePath = "Value";
+
+        PopulateFieldCombo(frm);
+        SetFieldValue(frm, fieldName);
+        ConfigureFormByFieldType(frm, fieldName);
+
+        return frm;
+    }
+
+    private static void PopulateFieldCombo(FrmSetValue frm)
+    {
+        FieldCollection fields = StartUp.oBrowse.frmBrw.oBrowse.FieldLayouts[0].Fields;
+
+        foreach (string field in StartUp.CanChangeValueFields)
+        {
+            string displayName = field;
+
+            if (fields.Any(f => f.Name == field))
+            {
+                displayName = fields[field].Label.ToString();
+            }
+
+            frm.cbField.ItemsProvider.Items.Add(new ComboBoxDataItem(field, displayName));
+        }
+    }
+
+    private static void SetFieldValue(FrmSetValue frm, string fieldName)
+    {
+        if (CanChangeField(fieldName))
+        {
+            frm.cbField.Value = fieldName;
+        }
+        else
+        {
+            frm.cbField.SelectedIndex = 0;
+        }
+    }
+
+    private static void ConfigureFormByFieldType(FrmSetValue frm, string fieldName)
+    {
+        string fieldValue = SafeToString(frm.cbField.Value).Trim();
+
+        if (fieldValue == FieldNames.MA_MAY)
+        {
+            ConfigureForMaMay(frm);
+        }
+        else if (fieldValue == FieldNames.MA_CA || fieldValue == FieldNames.MA_CA_KT)
+        {
+            ConfigureForMaCa(frm);
+        }
+        else if (fieldValue == FieldNames.NGAY_BD || fieldValue == FieldNames.NGAY_KT)
+        {
+            ConfigureForDate(frm);
+        }
+        else if (fieldValue == FieldNames.SL_KG_LENH || fieldValue == FieldNames.SL_CAI_LENH)
+        {
+            ConfigureForQuantity(frm);
+        }
+
+        frm.txtNewValue.IsFocus = true;
+    }
+
+    private static void ConfigureForMaMay(FrmSetValue frm)
+    {
+        frm.txtNewValue.ListID = FieldNames.DM_TS;
+        frm.Title = "Cập nhật thông tin mã khách hàng";
+        HideDateAndQuantityFields(frm);
+    }
+
+    private static void ConfigureForMaCa(FrmSetValue frm)
+    {
+        frm.txtNewValue.ListID = FieldNames.DM_CA;
+        frm.Title = "Cập nhật thông tin mã ca";
+        HideDateAndQuantityFields(frm);
+    }
+
+    private static void ConfigureForDate(FrmSetValue frm)
+    {
+        frm.Title = "Cập nhật thông tin ngày bắt đầu";
+        HideField(frm.lblNewValue, frm.txtNewValue);
+        HideField(frm.tblsl, frm.txtsl);
+    }
+
+    private static void ConfigureForQuantity(FrmSetValue frm)
+    {
+        frm.Title = "Cập nhật thông tin số lượng";
+        HideField(frm.lblNewValue, frm.txtNewValue);
+        HideField(frm.lblNgaybd, frm.txtNgay_bd);
+    }
+
+    private static void HideDateAndQuantityFields(FrmSetValue frm)
+    {
+        HideField(frm.lblNgaybd, frm.txtNgay_bd);
+        HideField(frm.tblsl, frm.txtsl);
+    }
+
+    private static void HideField(UIElement label, UIElement input)
+    {
+        label.Visibility = Visibility.Hidden;
+        //input.IsTabStop = false;
+        input.Visibility = Visibility.Hidden;
+    }
+
+    #endregion
+
+    #region Dialog and Confirmation
+
+    private static bool ShowFormDialog(FrmSetValue frm)
+    {
+        bool? result = frm.ShowDialog();
+        return (result.HasValue && result.Value) &&
+               frm.cbField.Value != null &&
+               SafeToString(frm.cbField.Value).Trim() != "";
+    }
+
+    private static bool ConfirmUpdate()
+    {
+        MessageBoxResult result = ExMessageBox.Show(
+            Messages.CONFIRM_UPDATE,
+            StartupBase.SasObj,
+            "Có muốn cập nhật số liệu không?",
+            "",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question,
+            MessageBoxResult.Yes
+        );
+
+        return result == MessageBoxResult.Yes;
+    }
+
+    #endregion
+
+    #region Data Extraction and Validation
+
+    private class UpdateData
+    {
+        public string FieldName { get; set; }
+        public string NewValue { get; set; }
+        public decimal Quantity { get; set; }
+        public DataRowView[] SelectedRows { get; set; }
+        public DataRecord Record { get; set; }
+    }
+
+    private static UpdateData ExtractUpdateData(FrmSetValue frm, CellInfo cellInfo)
+    {
+        string fieldName = SafeToString(frm.cbField.Value).Trim();
+        DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+
+        DataTable distinctValues = dataView.ToTable(true,
+            FieldNames.CHON, FieldNames.MA_NVL_GOP, FieldNames.VUNG_MAY,
+            FieldNames.NHOM_MAY, FieldNames.NGAY_BD, FieldNames.SO_CA,
+            FieldNames.MA_MAY, FieldNames.SS, FieldNames.MA_CA,
+            FieldNames.SL_KG_LENH, FieldNames.SL_CAI_LENH, FieldNames.NSC, FieldNames.SO_CA_LENH);
+
+        List<DataRowView> selectedRowsList = new List<DataRowView>();
+        foreach (DataRowView row in distinctValues.DefaultView)
+        {
+            bool isSelected = (bool)row[FieldNames.CHON];
+            if (isSelected)
+                selectedRowsList.Add(row);
+        }
+
+        string newValue = GetFieldValue(fieldName, frm);
+        decimal quantity = GetQuantityValue(fieldName, frm);
+
+        // Validate before returning
+        if (fieldName == FieldNames.MA_MAY)
+            ValidateMachineConflict(selectedRowsList.ToArray(), cellInfo.Record, newValue);
+
+        UpdateData updateData = new UpdateData();
+        updateData.FieldName = fieldName;
+        updateData.NewValue = newValue;
+        updateData.Quantity = quantity;
+        updateData.SelectedRows = selectedRowsList.ToArray();
+        updateData.Record = cellInfo.Record;
+
+        return updateData;
+    }
+
+    private static string GetFieldValue(string fieldName, FrmSetValue frm)
+    {
+        if (fieldName == FieldNames.NGAY_BD || fieldName == FieldNames.NGAY_KT)
+            return frm.txtNgay_bd.dValue.ToString(DATE_FORMAT);
+        else
+            return frm.txtNewValue.Text.Trim();
+    }
+
+    private static decimal GetQuantityValue(string fieldName, FrmSetValue frm)
+    {
+        if (fieldName == FieldNames.SL_CAI_LENH || fieldName == FieldNames.SL_KG_LENH)
+            return Convert.ToDecimal(frm.txtsl.Value);
+        return 0;
+    }
+
+    #endregion
+
+    #region Conflict Validation
+
+    private static void ValidateMachineConflict(DataRowView[] selectedRows, DataRecord record, string newMachineCode)
+    {
+        if (selectedRows.Length > 1)
+        {
+            ExMessageBox.Show(
+                Messages.UPDATE_ONE_BY_ONE,
+                StartupBase.SasObj,
+                "Mã máy chỉ cập nhật từng dòng",
+                "",
+                MessageBoxButton.OK,
+                MessageBoxImage.Asterisk
+            );
+        }
+
+        // Check if ngay_bd and ngay_kt are set for the new machine code validation
+        string ngayBdStr = GetCellString(record, FieldNames.NGAY_BD);
+        string ngayKtStr = GetCellString(record, FieldNames.NGAY_KT);
+
+        // Only validate if both dates exist
+        if (string.IsNullOrEmpty(ngayBdStr) || string.IsNullOrEmpty(ngayKtStr))
+            return;
+
+        DateTime currentStartDate = Convert.ToDateTime(ngayBdStr);
+        DateTime currentEndDate = Convert.ToDateTime(ngayKtStr);
+
+        DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+
+        foreach (DataRowView otherRow in dataView)
+        {
+            string otherMachineCode = SafeToString(otherRow[FieldNames.MA_MAY]).Trim();
+
+            if (otherMachineCode == newMachineCode && !string.IsNullOrEmpty(newMachineCode))
+            {
+                string otherNgayBdStr = SafeToString(otherRow[FieldNames.NGAY_BD]).Trim();
+                string otherNgayKtStr = SafeToString(otherRow[FieldNames.NGAY_KT]).Trim();
+
+                // Only compare if both dates exist in the other row
+                if (!string.IsNullOrEmpty(otherNgayBdStr) && !string.IsNullOrEmpty(otherNgayKtStr))
+                {
+                    DateTime otherStartDate = Convert.ToDateTime(otherNgayBdStr);
+                    DateTime otherEndDate = Convert.ToDateTime(otherNgayKtStr);
+
+                    // Check if the new date range falls within or overlaps with existing range
+                    // Allow only if new range is completely outside (before or after) the existing range
+                    if (!(currentEndDate < otherStartDate || currentStartDate > otherEndDate))
+                    {
+                        ExMessageBox.Show(
+                            Messages.MACHINE_CONFLICT,
+                            StartupBase.SasObj,
+                            "Mã máy đã sản xuất vật tư khác trong khoảng thời gian này",
+                            "",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Asterisk
+                        );
+                        throw new InvalidOperationException("Machine code conflict detected");
+                    }
+                }
+            }
+        }
+    }
+
+    private class DateRange
+    {
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+    }
+
+    private static DateRange ExtractDateRange(DataRecord record, string machineCode)
+    {
+        DateTime startDate = GetCellDateTime(record, FieldNames.NGAY_BD, DateTime.Now);
+        double soCa = GetCellDouble(record, FieldNames.SO_CA);
+        string maCa = GetCellString(record, FieldNames.MA_CA);
+
+        DateTime endDate = startDate;
+        if (!string.IsNullOrEmpty(maCa) && soCa > 0)
+            endDate = GetNgayKetThuc(soCa, startDate, maCa);
+
+        DateRange range = new DateRange();
+        range.Start = startDate;
+        range.End = endDate;
+        return range;
+    }
+
+    private static DateRange ExtractDateRangeFromRow(DataRowView row)
+    {
+        string dateStr = SafeToString(row[FieldNames.NGAY_BD]).Trim();
+        if (string.IsNullOrEmpty(dateStr))
+            return null;
+
+        DateTime startDate;
+        if (!DateTime.TryParse(dateStr, out startDate))
+            return null;
+
+        string maCa = SafeToString(row[FieldNames.MA_CA]).Trim();
+        double soCa = GetRowDouble(row, FieldNames.SO_CA);
+
+        DateTime endDate = startDate;
+        if (!string.IsNullOrEmpty(maCa) && soCa > 0)
+            endDate = GetNgayKetThuc(soCa, startDate, maCa);
+
+        DateRange range = new DateRange();
+        range.Start = startDate;
+        range.End = endDate;
+        return range;
+    }
+
+    private static bool RangesOverlap(DateRange range1, DateRange range2)
+    {
+        return range1.Start <= range2.End && range2.Start <= range1.End;
+    }
+
+    #endregion
+
+    #region Update Execution
+
+    private static void ExecuteUpdates(UpdateData data)
+    {
+        if (data.SelectedRows.Length == 0)
+            return;
+
+        SasFormBrowes.FrmWaiting frmWait = new SasFormBrowes.FrmWaiting(data.SelectedRows.Length);
+        try
+        {
+            frmWait.Show();
+
+            foreach (DataRowView row in data.SelectedRows)
+            {
+                ExecuteSingleUpdate(row, data);
+                frmWait.Set(1);
+            }
+
+            RefreshGridReport();
+        }
+        finally
+        {
+            if (frmWait != null)
+            {
+                frmWait.Hide();
+                frmWait.Close();
+                frmWait = null;
+            }
+        }
+    }
+
+    private static void ExecuteSingleUpdate(DataRowView row, UpdateData data)
+    {
+        UpdateContext context = ExtractRowContext(row, data.Record);
+        string commandText = BuildUpdateCommand(data, context);
+
+        SqlCommand cmd = new SqlCommand(commandText);
+        StartupBase.SasObj.ExcuteNonQuery(cmd);
+    }
+
+    private class UpdateContext
+    {
+        public string MaNvlGop { get; set; }
+        public string VungMay { get; set; }
+        public string NhomMay { get; set; }
+        public string SoCa { get; set; }
+        public string SoCalenh { get; set; }
+        public string MaCa { get; set; }
+        public decimal Nsc { get; set; }
+        public double SoCaLamTron { get; set; }
+    }
+
+    private static UpdateContext ExtractRowContext(DataRowView row, DataRecord record)
+    {
+        string soCa = row[FieldNames.SO_CA].ToString();
+        string SoCalenh = row[FieldNames.SO_CA_LENH].ToString();
+        string maCa = GetCellString(record, FieldNames.MA_CA);
+        decimal nsc = Convert.ToDecimal(GetCellString(record, FieldNames.NSC));
+
+        double numSoCa = 0;
+        double tempVal = 0;
+
+        if (double.TryParse(SoCalenh, out tempVal) && tempVal != 0)
+        {
+            numSoCa = tempVal;
+        }
+        else if (double.TryParse(soCa, out tempVal))
+        {
+            numSoCa = tempVal;
+        }
+
+        UpdateContext context = new UpdateContext();
+        context.MaNvlGop = row[FieldNames.MA_NVL_GOP].ToString();
+        context.VungMay = row[FieldNames.VUNG_MAY].ToString();
+        context.NhomMay = row[FieldNames.NHOM_MAY].ToString();
+        context.SoCa = soCa;
+        context.SoCalenh = SoCalenh;
+        context.MaCa = maCa;
+        context.Nsc = nsc;
+        context.SoCaLamTron = Math.Ceiling(numSoCa);
+
+        return context;
+    }
+
+    private static string BuildUpdateCommand(UpdateData data, UpdateContext context)
+    {
+        string baseWhere = string.Format(" WHERE vung_may = N'{0}' AND " +
+                           "nhom_may = N'{1}' AND " +
+                           "ma_nvl_gop = N'{2}' ",
+                           context.VungMay, context.NhomMay, context.MaNvlGop);
+
+        if (data.FieldName == FieldNames.NGAY_BD)
+        {
+            return BuildDateUpdateCommand(data, context, baseWhere);
+        }
+        else if (data.FieldName == FieldNames.MA_CA)
+        {
+            return BuildMaCaUpdateCommand(data, context, baseWhere);
+        }
+        else if (data.FieldName == FieldNames.MA_CA_KT)
+        {
+            return string.Format("UPDATE {0} SET {1} = '{2}'{3}",
+                TABLE_NAME, data.FieldName, data.NewValue, baseWhere);
+        }
+        else if (data.FieldName == FieldNames.NGAY_KT)
+        {
+            return string.Format("UPDATE {0} SET {1} = '{2}'{3}",
+                TABLE_NAME, data.FieldName, data.NewValue, baseWhere);
+        }
+        else if (data.FieldName == FieldNames.SL_CAI_LENH)
+        {
+            return BuildQuantityUpdateCommand(data, context, baseWhere, false);
+        }
+        else if (data.FieldName == FieldNames.SL_KG_LENH)
+        {
+            return BuildQuantityUpdateCommand(data, context, baseWhere, true);
+        }
+        else
+        {
+            return string.Format("UPDATE {0} SET {1} = '{2}'{3}",
+                TABLE_NAME, data.FieldName, data.NewValue, baseWhere);
+        }
+    }
+
+    private static string BuildDateUpdateCommand(UpdateData data, UpdateContext context, string baseWhere)
+    {
+        // When updating ngay_bd (start date)
+        // We need to recalculate ngay_kt ONLY if ma_ca exists
+
+        string maCa = GetCellString(data.Record, FieldNames.MA_CA);
+
+        if (!string.IsNullOrEmpty(maCa))
+        {
+            // ✅ ma_ca EXISTS → Calculate and update ngay_kt
+            DateTime ngayBd = DateTime.ParseExact(data.NewValue, DATE_FORMAT, CultureInfo.InvariantCulture);
+            double soCaDouble = 0;
+            double.TryParse(context.SoCa, out soCaDouble);
+
+            DateTime ngayKt = GetNgayKetThuc(soCaDouble, ngayBd, maCa);
+
+            return string.Format("UPDATE {0} SET {1} = '{2}', ngay_kt = '{3}'{4}",
+                TABLE_NAME, data.FieldName, data.NewValue, ngayKt.ToString(DATE_FORMAT), baseWhere);
+        }
+        else
+        {
+            // ❌ ma_ca does NOT exist → Only update ngay_bd, NOT ngay_kt
+            return string.Format("UPDATE {0} SET {1} = '{2}'{3}",
+                TABLE_NAME, data.FieldName, data.NewValue, baseWhere);
+        }
+    }
+
+
+    private static string BuildMaCaUpdateCommand(UpdateData data, UpdateContext context, string baseWhere)
+    {
+      
+
+        // ✅ FIX: Only update ma_ca_kt and ngay_kt with proper conditions
+
+        string newMaCa = data.NewValue; // The new ma_ca value being set
+        string maCaKt = GetCaKetThuc(context.SoCaLamTron, newMaCa);
+
+        // Check if ngay_bd exists
+        string ngayBdStr = GetCellString(data.Record, FieldNames.NGAY_BD);
+
+
+        if (!string.IsNullOrEmpty(ngayBdStr) )
+        {
+            // ✅ ngay_bd EXISTS → Update both ma_ca_kt AND ngay_kt
+            DateTime ngayBd = Convert.ToDateTime(ngayBdStr);
+            double soCaDouble = context.SoCaLamTron;
+
+
+            //if (int.TryParse(context.SoCalenh?.Trim(), out int soCalenh) && soCalenh > 0)
+            //{
+            //    double.TryParse(context.SoCaLamTron.Trim(), out soCaDouble);
+            //}
+            //else
+            //{
+            //    double.TryParse(context.SoCaLamTron?.Trim(), out soCaDouble);
+            //}
+            DateTime ngayKt = GetNgayKetThuc(soCaDouble, ngayBd, newMaCa);
+
+
+            return string.Format("UPDATE {0} SET {1} = '{2}', ma_ca_kt = '{3}', ngay_kt = '{4}'{5}",
+                TABLE_NAME, data.FieldName, newMaCa, maCaKt, ngayKt.ToString(DATE_FORMAT), baseWhere);
+        }
+        else
+        {
+            // ❌ ngay_bd does NOT exist → Update ma_ca_kt but NOT ngay_kt
+            return string.Format("UPDATE {0} SET {1} = '{2}', ma_ca_kt = '{3}'{4}",
+                TABLE_NAME, data.FieldName, newMaCa, maCaKt, baseWhere);
+        }
+    }
+
+    private static string BuildQuantityUpdateCommand(UpdateData data, UpdateContext context, string baseWhere, bool isKg)
+    {
+        DataRow rowQD = GetDVTKL(context.MaNvlGop);
+        if (rowQD == null)
+        {
+            return string.Format("UPDATE {0} SET {1} = {2}{3}",
+                TABLE_NAME, data.FieldName, data.Quantity, baseWhere);
+        }
+
+        decimal hsQd = 0;
+        if (!Decimal.TryParse(rowQD[FieldNames.HS_QD].ToString(), out hsQd) || hsQd <= 0)
+        {
+            return string.Format("UPDATE {0} SET {1} = {2}{3}",
+                TABLE_NAME, data.FieldName, data.Quantity, baseWhere);
+        }
+
+        decimal slKgLenh, slCaiLenh, soCa;
+
+        if (isKg)
+        {
+            slKgLenh = data.Quantity;
+            slCaiLenh = Math.Round(data.Quantity * hsQd, 2);
+            soCa = Math.Round(slCaiLenh / context.Nsc, 2);
+        }
+        else
+        {
+            slCaiLenh = data.Quantity;
+            slKgLenh = Math.Round(data.Quantity / hsQd, 2);
+            soCa = Math.Round(slCaiLenh / context.Nsc, 2);
+        }
+
+        // ✅ FIX #1: Check if ma_ca exists before calculating ma_ca_kt
+        string maCa = GetCellString(data.Record, FieldNames.MA_CA);
+        if (string.IsNullOrEmpty(maCa))
+        {
+            // ❌ Nếu ma_ca KHÔNG có → KHÔNG update ma_ca_kt và ngay_kt
+            return string.Format(
+                "UPDATE {0} SET sl_kg_lenh = {1}, sl_cai_lenh = {2}, so_ca_lenh = {3}{4}",
+                TABLE_NAME,
+                slKgLenh.ToString(CultureInfo.InvariantCulture),
+                slCaiLenh.ToString(CultureInfo.InvariantCulture),
+                soCa.ToString(CultureInfo.InvariantCulture),
+                baseWhere);
+        }
+
+        // ✅ FIX #2: ma_ca EXISTS - now check if ngay_bd exists for ngay_kt
+        string maCaKt = GetCaKetThuc(Math.Ceiling(Convert.ToDouble(soCa)), maCa);
+        string ngayBdStr = GetCellString(data.Record, FieldNames.NGAY_BD);
+
+        if (!string.IsNullOrEmpty(ngayBdStr))
+        {
+            // ✅ Both ma_ca AND ngay_bd exist → Update ALL fields including ngay_kt
+            DateTime ngayBd = Convert.ToDateTime(ngayBdStr);
+            DateTime ngayKt = GetNgayKetThuc(Convert.ToDouble(soCa), ngayBd, maCaKt);
+
+            return string.Format(
+                "UPDATE {0} SET sl_kg_lenh = {1}, sl_cai_lenh = {2}, " +
+                "so_ca_lenh = {3}, ma_ca_kt = '{4}', ngay_kt = '{5}'{6}",
+                TABLE_NAME,
+                slKgLenh.ToString(CultureInfo.InvariantCulture),
+                slCaiLenh.ToString(CultureInfo.InvariantCulture),
+                soCa.ToString(CultureInfo.InvariantCulture),
+                maCaKt,
+                ngayKt.ToString(DATE_FORMAT),
+                baseWhere);
+        }
+        else
+        {
+            // ✅ ma_ca EXISTS but ngay_bd does NOT → Update ma_ca_kt but NOT ngay_kt
+            return string.Format(
+                "UPDATE {0} SET sl_kg_lenh = {1}, sl_cai_lenh = {2}, " +
+                "so_ca_lenh = {3}, ma_ca_kt = '{4}'{5}",
+                TABLE_NAME,
+                slKgLenh.ToString(CultureInfo.InvariantCulture),
+                slCaiLenh.ToString(CultureInfo.InvariantCulture),
+                soCa.ToString(CultureInfo.InvariantCulture),
+                maCaKt,
+                baseWhere);
+        }
+    }
+
+
+    private static void RefreshGridReport()
+    {
+        bool kindReport = bool.Parse(StartUp._frmLoc.cbMau_bc.Value.ToString());
+        StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg,
+            StartUp.g_ctTuNg, StartUp.g_ctDenNg, StartUp.g_strCondition,
+            StartUp.g_strFilter, kindReport, StartUp.g_ps_ck);
+    }
+
+    #endregion
+
+    #region Helper Methods
+
+    private static string SafeToString(object obj)
+    {
+        return obj != null ? obj.ToString() : "";
+    }
+
+    private static string GetCellString(DataRecord record, string fieldName)
+    {
+        if (record == null || record.Cells[fieldName] == null)
+            return "";
+
+        object value = record.Cells[fieldName].Value;
+        return value != null ? value.ToString().Trim() : "";
+    }
+
+    private static DateTime GetCellDateTime(DataRecord record, string fieldName, DateTime defaultValue)
+    {
+        string value = GetCellString(record, fieldName);
+        if (string.IsNullOrEmpty(value))
+            return defaultValue;
+
+        try
+        {
+            return Convert.ToDateTime(value);
+        }
+        catch
+        {
+            return defaultValue;
+        }
+    }
+
+    private static double GetCellDouble(DataRecord record, string fieldName)
+    {
+        string value = GetCellString(record, fieldName);
+        if (string.IsNullOrEmpty(value))
+            return 0;
+
+        double result = 0;
+        double.TryParse(value, out result);
+        return result;
+    }
+
+    private static double GetRowDouble(DataRowView row, string fieldName)
+    {
+        object value = row[fieldName];
+        if (value == null)
+            return 0;
+
+        double result = 0;
+        double.TryParse(value.ToString(), out result);
+        return result;
+    }
+
+    private static void HandleException(Exception ex)
+    {
+        ErrorLog.CatchMessage(ex);
+    }
+
+
+    public static DataRow GetDVTKL(string ma_sp)
+    {
+        string sql = "SELECT * FROM v_dmvtdvt WHERE ma_vt = @ma_sp and hs_qd <> 1 ";
+
+        using (SqlCommand sqlCommand = new SqlCommand(sql))
+        {
+            sqlCommand.Parameters.Add("@ma_sp", SqlDbType.Char, 16).Value = ma_sp;
+
+            DataSet dataSet = StartupBase.SasObj.ExcuteReader(sqlCommand);
+            return (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+                ? dataSet.Tables[0].Rows[0]
+                : null;
+        }
+    }
+
+    public static string GetCaKetThuc(double soCa, string ma_ca)
+    {
+        int ca = (int)Math.Ceiling(soCa); // làm tròn lên
+
+        int startIndex;
+        if (ma_ca == "CA01")
+            startIndex = 1;
+        else if (ma_ca == "CA02")
+            startIndex = 2;
+        else if (ma_ca == "CA03")
+            startIndex = 3;
+        else
+            startIndex = 1;
+
+        int totalCa = startIndex - 1 + ca;
+
+        int index = ((totalCa - 1) % 3) + 1;
+
+        if (index == 1)
+            return "CA01";
+        else if (index == 2)
+            return "CA02";
+        else
+            return "CA03";
+    }
+
+
+    public static DateTime GetNgayKetThuc(double soCa, DateTime ngay_bd, string ma_ca)
+    {
+
+        int startIndex;
+        switch (ma_ca)
+        {
+            case "CA01":
+                startIndex = 1;
+                break;
+            case "CA02":
+                startIndex = 2;
+                break;
+            case "CA03":
+                startIndex = 3;
+                break;
+            default:
+                startIndex = 1;
+                break;
+        }
+
+        int totalCa = startIndex - 1 + (int)Math.Ceiling(soCa);
+
+        int soNgayTang = (totalCa - 1) / 3;
+
+        return ngay_bd.AddDays(soNgayTang);
+    }
+
+    #endregion
+}

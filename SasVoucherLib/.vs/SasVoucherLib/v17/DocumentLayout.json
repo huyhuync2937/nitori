@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source_Sys\\SasVoucherLib\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}|SasVoucherLib\\SasVoucherLib.csproj|e:\\product\\saserp.net\\2025\\siserpsme2025\\source_sys\\sasvoucherlib\\sasvoucherlib\\formtrans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2508BAB1-BA1F-4FDA-A9B5-4A280208608F}|SasVoucherLib\\SasVoucherLib.csproj|solutionrelative:sasvoucherlib\\formtrans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormTrans.cs",
+              "DocumentMoniker": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source_Sys\\SasVoucherLib\\SasVoucherLib\\FormTrans.cs",
+              "RelativeDocumentMoniker": "SasVoucherLib\\FormTrans.cs",
+              "ToolTip": "E:\\Product\\SASERP.NET\\2025\\SISERPSME2025\\Source_Sys\\SasVoucherLib\\SasVoucherLib\\FormTrans.cs",
+              "RelativeToolTip": "SasVoucherLib\\FormTrans.cs",
+              "ViewState": "AgIAAK4EAAAAAAAAAAAwwL8EAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T02:03:09.312Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

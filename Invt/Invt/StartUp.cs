@@ -21,7 +21,7 @@ namespace Invt
     public class StartUp : StartupBase
     {
         public static string sqlTableListName = "dmvt0";
-        public static string sqlTableName = "dmvt"; 
+        public static string sqlTableName = "dmvt";
         public static string sqlTableView = "v_dmvt";
         public static string SqlTableKey = "ma_vt";
         public static string SqlTableObjectName = "ma_vt";
@@ -47,7 +47,7 @@ namespace Invt
         {
             StartupBase.Namespace = "Invt";
             try
-            {                
+            {
                 StartUp.CommandInfo = SysFunc.GetCommandInfo(StartupBase.SasObj, StartupBase.Menu_Id);
                 StartUp.Parameter = StartUp.CommandInfo["parameter"].ToString().Trim();
                 StartUp.M_TK_CL_VT = StartupBase.SasObj.GetOption("M_TK_CL_VT").ToString().Trim();
@@ -454,3 +454,6 @@ namespace Invt
         }
     }
 }
+
+
+

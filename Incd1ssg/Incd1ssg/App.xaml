@@ -1,0 +1,10 @@
+﻿<Application x:Class="Incd1ssg.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Incd1ssg"
+             Startup="Application_Startup"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary/>
+    </Application.Resources>
+</Application>

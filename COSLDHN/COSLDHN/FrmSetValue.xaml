@@ -33,20 +33,7 @@
             <smc:GridLayout ColumnCount="3" ColumnWidths="120,160,*" RowCount="3" RowHeights="25">
                 <TextBlock Name="lblField" Grid.Row="0">Tên cột</TextBlock>
                 <igEditors:XamComboEditor Name="cbField" Grid.Column="1" Grid.Row="0" Margin="0,2,0,2" IsReadOnly="true"/>
-                <TextBlock Name="lblNewValue" Grid.Row="1">Giá trị</TextBlock>
-
-                <smc:AutoCompleteTextBox PreviewLostFocus="txtNewValue_PreviewLostFocus" x:Name="txtNewValue" Grid.Column="1" Grid.Row="1"
-                                       TabIndex="10" AllowEmty="true" AllowWrong="False" ListID="dmkh"
-                                       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                       SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
-                <TextBlock Name="txtTen_bp" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
-                         Style="{StaticResource ContentTextStyle}"/>
-
-                <TextBlock Name="lblNgaybd" Grid.Row="2">Ngày bắt đầu</TextBlock>
-
-                <smc:DateTextBox LostFocus="txtNgay_bd_LostFocus" x:Name="txtNgay_bd" Grid.Column="1" Grid.Row="2" TabIndex="50"
-         AllowEmpty="false" 
-         Value="{smc:BindingEx Path=ngay_bd}"/>
+               
 
                 <TextBlock Name="tblsl" Text="Số lượng" Grid.Row="1" Grid.Column="0"
    Style="{StaticResource ContentTextStyle}"/>

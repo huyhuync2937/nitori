@@ -49,6 +49,8 @@ namespace COLGH
         public static object g_hdDenNg;
         public static object g_ctTuNg;
         public static object g_ctDenNg;
+        public static string g_maKh = string.Empty;
+        public static string g_maVt = string.Empty;
         public static string[] CanChangeValueFields;
         public static int m_user_id = 0;
         private const string DATE_FORMAT = "yyyyMMdd";
@@ -80,28 +82,30 @@ namespace COLGH
             }
         }
 
-        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg, string filter)
+        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg, string filter, string maKh, string maVt)
         {
             StartUp.g_hdTuNg = hdTuNg;
             StartUp.g_hdDenNg = hdDenNg;
-            
+
             StartUp.g_strFilter = filter;
+            StartUp.g_maKh = maKh;
+            StartUp.g_maVt = maVt;
             if (isFirstLoad)
             {
-                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg,@filter";
+                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg,@ma_kh,@ma_vt";
                 StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
                 StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
-                StartUp.cmd.Parameters.Add("@filter", SqlDbType.NVarChar).Value = (object)filter;
+                StartUp.cmd.Parameters.Add("@ma_kh", SqlDbType.VarChar).Value = string.IsNullOrEmpty(maKh) ? (object)"" : (object)maKh;
+                StartUp.cmd.Parameters.Add("@ma_vt", SqlDbType.VarChar).Value = string.IsNullOrEmpty(maVt) ? (object)"" : (object)maVt;
 
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
-                DataTable dataTable = StartUp.dsReport.Tables[1].Copy();
-                DataTable dataTableString = StartUp.dsReport.Tables[0].Copy();
+                DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
 
 
-                StartUp.dsReport.Tables[0].TableName = "tbtong";
+                StartUp.dsReport.Tables[0].TableName = "tbDetail";
                 dataTable.TableName = "tbDetail";
                 StartUp.dsReport.Tables.Add(StartUp.CreateTableInfo().Copy());
-                StartUp.oBrowse = new SasFormBrowes.FormBrowse(StartupBase.SasObj, dataTable.DefaultView, dataTableString.Rows[0]["HeaderString"].ToString());
+                StartUp.oBrowse = new SasFormBrowes.FormBrowse(StartupBase.SasObj, dataTable.DefaultView, StartUp.fieldShow(1, 0));
                 //StartUp.oBrowse.F3 += new SasFormBrowes.FormBrowse.GridKeyUp_F3(StartUp.oBrowse_F3);
                 StartUp.oBrowse.F7 += new SasFormBrowes.FormBrowse.GridKeyUp_F7(StartUp.oBrowse_F7);
                 StartUp.oBrowse.frmBrw.PreviewKeyDown += new KeyEventHandler(StartUp.FrmBrw_PreviewKeyDown);
@@ -149,9 +153,8 @@ namespace COLGH
             {
                 StartUp.dsReport.Tables.Clear();
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
-                DataTable dataTable = StartUp.dsReport.Tables[1].Copy();
-                StartUp.dsReport.Tables[1].TableName = "tbDetail";
-                StartUp.dsReport.Tables[0].TableName = "tbtong";
+                DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
+                StartUp.dsReport.Tables[0].TableName = "tbDetail";
                 dataTable.TableName = "tbDetail";
                 StartUp.dsReport.Tables.Add(StartUp.CreateTableInfo().Copy());
                 StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)dataTable.DefaultView;
@@ -329,14 +332,14 @@ namespace COLGH
                         string pic = etaPic.HasValue
                             ? etaPic.Value.ToString("yyyyMMdd")
                             : string.Empty;
-                        SqlCommand sqlCommand = new SqlCommand(string.Format("UPDATE [{0}] SET [{1}] = @Value WHERE LTRIM(RTRIM(so_ct)) = '{2}' and ngay_giao = '{3}'", "dmhdmctgt", field_update, rowFromBrowse["PO"].ToString().Trim(), pic));
+                        SqlCommand sqlCommand = new SqlCommand(string.Format("UPDATE [{0}] SET [{1}] = @Value WHERE LTRIM(RTRIM(so_ct)) = '{2}' and ngay_giao = '{3}' and ma_td = '{4}'", "dmhdmctgt", field_update, rowFromBrowse["so_ct"].ToString().Trim(), pic, rowFromBrowse["ma_vt"].ToString().Trim()));
                         sqlCommand.Parameters.Add("@Value", SqlDbType.NVarChar).Value = value.ToString().Trim();
                         StartupBase.SasObj.ExcuteNonQuery(sqlCommand);
                     }
                 }
                 frmwait.Set(length);
                 frmwait.Hide();
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_strFilter);
+                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_strFilter, StartUp.g_maKh, StartUp.g_maVt);
 
             }
             catch (Exception ex)
@@ -350,7 +353,7 @@ namespace COLGH
                 frmwait.Close();
                 frmwait = null;
             }
-           
+
         }
         private static void ToolBarButtonF3_Click(object sender, RoutedEventArgs e)
         {
@@ -404,7 +407,7 @@ namespace COLGH
                         else
                             field_update = pic;
 
-                            SqlCommand sqlCommand = new SqlCommand(string.Format("UPDATE [{0}] SET [{1}] = @Value WHERE LTRIM(RTRIM(so_ct)) = '{2}' and ngay_giao = '{3}'", "dmhdmctgt", "ngay_giao_duyet", rowFromBrowse["PO"].ToString().Trim(), pic));
+                            SqlCommand sqlCommand = new SqlCommand(string.Format("UPDATE [{0}] SET [{1}] = @Value WHERE LTRIM(RTRIM(so_ct)) = '{2}' and ngay_giao = '{3}'  and ma_td = '{4}'", "dmhdmctgt", "ngay_giao_duyet", rowFromBrowse["so_ct"].ToString().Trim(), pic, rowFromBrowse["ma_vt"].ToString().Trim()));
                         sqlCommand.Parameters.Add("@Value", SqlDbType.NVarChar).Value = field_update.ToString().Trim();
 
                         StartupBase.SasObj.ExcuteNonQuery(sqlCommand);
@@ -412,7 +415,7 @@ namespace COLGH
                 }
                 frmwait.Set(length);
                 frmwait.Hide();
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_strFilter);
+                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_strFilter, StartUp.g_maKh, StartUp.g_maVt);
 
             }
             catch (Exception ex)
@@ -517,7 +520,7 @@ namespace COLGH
                 
                 bool kindReport = true;
             
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_strFilter);
+                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_strFilter, StartUp.g_maKh, StartUp.g_maVt);
             }
             catch (Exception ex)
             {
@@ -525,7 +528,7 @@ namespace COLGH
             }
         }
 
-  
+
 
 
         public static string fieldShow(int kindReport, int isDetail)

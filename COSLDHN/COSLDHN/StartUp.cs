@@ -58,7 +58,7 @@ namespace COSLDHN
             StartupBase.Namespace = "COSLDHN";
             try
             {
-                StartUp.CanChangeValueFields = "ngay_bd,ma_may,ma_ca,ngay_kt,ma_ca_kt,sl_cai_lenh,sl_kg_lenh,id,ma_khuon,dvt".Split(',');
+                StartUp.CanChangeValueFields = "id,so_luong_fc,so_luong_using".Split(',');
 
                 StartUp.M_ma_nt0 = StartupBase.SasObj.GetOption("M_MA_NT0").ToString();
                 StartUp.M_IP_TIEN = StartupBase.SasObj.GetOption("M_IP_TIEN").ToString();
@@ -80,7 +80,7 @@ namespace COSLDHN
             }
         }
 
-        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg,string ps_ck)
+        public static void CallGridReport(bool isFirstLoad, object hdTuNg, object hdDenNg, string ps_ck)
         {
             StartUp.g_hdTuNg = hdTuNg;
             StartUp.g_hdDenNg = hdDenNg;
@@ -89,10 +89,10 @@ namespace COSLDHN
 
             if (isFirstLoad)
             {
-                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg,@dk";
+                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg";
                 StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
                 StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
-                StartUp.cmd.Parameters.Add("@dk", SqlDbType.VarChar).Value = 
+                //StartUp.cmd.Parameters.Add("@dk", SqlDbType.VarChar).Value =
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                 DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
                 StartUp.dsReport.Tables[0].TableName = "tbtong";
@@ -104,26 +104,35 @@ namespace COSLDHN
                 StartUp.oBrowse.frmBrw.PreviewKeyDown += new KeyEventHandler(StartUp.FrmBrw_PreviewKeyDown);
 
                 object name = StartUp.oBrowse.frmBrw.ToolBar.FindName("tbReport");
-                //if (name != null)
-                //{
-                //    ToolBar toolBar = name as ToolBar;
-                //    //for (int i = toolBar.Items.Count - 1; i > 0; i--)
-                //    //{
-                //    //    if ((toolBar.Items[i] as SasControls.ToolBarButton).Name.ToString().Trim() != "btnRefresh" && (toolBar.Items[i] as SasControls.ToolBarButton).Name.ToString().Trim() != "btnExport")
-                //    //    {
-                //    //        toolBar.Items.Remove((toolBar.Items[i] as SasControls.ToolBarButton));
-                //    //    }
-                //    //}
-                //    SasControls.ToolBarButton toolBarButton3 = new SasControls.ToolBarButton();
-                //    toolBarButton3.BorderBrush = (Brush)Brushes.Transparent;
-                //    toolBarButton3.Name = "btnXoa";
-                //    toolBarButton3.Text = "Tạo lệnh sản xuất";
-                //    toolBarButton3.ToolTip = "F2";
-                //    toolBarButton3.ImagePath = "Images\\UpdateSearch.png";
-                //    toolBarButton3.Click += new RoutedEventHandler(ToolBarButtonF2_Click);
-                //    toolBar.Items.Insert(1, toolBarButton3);
+                if (name != null)
+                {
+                    ToolBar toolBar = name as ToolBar;
+                    //for (int i = toolBar.Items.Count - 1; i > 0; i--)
+                    //{
+                    //    if ((toolBar.Items[i] as SasControls.ToolBarButton).Name.ToString().Trim() != "btnRefresh" && (toolBar.Items[i] as SasControls.ToolBarButton).Name.ToString().Trim() != "btnExport")
+                    //    {
+                    //        toolBar.Items.Remove((toolBar.Items[i] as SasControls.ToolBarButton));
+                    //    }
+                    //}
+                    SasControls.ToolBarButton toolBarButton3 = new SasControls.ToolBarButton();
+                    toolBarButton3.BorderBrush = (Brush)Brushes.Transparent;
+                    toolBarButton3.Name = "btnXoa";
+                    toolBarButton3.Text = "Duyệt số lượng Using";
+                    toolBarButton3.ToolTip = "F2";
+                    toolBarButton3.ImagePath = "Images\\UpdateSearch.png";
+                    toolBarButton3.Click += new RoutedEventHandler(ToolBarButtonF2_Click);
+                    toolBar.Items.Insert(1, toolBarButton3);
 
-                //}
+                    SasControls.ToolBarButton toolBarButton4 = new SasControls.ToolBarButton();
+                    toolBarButton4.BorderBrush = (Brush)Brushes.Transparent;
+                    toolBarButton4.Name = "btnXoa";
+                    toolBarButton4.Text = "Duyệt số lượng FC";
+                    toolBarButton4.ToolTip = "F3";
+                    toolBarButton4.ImagePath = "Images\\UpdateSearch.png";
+                    toolBarButton4.Click += new RoutedEventHandler(ToolBarButtonF3_Click);
+                    toolBar.Items.Insert(1, toolBarButton4);
+
+                }
 
                 //StartUp.oBrowse.F5 += new SasFormBrowes.FormBrowse.GridKeyUp_F5(StartUp.oBrowse_F5);
                 StartUp.oBrowse.CTRL_R += new SasFormBrowes.FormBrowse.GridKeyUp_CTRL_R(StartUp.oBrowse_CTRL_R);
@@ -163,15 +172,15 @@ namespace COSLDHN
                     case Key.Space:
                         SelectOne();
                         break;
-                    //case Key.F2:
-                    //    this.btnView_Click((object)null, (RoutedEventArgs)null);
-                    //    break;
-                    //case Key.F4:
-                    //    this.btnNote_Click((object)null, (RoutedEventArgs)null);
-                    //    break;
-                    //case Key.F8:
-                    //    this.btnXoa_Click((object)null, (RoutedEventArgs)null);
-                    //    break;
+                        //case Key.F2:
+                        //    this.btnView_Click((object)null, (RoutedEventArgs)null);
+                        //    break;
+                        //case Key.F4:
+                        //    this.btnNote_Click((object)null, (RoutedEventArgs)null);
+                        //    break;
+                        //case Key.F8:
+                        //    this.btnXoa_Click((object)null, (RoutedEventArgs)null);
+                        //    break;
                 }
             }
             if (Keyboard.Modifiers != ModifierKeys.Control)
@@ -179,10 +188,10 @@ namespace COSLDHN
             switch (e.Key)
             {
                 case Key.A:
-                  SelectAll(true);
+                    SelectAll(true);
                     break;
                 case Key.U:
-                   SelectAll(false);
+                    SelectAll(false);
                     break;
             }
         }
@@ -220,149 +229,112 @@ namespace COSLDHN
             DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
 
             //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
-            DataTable distinctValues = dataView.ToTable(true, "chon", "ma_nvl_gop", "vung_may", "nhom_may", "ngay_bd", "so_ca", "ma_may", "ss", "ma_ca");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id","so_luong_fc", "so_luong_using");
 
             DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
                                    where (bool)x["chon"]
                                    select x).ToArray();
             if (array.Length <= 0)
             {
-                int num = (int)ExMessageBox.Show(100, StartupBase.SasObj, "Tick vào dòng cần tạo Lệnh sản xuất!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                return;
-            }
-
-            DataRowView[] arrayNgaybd = (from DataRowView x in dataView
-                                         where (bool)x["chon"] && x["ngay_bd"].ToString().Trim().Equals("")
-                                         select x).ToArray();
-            if (arrayNgaybd.Length > 0)
-            {
-                int num = (int)ExMessageBox.Show(531, StartupBase.SasObj, "Có vật tư chưa khai báo ngày sản xuất!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                int num = (int)ExMessageBox.Show(100, StartupBase.SasObj, "Tick vào dòng cần duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
 
             DataRowView[] arrayMamay = (from DataRowView x in dataView
-                                        where (bool)x["chon"] && x["ma_may"].ToString().Trim().Equals("")
+                                        where (bool)x["chon"] && x["id"].ToString().Trim().Equals("")
                                         select x).ToArray();
             if (arrayMamay.Length > 0)
             {
                 int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Có hóa đơn chưa khai báo mã máy trên phần mềm kế toán!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
-            DataRowView[] arrayMaca = (from DataRowView x in dataView
-                                       where (bool)x["chon"] && x["ma_ca"].ToString().Trim().Equals("")
-                                       select x).ToArray();
-            if (arrayMaca.Length > 0)
-            {
-                int num = (int)ExMessageBox.Show(532, StartupBase.SasObj, "Có vật tư chưa khai báo ngày sản xuất!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                return;
-            }
 
-
-            //DataRowView[] arrayKH = (from DataRowView x in dataView
-            //                         where (bool)x["chon"] && x["ma_kh"].ToString().Trim().Equals("")
-            //                         orderby x["ngay_ct0"]
-            //                         select x).ToArray();
-            //if (arrayKH.Length > 0)
-            //{
-            //    int num = (int)ExMessageBox.Show(900, StartupBase.SasObj, "Có hóa đơn chưa khai báo mã khách hàng trên phần mềm kế toán!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            //    return;
-            //}
-            if (ExMessageBox.Show(8007, StartupBase.SasObj, "Bạn có muốn tạo lệnh sản xuất không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
+            if (ExMessageBox.Show(8007, StartupBase.SasObj, "Bạn có muốn duyệt không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
             {
 
                 return;
             }
-            if (array.Any(x => x["ss"]?.ToString() == "1"))
-            {
-                int num = (int)ExMessageBox.Show(322, StartupBase.SasObj, "Có hóa đơn đã được xử lý kế toán, không thể tạo lại lệnh sản xuất!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                return;
-            }
-
             if (array.Length > 0)
             {
-                string ma_nvl_gop = "";
-                string vung_may = "";
-                string nhom_may = "";
-                string so_ca = "";
-                double so_ca_lam_tron = 0;
-                double so_ngay = 0;
-                string ma_ca = "";
 
-                DateTime ngay_bd = new DateTime();
+                string id = "";
+                decimal so_luong = 0;
 
                 foreach (DataRowView row in array)
                 {
-                    ma_nvl_gop = row["ma_nvl_gop"].ToString();
-                    vung_may = row["vung_may"].ToString();
-                    nhom_may = row["nhom_may"].ToString();
-                    so_ca = row["so_ca"].ToString();
-                    so_ca_lam_tron = Math.Ceiling(string.IsNullOrEmpty(so_ca) ? 0 : Double.Parse(so_ca));
-                    ngay_bd = Convert.ToDateTime(row["ngay_bd"].ToString());
-                    so_ngay = Math.Ceiling(so_ca_lam_tron / 3);
+                    id = row["id"].ToString();
+                    decimal.TryParse(row["so_luong_using"].ToString(), out so_luong);
 
+                    SqlCommand cmd = new SqlCommand("EXEC dbo.Update_COQCS @id, @loai, @so_luong");
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@loai", SqlDbType.Int).Value = 1;
+                    cmd.Parameters.Add("@so_luong", SqlDbType.Decimal).Value = so_luong;
 
-                    for (int i = 0; i < so_ngay; i++)
-                    {
-
-                        string ma_qs = "LSX";
-                        string so_ct = GetNewSoct(StartupBase.SasObj, ma_qs, true);
-
-                        SqlCommand sqlCommand2 = new SqlCommand();
-                        sqlCommand2.CommandText = "dbo.ImexInv_LSX";
-                        sqlCommand2.CommandType = CommandType.StoredProcedure;
-
-                        sqlCommand2.Parameters.Add("@User_id", SqlDbType.Int)
-                            .Value = StartUp.m_user_id;
-
-                        sqlCommand2.Parameters.Add("@Ma_qs", SqlDbType.VarChar)
-                            .Value = ma_qs;
-
-
-                        sqlCommand2.Parameters.Add("@So_ct", SqlDbType.VarChar)
-                        .Value = so_ct;
-
-                        sqlCommand2.Parameters.Add("@Ma_dvcs", SqlDbType.VarChar)
-                       .Value = StartupBase.SasObj.M_ma_dvcs.Trim();
-
-                        sqlCommand2.Parameters.Add("@Xu_ly", SqlDbType.Char)
-                            .Value = '0';
-                        sqlCommand2.Parameters.Add("@Ma_nvl_gop", SqlDbType.VarChar)
-                         .Value = ma_nvl_gop;
-                        sqlCommand2.Parameters.Add("@Nhom_may", SqlDbType.VarChar)
-                            .Value = nhom_may;
-                        sqlCommand2.Parameters.Add("@Vung_may ", SqlDbType.VarChar)
-                            .Value = vung_may;
-                        sqlCommand2.Parameters.Add("@Ngay_kh", SqlDbType.DateTime)
-                            .Value = ngay_bd.AddDays(i);
-
-
-                        DataSet ds = StartupBase.SasObj.ExcuteReader(sqlCommand2);
-
-                        DataTable dataTable2 = ds.Tables[ds.Tables.Count - 1];
-                        string stt_rec = dataTable2.Rows[0]["stt_rec"].ToString().Trim();
-
-
-
-                        if (CheckValidSoct(StartupBase.SasObj, ma_qs, so_ct, stt_rec))
-                        {
-                            so_ct = GetNewSoct(StartupBase.SasObj, ma_qs, true);
-                        }
-                        SqlCommand cmd = new SqlCommand("EXEC dbo.ImexInv_LSX;10 @Stt_rec");
-                        cmd.Parameters.Add("@Stt_rec", SqlDbType.VarChar).Value = stt_rec;
-                        object obj = StartupBase.SasObj.ExcuteScalar(cmd);
-
-
-                    }
-
+                    object obj = StartupBase.SasObj.ExcuteScalar(cmd);
                 }
-                int num4 = (int)MessageBox.Show("Đã thực hiện thành công (" + so_ngay.ToString() + "  hóa đơn)  ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
-
-
-
+                int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
         }
+        private static void ToolBarButtonF3_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp.m_user_id = Convert.ToInt32(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
 
+            if (StartUp.oBrowse.ActiveRecord == null)
+                return;
+
+            if (StartUp.oBrowse.DataGrid.ActiveCell != null && StartUp.oBrowse.DataGrid.ActiveCell.IsInEditMode)
+                StartUp.oBrowse.DataGrid.ActiveCell.EndEditMode();
+            StartUp.oBrowse.ActiveRecord.Update();
+
+            DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+
+            //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id", "so_luong_fc", "so_luong_using");
+
+            DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
+                                   where (bool)x["chon"]
+                                   select x).ToArray();
+            if (array.Length <= 0)
+            {
+                int num = (int)ExMessageBox.Show(100, StartupBase.SasObj, "Tick vào dòng cần duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            DataRowView[] arrayMamay = (from DataRowView x in dataView
+                                        where (bool)x["chon"] && x["id"].ToString().Trim().Equals("")
+                                        select x).ToArray();
+            if (arrayMamay.Length > 0)
+            {
+                int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Có hóa đơn chưa khai báo mã máy trên phần mềm kế toán!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            if (ExMessageBox.Show(8007, StartupBase.SasObj, "Bạn có muốn duyệt không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
+            {
+
+                return;
+            }
+            if (array.Length > 0)
+            {
+
+                string id = "";
+                decimal so_luong = 0;
+
+                foreach (DataRowView row in array)
+                {
+                    id = row["id"].ToString();
+                    decimal.TryParse(row["so_luong_fc"].ToString(), out so_luong);
+
+                    SqlCommand cmd = new SqlCommand("EXEC dbo.Update_COQCS @id, @loai, @so_luong");
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@loai", SqlDbType.Int).Value = 1;
+                    cmd.Parameters.Add("@so_luong", SqlDbType.Decimal).Value = so_luong;
+
+                    object obj = StartupBase.SasObj.ExcuteScalar(cmd);
+                }
+                int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
         public static bool CheckValidSoct(SasObject SasObj, string ma_qs, string so_ct, string stt_rec)
         {
             string format = "{0}";
@@ -416,22 +388,21 @@ namespace COSLDHN
 
             return "";
         }
-        //private static void oBrowse_F3(object sender, EventArgs e)
-        //{
-        //    DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+        private static void ToolBarButtonF3_Click(object sender, EventArgs e)
+        {
+            DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
 
-        //    DataTable distinctValues = dataView.ToTable(true, "chon");
+            DataTable distinctValues = dataView.ToTable(true, "chon");
 
-        //    DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
-        //                           where (bool)x["chon"]
-        //                           select x).ToArray();
-        //    if (array.Length <= 0)
-        //    {
-        //        int num = (int)ExMessageBox.Show(110, StartupBase.SasObj, "Phải đánh dấu trước khi sửa!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-        //        return;
-        //    }
-        //    UpdateFieldHandler.Execute();
-        //}
+            DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
+                                   where (bool)x["chon"]
+                                   select x).ToArray();
+            if (array.Length <= 0)
+            {
+                int num = (int)ExMessageBox.Show(110, StartupBase.SasObj, "Phải đánh dấu trước khi sửa!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+        }
         public static void oBrowse_Esc(object sender, EventArgs e)
         {
         }
@@ -448,12 +419,10 @@ namespace COSLDHN
         {
             try
             {
-                // Get all rows with id=1 and recalculate subsequent rows with the same ma_may
-                RecalculateConsecutiveRows();
-                
+
                 bool kindReport = true;
-            
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg,StartUp.g_ps_ck);
+
+                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_ps_ck);
             }
             catch (Exception ex)
             {
@@ -461,112 +430,6 @@ namespace COSLDHN
             }
         }
 
-        private static void RecalculateConsecutiveRows()
-        {
-            DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
-            if (dataView == null || dataView.Count == 0)
-                return;
-
-            const string DATE_FORMAT = "yyyyMMdd";
-            
-            // Group rows by ma_may and get those with id=1
-            var id1Rows = (from DataRowView row in dataView
-                          where SafeToInt32(row["id"]) == 1
-                          select row).ToList();
-
-            if (id1Rows.Count == 0)
-                return;
-
-            // Process each id=1 row
-            foreach (DataRowView id1Row in id1Rows)
-            {
-
-
-                string ma_may = SafeToString(id1Row["ma_may"]).Trim();
-                string ma_nvl_gop = SafeToString(id1Row["ma_nvl_gop"]).Trim();
-                string vung_may = SafeToString(id1Row["vung_may"]).Trim();
-                string nhom_may = SafeToString(id1Row["nhom_may"]).Trim();
-                
-                // Get all rows with the same ma_may, ma_nvl_gop, vung_may, nhom_may
-                var groupedRows = (from DataRowView row in dataView
-                                   where SafeToString(row["ma_may"]).Trim() == ma_may 
-                                   orderby SafeToInt32(row["id"])
-                                   select row).ToList();
-
-                if (groupedRows.Count < 2)
-                    continue;
-
-                // Get id=1 row values
-                string ngayBdStr = SafeToString(id1Row["ngay_bd"]).Trim();
-                string maCaStr = SafeToString(id1Row["ma_ca"]).Trim();
-
-                if (string.IsNullOrEmpty(ngayBdStr) || string.IsNullOrEmpty(maCaStr))
-                    continue;
-
-                DateTime currentNgayBd = DateTime.MinValue;
-                if (!DateTime.TryParse(ngayBdStr, out currentNgayBd))
-                    continue;
-
-                string currentMaCa = maCaStr;
-
-                // Update subsequent rows (id >= 2)
-                for (int i = 0; i < groupedRows.Count; i++)
-                {
-                    DataRowView row = groupedRows[i];
-                    
-                    // Get so_ca for THIS specific row (not just from id=1)
-                    string rowSoCaStr = SafeToString(row["so_ca"]).Trim();
-                    string rowSoCalenh = SafeToString(row["so_ca_lenh"]).Trim();
-                    
-                    double rowNumSoCa = 0;
-                    double tempVal = 0;
-                    if (double.TryParse(rowSoCalenh, out tempVal) && tempVal != 0)
-                    {
-                        rowNumSoCa = tempVal;
-                    }
-                    else if (double.TryParse(rowSoCaStr, out tempVal))
-                    {
-                        rowNumSoCa = tempVal;
-                    }
-                    
-                    double rowSoCaLamTron = Math.Ceiling(rowNumSoCa);
-                    
-                    // Calculate end shift for current row using THIS row's soCaLamTron
-                    string maCaKt = GetCaKetThuc(rowSoCaLamTron, currentMaCa);
-                    DateTime ngayKt = GetNgayKetThuc(rowSoCaLamTron, currentNgayBd, currentMaCa);
-
-                    // Build WHERE clause for this specific row
-                    int rowId = SafeToInt32(row["id"]);
-                    string whereClause = string.Format(" WHERE ma_may = N'{0}' AND " +
-                                       "id = {1}",
-                                       ma_may, rowId);
-
-                    string updateCommand = string.Format(
-                        "UPDATE KHSX3_1 SET ngay_bd = '{0}', ma_ca = '{1}', ma_ca_kt = '{2}', ngay_kt = '{3}'{4}",
-                        currentNgayBd.ToString(DATE_FORMAT),
-                        currentMaCa,
-                        maCaKt,
-                        ngayKt.ToString(DATE_FORMAT),
-                        whereClause);
-
-                    SqlCommand cmd = new SqlCommand(updateCommand);
-                    StartupBase.SasObj.ExcuteNonQuery(cmd);
-
-                    // Prepare for next iteration
-                    string nextMaCa = GetNextMaCa(maCaKt);
-                    DateTime nextNgayBd = ngayKt;
-                    
-                    // If transitioning from CA03 to CA01, add one day
-                    if (maCaKt == "CA03" && nextMaCa == "CA01")
-                    {
-                        nextNgayBd = ngayKt.AddDays(1);
-                    }
-                    
-                    currentMaCa = nextMaCa;
-                    currentNgayBd = nextNgayBd;
-                }
-            }
-        }
 
         private static string SafeToString(object obj)
         {
@@ -584,77 +447,7 @@ namespace COSLDHN
             return result;
         }
 
-        private static string GetCaKetThuc(double soCa, string ma_ca)
-        {
-            int ca = (int)Math.Ceiling(soCa);
-            int startIndex;
-            
-            switch (ma_ca)
-            {
-                case "CA01":
-                    startIndex = 1;
-                    break;
-                case "CA02":
-                    startIndex = 2;
-                    break;
-                case "CA03":
-                    startIndex = 3;
-                    break;
-                default:
-                    startIndex = 1;
-                    break;
-            }
 
-            int totalCa = startIndex - 1 + ca;
-            int index = ((totalCa - 1) % 3) + 1;
-
-            if (index == 1)
-                return "CA01";
-            else if (index == 2)
-                return "CA02";
-            else
-                return "CA03";
-        }
-
-        private static DateTime GetNgayKetThuc(double soCa, DateTime ngay_bd, string ma_ca)
-        {
-            int startIndex;
-            switch (ma_ca)
-            {
-                case "CA01":
-                    startIndex = 1;
-                    break;
-                case "CA02":
-                    startIndex = 2;
-                    break;
-                case "CA03":
-                    startIndex = 3;
-                    break;
-                default:
-                    startIndex = 1;
-                    break;
-            }
-
-            int totalCa = startIndex - 1 + (int)Math.Ceiling(soCa);
-            int soNgayTang = (totalCa - 1) / 3;
-
-            return ngay_bd.AddDays(soNgayTang);
-        }
-
-        private static string GetNextMaCa(string currentMaCa)
-        {
-            switch (currentMaCa.Trim())
-            {
-                case "CA01":
-                    return "CA02";
-                case "CA02":
-                    return "CA03";
-                case "CA03":
-                    return "CA01";
-                default:
-                    return "CA01";
-            }
-        }
 
         public static string fieldShow(int kindReport, int isDetail)
         {
@@ -691,7 +484,6 @@ namespace COSLDHN
             }
             return str;
         }
-
         public static DataTable CreateTableInfo()
         {
             DataTable dataTable = new DataTable();

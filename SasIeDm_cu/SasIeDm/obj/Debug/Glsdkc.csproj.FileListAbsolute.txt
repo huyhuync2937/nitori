@@ -1,0 +1,17 @@
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.csprojAssemblyReference.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\App.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\App.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.csproj.GenerateResource.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.csproj.CopyComplete
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc_MarkupCompile.cache
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\GlsdkcLoc.g.cs
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc_MarkupCompile.lref
+D:\Product\SASERP.NET\SASERP20NET35\Prog\Glsdkc.exe.config
+D:\Product\SASERP.NET\SASERP20NET35\Prog\Glsdkc.exe
+D:\Product\SASERP.NET\SASERP20NET35\Prog\Glsdkc.pdb
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\GlsdkcLoc.baml
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.g.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.Properties.Resources.resources
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.exe
+D:\Product\SASERP.NET\SASERP20NET35\Source_Cal\Glsdkc\Glsdkc\obj\Debug\Glsdkc.pdb

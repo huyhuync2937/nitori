@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\QCSN\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|d:\\siserpsme2025\\source\\qcsn\\qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|d:\\siserpsme2025\\source\\qcsn\\qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,16 +26,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\App.xaml.cs",
               "RelativeDocumentMoniker": "QCSN\\App.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\App.xaml.cs*",
-              "RelativeToolTip": "QCSN\\App.xaml.cs*",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\App.xaml.cs",
+              "RelativeToolTip": "QCSN\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T04:21:41.123Z",
@@ -43,20 +43,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "FormLoc.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\FormLoc.xaml.cs",
               "RelativeDocumentMoniker": "QCSN\\FormLoc.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\FormLoc.xaml.cs",
               "RelativeToolTip": "QCSN\\FormLoc.xaml.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwJIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAmwJIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T04:20:27.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "FormLoc.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\FormLoc.xaml",
               "RelativeDocumentMoniker": "QCSN\\FormLoc.xaml",
@@ -68,13 +68,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "StartUp.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\StartUp.cs",
               "RelativeDocumentMoniker": "QCSN\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\StartUp.cs",
               "RelativeToolTip": "QCSN\\StartUp.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAkwFEAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAvwFEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T04:15:35.792Z",
               "EditorCaption": ""

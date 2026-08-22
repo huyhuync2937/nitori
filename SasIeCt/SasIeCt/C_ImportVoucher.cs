@@ -84,13 +84,27 @@ namespace SasIeCt
 		{
 			string text = "";
 			SqlCommand sqlCommand = new SqlCommand();
-			for (int i = 0; i < row.Table.Columns.Count; i++)
+			try
 			{
-				string text2 = row.Table.Columns[i].ColumnName.Trim();
-				text = ((!(text == "")) ? (text + $",@{text2}") : $"@{text2}");
-				sqlCommand.Parameters.Add(new SqlParameter($"@{text2}", row[text2]));
-				sqlCommand.CommandText = string.Format("INSERT INTO {0} ({1}) VALUES ({2})", tableName, text.Replace("@", ""), text);
+				for (int i = 0; i < row.Table.Columns.Count; i++)
+				{
+					string text2 = row.Table.Columns[i].ColumnName.Trim();
+					text = ((!(text == "")) ? (text + $",@{text2}") : $"@{text2}");
+					sqlCommand.Parameters.Add(new SqlParameter($"@{text2}", row[text2]));
+					sqlCommand.CommandText = string.Format("INSERT INTO {0} ({1}) VALUES ({2})", tableName, text.Replace("@", ""), text);
+				}
 			}
+			catch (Exception ex)
+			{
+				ErrorLog.CatchMessage(ex);
+				throw;
+			}
+			string debugCommandText = sqlCommand.CommandText;
+			foreach (SqlParameter parameter in sqlCommand.Parameters)
+			{
+				debugCommandText = debugCommandText.Replace(parameter.ParameterName, "'" + parameter.Value + "'");
+			}
+			Console.WriteLine(debugCommandText);
 			return sqlCommand;
 		}
 
@@ -395,6 +409,8 @@ namespace SasIeCt
                     return ShowError_KSS(dsError);
                 case "KSK":
                     return ShowError_KSK(dsError);
+                case "HDM":
+                    return ShowError_HDM(dsError);
                 default:
 					return false;
 			}
@@ -1929,7 +1945,111 @@ namespace SasIeCt
 			}
 			return result;
 		}
-		private static bool ShowError_HD1(DataSet dsError)
+        private static bool ShowError_HDM(DataSet dsError)
+        {
+            bool result = true;
+            foreach (DataTable table in dsError.Tables)
+            {
+                if (table.Rows.Count != 0)
+                {
+                    switch (table.Columns[0].ColumnName)
+                    {
+                        case "ma_kh":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ma_kh:H=Mã khách hàng", "Danh sách mã khách hàng không có trong danh mục khách hàng");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ma_kh:H=Customer ID", "List the client code is not in the list of customers");
+                            }
+                            result = false;
+                            break;
+                      
+                        case "ma_dvcs":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ma_dvcs:H=Mã ĐVCS", "Danh sách mã ĐVCS không có trong danh mục ĐVCS");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ma_dvcs:H=Unit code", "Unit code list is not in the list of unit code");
+                            }
+                            result = false;
+                            break;
+                        case "ngay_ct":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ngay_ct:H=Ngày chứng từ:D", "Danh sách ngày chứng từ nhỏ hơn ngày mở sổ");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ngay_ct:H=Voucher date:D", "List of documents smaller day open day window");
+                            }
+                            result = false;
+                            break;
+                  
+                        case "dvt1":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ma_vt:H=Mã vật tư; dvt1:H=Đơn vị tính", "Danh sách đơn vị tính không có trong danh mục đơn vị tính quy đổi");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ma_vt:H=Item code; dvt1:H=Manufacturing order", "List of units not included in the list of units of conversion");
+                            }
+                            result = false;
+                            break;
+                        case "so_ct_khac_ngay":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "so_ct_khac_ngay:H=Số c.từ;ma_qs:H=Mã quyển c.từ  ", "Danh sách c.từ có ngày c.từ khác nhau");
+                            }
+                            else
+                            {
+                                BrowseError(table, "so_ct_khac_ngay:H=Voucher no.;ma_qs:H=Book no.", "List of documents with different dates vouchers");
+                            }
+                            result = false;
+                            break;
+                        case "so_ct":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ma_qs:H=Quyển c.từ  ;so_ct:H=Số chứng từ", "Danh sách số chứng từ trùng số");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ma_qs:H=Book no.;so_ct:H=Voucher no.", "List of vouchers with some");
+                            }
+                            result = false;
+                            break;
+                        case "so_ct_hddt":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ma_qs:H=Quyển c.từ  ;so_ct_hddt:H=Số hđ", "Danh sách những chứng từ đã phát hành hóa đơn điện tử không sao chép được");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ma_qs:H=Voucher book;so_ct_hddt:H=Voucher no.", "List invoice no. released no copy");
+                            }
+                            result = false;
+                            break;
+                        case "ma_qs":
+                            if (StartupBase.M_LAN == "V")
+                            {
+                                BrowseError(table, "ma_qs:H=Quyển c.từ", "Danh sách quyển c.từ không có trong danh mục quyển c.từ hoặc chứng từ không thuộc quyển c.từ này");
+                            }
+                            else
+                            {
+                                BrowseError(table, "ma_qs:H=Book no.", "Book list is not in the list or book vouchers of this book");
+                            }
+                            result = false;
+                            break;
+                    }
+                }
+            }
+            return result;
+        }
+        private static bool ShowError_HD1(DataSet dsError)
 		{
 			bool result = true;
 			foreach (DataTable table in dsError.Tables)

@@ -107,7 +107,7 @@ namespace COLGH
 
         public string getFilter()
         {
-            string str = " 1=1 ";
+            string str = "";
             if (!string.IsNullOrEmpty(this.txtMaKhach.Text))
                 str = str + " and ma_kh Like '" + this.txtMaKhach.Text.Trim() + "%'";
             if (!string.IsNullOrEmpty(this.txtMavt.Text))
@@ -154,7 +154,7 @@ namespace COLGH
                 //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
                 //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
                 //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value,filter);
+                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, filter, this.txtMaKhach.Text.Trim(), this.txtMavt.Text.Trim());
             }
             catch (Exception ex)
             {

@@ -11,11 +11,11 @@
       "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|solutionrelative:cosldht\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|d:\\siserpsme2025\\source\\cosldht\\cosldht\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|D:\\SISERPSME2025\\Source\\COSLDHT\\cosldht\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|solutionrelative:cosldht\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|d:\\siserpsme2025\\source\\cosldht\\cosldht\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|D:\\SISERPSME2025\\Source\\COSLDHT\\cosldht\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COSLDHT\\COSLDHT.csproj|solutionrelative:cosldht\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "COSLDHT\\FrmLoc.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHT\\COSLDHT\\FrmLoc.xaml.cs",
               "RelativeToolTip": "COSLDHT\\FrmLoc.xaml.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAAwJsAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAwJsAAADsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-24T08:05:52.267Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "COSLDHT\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T21:58:27.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T21:58:27.158Z"
             },
             {
               "$type": "Document",
@@ -90,7 +89,7 @@
               "RelativeDocumentMoniker": "COSLDHT\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\COSLDHT\\COSLDHT\\StartUp.cs",
               "RelativeToolTip": "COSLDHT\\StartUp.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAlwFEAAABfAAAAAAAAAA==",
+              "ViewState": "AgIAANMAAAAAAAAAAADwv+cAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-19T21:58:07.123Z",
               "EditorCaption": ""

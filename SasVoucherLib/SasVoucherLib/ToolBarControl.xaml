@@ -1,0 +1,266 @@
+<UserControl x:Class="SasVoucherLib.ToolBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SasVoucherLib"
+             xmlns:smc="http://sis.vn/SasControls"
+             xmlns:SasFormBrowes="clr-namespace:SasFormBrowes;assembly=SasFormBrowes"
+             PreviewKeyDown="ToolBarVoucher_PreviewKeyDown" Name="ToolBarVoucher"  Background="#FFF3F2E7"
+             Height="Auto" Width="Auto" HorizontalAlignment="Center">
+   
+        <!--<StackPanel Name="GridToolbar" Orientation="Horizontal" HorizontalAlignment="Center"> Background="#FFF3F2E7"
+        <local:ToolBarButton x:Name="btnNew" Text="Mới" ToolTip="F4, Ctrl+N" ToolTip2="F4, Ctrl+N"
+                         ImagePath="VoucherToolBarImages\New.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnEdit" Text="Sửa" ToolTip="F3" ToolTip2="F3" ImagePath="VoucherToolBarImages\Edit.png"
+                         BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnSave" Text="Lưu" ToolTip="Ctrl+S" ToolTip2="Ctrl+S"
+                         ImagePath="VoucherToolBarImages\Save.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnCopy" Text="Copy" ToolTip="Ctrl+F4" ToolTip2="Ctrl+F4"
+                         ImagePath="VoucherToolBarImages\Copy.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnPrint" Text="In" ToolTip="F7, Ctrl+P" ToolTip2="F7, Ctrl+P"
+                         ImagePath="VoucherToolBarImages\Printer.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnCancel" Text="Hủy" ImagePath="VoucherToolBarImages\Cancel.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnDelete" Text="Xóa" ToolTip="F8" ToolTip2="F8" Width="80"
+                         ImagePath="VoucherToolBarImages\Delete.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnView" Text="Xem" ToolTip="F2" ToolTip2="F2" ImagePath="VoucherToolBarImages\View.png"
+                         BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnSearch" Text="Tìm" ToolTip="F9" ToolTip2="F9"
+                         ImagePath="VoucherToolBarImages\Search.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnVoucherBookmarkMenu" Click="btnVoucherBookmarkMenu_Click"
+                         LostFocus="btnVoucherBookmarkMenu_LostFocus" ToolTip="Đánh dấu" ToolTip2="Bookmark"
+                         Visibility="Collapsed" ImagePath="VoucherToolBarImages\bookmark.png" HorizontalAlignment="Right"
+                         IsNoText="true" BorderBrush="{x:Null}"/>
+        <Popup Name="popBookmark" AllowsTransparency="true" StaysOpen="false" Width="274" Placement="Bottom"
+           PlacementTarget="{Binding ElementName=btnVoucherBookmarkMenu}">
+            <smc:GridLayout Name="GrdPopup" Background="#FFF0F0F0">
+                <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                   Fill="#FFF0F0F0"/>
+                <smc:GridLayout Name="GrdInfo" RowHeights="25,*" RowCount="2" Margin="12">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="mnuAdd_Click" Name="btnAddBookmark" Content="Thêm" Width="60" HorizontalAlignment="Left"/>
+                        <Popup Name="popAddBookmark" AllowsTransparency="true" Width="274" StaysOpen="false" Placement="Bottom"
+                   PlacementTarget="{Binding ElementName=btnAddBookmark}">
+                            <smc:GridLayout Name="GrdAddPopup" Background="#FFF0F0F0">
+                                <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                           Fill="#FFF0F0F0"/>
+                                <smc:ConfirmGridView OnOk="GridMain_OnOk" OnCancel="GridMain_OnCancel" Name="GridMain">
+                                    <smc:GridLayout Name="GridInfo" RowCount="2" HeightPerRow="25" Margin="12,12,12,0">
+                                        <TextBox PreviewKeyDown="txtGhi_chu_PreviewKeyDown" Name="txtGhi_chu" Margin="0,2.5" Grid.RowSpan="2"
+                             Width="250" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Auto"/>
+                                    </smc:GridLayout>
+                                </smc:ConfirmGridView>
+                            </smc:GridLayout>
+                        </Popup>
+                        <Button Click="btnViewBookmark_Click" Name="btnViewBookmark" Content="Xem" Width="60"
+                    HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                        <Button Click="btnDeleteBookmark_Click" Name="btnDeleteBookmark" Content="Bỏ đánh dấu"
+                    Width="106                                 " HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                    </StackPanel>
+                    <ListBox Name="GrdBookmark" Grid.Row="1" Margin="0,12,0,0" SelectionMode="Single">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="0,2.5" IsChecked="{Binding active, Mode=TwoWay}"/>
+                                    <Label Margin="0,2.5" Content="{Binding dien_giai}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                </smc:GridLayout>
+            </smc:GridLayout>
+        </Popup>
+        <local:ToolBarButton x:Name="btnVoucherConextMenu" Click="btnVoucherConextMenu_Click"
+                         MouseDown="btnVoucherConextMenu_MouseDown" ImagePath="VoucherToolBarImages\Book.png"
+                         IsNoText="true" ToolTip="Thông tin" ToolTip2="Information" BorderBrush="{x:Null}">
+            <FrameworkElement.ContextMenu>
+                <local:VoucherConextMenu x:Name="vc"/>
+            </FrameworkElement.ContextMenu>
+        </local:ToolBarButton>
+        <local:ToolBarButton x:Name="btnTemplate" Click="btnTemplate_Click" LostFocus="btnTemplate_LostFocus" ToolTip="Mẫu"
+                         ToolTip2="Template" ImagePath="VoucherToolBarImages\Template.png" IsNoText="true"
+                         HorizontalAlignment="Right" BorderBrush="{x:Null}"/>
+        <Popup Opened="popTemplate_Opened" Closed="popTemplate_Closed" Name="popTemplate"
+           AllowsTransparency="true" StaysOpen="false" Width="auto" Placement="Bottom"
+           PlacementTarget="{Binding ElementName=btnTemplate}">
+            <smc:GridLayout Name="GrdTemplate" Background="#FFF0F0F0">
+                <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                   Fill="#FFF0F0F0"/>
+                <smc:GridLayout RowHeights="*" RowCount="1" Margin="12">
+                    <ListBox SelectionChanged="LstTemplate_SelectionChanged" Name="LstTemplate" Grid.Row="1"
+                   SelectionMode="Single">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Name="stItem" Orientation="Horizontal">
+                                    <CheckBox Margin="0,2.5"
+                            IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected, Mode=OneTime}"
+                            Content="{smc:BindingEx Path=dien_giai, Path2=dien_giai2}"/>
+                                    <Popup Name="popInfoTemplate" AllowsTransparency="true" StaysOpen="false" Placement="Bottom"
+                         PlacementTarget="{Binding ElementName=stItem}">
+                                        <smc:GridLayout Background="#FFF0F0F0">
+                                            <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                                 Fill="#FFF0F0F0"/>
+                                            <StackPanel Margin="12">
+                                                <smc:ExButton Content="Xóa" Content2="Delete" Width="92" Height="25"/>
+                                            </StackPanel>
+                                        </smc:GridLayout>
+                                    </Popup>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                </smc:GridLayout>
+            </smc:GridLayout>
+        </Popup>
+        <local:ToolBarButton x:Name="btnOptions" ImagePath="VoucherToolBarImages\Option.png" IsNoText="true"
+                         ToolTip="Khai báo c.từ" ToolTip2="Config" HorizontalAlignment="Right" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnReportFromVoucher" ToolTip="Báo cáo" ToolTip2="Reports"
+                         ImagePath="VoucherToolBarImages\Report.png" IsNoText="true" BorderBrush="{x:Null}"/>
+
+        
+        <local:ToolBarButton x:Name="btnTop" ImagePath="VoucherToolBarImages\First.png" ToolTip="Về đầu" ToolTip2="First"
+                         Margin="20,0,0,0" IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnPrevious" ImagePath="VoucherToolBarImages\Previous.png" ToolTip="Trước"
+                         ToolTip2="Previous" IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnNext" ImagePath="VoucherToolBarImages\Next.png" ToolTip="Sau" ToolTip2="Next"
+                         IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnBottom" ImagePath="VoucherToolBarImages\Last.png" ToolTip="Về cuối" ToolTip2="Last"
+                         IsNoText="true" BorderBrush="{x:Null}"/>
+        <CheckBox Click="cb_hd_thue_Click" Name="cb_hd_thue" IsEnabled="true" HorizontalAlignment="Right">
+            <FrameworkElement.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2"/>
+            </FrameworkElement.LayoutTransform>
+        </CheckBox>
+        <local:ToolBarButton x:Name="btnHelp" ImagePath="VoucherToolBarImages\Help.png" ToolTip="Trợ giúp" ToolTip2="Help"
+                         Visibility="Visible" IsNoText="true" BorderBrush="{x:Null}"/>
+    </StackPanel>-->
+
+
+    <DockPanel Name="GridToolbar" LastChildFill="False" Margin="12,0,12,0" Background="{x:Null}">
+        <local:ToolBarButton x:Name="btnNew" Text="Mới" ToolTip="F4, Ctrl+N" ToolTip2="F4, Ctrl+N" DockPanel.Dock="Left"
+                         ImagePath="VoucherToolBarImages\New.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnEdit" Text="Sửa" ToolTip="F3" ToolTip2="F3" ImagePath="VoucherToolBarImages\Edit.png" DockPanel.Dock="Left"
+                         BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnSave" Text="Lưu" ToolTip="Ctrl+S" ToolTip2="Ctrl+S" DockPanel.Dock="Left"
+                         ImagePath="VoucherToolBarImages\Save.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnCopy" Text="Copy" ToolTip="Ctrl+F4" ToolTip2="Ctrl+F4" DockPanel.Dock="Left"
+                         ImagePath="VoucherToolBarImages\Copy.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnPrint" Text="In" ToolTip="F7, Ctrl+P" ToolTip2="F7, Ctrl+P" DockPanel.Dock="Left"
+                         ImagePath="VoucherToolBarImages\Printer.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnCancel" Text="Hủy" ImagePath="VoucherToolBarImages\Cancel.png" BorderBrush="{x:Null}" DockPanel.Dock="Left" />
+        <local:ToolBarButton x:Name="btnDelete" Text="Xóa" ToolTip="F8" ToolTip2="F8" Width="80" BorderBrush="{x:Null}" DockPanel.Dock="Left"
+                         ImagePath="VoucherToolBarImages\Delete.png" />
+        <local:ToolBarButton x:Name="btnView" Text="Xem" ToolTip="F2" ToolTip2="F2" ImagePath="VoucherToolBarImages\View.png" DockPanel.Dock="Left"
+                         BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnSearch" Text="Tìm" ToolTip="F9" ToolTip2="F9" DockPanel.Dock="Left"
+                         ImagePath="VoucherToolBarImages\Search.png" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnVoucherBookmarkMenu" Click="btnVoucherBookmarkMenu_Click"
+                         LostFocus="btnVoucherBookmarkMenu_LostFocus" ToolTip="Đánh dấu" ToolTip2="Bookmark" DockPanel.Dock="Left"
+                         Visibility="Collapsed" ImagePath="VoucherToolBarImages\bookmark.png" HorizontalAlignment="Right"
+                         IsNoText="true" BorderBrush="{x:Null}"/>
+        <Popup Name="popBookmark" AllowsTransparency="true" StaysOpen="false" Width="274" Placement="Bottom"
+           PlacementTarget="{Binding ElementName=btnVoucherBookmarkMenu}">
+            <smc:GridLayout Name="GrdPopup" Background="#FFF0F0F0">
+                <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                   Fill="#FFF0F0F0"/>
+                <smc:GridLayout Name="GrdInfo" RowHeights="25,*" RowCount="2" Margin="12">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="mnuAdd_Click" Name="btnAddBookmark" Content="Thêm" Width="60" HorizontalAlignment="Left"/>
+                        <Popup Name="popAddBookmark" AllowsTransparency="true" Width="274" StaysOpen="false" Placement="Bottom"
+                   PlacementTarget="{Binding ElementName=btnAddBookmark}">
+                            <smc:GridLayout Name="GrdAddPopup" Background="#FFF0F0F0">
+                                <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                           Fill="#FFF0F0F0"/>
+                                <smc:ConfirmGridView OnOk="GridMain_OnOk" OnCancel="GridMain_OnCancel" Name="GridMain">
+                                    <smc:GridLayout Name="GridInfo" RowCount="2" HeightPerRow="25" Margin="12,12,12,0">
+                                        <TextBox PreviewKeyDown="txtGhi_chu_PreviewKeyDown" Name="txtGhi_chu" Margin="0,2.5" Grid.RowSpan="2"
+                             Width="250" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Auto"/>
+                                    </smc:GridLayout>
+                                </smc:ConfirmGridView>
+                            </smc:GridLayout>
+                        </Popup>
+                        <Button Click="btnViewBookmark_Click" Name="btnViewBookmark" Content="Xem" Width="60"
+                    HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                        <Button Click="btnDeleteBookmark_Click" Name="btnDeleteBookmark" Content="Bỏ đánh dấu"
+                    Width="106                                 " HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                    </StackPanel>
+                    <ListBox Name="GrdBookmark" Grid.Row="1" Margin="0,12,0,0" SelectionMode="Single">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="0,2.5" IsChecked="{Binding active, Mode=TwoWay}"/>
+                                    <Label Margin="0,2.5" Content="{Binding dien_giai}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                </smc:GridLayout>
+            </smc:GridLayout>
+        </Popup>
+
+
+        <local:ToolBarButton x:Name="btnHelp" ImagePath="VoucherToolBarImages\Help.png" ToolTip="Trợ giúp" ToolTip2="Help" DockPanel.Dock="Right"
+                         Visibility="Visible" IsNoText="true" BorderBrush="{x:Null}"/>
+        <CheckBox Click="cb_hd_thue_Click" Name="cb_hd_thue" IsEnabled="true" HorizontalAlignment="Right" DockPanel.Dock="Right">
+            <FrameworkElement.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2"/>
+            </FrameworkElement.LayoutTransform>
+        </CheckBox>
+        <local:ToolBarButton x:Name="btnBottom" ImagePath="VoucherToolBarImages\Last.png" ToolTip="Về cuối" ToolTip2="Last" DockPanel.Dock="Right"
+                         IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnNext" ImagePath="VoucherToolBarImages\Next.png" ToolTip="Sau" ToolTip2="Next" DockPanel.Dock="Right"
+                         IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnPrevious" ImagePath="VoucherToolBarImages\Previous.png" ToolTip="Trước" DockPanel.Dock="Right"
+                         ToolTip2="Previous" IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnTop" ImagePath="VoucherToolBarImages\First.png" ToolTip="Về đầu" ToolTip2="First" DockPanel.Dock="Right"
+                         Margin="0,0,0,0" IsNoText="true" BorderBrush="{x:Null}"/>
+
+
+        <local:ToolBarButton x:Name="btnReportFromVoucher" ToolTip="Báo cáo" ToolTip2="Reports" DockPanel.Dock="Right"
+                         ImagePath="VoucherToolBarImages\Report.png" IsNoText="true" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnOptions" ImagePath="VoucherToolBarImages\Option.png" IsNoText="true" DockPanel.Dock="Right"
+                         ToolTip="Khai báo c.từ" ToolTip2="Config" HorizontalAlignment="Right" BorderBrush="{x:Null}"/>
+        <local:ToolBarButton x:Name="btnTemplate" Click="btnTemplate_Click" LostFocus="btnTemplate_LostFocus" ToolTip="Mẫu" DockPanel.Dock="Right"
+                         ToolTip2="Template" ImagePath="VoucherToolBarImages\Template.png" IsNoText="true"
+                         HorizontalAlignment="Right" BorderBrush="{x:Null}"/>
+        <Popup Opened="popTemplate_Opened" Closed="popTemplate_Closed" Name="popTemplate"
+           AllowsTransparency="true" StaysOpen="false" Width="auto" Placement="Bottom"
+           PlacementTarget="{Binding ElementName=btnTemplate}">
+            <smc:GridLayout Name="GrdTemplate" Background="#FFF0F0F0">
+                <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                   Fill="#FFF0F0F0"/>
+                <smc:GridLayout RowHeights="*" RowCount="1" Margin="12">
+                    <ListBox SelectionChanged="LstTemplate_SelectionChanged" Name="LstTemplate" Grid.Row="1"
+                            SelectionMode="Single">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Name="stItem" Orientation="Horizontal">
+                                    <CheckBox Margin="0,2.5" Checked="CheckBox_Checked"
+                                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected, Mode=OneTime}"
+                                        Content="{smc:BindingEx Path=dien_giai, Path2=dien_giai2}"/>
+                                    <Popup Name="popInfoTemplate" AllowsTransparency="true" StaysOpen="false" Placement="Bottom"
+                                            PlacementTarget="{Binding ElementName=stItem}">
+                                        <smc:GridLayout Background="#FFF0F0F0">
+                                            <Rectangle VerticalAlignment="Stretch" Stroke="#FF808080" RadiusX="0" RadiusY="0" StrokeThickness="1"
+                                                Fill="#FFF0F0F0"/>
+                                            <StackPanel x:Name="spnPhanQuyen" Margin="12" Orientation="Horizontal">
+                                                <smc:ExButton Content="Xóa" Content2="Delete" Width="92" Height="25" Click="ExButton_Click"/>
+                                                    <smc:ExButton x:Name="ExPhanQuyen" Content="Phân quyền" Content2="Decentralization" Width="92" Height="25" Margin="12,0,0,0" Click="ExPhanQuyen_Click"/>
+                                                </StackPanel>
+                                        </smc:GridLayout>
+                                    </Popup>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                </smc:GridLayout>
+            </smc:GridLayout>
+        </Popup>
+
+        <local:ToolBarButton x:Name="btnVoucherConextMenu" Click="btnVoucherConextMenu_Click"
+                         MouseDown="btnVoucherConextMenu_MouseDown" ImagePath="VoucherToolBarImages\Book.png" DockPanel.Dock="Right"
+                         IsNoText="true" ToolTip="Thông tin" ToolTip2="Information" BorderBrush="{x:Null}">
+            <FrameworkElement.ContextMenu>
+                <local:VoucherConextMenu x:Name="vc"/>
+            </FrameworkElement.ContextMenu>
+        </local:ToolBarButton>
+    </DockPanel>
+</UserControl>
