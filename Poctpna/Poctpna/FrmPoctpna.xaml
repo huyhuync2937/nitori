@@ -345,6 +345,15 @@
                                                SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                                Text="{smc:BindingEx RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         </DataTemplate>
+
+                                        <DataTemplate x:Key="ControlSearchMaHD">
+                                            <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="true" AllowWrong="true"
+       Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmhdm"
+       ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+       SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+       Text="{smc:BindingEx RelativeSource={RelativeSource AncestorType={x:Type igDP:CellValuePresenter}, Mode=FindAncestor}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DataTemplate>
+
                                         <DataTemplate x:Key="ControlSearchDvt1">
                                             <smc:AutoCompleteTextBox nRow="6" IsBorderTextBox="false" AllowEmty="false" AllowWrong="false"
                                              Style="{StaticResource AutoCompleteTextBoxEditModeEnable}" ListID="dmvtdvt"
@@ -762,6 +771,19 @@ EditorType="{x:Type smc:NumericTextBox}">
                                                                 </Setter>
                                                                 <Setter Property="igEditors:ValueEditor.Format"
                                         Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_TIEN}"/>
+                                                            </Style>
+                                                        </igDP:FieldSettings.EditorStyle>
+                                                    </igDP:FieldSettings>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>
+                                            <igDP:Field Label="Số dh mua" Name="ma_hdm_i" Width="70">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings AllowEdit="True" LabelTextAlignment="Center" AllowSummaries="False">
+                                                        <igDP:FieldSettings.EditorStyle>
+                                                            <Style TargetType="{x:Type smc:ControlHostEditor}">
+                                                                <Setter Property="smc:ControlHostEditor.EditDataTemplate" Value="{StaticResource ControlSearchMaHD}"/>
+                                                                <Setter Property="Control.Template"
+Value="{Binding Path=EditTemplate, RelativeSource={RelativeSource Self}}"/>
                                                             </Style>
                                                         </igDP:FieldSettings.EditorStyle>
                                                     </igDP:FieldSettings>
@@ -1536,6 +1558,8 @@ EditorType="{x:Type smc:NumericTextBox}">
                 </igWindows:TabItemEx>
             </igWindows:XamTabControl>
             <StackPanel Name="stackIsChecked" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button Click="btnImportExcel_Click" Name="btnExcel" Margin="0,0,12,0" Content="Xuất excel" Height="20" Background="Transparent" BorderThickness="0"/>
+
                 <Button Click="btnImport_Click" Name="btnImport" Margin="0,0,12,0" Content="_Chọn DL từ HĐĐT" Height="20" Background="Transparent" BorderThickness="0"/>
                 <Button Click="btnChonHDM_Click" Name="btnChonHDM" Margin="0,0,12,0" Content="_Chọn đh mua" Height="20" Background="Transparent" BorderThickness="0"/>
                 <CheckBox Click="ChkSuaTien_Click" Name="ChkSuaTien" Grid.Column="0" Grid.Row="0" Margin="0,0,12,0"

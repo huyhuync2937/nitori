@@ -14,10 +14,13 @@ using SasVoucherLib;
 using System;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +28,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Threading;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Poctpna
 {
@@ -526,6 +530,161 @@ namespace Poctpna
             if (StartUpTrans.M_LAN != "V")
                 frmIn.Title = "Report form list";
             frmIn.ShowDialog();
+        }
+
+        private void btnImportExcel_Click(object sender, RoutedEventArgs e)
+        {
+            if (StartUpTrans.DsTrans.Tables[0].DefaultView.Count == 0 || string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString().Trim()))
+            {
+                ExMessageBox.Show(345, StartupBase.SasObj, "Không có dữ liệu!", "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            SqlCommand sqlcmd = new SqlCommand("exec [dbo].[GetDataIn] @stt_rec");
+            sqlcmd.Parameters.Add("@stt_rec", SqlDbType.VarChar).Value = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"];
+            DataTable printExcel = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Copy();
+            if (printExcel.Rows.Count == 0)
+            {
+                ExMessageBox.Show(345, StartupBase.SasObj, "Không có dữ liệu!", "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            string templatePath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates"), "GiaoNhanHangHoa.xlsx");
+            if (!File.Exists(templatePath))
+            {
+                ExMessageBox.Show(345, StartupBase.SasObj, "Không tìm thấy mẫu excel: " + templatePath, "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Excel Workbook|*.xlsx";
+            saveFileDialog.Title = "Lưu file excel";
+            saveFileDialog.FileName = string.Format("GiaoNhanHangHoa_{0}_{1}", StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"].ToString().Trim(), DateTime.Now.ToString("yyyyMMddHHmmss"));
+            if (saveFileDialog.ShowDialog() != true)
+                return;
+
+            this.ExportPrintExcelToTemplate(printExcel, templatePath, saveFileDialog.FileName);
+        }
+
+        private void ExportPrintExcelToTemplate(DataTable printExcel, string templatePath, string savePath)
+        {
+            Excel.Application app = null;
+            Excel.Workbook wb = null;
+            Excel.Worksheet sheet = null;
+            try
+            {
+                app = new Excel.Application();
+                app.Visible = false;
+                app.DisplayAlerts = false;
+                app.ScreenUpdating = false;
+
+                wb = app.Workbooks.Open(templatePath, UpdateLinks: 0, ReadOnly: true);
+                sheet = (Excel.Worksheet)wb.Sheets[1];
+
+                Excel.Range orderNoCell = (Excel.Range)sheet.Cells[15, 19];
+                string orderNoLabel = orderNoCell.Value2 == null ? "" : orderNoCell.Value2.ToString();
+                orderNoCell.Value2 = orderNoLabel + StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"].ToString().Trim();
+
+                const int firstDataRow = 33;
+                const int lastTemplateDataRow = 53;
+                const int firstDCol = 7;   // G = D1
+                const int lastDCol = 16;   // P = D10
+                int rowCount = printExcel.Rows.Count;
+
+                // D1, D2, ... columns are dynamic: use however many "D<n>" columns the procedure returns,
+                // mapped in order onto the template's D1..D10 (G..P) columns.
+                List<string> dColumns = new List<string>();
+                foreach (DataColumn dc in printExcel.Columns)
+                {
+                    int dNum;
+                    if (dc.ColumnName.Length > 1 && dc.ColumnName[0] == 'D' && int.TryParse(dc.ColumnName.Substring(1), out dNum))
+                        dColumns.Add(dc.ColumnName);
+                }
+                dColumns.Sort((a, b) => int.Parse(a.Substring(1)).CompareTo(int.Parse(b.Substring(1))));
+                if (dColumns.Count > lastDCol - firstDCol + 1)
+                    dColumns = dColumns.GetRange(0, lastDCol - firstDCol + 1);
+
+                if (rowCount > lastTemplateDataRow - firstDataRow + 1)
+                {
+                    int rowsToAdd = rowCount - (lastTemplateDataRow - firstDataRow + 1);
+                    Excel.Range insertRange = sheet.get_Range("A" + lastTemplateDataRow, "W" + lastTemplateDataRow);
+                    for (int i = 0; i < rowsToAdd; i++)
+                        insertRange.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
+                }
+
+                int lastFilledRow = firstDataRow - 1;
+                for (int i = 0; i < rowCount; i++)
+                {
+                    DataRow row = printExcel.Rows[i];
+                    int excelRow = firstDataRow + i;
+                    lastFilledRow = excelRow;
+
+                    sheet.Cells[excelRow, 1] = (object)(i + 1);
+                    sheet.Cells[excelRow, 2] = (object)row["ma_vt"].ToString();
+                    sheet.Cells[excelRow, 3] = (object)row["ten_vt"].ToString();
+                    sheet.Cells[excelRow, 4] = (object)"";
+                    sheet.Cells[excelRow, 5] = (object)row["dvt1"].ToString();
+                    sheet.Cells[excelRow, 6] = (object)"";
+                    for (int col = firstDCol; col <= lastDCol; col++)
+                        sheet.Cells[excelRow, col] = (object)"";
+                    for (int d = 0; d < dColumns.Count; d++)
+                    {
+                        object val = row[dColumns[d]];
+                        sheet.Cells[excelRow, firstDCol + d] = val == DBNull.Value ? (object)"" : (object)Convert.ToDateTime(val).ToString("dd/MM/yyyy");
+                    }
+                    sheet.Cells[excelRow, 17] = row["tong_sl"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["tong_sl"]);
+                    sheet.Cells[excelRow, 18] = (object)"";
+                    sheet.Cells[excelRow, 19] = row["gia_nt0"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["gia_nt0"]);
+                    sheet.Cells[excelRow, 20] = row["tong_tien"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["tong_tien"]);
+                    sheet.Cells[excelRow, 21] = (object)"";
+                }
+
+                for (int excelRow = lastFilledRow + 1; excelRow <= lastTemplateDataRow; excelRow++)
+                {
+                    Excel.Range clearRange = sheet.get_Range("A" + excelRow, "U" + excelRow);
+                    clearRange.ClearContents();
+                }
+
+                // Wrap long text (e.g. TÊN HÀNG) instead of letting it overflow/overlap neighbouring columns,
+                // and grow the row height to fit it. Excel can't AutoFit a merged range directly, so the
+                // C:D merge (TÊN HÀNG) is temporarily undone around the AutoFit call.
+                if (lastFilledRow >= firstDataRow)
+                {
+                    Excel.Range fullRange = sheet.get_Range("A" + firstDataRow, "U" + lastFilledRow);
+                    fullRange.WrapText = true;
+                    for (int excelRow = firstDataRow; excelRow <= lastFilledRow; excelRow++)
+                    {
+                        Excel.Range nameRange = sheet.get_Range("C" + excelRow, "D" + excelRow);
+                        nameRange.UnMerge();
+                        ((Excel.Range)sheet.Rows[excelRow]).AutoFit();
+                        nameRange.Merge(Type.Missing);
+                    }
+                }
+
+                wb.SaveAs(savePath, Excel.XlFileFormat.xlOpenXMLWorkbook);
+                wb.Close(false);
+                app.Quit();
+
+                if (ExMessageBox.Show(3901, StartupBase.SasObj, "Xuất excel thành công, có muốn mở tệp vừa xuất?", "SIS", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+                    Process.Start(savePath);
+            }
+            catch (Exception ex)
+            {
+                if (wb != null)
+                    wb.Close(false);
+                if (app != null)
+                    app.Quit();
+                ErrorLog.CatchMessage(ex);
+            }
+            finally
+            {
+                if (sheet != null)
+                    Marshal.ReleaseComObject(sheet);
+                if (wb != null)
+                    Marshal.ReleaseComObject(wb);
+                if (app != null)
+                    Marshal.ReleaseComObject(app);
+            }
         }
 
         private void FormMain_EditModeEnded(object sender, string menuItemName, RoutedEventArgs e)
@@ -1209,6 +1368,23 @@ namespace Poctpna
                             break;
                         }
                         break;
+                    //case "ma_hdm_i":
+                    //    {
+                    //        if (e.Editor.Value == DBNull.Value)
+                    //            e.Cell.Record.Cells["ma_hdm_i"].Value = (object)"";
+                    //        if (e.Cell.IsDataChanged)
+                    //        {
+                    //            AutoCompleteTextBox autoCompleteControlHdm = ControlFunction.GetAutoCompleteControl(e.Editor as ControlHostEditor);
+                    //            DataRowView dataItemHdm = e.Cell.Record.DataItem as DataRowView;
+                    //            CellCollection cellsHdm = e.Cell.Record.Cells;
+                    //            if (autoCompleteControlHdm.RowResult != null)
+                    //            {
+                    //                e.Cell.Record.Cells["ma_hdm_i"].Value = autoCompleteControlHdm.RowResult["ma_hdm"];
+                    //            }
+                    //                break;
+                    //        }
+                    //        break;
+                    //    }
                 }
             }
             catch (Exception ex)
@@ -3107,6 +3283,7 @@ namespace Poctpna
                             if (dataTable.Rows.Count > 0)
                                 row2.ItemArray = dataTable.Rows[0].ItemArray;
                             row2["ton13"] = (object)DBNull.Value;
+                            row2["tk_vt"] = GetTkVt(row1["ma_vt"].ToString());
                             Decimal result1 = new Decimal(0);
                             Decimal.TryParse(row1["so_luong"].ToString(), out result1);
                             if (upper1.Equals(upper2))
@@ -3175,6 +3352,14 @@ namespace Poctpna
             {
                 ErrorLog.CatchMessage(ex);
             }
+        }
+
+        private static string GetTkVt(string ma_vt)
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT tk_vt FROM dmvt WHERE ma_vt = @ma_vt");
+            sqlCommand.Parameters.Add("@ma_vt", SqlDbType.Char, 16).Value = ma_vt;
+            object result = StartupBase.SasObj.ExcuteScalar(sqlCommand);
+            return result != null && result != DBNull.Value ? result.ToString().Trim() : "";
         }
 
         private void CreatePC(DataTable dt)

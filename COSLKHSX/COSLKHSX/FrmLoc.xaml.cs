@@ -31,34 +31,34 @@ namespace COSLKHSX
 
         public bool validateInput()
         {
-            if (string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && ((DateTime)this.txtHDDenNgay.Value).Year > 2078)
-            {
-                int num = (int)ExMessageBox.Show(785, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.txtHDDenNgay.Focus();
-                return false;
-            }
-            if (string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && ((DateTime)this.txtHDTuNgay.Value).Year > 2078)
-            {
-                int num = (int)ExMessageBox.Show(800, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.txtHDTuNgay.Focus();
-                return false;
-            }
-            if (!string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()))
-            {
-                if ((DateTime)this.txtHDTuNgay.Value > (DateTime)this.txtHDDenNgay.Value)
-                {
-                    int num = (int)ExMessageBox.Show(810, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                    this.txtHDTuNgay.Focus();
-                    this.txtHDTuNgay.SelectAll();
-                    return false;
-                }
-                if (((DateTime)this.txtHDTuNgay.Value).Year < 1900 || ((DateTime)this.txtHDTuNgay.Value).Year > 2078)
-                {
-                    int num = (int)ExMessageBox.Show(815, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                    this.txtHDTuNgay.Focus();
-                    return false;
-                }
-            }
+            //if (string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && ((DateTime)this.txtHDDenNgay.Value).Year > 2078)
+            //{
+            //    int num = (int)ExMessageBox.Show(785, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //    this.txtHDDenNgay.Focus();
+            //    return false;
+            //}
+            //if (string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && ((DateTime)this.txtHDTuNgay.Value).Year > 2078)
+            //{
+            //    int num = (int)ExMessageBox.Show(800, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //    this.txtHDTuNgay.Focus();
+            //    return false;
+            //}
+            //if (!string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()))
+            //{
+            //    if ((DateTime)this.txtHDTuNgay.Value > (DateTime)this.txtHDDenNgay.Value)
+            //    {
+            //        int num = (int)ExMessageBox.Show(810, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //        this.txtHDTuNgay.Focus();
+            //        this.txtHDTuNgay.SelectAll();
+            //        return false;
+            //    }
+            //    if (((DateTime)this.txtHDTuNgay.Value).Year < 1900 || ((DateTime)this.txtHDTuNgay.Value).Year > 2078)
+            //    {
+            //        int num = (int)ExMessageBox.Show(815, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //        this.txtHDTuNgay.Focus();
+            //        return false;
+            //    }
+            //}
             //if (string.IsNullOrEmpty(this.txtCTTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtCTDenNgay.Text.Trim()) && ((DateTime)this.txtCTDenNgay.Value).Year > 2078)
             //{
             //    int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -153,7 +153,9 @@ namespace COSLKHSX
                 //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
                 //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
                 //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value);
+                //StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value);
+
+                StartUp.CallGridReport(true,string.IsNullOrEmpty(this.txtSoCtBatDau.Text)? (object)"" : this.txtSoCtBatDau.Text);
             }
             catch (Exception ex)
             {
@@ -214,9 +216,9 @@ namespace COSLKHSX
         //    this.txtps_ck.Text = "1";
         //}
 
-        //private void txtSoCtBatDau_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //}
+        private void txtSoCtBatDau_LostFocus(object sender, RoutedEventArgs e)
+        {
+        }
 
         //private void txtMavt_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
         //{

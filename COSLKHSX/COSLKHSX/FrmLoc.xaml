@@ -30,14 +30,21 @@
                     <GroupBox Name="gbdk_loc" Header="Điều kiện lọc" Style="{StaticResource TabGroupBoxStyle}" Grid.Column="0"
                     Grid.Row="0">
                         <smc:GridLayout ColumnCount="4" ColumnWidths="90,140,90,140" RowCount="7" RowHeights="25,25,25,25,25,25,25,*">
-                            <TextBlock Name="lblHDTuNgay" Text="Đh từ ngày" Grid.Column="0" Grid.Row="0"/>
-                            <smc:DateTextBox x:Name="txtHDTuNgay" Grid.Row="0" Grid.Column="1" TabIndex="1"
+                            <TextBlock Visibility="Hidden" Name="lblHDTuNgay" Text="Đh từ ngày" Grid.Column="0" Grid.Row="0"/>
+                            <smc:DateTextBox Visibility="Hidden"  x:Name="txtHDTuNgay" Grid.Row="0" Grid.Column="1" TabIndex="1"
                                Style="{StaticResource DateTextBoxStyle}"
                                Value="{smc:BindingEx Path=M_NGAY_CT1, ElementName=frmLoc}"/>
-                            <TextBlock Name="lblHDDenNgay" Text="Đến ngày" Grid.Column="2" Grid.Row="0" Margin="20,0,0,0"/>
-                            <smc:DateTextBox x:Name="txtHDDenNgay" Grid.Row="0" Grid.Column="3" TabIndex="2"
+                            <TextBlock Visibility="Hidden"  Name="lblHDDenNgay" Text="Đến ngày" Grid.Column="2" Grid.Row="0" Margin="20,0,0,0"/>
+                            <smc:DateTextBox Visibility="Hidden"  x:Name="txtHDDenNgay" Grid.Row="0" Grid.Column="3" TabIndex="2"
                                Style="{StaticResource DateTextBoxStyle}"
                                Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=frmLoc}"/>
+
+                            <TextBlock Name="lblSohd" Text="Số kế hoạch" Grid.Column="0" Grid.Row="0"/>
+                            <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="0" ListID="ksxph"
+                                       AllowEmty="False" AllowWrong="true" TabIndex="3" IsTabStop="true"
+                                       SasObj="{Binding ElementName=TransactionFrm, Path=BindingSasObj}"
+                                       ParentControl="{Binding ElementName=TransactionFrm}"/>
+
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>
                             <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="1" ListID="dmhd"
                                        AllowEmty="true" AllowWrong="true" TabIndex="3" IsTabStop="true"

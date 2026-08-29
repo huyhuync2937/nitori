@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Invt\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|D:\\SISERPSME2025\\Source\\Invt\\invt\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|solutionrelative:invt\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|d:\\siserpsme2025\\source\\invt\\invt\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|solutionrelative:invt\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|D:\\SISERPSME2025\\Source\\Invt\\invt\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|solutionrelative:invt\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|D:\\SISERPSME2025\\Source\\Invt\\invt\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|solutionrelative:invt\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{94D511DB-A59A-431F-8ED0-05C5AE00DADD}|Invt\\Invt.csproj|D:\\SISERPSME2025\\Source\\Invt\\invt\\isenabledton_kho.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invt\\Invt\\App.xaml.cs",
               "RelativeDocumentMoniker": "Invt\\App.xaml.cs",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "newForm.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invt\\Invt\\newForm.xaml.cs",
               "RelativeDocumentMoniker": "Invt\\newForm.xaml.cs",
@@ -71,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "StartUp.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invt\\Invt\\StartUp.cs",
               "RelativeDocumentMoniker": "Invt\\StartUp.cs",
@@ -83,14 +83,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "newForm.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Invt\\Invt\\newForm.xaml",
               "RelativeDocumentMoniker": "Invt\\newForm.xaml",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Invt\\Invt\\newForm.xaml",
               "RelativeToolTip": "Invt\\newForm.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-19T08:10:09.146Z"
+              "WhenOpened": "2026-06-19T08:10:09.146Z",
+              "EditorCaption": ""
             }
           ]
         }

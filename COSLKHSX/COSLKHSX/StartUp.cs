@@ -46,6 +46,8 @@ namespace COSLKHSX
         public static string M_IP_SL;
         public static string M_ma_nt0;
         public static object g_hdTuNg;
+        public static object g_ctSoct;
+
         public static object g_hdDenNg;
         public static object g_ctTuNg;
         public static object g_ctDenNg;
@@ -79,17 +81,18 @@ namespace COSLKHSX
             }
         }
 
-        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg)
+        public static void CallGridReport( bool isFirstLoad,object txtSoCtBatDau)
         {
-            StartUp.g_hdTuNg = hdTuNg;
-            StartUp.g_hdDenNg = hdDenNg;
-          
+            StartUp.g_ctSoct = txtSoCtBatDau;
+            //StartUp.g_hdTuNg = hdTuNg;
+            //StartUp.g_hdDenNg = hdDenNg;
+
             if (isFirstLoad)
             {
-                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg";
-                StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
-                StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
-
+                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @soct";
+                //StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
+                //StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
+                StartUp.cmd.Parameters.Add("@soct", SqlDbType.VarChar).Value = string.IsNullOrEmpty(txtSoCtBatDau.ToString()) ? (object)"" : (object)txtSoCtBatDau.ToString();
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                 DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
                 StartUp.dsReport.Tables[0].TableName = "tbtong";
@@ -450,7 +453,7 @@ namespace COSLKHSX
                 
                 bool kindReport = true;
             
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg);
+                StartUp.CallGridReport(false, StartUp.g_ctSoct);
             }
             catch (Exception ex)
             {
