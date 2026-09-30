@@ -149,8 +149,8 @@ namespace QCSN
                 }
                 else
                 {
-                    StartUp.DataSourceReport.Tables["tbInfo"].Copy();
-                    StartUp.DataSourceReport = new DataSet();
+                    //StartUp.DataSourceReport.Tables["tbInfo"].Copy();
+                    //StartUp.DataSourceReport = new DataSet();
                     DataSet dataSet = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                     DataTable dataTable = dataSet.Tables[0].Copy();
                     dataTable.TableName = "tbMain";
@@ -158,18 +158,18 @@ namespace QCSN
                     table1.TableName = "tbDetail";
                     DataTable table2 = dataTable.Copy();
                     DataTable table3 = table1.Copy();
-                    table2.TableName = "tbPh";
-                    table2.Columns.Add("KHInfo", typeof(string), "TRIM(ma_kh)+' - '+ TRIM(ten_kh)");
-                    table3.TableName = "tbCt";
-                    table3.Columns.Add("VTInfo", typeof(string), "TRIM(ma_vt)+' - '+ TRIM(ten_vt)");
+                    //table2.TableName = "tbPh";
+                    //table2.Columns.Add("KHInfo", typeof(string), "TRIM(ma_kh)+' - '+ TRIM(ten_kh)");
+                    //table3.TableName = "tbCt";
+                    //table3.Columns.Add("VTInfo", typeof(string), "TRIM(ma_vt)+' - '+ TRIM(ten_vt)");
                     StartUp.DataSourceReport = new DataSet();
                     StartUp.DataSourceReport.Tables.Add(table2);
                     StartUp.DataSourceReport.Tables.Add(table3);
                     StartUp.DataSourceReport.Tables.Add(StartUp.dtInfo.Copy());
-                    DataRelation relation = new DataRelation("Stt_rec_Relation", table2.Columns["stt_rec"], table3.Columns["stt_rec"], false);
-                    StartUp.DataSourceReport.Relations.Add(relation);
-                    StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)dataTable.DefaultView;
-                    StartUp.DataSourceReport.Tables.Add(table1);
+                    //DataRelation relation = new DataRelation("Stt_rec_Relation", table2.Columns["stt_rec"], table3.Columns["stt_rec"], false);
+                    //StartUp.DataSourceReport.Relations.Add(relation);
+                    //StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)dataTable.DefaultView;
+                    //StartUp.DataSourceReport.Tables.Add(table1);
                     StartUp.oBrowse.frmBrw.oBrowse.FieldLayouts[0].SummaryDefinitions.Clear();
                     StartUp.oBrowse.UpdateSumaryFields();
                 }
@@ -183,9 +183,12 @@ namespace QCSN
         private static void oBrowse_CTRL_R(object sender, EventArgs e)
         {
             int result;
+            //if (!int.TryParse(StartUp._frmLoc.cbMauBaoCao.Value.ToString(), out result))
+            //    result = 1;
             string filter = StartUp._frmLoc.GetFilter();
             StartUp.QueryData(false, StartUp._frmLoc.TxtStartDateTime.Value, StartUp._frmLoc.TxtEndDateTime.Value, StartUp._frmLoc.txtMaVT.Text.Trim());
         }
+
 
         private static void oBrowse_Esc(object sender, EventArgs e)
         {

@@ -29,6 +29,22 @@ namespace PODMHDM
                             break;
                     }
                     break;
+                case "VT":
+                    switch (strArray[1])
+                    {
+                        case "ma_td1":
+                            if (values[0] != DependencyProperty.UnsetValue)
+                            {
+                                string ma_td1 = (values[0] ?? "").ToString().Trim();
+                                if (!string.IsNullOrEmpty(ma_td1))
+                                    filter += " AND ma_td1 = '" + ma_td1.Replace("'", "''") + "'";
+                                else
+                                    filter += " and 1=0";
+
+                            }
+                            break;
+                    }
+                    break;
             }
             return filter;
         }

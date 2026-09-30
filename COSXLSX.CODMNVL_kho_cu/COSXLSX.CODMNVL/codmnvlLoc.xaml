@@ -79,10 +79,18 @@
                 <smc:DateTextBox Name="lblNgayCt" Grid.Row="3" Grid.Column="3" Width="140" IsEnabled="false"
                          HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent" IsReadOnly="true"
                          IsTabStop="false"/>
+                
+                <!--<TextBlock Name="tblMa_px" Text="Mã công đoạn" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"/>
+                <smc:AutoCompleteTextBox PreviewLostFocus="txtpx_PreviewLostFocus" Name="txtMa_px" AllowEmty="true" AllowWrong="false" 
+                      Grid.Column="1" Grid.Row="1" ListID="dmpx" CharacterCasing="Upper" TabIndex="50"
+                      Style="{StaticResource AutoCompleteTextBoxStyle}" Height="20" Margin="0,0,0,2.5"
+                      VerticalAlignment="Bottom"
+                      ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                <TextBlock Name="lblTen_px" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="3" />-->
 
 
-
-                <TextBlock Name="tblMa_bpht" Text="Mã bpht" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6" Visibility="Hidden"/>
+                <TextBlock Name="tblMa_bpht" Text="Mã bpht" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" Visibility="Hidden"/>
                 <smc:AutoCompleteTextBox PreviewLostFocus="txtbpht_PreviewLostFocus" Name="txtMa_bpht" AllowEmty="true" AllowWrong="false" Visibility="Hidden"
                                  Grid.Column="1" Grid.Row="4" ListID="dmbpht" CharacterCasing="Upper" TabIndex="50"
                                  Style="{StaticResource AutoCompleteTextBoxStyle}" Height="20" Margin="0,0,0,2.5"

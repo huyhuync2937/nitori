@@ -522,9 +522,6 @@ namespace Poctpna
 
         private void V_In()
         {
-            SqlCommand sqlcmd = new SqlCommand("exec [dbo].[GetDataIn] @stt_rec");
-            sqlcmd.Parameters.Add("@stt_rec", SqlDbType.VarChar).Value = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"];
-            DataTable printExcel = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Copy();
 
             FrmIn frmIn = new FrmIn();
             if (StartUpTrans.M_LAN != "V")
@@ -542,17 +539,39 @@ namespace Poctpna
 
             SqlCommand sqlcmd = new SqlCommand("exec [dbo].[GetDataIn] @stt_rec");
             sqlcmd.Parameters.Add("@stt_rec", SqlDbType.VarChar).Value = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"];
-            DataTable printExcel = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Copy();
-            if (printExcel.Rows.Count == 0)
+            DataTable dtHdm = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Copy();
+            if (dtHdm.Rows.Count == 0)
             {
-                ExMessageBox.Show(345, StartupBase.SasObj, "Không có dữ liệu!", "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                ExMessageBox.Show(346, StartupBase.SasObj, "Không có dữ liệu!", "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
 
-            string templatePath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates"), "GiaoNhanHangHoa.xlsx");
+            List<KeyValuePair<string, DataTable>> sheetDataList = new List<KeyValuePair<string, DataTable>>();
+            foreach (DataRow hdmRow in dtHdm.Rows)
+            {
+                string maHdmI = hdmRow["ma_hdm_i"].ToString().Trim();
+                if (string.IsNullOrEmpty(maHdmI))
+                    continue;
+
+                SqlCommand sqlcmdDetail = new SqlCommand("exec [dbo].[GetDataIn_detail] @ma_hdm_i");
+                sqlcmdDetail.Parameters.Add("@ma_hdm_i", SqlDbType.VarChar).Value = maHdmI;
+                DataTable dtDetail = StartupBase.SasObj.ExcuteReader(sqlcmdDetail).Tables[0].Copy();
+                if (dtDetail.Rows.Count == 0)
+                    continue;
+
+                sheetDataList.Add(new KeyValuePair<string, DataTable>(maHdmI, dtDetail));
+            }
+
+            if (sheetDataList.Count == 0)
+            {
+                ExMessageBox.Show(346, StartupBase.SasObj, "Không có dữ liệu!", "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            string templatePath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Template"), "GiaoNhanHangHoa.xlsx");
             if (!File.Exists(templatePath))
             {
-                ExMessageBox.Show(345, StartupBase.SasObj, "Không tìm thấy mẫu excel: " + templatePath, "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                ExMessageBox.Show(347, StartupBase.SasObj, "Không tìm thấy mẫu excel: " + templatePath, "SIS", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
 
@@ -563,14 +582,23 @@ namespace Poctpna
             if (saveFileDialog.ShowDialog() != true)
                 return;
 
-            this.ExportPrintExcelToTemplate(printExcel, templatePath, saveFileDialog.FileName);
+            this.ExportPrintExcelToTemplate(sheetDataList, templatePath, saveFileDialog.FileName);
         }
 
-        private void ExportPrintExcelToTemplate(DataTable printExcel, string templatePath, string savePath)
+        private static string GetSafeSheetName(string rawName)
+        {
+            string name = rawName;
+            foreach (char c in new char[] { '\\', '/', '*', '?', ':', '[', ']' })
+                name = name.Replace(c, '_');
+            if (name.Length > 31)
+                name = name.Substring(0, 31);
+            return string.IsNullOrEmpty(name) ? "Sheet" : name;
+        }
+
+        private void ExportPrintExcelToTemplate(List<KeyValuePair<string, DataTable>> sheetDataList, string templatePath, string savePath)
         {
             Excel.Application app = null;
             Excel.Workbook wb = null;
-            Excel.Worksheet sheet = null;
             try
             {
                 app = new Excel.Application();
@@ -579,86 +607,25 @@ namespace Poctpna
                 app.ScreenUpdating = false;
 
                 wb = app.Workbooks.Open(templatePath, UpdateLinks: 0, ReadOnly: true);
-                sheet = (Excel.Worksheet)wb.Sheets[1];
+                Excel.Worksheet templateSheet = (Excel.Worksheet)wb.Sheets[1];
 
-                Excel.Range orderNoCell = (Excel.Range)sheet.Cells[15, 19];
-                string orderNoLabel = orderNoCell.Value2 == null ? "" : orderNoCell.Value2.ToString();
-                orderNoCell.Value2 = orderNoLabel + StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"].ToString().Trim();
-
-                const int firstDataRow = 33;
-                const int lastTemplateDataRow = 53;
-                const int firstDCol = 7;   // G = D1
-                const int lastDCol = 16;   // P = D10
-                int rowCount = printExcel.Rows.Count;
-
-                // D1, D2, ... columns are dynamic: use however many "D<n>" columns the procedure returns,
-                // mapped in order onto the template's D1..D10 (G..P) columns.
-                List<string> dColumns = new List<string>();
-                foreach (DataColumn dc in printExcel.Columns)
+                // The first ma_hdm_i fills the template sheet itself; every subsequent one
+                // gets a pristine copy of it (made before any of them are filled with data),
+                // so every sheet starts from the same unfilled layout.
+                List<Excel.Worksheet> sheets = new List<Excel.Worksheet>();
+                sheets.Add(templateSheet);
+                for (int i = 1; i < sheetDataList.Count; i++)
                 {
-                    int dNum;
-                    if (dc.ColumnName.Length > 1 && dc.ColumnName[0] == 'D' && int.TryParse(dc.ColumnName.Substring(1), out dNum))
-                        dColumns.Add(dc.ColumnName);
-                }
-                dColumns.Sort((a, b) => int.Parse(a.Substring(1)).CompareTo(int.Parse(b.Substring(1))));
-                if (dColumns.Count > lastDCol - firstDCol + 1)
-                    dColumns = dColumns.GetRange(0, lastDCol - firstDCol + 1);
-
-                if (rowCount > lastTemplateDataRow - firstDataRow + 1)
-                {
-                    int rowsToAdd = rowCount - (lastTemplateDataRow - firstDataRow + 1);
-                    Excel.Range insertRange = sheet.get_Range("A" + lastTemplateDataRow, "W" + lastTemplateDataRow);
-                    for (int i = 0; i < rowsToAdd; i++)
-                        insertRange.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
+                    templateSheet.Copy(Type.Missing, wb.Sheets[wb.Sheets.Count]);
+                    sheets.Add((Excel.Worksheet)wb.Sheets[wb.Sheets.Count]);
                 }
 
-                int lastFilledRow = firstDataRow - 1;
-                for (int i = 0; i < rowCount; i++)
+                for (int i = 0; i < sheetDataList.Count; i++)
                 {
-                    DataRow row = printExcel.Rows[i];
-                    int excelRow = firstDataRow + i;
-                    lastFilledRow = excelRow;
-
-                    sheet.Cells[excelRow, 1] = (object)(i + 1);
-                    sheet.Cells[excelRow, 2] = (object)row["ma_vt"].ToString();
-                    sheet.Cells[excelRow, 3] = (object)row["ten_vt"].ToString();
-                    sheet.Cells[excelRow, 4] = (object)"";
-                    sheet.Cells[excelRow, 5] = (object)row["dvt1"].ToString();
-                    sheet.Cells[excelRow, 6] = (object)"";
-                    for (int col = firstDCol; col <= lastDCol; col++)
-                        sheet.Cells[excelRow, col] = (object)"";
-                    for (int d = 0; d < dColumns.Count; d++)
-                    {
-                        object val = row[dColumns[d]];
-                        sheet.Cells[excelRow, firstDCol + d] = val == DBNull.Value ? (object)"" : (object)Convert.ToDateTime(val).ToString("dd/MM/yyyy");
-                    }
-                    sheet.Cells[excelRow, 17] = row["tong_sl"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["tong_sl"]);
-                    sheet.Cells[excelRow, 18] = (object)"";
-                    sheet.Cells[excelRow, 19] = row["gia_nt0"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["gia_nt0"]);
-                    sheet.Cells[excelRow, 20] = row["tong_tien"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["tong_tien"]);
-                    sheet.Cells[excelRow, 21] = (object)"";
-                }
-
-                for (int excelRow = lastFilledRow + 1; excelRow <= lastTemplateDataRow; excelRow++)
-                {
-                    Excel.Range clearRange = sheet.get_Range("A" + excelRow, "U" + excelRow);
-                    clearRange.ClearContents();
-                }
-
-                // Wrap long text (e.g. TÊN HÀNG) instead of letting it overflow/overlap neighbouring columns,
-                // and grow the row height to fit it. Excel can't AutoFit a merged range directly, so the
-                // C:D merge (TÊN HÀNG) is temporarily undone around the AutoFit call.
-                if (lastFilledRow >= firstDataRow)
-                {
-                    Excel.Range fullRange = sheet.get_Range("A" + firstDataRow, "U" + lastFilledRow);
-                    fullRange.WrapText = true;
-                    for (int excelRow = firstDataRow; excelRow <= lastFilledRow; excelRow++)
-                    {
-                        Excel.Range nameRange = sheet.get_Range("C" + excelRow, "D" + excelRow);
-                        nameRange.UnMerge();
-                        ((Excel.Range)sheet.Rows[excelRow]).AutoFit();
-                        nameRange.Merge(Type.Missing);
-                    }
+                    Excel.Worksheet sheet = sheets[i];
+                    sheet.Name = GetSafeSheetName(sheetDataList[i].Key);
+                    this.FillSheetData(sheet, sheetDataList[i].Value);
+                    Marshal.ReleaseComObject(sheet);
                 }
 
                 wb.SaveAs(savePath, Excel.XlFileFormat.xlOpenXMLWorkbook);
@@ -678,12 +645,93 @@ namespace Poctpna
             }
             finally
             {
-                if (sheet != null)
-                    Marshal.ReleaseComObject(sheet);
                 if (wb != null)
                     Marshal.ReleaseComObject(wb);
                 if (app != null)
                     Marshal.ReleaseComObject(app);
+            }
+        }
+
+        private void FillSheetData(Excel.Worksheet sheet, DataTable printExcel)
+        {
+            Excel.Range orderNoCell = (Excel.Range)sheet.Cells[15, 19];
+            string orderNoLabel = orderNoCell.Value2 == null ? "" : orderNoCell.Value2.ToString();
+            orderNoCell.Value2 = orderNoLabel + StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"].ToString().Trim();
+
+            const int firstDataRow = 33;
+            const int lastTemplateDataRow = 53;
+            const int firstDCol = 7;   // G = D1
+            const int lastDCol = 16;   // P = D10
+            int rowCount = printExcel.Rows.Count;
+
+            // D1, D2, ... columns are dynamic: use however many "D<n>" columns the procedure returns,
+            // mapped in order onto the template's D1..D10 (G..P) columns.
+            List<string> dColumns = new List<string>();
+            foreach (DataColumn dc in printExcel.Columns)
+            {
+                int dNum;
+                if (dc.ColumnName.Length > 1 && dc.ColumnName[0] == 'D' && int.TryParse(dc.ColumnName.Substring(1), out dNum))
+                    dColumns.Add(dc.ColumnName);
+            }
+            dColumns.Sort((a, b) => int.Parse(a.Substring(1)).CompareTo(int.Parse(b.Substring(1))));
+            if (dColumns.Count > lastDCol - firstDCol + 1)
+                dColumns = dColumns.GetRange(0, lastDCol - firstDCol + 1);
+
+            if (rowCount > lastTemplateDataRow - firstDataRow + 1)
+            {
+                int rowsToAdd = rowCount - (lastTemplateDataRow - firstDataRow + 1);
+                Excel.Range insertRange = sheet.get_Range("A" + lastTemplateDataRow, "W" + lastTemplateDataRow);
+                for (int i = 0; i < rowsToAdd; i++)
+                    insertRange.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
+            }
+
+            int lastFilledRow = firstDataRow - 1;
+            for (int i = 0; i < rowCount; i++)
+            {
+                DataRow row = printExcel.Rows[i];
+                int excelRow = firstDataRow + i;
+                lastFilledRow = excelRow;
+
+                sheet.Cells[excelRow, 1] = (object)(i + 1);
+                sheet.Cells[excelRow, 2] = (object)row["ma_vt"].ToString();
+                sheet.Cells[excelRow, 3] = (object)row["ten_vt"].ToString();
+                sheet.Cells[excelRow, 4] = (object)"";
+                sheet.Cells[excelRow, 5] = (object)row["dvt1"].ToString();
+                sheet.Cells[excelRow, 6] = (object)"";
+                for (int col = firstDCol; col <= lastDCol; col++)
+                    sheet.Cells[excelRow, col] = (object)"";
+                for (int d = 0; d < dColumns.Count; d++)
+                {
+                    object val = row[dColumns[d]];
+                    sheet.Cells[excelRow, firstDCol + d] = val == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(val);
+                }
+                sheet.Cells[excelRow, 17] = row["tong_sl"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["tong_sl"]);
+                sheet.Cells[excelRow, 18] = (object)"";
+                sheet.Cells[excelRow, 19] = row["gia_nt0"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["gia_nt0"]);
+                sheet.Cells[excelRow, 20] = row["tong_tien"] == DBNull.Value ? (object)0 : (object)Convert.ToDecimal(row["tong_tien"]);
+                sheet.Cells[excelRow, 21] = (object)"";
+            }
+
+            for (int excelRow = lastFilledRow + 1; excelRow <= lastTemplateDataRow; excelRow++)
+            {
+                Excel.Range clearRange = sheet.get_Range("A" + excelRow, "U" + excelRow);
+                clearRange.ClearContents();
+            }
+
+            // Wrap long text (e.g. TÊN HÀNG) instead of letting it overflow/overlap neighbouring columns,
+            // and grow the row height to fit it. Excel can't AutoFit a merged range directly, so the
+            // C:D merge (TÊN HÀNG) is temporarily undone around the AutoFit call.
+            if (lastFilledRow >= firstDataRow)
+            {
+                Excel.Range fullRange = sheet.get_Range("A" + firstDataRow, "U" + lastFilledRow);
+                fullRange.WrapText = true;
+                for (int excelRow = firstDataRow; excelRow <= lastFilledRow; excelRow++)
+                {
+                    Excel.Range nameRange = sheet.get_Range("C" + excelRow, "D" + excelRow);
+                    nameRange.UnMerge();
+                    ((Excel.Range)sheet.Rows[excelRow]).AutoFit();
+                    nameRange.Merge(Type.Missing);
+                }
             }
         }
 
@@ -2163,10 +2211,16 @@ namespace Poctpna
                             dataRowView["he_so1"] = 0;
                             dataRowView["so_luong1"] = 0;
                         }
-                        if ((Decimal)dataRowView["he_so1"] != new Decimal(0))
+
+                        // MODIFIED: null-safe, không phụ thuộc kiểu boxed của cột
+                        decimal heSo1 = ToDecimalSafe(dataRowView["he_so1"]);
+
+                        if (heSo1 != 0m)
                         {
-                            dataRowView["so_luong1"] = (Decimal)(Convert.ToDecimal(dataRowView["so_luong"]) * Convert.ToDecimal(dataRowView["he_so1"]));
+                            // MODIFIED: dùng lại heSo1 và xử lý DBNull cho so_luong
+                            dataRowView["so_luong1"] = ToDecimalSafe(dataRowView["so_luong"]) * heSo1;
                         }
+
                         LocalTable2.Rows.Add(dataRowView.Row.ItemArray);
                     }
 
@@ -2302,7 +2356,13 @@ namespace Poctpna
                 ErrorLog.CatchMessage(ex);
             }
         }
-
+        // MODIFIED: thêm helper (đặt trong cùng class)
+        private static decimal ToDecimalSafe(object value)
+        {
+            return value == null || value == DBNull.Value
+                ? 0m
+                : Convert.ToDecimal(value);
+        }
         private DataTable TaoPTC()
         {            // Tao chieu chi
             // --- Xoa PC neu khong tao
@@ -3269,13 +3329,13 @@ namespace Poctpna
 
                         string sttRec = frmPoctpnaGetHdm.dsHdm.Tables[0].DefaultView[i]["stt_rec"].ToString();
 
-                        DataRow[] rows = frmPoctpnaGetHdm.dsHdm.Tables[1].Select(
+                        DataRow[] rows = frmPoctpnaGetHdm.dsHdm.Tables[2].Select(
                             $"stt_rec = '{sttRec.Replace("'", "''")}' AND chon = true");
                         for (int index = 0; index < rows.Length; ++index)
                         {
                             DataRow row1 = rows[index];
                             DataRow row2 = StartUpTrans.DsTrans.Tables[1].NewRow();
-                            DataTable table = frmPoctpnaGetHdm.dsHdm.Tables[1].Clone();
+                            DataTable table = frmPoctpnaGetHdm.dsHdm.Tables[2].Clone();
 
                             table.Rows.Add(row1.ItemArray);
                             DataTable dataTable = StartUpTrans.DsTrans.Tables[1].Clone();
@@ -3284,38 +3344,46 @@ namespace Poctpna
                                 row2.ItemArray = dataTable.Rows[0].ItemArray;
                             row2["ton13"] = (object)DBNull.Value;
                             row2["tk_vt"] = GetTkVt(row1["ma_vt"].ToString());
+                            row2["stt_rec0_hdm"] = row1["stt_rec0"];
+                            row2["ma_hdm_i"] = row1["so_ct"];
+                            row2["ma_kho_i"] = row1["ma_kho_i"];
+
+                            row2["dvt1"] = row1["dvt1"];
                             Decimal result1 = new Decimal(0);
                             Decimal.TryParse(row1["so_luong"].ToString(), out result1);
                             if (upper1.Equals(upper2))
                             {
                                 if (upper1.Equals(StartUpTrans.M_ma_nt0))
                                 {
-                                    row2["gia_nt0"] = row1["gia0"];
-                                    row2["gia0"] = row1["gia0"];
-                                    row2["tien_nt0"] = row1["tien0"];
-                                    row2["tien0"] = row1["tien0"];
+                                    row2["gia_nt0"] = row1["gia"];
+                                    row2["gia0"] = row1["gia"];
+                                    row2["tien_nt0"] = row1["tien"];
+                                    row2["tien0"] = row1["tien"];
                                 }
                                 else
                                 {
-                                    row2["gia_nt0"] = row1["gia_nt0"];
-                                    row2["gia0"] = (object)SysFunc.Round(Convert.ToDecimal(row1["gia_nt0"].ToString()) * this.txtTy_gia.nValue, StartUpTrans.M_ROUND_GIA);
-                                    row2["tien_nt0"] = row1["tien_nt0"];
-                                    row2["tien0"] = (object)SysFunc.Round(Convert.ToDecimal(row2["gia0"].ToString()) * result1, StartUpTrans.M_ROUND_GIA);
+                                    row2["gia_nt0"] = row1["gia_nt"];
+                                    row2["gia0"] = (object)SysFunc.Round(this.ParseDecimal(row1["gia_nt"], new Decimal(0)) * this.txtTy_gia.nValue, StartUpTrans.M_ROUND_GIA);
+                                    row2["tien_nt0"] = row1["tien_nt"];
+                                    row2["tien0"] = (object)SysFunc.Round(this.ParseDecimal(row2["gia"], new Decimal(0)) * result1, StartUpTrans.M_ROUND_GIA);
                                 }
                             }
                             else if (upper1.Equals(StartUpTrans.M_ma_nt0))
                             {
-                                row2["gia_nt0"] = row1["gia_nt0"];
-                                row2["gia0"] = row1["gia_nt0"];
-                                row2["tien_nt0"] = row1["tien_nt0"];
-                                row2["tien0"] = row1["tien_nt0"];
+                                row2["gia_nt0"] = row1["gia_nt"];
+                                row2["gia0"] = row1["gia_nt"];
+                                row2["tien_nt0"] = row1["tien_nt"];
+                                row2["tien0"] = row1["tien_nt"];
                             }
                             else
                             {
-                                row2["gia_nt0"] = (object)SysFunc.Round(Convert.ToDecimal(row1["gia0"]) / this.txtTy_gia.nValue, StartUpTrans.M_ROUND_GIA_NT);
-                                row2["gia0"] = row1["gia0"];
-                                row2["tien_nt0"] = (object)SysFunc.Round(Convert.ToDecimal(row2["gia_nt0"]) * result1, StartUpTrans.M_ROUND_NT);
-                                row2["tien0"] = row1["tien0"];
+                                Decimal tyGia = this.txtTy_gia.nValue;
+                                if (tyGia == new Decimal(0))
+                                    tyGia = new Decimal(1);
+                                row2["gia_nt0"] = (object)SysFunc.Round(this.ParseDecimal(row1["gia"], new Decimal(0)) / tyGia, StartUpTrans.M_ROUND_GIA_NT);
+                                row2["gia0"] = row1["gia"];
+                                row2["tien_nt0"] = (object)SysFunc.Round(this.ParseDecimal(row2["gia_nt"], new Decimal(0)) * result1, StartUpTrans.M_ROUND_NT);
+                                row2["tien0"] = row1["tien"];
                             }
                             // row2["so_luong"] = row2["so_luong_duyet"];
                             row2["stt_rec"] = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"];

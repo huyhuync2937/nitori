@@ -52,6 +52,9 @@ namespace COSLDHN
         public static object g_ctDenNg;
         public static string[] CanChangeValueFields;
         public static int m_user_id = 0;
+        public static int M_User_name = 0;
+        public static string M_MA_CV = string.Empty;
+
 
         public override void Run()
         {
@@ -59,6 +62,8 @@ namespace COSLDHN
             try
             {
                 StartUp.CanChangeValueFields = "id,so_luong_fc,so_luong_using".Split(',');
+                StartUp.m_user_id = (int)Convert.ToInt16(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
+                StartUp.M_MA_CV = StartupBase.SasObj.UserInfo.Rows[0]["ma_cv"].ToString().Trim();
 
                 StartUp.M_ma_nt0 = StartupBase.SasObj.GetOption("M_MA_NT0").ToString();
                 StartUp.M_IP_TIEN = StartupBase.SasObj.GetOption("M_IP_TIEN").ToString();
@@ -132,6 +137,33 @@ namespace COSLDHN
                     toolBarButton4.Click += new RoutedEventHandler(ToolBarButtonF3_Click);
                     toolBar.Items.Insert(1, toolBarButton4);
 
+
+                    SasControls.ToolBarButton toolBarButton5 = new SasControls.ToolBarButton();
+                    toolBarButton5.BorderBrush = (Brush)Brushes.Transparent;
+                    toolBarButton5.Name = "btnXoa";
+                    toolBarButton5.Text = "Trưởng phòng duyệt";
+                    toolBarButton5.ToolTip = "F4";
+                    toolBarButton5.ImagePath = "Images\\UpdateSearch.png";
+                    toolBarButton5.Click += new RoutedEventHandler(ToolBarButtonF4_Click);
+                    toolBar.Items.Insert(1, toolBarButton5);
+
+                    SasControls.ToolBarButton toolBarButton6 = new SasControls.ToolBarButton();
+                    toolBarButton6.BorderBrush = (Brush)Brushes.Transparent;
+                    toolBarButton6.Name = "btnXoa";
+                    toolBarButton6.Text = "Trưởng phòng hủy";
+                    toolBarButton6.ToolTip = "F5";
+                    toolBarButton6.ImagePath = "Images\\UpdateSearch.png";
+                    toolBarButton6.Click += new RoutedEventHandler(ToolBarButtonF5_Click);
+                    toolBar.Items.Insert(1, toolBarButton6);
+
+                    SasControls.ToolBarButton toolBarButton7 = new SasControls.ToolBarButton();
+                    toolBarButton7.BorderBrush = (Brush)Brushes.Transparent;
+                    toolBarButton7.Name = "btnXoa";
+                    toolBarButton7.Text = "PIC hủy";
+                    toolBarButton7.ToolTip = "F6";
+                    toolBarButton7.ImagePath = "Images\\UpdateSearch.png";
+                    toolBarButton7.Click += new RoutedEventHandler(ToolBarButtonF6_Click);
+                    toolBar.Items.Insert(1, toolBarButton7);
                 }
 
                 //StartUp.oBrowse.F5 += new SasFormBrowes.FormBrowse.GridKeyUp_F5(StartUp.oBrowse_F5);
@@ -218,6 +250,10 @@ namespace COSLDHN
         private static void ToolBarButtonF2_Click(object sender, RoutedEventArgs e)
         {
             StartUp.m_user_id = Convert.ToInt32(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
+            if (!CheckPermission("PIC"))
+            {
+                return;
+            }
 
             if (StartUp.oBrowse.ActiveRecord == null)
                 return;
@@ -229,7 +265,7 @@ namespace COSLDHN
             DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
 
             //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
-            DataTable distinctValues = dataView.ToTable(true, "chon", "id","so_luong_fc", "so_luong_using");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id","so_luong_fc", "so_luong_using", "da_duyet");
 
             DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
                                    where (bool)x["chon"]
@@ -262,14 +298,20 @@ namespace COSLDHN
 
                 foreach (DataRowView row in array)
                 {
+                    if (row["da_duyet"].ToString().Trim().Equals("2"))
+                    {
+                        int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "TP đã duyệt, không thể duyệt lại!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
                     id = row["id"].ToString();
                     decimal.TryParse(row["so_luong_using"].ToString(), out so_luong);
+                    if(StartUp.m_user_id == 0)
+                        return;
 
                     SqlCommand cmd = new SqlCommand("EXEC dbo.Update_COQCS @id, @loai, @so_luong");
                     cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
                     cmd.Parameters.Add("@loai", SqlDbType.Int).Value = 1;
                     cmd.Parameters.Add("@so_luong", SqlDbType.Decimal).Value = so_luong;
-
                     object obj = StartupBase.SasObj.ExcuteScalar(cmd);
                 }
                 int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -278,6 +320,10 @@ namespace COSLDHN
         private static void ToolBarButtonF3_Click(object sender, RoutedEventArgs e)
         {
             StartUp.m_user_id = Convert.ToInt32(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
+            if (!CheckPermission("PIC"))
+            {
+                return;
+            }
 
             if (StartUp.oBrowse.ActiveRecord == null)
                 return;
@@ -289,7 +335,7 @@ namespace COSLDHN
             DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
 
             //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
-            DataTable distinctValues = dataView.ToTable(true, "chon", "id", "so_luong_fc", "so_luong_using");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id", "so_luong_fc", "so_luong_using", "da_duyet");
 
             DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
                                    where (bool)x["chon"]
@@ -309,7 +355,7 @@ namespace COSLDHN
                 return;
             }
 
-            if (ExMessageBox.Show(8007, StartupBase.SasObj, "Bạn có muốn duyệt không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
+            if (ExMessageBox.Show(8008, StartupBase.SasObj, "Bạn có muốn duyệt không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
             {
 
                 return;
@@ -322,6 +368,11 @@ namespace COSLDHN
 
                 foreach (DataRowView row in array)
                 {
+                    if (row["da_duyet"].ToString().Trim().Equals("2"))
+                    {
+                        int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "TP đã duyệt, không thể duyệt lại!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
                     id = row["id"].ToString();
                     decimal.TryParse(row["so_luong_fc"].ToString(), out so_luong);
 
@@ -335,6 +386,210 @@ namespace COSLDHN
                 int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
         }
+        private static void ToolBarButtonF4_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp.m_user_id = Convert.ToInt32(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
+            if (!CheckPermission("TPV", "TPN"))
+            {
+                return;
+            }
+            if (StartUp.oBrowse.ActiveRecord == null)
+                return;
+
+            if (StartUp.oBrowse.DataGrid.ActiveCell != null && StartUp.oBrowse.DataGrid.ActiveCell.IsInEditMode)
+                StartUp.oBrowse.DataGrid.ActiveCell.EndEditMode();
+            StartUp.oBrowse.ActiveRecord.Update();
+
+            DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+
+            //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id","da_duyet");
+
+            DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
+                                   where (bool)x["chon"]
+                                   select x).ToArray();
+            if (array.Length <= 0)
+            {
+                int num = (int)ExMessageBox.Show(100, StartupBase.SasObj, "Tick vào dòng cần duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            DataRowView[] arrayMamay = (from DataRowView x in dataView
+                                        where (bool)x["chon"] && x["id"].ToString().Trim().Equals("")
+                                        select x).ToArray();
+            if (arrayMamay.Length > 0)
+            {
+                int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Có hóa đơn chưa khai báo mã máy trên phần mềm kế toán!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            if (ExMessageBox.Show(8009, StartupBase.SasObj, "Bạn có muốn duyệt không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
+            {
+
+                return;
+            }
+            if (array.Length > 0)
+            {
+
+                string id = "";
+
+                foreach (DataRowView row in array)
+                {
+                    id = row["id"].ToString();
+                    SqlCommand cmd = new SqlCommand("EXEC dbo.Duyet_COQCS @id, @loai");
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@loai", SqlDbType.Int).Value = 1;
+
+                    object obj = StartupBase.SasObj.ExcuteScalar(cmd);
+                }
+                int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
+        private static void ToolBarButtonF5_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp.m_user_id = Convert.ToInt32(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
+            if (!CheckPermission("TPV", "TPN"))
+            {
+                return;
+            }
+            if (StartUp.oBrowse.ActiveRecord == null)
+                return;
+
+            if (StartUp.oBrowse.DataGrid.ActiveCell != null && StartUp.oBrowse.DataGrid.ActiveCell.IsInEditMode)
+                StartUp.oBrowse.DataGrid.ActiveCell.EndEditMode();
+            StartUp.oBrowse.ActiveRecord.Update();
+
+            DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+
+            //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id", "da_duyet");
+
+            DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
+                                   where (bool)x["chon"]
+                                   select x).ToArray();
+            if (array.Length <= 0)
+            {
+                int num = (int)ExMessageBox.Show(100, StartupBase.SasObj, "Tick vào dòng cần duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            DataRowView[] arrayMamay = (from DataRowView x in dataView
+                                        where (bool)x["chon"] && x["id"].ToString().Trim().Equals("")
+                                        select x).ToArray();
+            if (arrayMamay.Length > 0)
+            {
+                int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Có hóa đơn chưa khai báo mã máy trên phần mềm kế toán!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            if (ExMessageBox.Show(8010, StartupBase.SasObj, "Bạn có muốn hủy không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
+            {
+
+                return;
+            }
+            if (array.Length > 0)
+            {
+
+                string id = "";
+
+                foreach (DataRowView row in array)
+                {
+                    if (row["da_duyet"].ToString().Trim().Equals("0"))
+                    {
+                        int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Không thể hủy khi chưa duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    id = row["id"].ToString();
+                    SqlCommand cmd = new SqlCommand("EXEC dbo.Huy_TP_COQCS @id, @loai");
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@loai", SqlDbType.Int).Value = 1;
+
+                    object obj = StartupBase.SasObj.ExcuteScalar(cmd);
+                }
+                int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
+
+        private static void ToolBarButtonF6_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp.m_user_id = Convert.ToInt32(StartupBase.SasObj.UserInfo.Rows[0]["user_id"].ToString());
+            if (!CheckPermission("PIC"))
+            {
+                return;
+            }
+
+            if (StartUp.oBrowse.ActiveRecord == null)
+                return;
+
+            if (StartUp.oBrowse.DataGrid.ActiveCell != null && StartUp.oBrowse.DataGrid.ActiveCell.IsInEditMode)
+                StartUp.oBrowse.DataGrid.ActiveCell.EndEditMode();
+            StartUp.oBrowse.ActiveRecord.Update();
+
+            DataView dataView = StartUp.oBrowse.DataGrid.DataSource as DataView;
+
+            //DataTable distinctValues = dataView.ToTable(true, "chon", "id_hd", "so_ct0", "ngay_ct0", "ss");
+            DataTable distinctValues = dataView.ToTable(true, "chon", "id", "da_duyet");
+
+            DataRowView[] array = (from DataRowView x in distinctValues.DefaultView
+                                   where (bool)x["chon"]
+                                   select x).ToArray();
+            if (array.Length <= 0)
+            {
+                int num = (int)ExMessageBox.Show(100, StartupBase.SasObj, "Tick vào dòng cần duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            DataRowView[] arrayMamay = (from DataRowView x in dataView
+                                        where (bool)x["chon"] && x["id"].ToString().Trim().Equals("")
+                                        select x).ToArray();
+            if (arrayMamay.Length > 0)
+            {
+                int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Có hóa đơn chưa khai báo mã máy trên phần mềm kế toán!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+
+            if (ExMessageBox.Show(8011, StartupBase.SasObj, "Bạn có muốn hủy không?", "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.No) == MessageBoxResult.No)
+            {
+
+                return;
+            }
+            if (array.Length > 0)
+            {
+
+                string id = "";
+
+                foreach (DataRowView row in array)
+                {
+                    if (row["da_duyet"].ToString().Trim().Equals("0"))
+                    {
+                        int num = (int)ExMessageBox.Show(530, StartupBase.SasObj, "Không thể hủy khi chưa duyệt!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    id = row["id"].ToString();
+                    SqlCommand cmd = new SqlCommand("EXEC dbo.Huy_PIC_COQCS @id, @loai");
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@loai", SqlDbType.Int).Value = 1;
+
+                    object obj = StartupBase.SasObj.ExcuteScalar(cmd);
+                }
+                int num4 = (int)MessageBox.Show("Đã thực hiện thành công ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
+        private static bool CheckPermission(params string[] allowedRoles)
+        {
+            if (string.IsNullOrEmpty(StartUp.M_MA_CV))
+            {
+                MessageBox.Show("Chức vụ của bạn chưa được phân quyền, vui lòng liên hệ quản trị viên để được cấp quyền!");
+                return false;
+            }
+            if (!allowedRoles.Contains(StartUp.M_MA_CV))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!");
+                return false;
+            }
+            return true;
+        }
+
         public static bool CheckValidSoct(SasObject SasObj, string ma_qs, string so_ct, string stt_rec)
         {
             string format = "{0}";

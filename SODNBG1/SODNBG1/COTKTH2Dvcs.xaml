@@ -46,6 +46,7 @@
                         <igDP:Field Name="ten_kh" Label="Tên NCC" Width="250"/>
                         <igDP:Field Name="ten_kh2" Label="Tên NCC 2" Width="250"/>
                         <igDP:Field Name="e_mail" Label="Email" Width="250"/>
+                        <igDP:Field Name="dia_chi" Label="Địa chỉ" Width="250"/>
 
                     </igDP:FieldLayout>
                 </igDP:DataPresenterBase.FieldLayouts>

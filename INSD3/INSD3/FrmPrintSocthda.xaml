@@ -1,0 +1,43 @@
+<smc:Form x:Class="INSD3.FrmPrintSocthda"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:smc="http://sis.vn/SasControls"
+          xmlns:igDP="http://infragistics.com/DataPresenter"
+          xmlns:SasFormReport="clr-namespace:SasFormReport;assembly=SasFormReport"
+          xmlns:igEditors="http://infragistics.com/Editors"
+          Loaded="Form_Loaded" Title="Danh muc mau bao cao" LanguageID="INSD3_2" EscToClose="true"
+          Height="425" Width="750">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/XamComboEditorStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
+        <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <smc:GridLayout RowCount="3" RowHeights="*,0,44" ColumnCount="5" Margin="12,4,12,0"
+                  ColumnWidths="120,120,120,120,*">
+    <SasFormReport:ControlFilterReport Name="GridSearch" Grid.ColumnSpan="5"/>
+    <smc:GridLayout Row="3" ColumnSpan="5" ColumnCount="5" ColumnWidths="104,104,200,104,*">
+      <Button Click="btnin_Click" Name="btnin" Content="_In" Grid.Column="0" Width="92" Margin="0,-5,0,0"
+              HorizontalAlignment="Left" TabIndex="5"/>
+      <Button Click="btnxem_Click" Name="btnxem" Content="_Xem" Grid.Column="1" Width="92" Margin="0,-5,0,0"
+              HorizontalAlignment="Left" TabIndex="5"/>
+      <Button Click="BtnExport_Click" Name="BtnExport" Grid.Column="2" Width="188" Height="25"
+              HorizontalAlignment="Left" Grid.Row="2">Xuất PDF</Button>
+      <Button Click="btnthoat_Click" Name="btnthoat" Content="_Quay ra" Grid.Column="3" Width="92"
+              Margin="0,-5,0,0" HorizontalAlignment="Left" TabIndex="8"/>
+    </smc:GridLayout>
+  </smc:GridLayout>
+</smc:Form>

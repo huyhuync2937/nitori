@@ -322,11 +322,11 @@ namespace COSXLSX.CODMNVL
                 {
                     string str1 = dataTable.DefaultView[index]["ma_vt"].ToString().Trim();
                     string str2 = dataTable.DefaultView[index + 1]["ma_vt"].ToString().Trim();
-                    if (str1.Equals(str2))
-                    {
-                        int num = (int)ExMessageBox.Show(1500, StartupBase.SasObj, "Vào trùng mã vật tư!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                        return false;
-                    }
+                    //if (str1.Equals(str2))
+                    //{
+                    //    int num = (int)ExMessageBox.Show(1500, StartupBase.SasObj, "Vào trùng mã vật tư!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    //    return false;
+                    //}
                 }
                 for (int index = 0; index < dataTable.DefaultView.Count; ++index)
                 {

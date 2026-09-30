@@ -55,6 +55,14 @@ namespace PODMHDM
         public static FormBrowse obrowseBKCT = (FormBrowse)null;
         private static SqlCommand sqlcmdBKCT;
         private static string strBrowseBKCT = "";
+        public static readonly DependencyProperty DK_MA_NCCProperty = DependencyProperty.Register(nameof(DK_MA_NCC), typeof(string), typeof(FrmPoctpna), new PropertyMetadata(string.Empty));
+
+        public string DK_MA_NCC
+        {
+            get { return (string)this.GetValue(FrmPoctpna.DK_MA_NCCProperty); }
+            set { this.SetValue(FrmPoctpna.DK_MA_NCCProperty, value); }
+        }
+
         public FrmPoctpna()
         {
             this.InitializeComponent();
@@ -64,6 +72,7 @@ namespace PODMHDM
             this.C_NgayHT = this.txtNgay_ct;
             this.C_Ma_nt = this.cbMa_nt;
             this.C_So_ct = this.txtSo_ct;
+            this.SetBinding(FrmPoctpna.DK_MA_NCCProperty, new Binding("Text") { Source = this.txtMa_kh, Mode = BindingMode.OneWay });
         }
 
         private void FormTrans_Loaded(object sender, RoutedEventArgs e)
@@ -124,15 +133,13 @@ namespace PODMHDM
                         case "ma_td":
                             if (e.Editor.Value == null || !e.Cell.IsDataChanged)
                             {
-
                                 break;
-
                             }
                             AutoCompleteTextBox autoCompleteControl1 = ControlFunction.GetAutoCompleteControl(e.Editor as ControlHostEditor);
                             if (autoCompleteControl1.RowResult != null)
                             {
 
-                                e.Cell.Record.Cells["packing"].Value = autoCompleteControl1.RowResult["packing"];
+                                e.Cell.Record.Cells["packing"].Value = (object)this.ParseDecimal(autoCompleteControl1.RowResult["packing"], 0);
 
                                 DateTime ngayCt = Convert.ToDateTime(txtNgay_ct.Value);
                                 int soNgay = Convert.ToInt32(autoCompleteControl1.RowResult["sl_td1"]);
@@ -142,6 +149,14 @@ namespace PODMHDM
                                 if (e.Cell.Record.Cells["ngay_giao"].Value == DBNull.Value)
                                     e.Cell.Record.Cells["ngay_giao"].Value = (object)DateTime.Now.Date;
                             }
+
+                            string ma_vtChon = e.Editor.Value.ToString().Trim();
+                            decimal soLuongConLai = this.GetSoLuongCT(ma_vtChon) - this.GetTongSoLuongGtKhac(ma_vtChon, e.Cell.Record.Index);
+                            if (soLuongConLai < 0)
+                                soLuongConLai = 0;
+                            e.Cell.Record.Cells["so_luong"].Value = (object)soLuongConLai;
+
+                            this.RefreshTongSoLuongCtgt();
                             break;
 
                         case "packing":
@@ -167,8 +182,11 @@ namespace PODMHDM
                                 }
                                 else
                                 {
+                                    if(num4 != 0 && num5 != 0)
+                                    { 
+                                        e.Cell.Record.Cells["so_luong"].Value = (object)SysFunc.Round(num4 * num5, StartUpTrans.M_ROUND);
 
-                                    e.Cell.Record.Cells["so_luong"].Value = (object)SysFunc.Round(num4 * num5, StartUpTrans.M_ROUND);
+                                    }
                                 }
                                 //}
 
@@ -200,8 +218,10 @@ namespace PODMHDM
                                 }
                                 else
                                 {
-
-                                    e.Cell.Record.Cells["so_luong"].Value = (object)SysFunc.Round(num4 * num5, StartUpTrans.M_ROUND);
+                                    if (num4 != 0 && num5 != 0)
+                                    {
+                                        e.Cell.Record.Cells["so_luong"].Value = (object)SysFunc.Round(num4 * num5, StartUpTrans.M_ROUND);
+                                    }
                                 }
                                 //}
 
@@ -235,35 +255,48 @@ namespace PODMHDM
                 ErrorLog.CatchMessage(ex);
             }
         }
+        private decimal GetTongSoLuongGtKhac(string ma_vt, int excludeRowIndex)
+        {
+            ma_vt = (ma_vt ?? "").Trim();
+            decimal tongGT = 0;
+
+            DataView ctgtView = StartUpTrans.DsTrans.Tables[2].DefaultView;
+            for (int i = 0; i < ctgtView.Count; i++)
+            {
+                if (i == excludeRowIndex)
+                    continue;
+
+                DataRowView row = ctgtView[i];
+                if (row.Row.RowState == DataRowState.Deleted)
+                    continue;
+
+                if (row["ma_td"].ToString().Trim() == ma_vt)
+                    tongGT += this.ParseDecimal(row["so_luong"], 0);
+            }
+            return tongGT;
+        }
+
+        private decimal GetSoLuongCT(string ma_vt)
+        {
+            ma_vt = (ma_vt ?? "").Trim();
+            string sttRecCurrent = StartUpTrans.DsTrans.Tables[0].DefaultView.Count > 0
+                ? StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString()
+                : "";
+            DataRow[] drCT = StartUpTrans.DsTrans.Tables[1].Select(
+                "Trim(ma_vt)='" + ma_vt.Replace("'", "''") + "' AND stt_rec='" + sttRecCurrent.Replace("'", "''") + "'");
+
+            return drCT.Length > 0 ? this.ParseDecimal(drCT[0]["so_luong"], 0) : 0;
+        }
+
         private bool CheckSoLuong(string ma_vt, decimal soLuongMoi, int rowIndex)
         {
             ma_vt = (ma_vt ?? "").Trim();
 
-            // Tổng số lượng của cùng mã vật tư trong GT (trừ dòng đang sửa)
-            decimal tongGT = 0;
+            // Tổng số lượng của cùng mã vật tư trong GT (trừ dòng đang sửa), chỉ tính trong phiếu hiện tại
+            decimal tongGT = this.GetTongSoLuongGtKhac(ma_vt, rowIndex) + soLuongMoi;
 
-            foreach (DataRow row in StartUpTrans.DsTrans.Tables[2].Rows)
-            {
-                if (row.RowState == DataRowState.Deleted)
-                    continue;
-
-                if (row["ma_td"].ToString().Trim() == ma_vt)
-                {
-                    if (StartUpTrans.DsTrans.Tables[2].Rows.IndexOf(row) == rowIndex)
-                        continue;
-
-                    tongGT += this.ParseDecimal(row["so_luong"], 0);
-                }
-            }
-
-            tongGT += soLuongMoi;
-
-            // Lấy số lượng của mã vật tư trong CT
-            decimal soLuongCT = 0;
-            DataRow[] drCT = StartUpTrans.DsTrans.Tables[1].Select("Trim(ma_vt)='" + ma_vt.Replace("'", "''") + "'");
-
-            if (drCT.Length > 0)
-                soLuongCT = this.ParseDecimal(drCT[0]["so_luong"], 0);
+            // Lấy số lượng của mã vật tư trong CT, chỉ tính trong phiếu hiện tại
+            decimal soLuongCT = this.GetSoLuongCT(ma_vt);
 
             if (tongGT > soLuongCT)
             {
@@ -336,7 +369,7 @@ namespace PODMHDM
             }
             return true;
         }
-        private bool NewRowCtGt()
+        private bool NewRowCtGt(string ma_vt = "", decimal so_luong = 0, object ngay_giao = null)
         {
             try
             {
@@ -364,7 +397,10 @@ namespace PODMHDM
                 dataRow["ma_ct"] = (object)StartUpTrans.Ma_ct;
                 //dataRow["ma_ms"] = (object)StartUp.M_MA_MS;
                 dataRow["ngay_ct"] = this.txtNgay_ct.Value;
-                dataRow["so_luong"] = (object)0;
+                dataRow["ma_td"] = (object)ma_vt;
+                dataRow["so_luong"] = (object)so_luong;
+                if (ngay_giao != null && ngay_giao != DBNull.Value && !string.IsNullOrEmpty(ngay_giao.ToString().Trim()))
+                    dataRow["ngay_giao"] = ngay_giao;
                 dataRow["gia_nt"] = (object)0;
                 dataRow["gia"] = (object)0;
                 dataRow["t_tien_nt"] = (object)0;
@@ -407,8 +443,10 @@ namespace PODMHDM
             this.gridlayout50.DataContext = (object)StartUpTrans.DsTrans.Tables[0].DefaultView;
             this.GrdLayout22.DataContext = (object)StartUpTrans.DsTrans.Tables[0].DefaultView;
             //this.GrdTongChiPhi.DataContext = (object)StartUpTrans.DsTrans.Tables[0].DefaultView;
+            this.EnsureTongSoLuongCtgtColumn();
             this.GrdCt.DataSource = (IEnumerable)StartUpTrans.DsTrans.Tables[1].DefaultView;
             this.GrdCtgt.DataSource = (IEnumerable)StartUpTrans.DsTrans.Tables[2].DefaultView;
+            this.RefreshTongSoLuongCtgt();
 
             this.txtStatus.ItemsSource = (IEnumerable)StartUpTrans.tbStatus.DefaultView;
             if (StartUpTrans.tbStatus.DefaultView.Count != 1)
@@ -472,7 +510,7 @@ namespace PODMHDM
                 FormTrans.currActionTask = ActionTask.Add;
                 if (string.IsNullOrEmpty(str))
                     return;
-                this.Dispatcher.BeginInvoke(DispatcherPriority.Background, (Delegate)new Action(() => this.BtnChonNCC.Focus()));
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Background, (Delegate)new Action(() => this.txtMa_kh.Focus()));
                 this.DsVitual = StartUpTrans.DsTrans.Copy();
                 DataRow row = StartUpTrans.DsTrans.Tables[0].NewRow();
                 row["stt_rec"] = (object)str;
@@ -832,8 +870,92 @@ namespace PODMHDM
 
         private bool GrdCt_AddNewRecord(object sender, EditModeEndedEventArgs e)
         {
+            DataRowView lastCtRow = StartUpTrans.DsTrans.Tables[1].DefaultView.Count > 0
+                ? StartUpTrans.DsTrans.Tables[1].DefaultView[StartUpTrans.DsTrans.Tables[1].DefaultView.Count - 1]
+                : null;
+
             this.NewRowCt();
+
+            this.SyncCtgtFromCt(lastCtRow);
+
             return true;
+        }
+
+        private void SyncCtgtFromCt(DataRowView ctRow)
+        {
+            try
+            {
+                if (ctRow == null)
+                    return;
+
+                string ma_vt = (ctRow["ma_vt"]?.ToString() ?? "").Trim();
+                if (string.IsNullOrEmpty(ma_vt))
+                    return;
+
+                decimal so_luong = this.ParseDecimal(ctRow["so_luong"], 0);
+                object han_gh = ctRow["han_gh"];
+                if (han_gh != null && han_gh != DBNull.Value)
+                {
+                    DateTime hanGhDate;
+                    bool parsed;
+                    if (han_gh is DateTime dtValue)
+                    {
+                        hanGhDate = dtValue;
+                        parsed = true;
+                    }
+                    else
+                    {
+                        parsed = DateTime.TryParseExact(han_gh.ToString().Trim(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out hanGhDate);
+                    }
+                    han_gh = parsed ? (object)hanGhDate.ToString("dd-MM-yyyy") : null;
+                }
+
+                this.NewRowCtGt(ma_vt, so_luong, han_gh);
+                this.RefreshTongSoLuongCtgt();
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.CatchMessage(ex);
+            }
+        }
+
+        private void EnsureTongSoLuongCtgtColumn()
+        {
+            if (!StartUpTrans.DsTrans.Tables[2].Columns.Contains("t_so_luong_ct"))
+                StartUpTrans.DsTrans.Tables[2].Columns.Add("t_so_luong_ct", typeof(decimal));
+        }
+
+        private void RefreshTongSoLuongCtgt()
+        {
+            try
+            {
+                this.EnsureTongSoLuongCtgtColumn();
+
+                if (StartUpTrans.DsTrans.Tables[0].DefaultView.Count == 0)
+                    return;
+
+                string sttRec = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString();
+
+                foreach (DataRowView ctgtRow in StartUpTrans.DsTrans.Tables[2].DefaultView)
+                {
+                    string ma_td = (ctgtRow["ma_td"]?.ToString() ?? "").Trim();
+                    decimal tongSoLuong = 0;
+
+                    if (!string.IsNullOrEmpty(ma_td))
+                    {
+                        DataRow[] drCT = StartUpTrans.DsTrans.Tables[1].Select(
+                            "Trim(ma_vt)='" + ma_td.Replace("'", "''") + "' AND stt_rec='" + sttRec.Replace("'", "''") + "'");
+                        if (drCT.Length > 0)
+                            tongSoLuong = this.ParseDecimal(drCT[0]["so_luong"], 0);
+                    }
+
+                    ctgtRow["t_so_luong_ct"] = tongSoLuong;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.CatchMessage(ex);
+            }
         }
 
         private void GrdCt_EditModeEnded(object sender, EditModeEndedEventArgs e)
@@ -867,7 +989,7 @@ namespace PODMHDM
                             e.Cell.Record.Cells["dvt"].Value = autoCompleteControl1.RowResult["dvt"];
 
                             DateTime ngayCt = Convert.ToDateTime(txtNgay_ct.Value);
-                            int soNgay = Convert.ToInt32(autoCompleteControl1.RowResult["sl_td1"]);
+                            int soNgay = Convert.ToInt32(autoCompleteControl1.RowResult["sl_td1"]) * 7;
 
                             e.Cell.Record.Cells["han_gh"].Value = ngayCt.AddDays(soNgay).ToString("dd-MM-yyyy");
 
@@ -2072,6 +2194,7 @@ namespace PODMHDM
             StartUpTrans.DsTrans.Tables[0].DefaultView[0]["t_tt"] = (object)(num8 + num12);
             StartUpTrans.DsTrans.Tables[0].DefaultView[0]["t_tt_nt"] = (object)(num7 + num11);
             StartUpTrans.DsTrans.Tables[0].DefaultView[0]["t_so_luong"] = (object)this.ParseDecimal((object)StartUpTrans.DsTrans.Tables[1].Compute("sum(so_luong)", StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter).ToString(), new Decimal(0));
+            this.RefreshTongSoLuongCtgt();
         }
 
         private void IsVisibilityFieldsXamDataGrid(string ma_nt)
@@ -2529,10 +2652,15 @@ namespace PODMHDM
             {
                 if (StartUp.dataRowArray.Count() > 0)
                 {
-
-                    StartUpTrans.DsTrans.Tables[1].Rows.Clear();
-                    StartUpTrans.DsTrans.Tables[2].Rows.Clear();
+                    string sttRecCurrent = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString();
                     int stt_rec0Ctgt = 0;
+                    IEnumerable<DataRow> existingCtgtRows = StartUpTrans.DsTrans.Tables[2].AsEnumerable()
+                        .Where<DataRow>((Func<DataRow, bool>)(b => b.Field<string>("stt_rec") == sttRecCurrent));
+                    if (existingCtgtRows.Any())
+                    {
+                        string maxStr = existingCtgtRows.Max<DataRow, string>((Func<DataRow, string>)(x => x.Field<string>("stt_rec0")));
+                        int.TryParse(maxStr, out stt_rec0Ctgt);
+                    }
                     foreach (DataRow r in StartUp.dataRowArray)
                     {
                         try
@@ -2565,7 +2693,7 @@ namespace PODMHDM
                                     CultureInfo.InvariantCulture,
                                     DateTimeStyles.None,
                                     out DateTime eta)
-                                ? (object)eta.AddDays(leadTime)
+                                ? (object)eta.AddDays(leadTime).ToString("dd-MM-yyyy")
                                 : DBNull.Value;
                             //dataRow["gia0"] = r["gia2"];
                             //dataRow["gia_nt0"] = r["gia_nt2"];
@@ -2602,6 +2730,15 @@ namespace PODMHDM
                             ErrorLog.CatchMessage(ex);
                         }
                     }
+
+                    List<DataRow> emptyMaVtRows = StartUpTrans.DsTrans.Tables[1].AsEnumerable()
+                        .Where<DataRow>((Func<DataRow, bool>)(b => b.IsNull("ma_vt") || string.IsNullOrEmpty(b.Field<string>("ma_vt"))))
+                        .ToList<DataRow>();
+                    foreach (DataRow emptyRow in emptyMaVtRows)
+                    {
+                        StartUpTrans.DsTrans.Tables[1].Rows.Remove(emptyRow);
+                    }
+
                     this.Sum_ALL();
                 }
             }

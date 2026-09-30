@@ -40,8 +40,6 @@ namespace QCSD
                 StartUp.M_ngay_ct0 = (DateTime)StartupBase.SasObj.GetSysvar("M_NGAY_KY1");
                 StartUp.dtInfo = new DataTable();
                 StartUp.dtInfo.TableName = "TbInfo";
-                StartUp.dtInfo.Columns.Add("StartDate");
-                StartUp.dtInfo.Columns.Add("EndDate");
                 if (StartUp.CommandInfo == null)
                     return;
                 StartUp._frmLoc = new FormLoc();
@@ -58,8 +56,8 @@ namespace QCSD
         }
 
         public static void CallGridVouchers(
-          object StartDate,
-          object EndDate,
+          object hdTuNg,
+          object hdDenNg,
           //string filter,
           //int KindReport,
           //int loai,
@@ -74,10 +72,10 @@ namespace QCSD
                 string[] strArray1 = StartUp.CommandInfo["store_proc"].ToString().Split('|');
                 StartUp.cmd = new SqlCommand();
                 StartUp.cmd.CommandText = "Exec " + strArray1[0] + " @hdTuNg, @hdDenNg, @ma_vt";
-                StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(StartDate.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)StartDate);
-                StartUp.cmd.Parameters.Add("@hdDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(EndDate.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)EndDate);
+                StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
+                StartUp.cmd.Parameters.Add("@hdDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
                 //StartUp.cmd.Parameters.Add("@Condition", SqlDbType.NVarChar).Value = (object) filter;
-                StartUp.cmd.Parameters.Add("@ma_vt", SqlDbType.NVarChar).Value = (object)MaVT;
+                StartUp.cmd.Parameters.Add("@ma_vt", SqlDbType.VarChar).Value = (object)MaVT;
                 DataSet dataSet = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                 DataTable dataTable1 = dataSet.Tables[0].Copy();
                 dataTable1.TableName = "tbMain";
@@ -150,7 +148,7 @@ namespace QCSD
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show(ex.InnerException.Message);
+                int num = (int)MessageBox.Show(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -161,8 +159,8 @@ namespace QCSD
 
         public static void QueryData(
           bool isFirstLoad,
-          object StartDate,
-          object EndDate,
+          object hdTuNg,
+          object hdDenNg,
           string MaVT
         )
         {
@@ -170,7 +168,7 @@ namespace QCSD
             {
                 if (isFirstLoad)
                 {
-                    StartUp.CallGridVouchers(StartDate, EndDate, MaVT);
+                    StartUp.CallGridVouchers(hdTuNg, hdDenNg, MaVT);
                 }
                 else
                 {
@@ -183,20 +181,20 @@ namespace QCSD
                     table1.TableName = "tbDetail";
                     DataTable table2 = dataTable.Copy();
                     DataTable table3 = table1.Copy();
-                    table2.TableName = "tbPh";
-                    table2.Columns.Add("KHInfo", typeof(string), "TRIM(ma_kh)+' - '+ TRIM(ten_kh)");
-                    table3.TableName = "tbCt";
-                    table3.Columns.Add("VTInfo", typeof(string), "TRIM(ma_vt)+' - '+ TRIM(ten_vt)");
+                    //table2.TableName = "tbPh";
+                    //table2.Columns.Add("KHInfo", typeof(string), "TRIM(ma_kh)+' - '+ TRIM(ten_kh)");
+                    //table3.TableName = "tbCt";
+                    //table3.Columns.Add("VTInfo", typeof(string), "TRIM(ma_vt)+' - '+ TRIM(ten_vt)");
                     StartUp.DataSourceReport = new DataSet();
                     StartUp.DataSourceReport.Tables.Add(table2);
                     StartUp.DataSourceReport.Tables.Add(table3);
                     StartUp.DataSourceReport.Tables.Add(StartUp.dtInfo.Copy());
-                    DataRelation relation = new DataRelation("Stt_rec_Relation", table2.Columns["stt_rec"], table3.Columns["stt_rec"], false);
-                    StartUp.DataSourceReport.Relations.Add(relation);
-                    StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)dataTable.DefaultView;
-                    StartUp.oBrowse.frmBrw.oBrowseCt.DataSource = (IEnumerable)table1.DefaultView;
-                    StartUp.oBrowse.ObrowseViewCt = table1.DefaultView;
-                    StartUp.DataSourceReport.Tables.Add(table1);
+                    //DataRelation relation = new DataRelation("Stt_rec_Relation", table2.Columns["stt_rec"], table3.Columns["stt_rec"], false);
+                    //StartUp.DataSourceReport.Relations.Add(relation);
+                    //StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)dataTable.DefaultView;
+                    //StartUp.oBrowse.frmBrw.oBrowseCt.DataSource = (IEnumerable)table1.DefaultView;
+                    //StartUp.oBrowse.ObrowseViewCt = table1.DefaultView;
+                    //StartUp.DataSourceReport.Tables.Add(table1);
                     StartUp.oBrowse.frmBrw.oBrowse.FieldLayouts[0].SummaryDefinitions.Clear();
                     StartUp.oBrowse.UpdateSumaryFields();
                     StartUp._frmLoc.Close();
@@ -214,8 +212,7 @@ namespace QCSD
             int result;
             //if (!int.TryParse(StartUp._frmLoc.cbMauBaoCao.Value.ToString(), out result))
             //    result = 1;
-            string filter = StartUp._frmLoc.GetFilter();
-            StartUp.QueryData(false, StartUp._frmLoc.TxtStartDateTime.Value, StartUp._frmLoc.TxtEndDateTime.Value, StartUp._frmLoc.txtMaVT.Text.Trim());
+            StartUp.QueryData(false, (object)StartUp._frmLoc.txtHDTuNgay.Value, (object)StartUp._frmLoc.txtHDDenNgay.Value, StartUp._frmLoc.txtMaVT.Text.Trim());
         }
 
         private static void oBrowse_Esc(object sender, EventArgs e)

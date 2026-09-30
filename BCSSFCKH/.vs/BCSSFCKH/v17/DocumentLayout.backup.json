@@ -1,0 +1,98 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|d:\\siserpsme2025\\source\\bcssfckh\\bcssfckh\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|solutionrelative:bcssfckh\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|D:\\SISERPSME2025\\Source\\BCSSFCKH\\bcssfckh\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|solutionrelative:bcssfckh\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|D:\\SISERPSME2025\\Source\\BCSSFCKH\\bcssfckh\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|solutionrelative:bcssfckh\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|D:\\SISERPSME2025\\Source\\BCSSFCKH\\bcssfckh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|BCSSFCKH\\BCSSFCKH.csproj|solutionrelative:bcssfckh\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|BCSSFCKH||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "BCSSFCKH\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "BCSSFCKH\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAwwEIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-20T14:04:49.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "BCSSFCKH\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\FrmLoc.xaml",
+              "RelativeToolTip": "BCSSFCKH\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-20T14:04:40.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\App.xaml.cs",
+              "RelativeDocumentMoniker": "BCSSFCKH\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\App.xaml.cs",
+              "RelativeToolTip": "BCSSFCKH\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-20T14:04:30.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BCSSFCKH",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\BCSSFCKH.csproj",
+              "RelativeDocumentMoniker": "BCSSFCKH\\BCSSFCKH.csproj",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\BCSSFCKH.csproj",
+              "RelativeToolTip": "BCSSFCKH\\BCSSFCKH.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-09-20T14:04:18.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\StartUp.cs",
+              "RelativeDocumentMoniker": "BCSSFCKH\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\BCSSFCKH\\BCSSFCKH\\StartUp.cs",
+              "RelativeToolTip": "BCSSFCKH\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-20T14:04:06.908Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

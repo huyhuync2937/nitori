@@ -91,7 +91,7 @@
                                    MaxLength="1" PreviewTextInput="txtStatus_PreviewTextInput"
                                    Style="{StaticResource ReadOnly}"/>
                 <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="12,0,0,0" VerticalAlignment="Center"
-                           Text="1 - theo ngày; 2 - theo tháng" Style="{StaticResource ContentTextStyle}"/>
+                           Text="1- theo tháng; 2- theo ngày; 3- carton tbsd; 4- carton bom" Style="{StaticResource ContentTextStyle}"/>
 
             </smc:GridLayout>
         </Border>

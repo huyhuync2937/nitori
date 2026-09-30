@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\POCNCC1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|d:\\siserpsme2025\\source\\pocncc1\\pocncc1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|solutionrelative:pocncc1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|D:\\SISERPSME2025\\Source\\POCNCC1\\pocncc1\\purchase.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|solutionrelative:pocncc1\\purchase.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|D:\\SISERPSME2025\\Source\\POCNCC1\\pocncc1\\arttkb1pbg.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|solutionrelative:pocncc1\\arttkb1pbg.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|D:\\SISERPSME2025\\Source\\POCNCC1\\pocncc1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECBE1E21-BDC6-484E-915E-265E2DA5D402}|POCNCC1\\POCNCC1.csproj|solutionrelative:pocncc1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\StartUp.cs",
+              "RelativeDocumentMoniker": "POCNCC1\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\StartUp.cs",
+              "RelativeToolTip": "POCNCC1\\StartUp.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAAAEwOkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T03:21:01.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Arttkb1PBG.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\Arttkb1PBG.xaml.cs",
+              "RelativeDocumentMoniker": "POCNCC1\\Arttkb1PBG.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\Arttkb1PBG.xaml.cs",
+              "RelativeToolTip": "POCNCC1\\Arttkb1PBG.xaml.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T02:27:25.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Purchase.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\Purchase.xaml.cs",
+              "RelativeDocumentMoniker": "POCNCC1\\Purchase.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\Purchase.xaml.cs",
+              "RelativeToolTip": "POCNCC1\\Purchase.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T02:26:16.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\App.xaml.cs",
+              "RelativeDocumentMoniker": "POCNCC1\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\POCNCC1\\POCNCC1\\App.xaml.cs",
+              "RelativeToolTip": "POCNCC1\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T02:23:15.749Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

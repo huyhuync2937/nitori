@@ -153,7 +153,8 @@ namespace COLGHSS1
                 //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
                 //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
                 //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value);
+                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, 
+                            string.IsNullOrEmpty(this.txtMaKhach.Text) ?"" : this.txtMaKhach.Text);
             }
             catch (Exception ex)
             {
@@ -186,13 +187,13 @@ namespace COLGHSS1
             }
         }
 
-        //private void txtMaKhach_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
-        //{
-        //    if (this.txtMaKhach.RowResult == null)
-        //        this.lblTenKhach.Text = "";
-        //    else
-        //        this.lblTenKhach.Text = !(StartupBase.M_LAN == "V") ? this.txtMaKhach.RowResult["ten_kh2"].ToString().Trim() : this.txtMaKhach.RowResult["ten_kh"].ToString().Trim();
-        //}
+        private void txtMaKhach_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (this.txtMaKhach.RowResult == null)
+                this.lblTenKhach.Text = "";
+            else
+                this.lblTenKhach.Text = !(StartupBase.M_LAN == "V") ? this.txtMaKhach.RowResult["ten_kh2"].ToString().Trim() : this.txtMaKhach.RowResult["ten_kh"].ToString().Trim();
+        }
 
         //private void txtMaKho_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
         //{

@@ -659,10 +659,16 @@ HorizontalAlignment="Left" Width="75" Style="{StaticResource ButtonEditModeEnabl
                                                     <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" EditAsType="{x:Type System:String}"/>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
-                                            <igDP:Field Label="Số đơn hàng mua" Name="ma_hdm_i" Width="250">
+                                            <!--<igDP:Field Label="Số đơn hàng mua" Name="ma_hdm_i" Width="250">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
      AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>-->
+                                            <igDP:Field Label="Số đơn đặt hàng" Name="ma_td_i" Width="250">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
+AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
                                             <igDP:Field Label="Tiền" Name="tien_nt" Width="130">
@@ -1036,12 +1042,12 @@ HorizontalAlignment="Left" Width="75" Style="{StaticResource ButtonEditModeEnabl
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
-                                            <igDP:Field Label="Số đơn hàng mua" Name="ma_hdm_i" Width="250">
+                                            <!--<igDP:Field Label="Số đơn hàng mua" Name="ma_hdm_i" Width="250">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
 AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
                                                 </igDP:Field.Settings>
-                                            </igDP:Field>
+                                            </igDP:Field>-->
                                             <igDP:Field Label="Diễn giải chi tiết" Name="dien_giaii" Width="250">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
@@ -1152,6 +1158,18 @@ AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
                                                             </Style>
                                                         </igDP:FieldSettings.EditorStyle>
                                                     </igDP:FieldSettings>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>
+                                            <!--<igDP:Field Label="Số đơn hàng mua" Name="ma_hdm_i" Width="250">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
+     AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>-->
+                                            <igDP:Field Label="Số đơn đặt hàng" Name="ma_td_i" Width="250">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
+AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
                                             <igDP:Field Label="Mã ncc" Name="ma_kh_t" Width="100">
@@ -1557,6 +1575,12 @@ AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
                                             <igDP:Field Label="Số đơn hàng mua" Name="ma_hdm_i" Width="250">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
+     AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>
+                                            <igDP:Field Label="Số đơn đặt hàng" Name="ma_td_i" Width="250">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings EditAsType="{x:Type System:String}" LabelTextAlignment="Center"
 AllowEdit="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}"/>

@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|d:\\siserpsme2025\\source\\qcsn\\qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|d:\\siserpsme2025\\source\\qcsn\\qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|D:\\SISERPSME2025\\Source\\QCSN\\qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSN\\QCSN.csproj|solutionrelative:qcsn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\App.xaml.cs",
               "RelativeDocumentMoniker": "QCSN\\App.xaml.cs",
@@ -38,8 +38,7 @@
               "RelativeToolTip": "QCSN\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T04:21:41.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-06T04:21:41.123Z"
             },
             {
               "$type": "Document",
@@ -49,14 +48,14 @@
               "RelativeDocumentMoniker": "QCSN\\FormLoc.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\FormLoc.xaml.cs",
               "RelativeToolTip": "QCSN\\FormLoc.xaml.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAmwJIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAmwB8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T04:20:27.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "FormLoc.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\FormLoc.xaml",
               "RelativeDocumentMoniker": "QCSN\\FormLoc.xaml",
@@ -74,7 +73,7 @@
               "RelativeDocumentMoniker": "QCSN\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSN\\QCSN\\StartUp.cs",
               "RelativeToolTip": "QCSN\\StartUp.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAvwFEAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAtwL4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T04:15:35.792Z",
               "EditorCaption": ""

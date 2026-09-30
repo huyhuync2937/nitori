@@ -4,6 +4,8 @@
           xmlns:smc="http://sis.vn/SasControls"
           xmlns:igDP="http://infragistics.com/DataPresenter"
           xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:igEditors="http://infragistics.com/Editors"
+
           xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase"
           xmlns:sys="clr-namespace:System;assembly=mscorlib"
           xmlns:igThemes="http://infragistics.com/Themes"
@@ -29,8 +31,88 @@
             </ResourceDictionary.MergedDictionaries>
             <smvc:BindingVisibility x:Key="VisibilityConverter"/>
             <smc:CodeValueBindingObject x:Key="Voucher_Lan0"/>
-            <smc:CodeValueBindingObject x:Key="M_IP_SL" Text="#.000"/>
+            <smc:CodeValueBindingObject x:Key="M_IP_SL" Text="#.00000"/>
+            <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+            <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0" Value="false"/>
+
             <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+            <Style x:Key="ButtonEditModeDisable" TargetType="{x:Type Button}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="UIElement.IsEnabled" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="MaskedTextBoxReadOnly" TargetType="{x:Type smc:MaskedTextBox}"
+BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ButtonEditModeEnable" TargetType="{x:Type Button}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="UIElement.IsEnabled" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="TextBoxEditModeEnable" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteTextBoxEditModeEnable" TargetType="{x:Type smc:AutoCompleteTextBox}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="XamMaskedEditorEditModeEnable" TargetType="{x:Type igEditors:XamMaskedEditor}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="NumericTextBoxrEditModeEnable" TargetType="{x:Type smc:NumericTextBox}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="CheckBoxEditModeEnable" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource CheckBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="UIElement.IsEnabled" Value="false"/>
+                        <Setter Property="Control.Foreground" Value="Black"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="CheckBoxEditModeEnable2" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource CheckBoxStyle}">
+                <Setter Property="IsEnabled" Value="False" />
+                <Style.Triggers>
+                    <DataTrigger Value="False" Binding="{smc:BindingEx IsEnabled, RelativeSource={x:Static RelativeSource.Self}}">
+                        <Setter Property="Foreground" Value="#FF000000" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DateTextBoxEditModeEnable" TargetType="{x:Type smc:DateTextBox}"
+BasedOn="{StaticResource DateTextBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}"
+          Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+         
             <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
                 <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
                 <Style.Triggers>
@@ -189,7 +271,7 @@ Style="{StaticResource AutoCompleteReadOnly}" ListID="dmvt" Filter="tk_vt = '152
                                         EditAsType="{x:Type sys:String}"/>
                                     </igDP:Field.Settings>
                                 </igDP:Field>
-                                <igDP:Field Label="Sl định mức" Name="sl_dm" Width="80">
+                                <!--<igDP:Field Label="Sl định mức" Name="sl_dm" Width="80">
                                     <igDP:Field.Settings>
                                         <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="False"
                                         AllowEdit="{Binding IsEditMode, Source={StaticResource IsInEditMode}}">
@@ -201,7 +283,22 @@ Style="{StaticResource AutoCompleteReadOnly}" ListID="dmvt" Filter="tk_vt = '152
                                             </igDP:FieldSettings.EditorStyle>
                                         </igDP:FieldSettings>
                                     </igDP:Field.Settings>
+                                </igDP:Field>-->
+
+                                <igDP:Field Label="Sl định mức" Name="sl_dm" Width="130">
+                                    <igDP:Field.Settings>
+                                        <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="True"
+      AllowEdit="{Binding Path=Value}">
+                                            <igDP:FieldSettings.EditorStyle>
+                                                <Style TargetType="{x:Type smc:NumericTextBox}">
+                                                    <Setter Property="igEditors:ValueEditor.Format"
+Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                                                </Style>
+                                            </igDP:FieldSettings.EditorStyle>
+                                        </igDP:FieldSettings>
+                                    </igDP:Field.Settings>
                                 </igDP:Field>
+
                                 <!--<igDP:Field Name="ma_px" Label="Mã chuyền" Width="100">
                                     <igDP:Field.Settings>
                                         <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="False"

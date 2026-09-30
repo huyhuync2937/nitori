@@ -145,17 +145,15 @@ D:\Product\SASERP.NET\2023\SISERPSME2023\Source\Invt\Invt\obj\Debug\Invt.csproj.
 D:\Product\SASERP.NET\2023\SISERPSME2023\Source\Invt\Invt\obj\Debug\Invt.csproj.CopyComplete
 D:\Product\SASERP.NET\2023\SISERPSME2023\Source\Invt\Invt\obj\Debug\Invt.exe
 D:\Product\SASERP.NET\2023\SISERPSME2023\Source\Invt\Invt\obj\Debug\Invt.pdb
+D:\SISERPSME2025\Prog\Invt.exe
+D:\SISERPSME2025\Prog\Invt.pdb
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.csproj.AssemblyReference.cache
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\FrmMavach.g.cs
+D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\newForm.g.cs
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\App.g.cs
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt_MarkupCompile.cache
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt_MarkupCompile.lref
-D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.exe
-D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.pdb
-D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\newForm.g.cs
-D:\SISERPSME2025\Prog\Invt.exe
-D:\SISERPSME2025\Prog\Invt.pdb
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\App.baml
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\FrmMavach.baml
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\newForm.baml
@@ -164,3 +162,5 @@ D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.Properties.Resources.resources
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.csproj.GenerateResource.cache
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.csproj.CoreCompileInputs.cache
 D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.csproj.Up2Date
+D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.exe
+D:\SISERPSME2025\Source\Invt\Invt\obj\Debug\Invt.pdb

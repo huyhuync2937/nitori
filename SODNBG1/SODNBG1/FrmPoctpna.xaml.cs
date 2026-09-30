@@ -59,7 +59,7 @@ namespace SODNBG1
             this.C_QS = this.txtMa_qs;
             this.C_NgayHT = this.txtNgay_ct;         
             this.C_So_ct = this.txtSo_ct;
-            this.dtMa_ncc = StartupBase.SasObj.ExcuteReader(new SqlCommand("SELECT CAST(0 as BIT) as tag, ma_kh, ten_kh, ten_kh2,e_mail, ma_dvcs FROM dmkh")).Tables[0];
+            this.dtMa_ncc = StartupBase.SasObj.ExcuteReader(new SqlCommand("SELECT CAST(0 as BIT) as tag, ma_kh, dia_chi,ten_kh, ten_kh2,e_mail, ma_dvcs FROM dmkh")).Tables[0];
 
         }
 
@@ -1189,9 +1189,14 @@ namespace SODNBG1
                 return;
             DataRow[] dataRowArray = dataTable.Select("tag = 1");
             string str = "";
+            string dia_chi = "";
             foreach (DataRow dataRow in dataRowArray)
+            {
                 str = str + (str == "" ? "" : ",") + dataRow["ma_kh"].ToString().Trim();
+                dia_chi = dataRow["dia_chi"].ToString().Trim();
+            }
             this.txtMa_ncc.Text = str;
+            this.txtDiachi.Text = dia_chi;
         }
         private void btnSendEmail_Click(object sender, RoutedEventArgs e)
         {

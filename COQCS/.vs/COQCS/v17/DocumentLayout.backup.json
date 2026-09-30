@@ -1,0 +1,118 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\COQCS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|COQCS||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|D:\\SISERPSME2025\\Source\\COQCS\\coqcs\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|solutionrelative:coqcs\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|d:\\siserpsme2025\\source\\coqcs\\coqcs\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|solutionrelative:coqcs\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|D:\\SISERPSME2025\\Source\\COQCS\\coqcs\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|solutionrelative:coqcs\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|D:\\SISERPSME2025\\Source\\COQCS\\coqcs\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|solutionrelative:coqcs\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|D:\\SISERPSME2025\\Source\\COQCS\\coqcs\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|solutionrelative:coqcs\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COQCS\\COQCS.csproj|d:\\siserpsme2025\\source\\coqcs\\coqcs\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "COQCS",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\COQCS.csproj",
+              "RelativeDocumentMoniker": "COQCS\\COQCS.csproj",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\COQCS.csproj*",
+              "RelativeToolTip": "COQCS\\COQCS.csproj*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-09-28T03:20:36.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmSetValue.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\FrmSetValue.xaml",
+              "RelativeDocumentMoniker": "COQCS\\FrmSetValue.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\FrmSetValue.xaml",
+              "RelativeToolTip": "COQCS\\FrmSetValue.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-28T02:27:19.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "COQCS\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "COQCS\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T02:21:34.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "COQCS\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\FrmLoc.xaml",
+              "RelativeToolTip": "COQCS\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-23T02:33:02.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\App.xaml.cs",
+              "RelativeDocumentMoniker": "COQCS\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\App.xaml.cs",
+              "RelativeToolTip": "COQCS\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-21T19:24:35.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\StartUp.cs",
+              "RelativeDocumentMoniker": "COQCS\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\COQCS\\COQCS\\StartUp.cs",
+              "RelativeToolTip": "COQCS\\StartUp.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAgwGoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-21T19:23:46.642Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

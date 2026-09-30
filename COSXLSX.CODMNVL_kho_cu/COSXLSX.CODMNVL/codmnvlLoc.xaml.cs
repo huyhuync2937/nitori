@@ -61,12 +61,14 @@ namespace COSXLSX.CODMNVL
                 StartUp.sso_lsx_loc = this.txtSo_lsx.Text.Trim().ToString();
                 StartUp.sMa_sp_loc = this.txtSp.Text.Trim().ToString();
                 StartUp.sMa_bpht_loc = this.txtMa_bpht.Text.Trim().ToString();
+                //StartUp.sMa_px_loc = this.txtMa_px.Text.Trim().ToString();
+
                 StartUp.sMa_ky_loc = this.txtMa_ky.Text.Trim().ToString();
                 StartUp.sMa_hd_loc = this.txtma_hd.Text.Trim().ToString();
                 StartUp.sNgay1_loc = this.dateTime1;
                 StartUp.sNgay2_loc = this.dateTime2;
                 this.Hide();
-                StartUp.CallGridVouchers(true, StartUp.sMa_ky_loc, StartUp.sso_lsx_loc, StartUp.sMa_sp_loc, StartUp.sMa_bpht_loc, StartUp.sMa_hd_loc);
+                StartUp.CallGridVouchers(true, StartUp.sMa_ky_loc, StartUp.sMa_px_loc);
             }
 
         }
@@ -97,7 +99,11 @@ namespace COSXLSX.CODMNVL
             this.txtMa_bpht.SearchInit();
             this.lblTen_bpht.Text = this.txtMa_bpht.RowResult == null ? "" : (StartupBase.SasObj.GetOption("M_LAN").ToString() == "V" ? this.txtMa_bpht.RowResult["ten_bpht"].ToString() : this.txtMa_bpht.RowResult["ten_bpht2"].ToString());
         }
-
+        //private void txtpx_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
+        //{
+        //    this.txtMa_px.SearchInit();
+        //    this.lblTen_px.Text = this.txtMa_px.RowResult == null ? "" : (StartupBase.SasObj.GetOption("M_LAN").ToString() == "V" ? this.txtMa_px.RowResult["ten_px"].ToString() : this.txtMa_px.RowResult["ten_px2"].ToString());
+        //}
         private void txtMa_ky_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (this.txtMa_ky.RowResult != null)

@@ -1,0 +1,16 @@
+D:\SISERPSME2025\Prog\INCD1sdNG.exe
+D:\SISERPSME2025\Prog\INCD1sdNG.pdb
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.csproj.AssemblyReference.cache
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\FrmLoc.g.cs
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\App.g.cs
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG_MarkupCompile.cache
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG_MarkupCompile.lref
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\App.baml
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\FrmLoc.baml
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.g.resources
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.Properties.Resources.resources
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.csproj.GenerateResource.cache
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.csproj.CoreCompileInputs.cache
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.csproj.Up2Date
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.exe
+D:\SISERPSME2025\Source\INCD1sdNG\INCD1sdNG\obj\Debug\INCD1sdNG.pdb

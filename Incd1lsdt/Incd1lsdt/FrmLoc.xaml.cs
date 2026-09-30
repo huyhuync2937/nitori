@@ -59,6 +59,12 @@ namespace Incd1lsdt
                     return false;
                 }
             }
+            //if (string.IsNullOrEmpty(this.txtMavt.Text.Trim()))
+            //{
+            //    int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Chưa nhập vật tư!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //    this.txtMavt.Focus();
+            //    return false;
+            //}
             //if (string.IsNullOrEmpty(this.txtCTTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtCTDenNgay.Text.Trim()) && ((DateTime)this.txtCTDenNgay.Value).Year > 2078)
             //{
             //    int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -149,11 +155,11 @@ namespace Incd1lsdt
                     StartUp.hdTuNgay_ = string.Format("{0:dd-MM-yyyy}", this.txtHDTuNgay.Value);
                 if (!string.IsNullOrEmpty(this.txtHDDenNgay.Text))
                     StartUp.hdDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtHDDenNgay.Value);
-                //if (!string.IsNullOrEmpty(this.txtCTTuNgay.Text))
-                //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
-                //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
-                //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, string.IsNullOrEmpty(this.txtps_ck.Text) ? (object)"1" : (object)this.txtps_ck.Text.Trim());
+                    //if (!string.IsNullOrEmpty(this.txtCTTuNgay.Text))
+                    //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
+                    //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
+                    //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
+                    StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, string.IsNullOrEmpty(this.txtMavt.Text) ? (object)"" : (object)this.txtMavt.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -224,7 +230,7 @@ namespace Incd1lsdt
         //    {
         //        if (this.txtMavt.RowResult == null)
         //            return;
-        //        this.lblTenvt.Text = !StartupBase.M_LAN.Equals("V") ? this.txtMavt.RowResult["ten_vt2"].ToString() : this.txtMavt.RowResult["ten_vt"].ToString();
+        //        this.lblTenvt.Text = !StartupBase.M_LAN.Equals("V") ? this.txtMavt.RowResult["ten_vt"].ToString() : this.txtMavt.RowResult["ten_vt"].ToString();
         //    }
         //    else
         //        this.lblTenvt.Text = string.Empty;

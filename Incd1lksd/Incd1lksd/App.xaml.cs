@@ -30,7 +30,7 @@ namespace Incd1lksd
             else
             {
                 StartUp startUp = new StartUp();
-                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "25.12.24";
+                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.14.04";
                 startUp.Run();
                 if (Process.GetCurrentProcess().ProcessName.Equals("SasProcess"))
                     return;

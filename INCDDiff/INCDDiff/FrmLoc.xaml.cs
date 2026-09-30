@@ -59,6 +59,12 @@ namespace INCDDiff
                     return false;
                 }
             }
+            //if (string.IsNullOrEmpty(this.txtMavt.Text.Trim()))
+            //{
+            //    int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Chưa nhập vật tư!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //    this.txtMavt.Focus();
+            //    return false;
+            //}
             //if (string.IsNullOrEmpty(this.txtCTTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtCTDenNgay.Text.Trim()) && ((DateTime)this.txtCTDenNgay.Value).Year > 2078)
             //{
             //    int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -153,7 +159,7 @@ namespace INCDDiff
                 //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
                 //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
                 //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, string.IsNullOrEmpty(this.txtps_ck.Text) ? (object)"1" : (object)this.txtps_ck.Text.Trim());
+                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, string.IsNullOrEmpty(this.txtMavt.Text) ? (object)"" : (object)this.txtMavt.Text.Trim());
             }
             catch (Exception ex)
             {

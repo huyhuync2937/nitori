@@ -29,7 +29,7 @@ namespace POBK1_2
             else
             {
                 StartUp startUp = new StartUp();
-                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "05.02.02";
+                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.10.02";
                 startUp.Run();
             }
         }

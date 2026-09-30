@@ -15,7 +15,7 @@ namespace Invt
         {
             RemotingClient.InitClientRemoteObject(ref StartupBase.SasObj);
             StartUp startUp = new StartUp();
-            StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "25.20.01";
+            StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.20.12";
             startUp.Run();
         }
 

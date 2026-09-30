@@ -41,6 +41,7 @@ namespace Poctpxf
         private CodeValueBindingObject Voucher_Lan0;
         public DataSet DsVitual;
         private DataSet dsCheckData;
+        public string ma_tra_cuu_kh = "";
 
         public FrmPoctpxf()
         {
@@ -486,7 +487,10 @@ namespace Poctpxf
                                 SasFormBrowes.WinAPISenkey.SenKey(ModifierKeys.None, Key.F2);
                                 return;
                             }
-                            if (int.Parse(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["gia_ton"].ToString()) == 3 && Decimal.Parse(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["so_luong"].ToString()) == new Decimal(0))
+                            object gia_ton = StartUpTrans.DsTrans.Tables[1].DefaultView[index]["gia_ton"];
+                            Decimal so_luong = new Decimal(0);
+                            Decimal.TryParse(StartUpTrans.DsTrans.Tables[1].DefaultView[index]["so_luong"].ToString(), out so_luong);
+                            if (gia_ton != DBNull.Value && !string.IsNullOrEmpty(gia_ton.ToString().Trim()) && int.Parse(gia_ton.ToString()) == 3 && so_luong == new Decimal(0))
                             {
                                 int num = (int)ExMessageBox.Show(1130, StartupBase.SasObj, "Vật tư tính tồn kho theo phương pháp NTXT không được nhập số lượng = 0!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                                 flag1 = false;
@@ -1037,6 +1041,8 @@ namespace Poctpxf
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ten_kh2"] = this.txtMa_kh.RowResult["ten_kh2"];
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_so_thue"] = this.txtMa_kh.RowResult["ma_so_thue"];
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["han_tt"] = this.txtMa_kh.RowResult["han_tt"];
+                    ma_tra_cuu_kh = this.txtMa_kh.RowResult["ma_tra_cuu"].ToString().Trim();
+
                     if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ong_ba"].ToString().Trim()))
                         StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ong_ba"] = (object)this.txtMa_kh.RowResult["doi_tac"].ToString().Trim();
                     if (this.txtMa_kh.RowResult["tk"].ToString().Trim() != "")
@@ -1061,6 +1067,8 @@ namespace Poctpxf
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ten_kh"] = this.txtMa_kh.RowResult["ten_kh"];
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ten_kh2"] = this.txtMa_kh.RowResult["ten_kh2"];
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_so_thue"] = this.txtMa_kh.RowResult["ma_so_thue"];
+                    ma_tra_cuu_kh = this.txtMa_kh.RowResult["ma_tra_cuu"].ToString().Trim();
+
                     if (this.txtMa_kh.RowResult["dia_chi"] == DBNull.Value || string.IsNullOrEmpty(this.txtMa_kh.RowResult["dia_chi"].ToString().Trim()))
                     {
                         this.txtDiaChiFocusable = true;
@@ -1605,9 +1613,11 @@ namespace Poctpxf
                 dataRow["ma_vt"] = (object)data["ma_vt"];
                 dataRow["ten_vt"] = (object)data["ten_vt"];
                 dataRow["dvt"] = (object)data["dvt"];
-                dataRow["so_luong"] = (object)data["ton_cuoi"];
+                dataRow["dvt1"] = (object)data["dvt"];
 
+                dataRow["so_luong"] = (object)data["so_luong"];
 
+                dataRow["tk_vt"] = (object)GetTkVt(data["ma_vt"].ToString());
 
                 FreeCodeFieldLib.CarryFreeCodeFields(StartupBase.SasObj, StartUpTrans.Ma_ct, StartUpTrans.DsTrans.Tables[1].DefaultView, dataRow, 1);
                 StartUpTrans.DsTrans.Tables[1].Rows.Add(dataRow);
@@ -1618,6 +1628,14 @@ namespace Poctpxf
                 ErrorLog.CatchMessage(ex);
                 return false;
             }
+        }
+
+        private static string GetTkVt(string ma_vt)
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT tk_vt FROM dmvt WHERE ma_vt = @ma_vt");
+            sqlCommand.Parameters.Add("@ma_vt", SqlDbType.Char, 16).Value = ma_vt;
+            object result = StartupBase.SasObj.ExcuteScalar(sqlCommand);
+            return result != null && result != DBNull.Value ? result.ToString().Trim() : "";
         }
 
 
@@ -1810,13 +1828,33 @@ namespace Poctpxf
             {
                 if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"].ToString().Trim()) || !StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qs"].ToString().Trim().Equals(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qstmp"].ToString().Trim()) || this.IsNd51)
                 {
-                    this.txtSo_ct.Text = this.GetNewSoct(StartupBase.SasObj, this.txtMa_qs.Text);
+                    //this.txtSo_ct.Text = this.GetNewSoct(StartupBase.SasObj, this.txtMa_qs.Text);
+                    this.txtSo_ct.Text = this.GetLastSoctPxf(txtMa_kh.Text.ToString(), txtNgay_ct.dValue);
+
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"] = (object)this.txtSo_ct.Text;
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qstmp"] = (object)this.txtMa_qs.Text;
+
                 }
                 else
                     this.txtSo_ct.Text = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"].ToString().Trim();
             }
+            else
+            {
+                this.txtSo_ct.Text = this.GetLastSoctPxf(txtMa_kh.Text.ToString(), txtNgay_ct.dValue);
+                StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"] = (object)this.txtSo_ct.Text;
+                StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qstmp"] = (object)this.txtMa_qs.Text;
+            }
+            //if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"].ToString().Trim()) || this.IsNd51 && this.txtMa_qs.IsDataChanged)
+            //{
+            //    if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"].ToString().Trim()) || !StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qs"].ToString().Trim().Equals(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qstmp"].ToString().Trim()) || this.IsNd51)
+            //    {
+            //        this.txtSo_ct.Text = this.GetNewSoct(StartupBase.SasObj, this.txtMa_qs.Text);
+            //        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"] = (object)this.txtSo_ct.Text;
+            //        StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qstmp"] = (object)this.txtMa_qs.Text;
+            //    }
+            //    else
+            //        this.txtSo_ct.Text = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"].ToString().Trim();
+            //}
         }
 
         private void txtghi_chu_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -1843,7 +1881,16 @@ namespace Poctpxf
         private void txtNgay_ct_LostFocus(object sender, RoutedEventArgs e)
         {
             if (this.txtNgay_ct.Value == DBNull.Value)
+            {
+                if (!(string.IsNullOrEmpty(this.txtMa_qs.Text)))
+                {
+                    this.txtSo_ct.Text = this.GetLastSoctPxf(txtMa_kh.Text.ToString(), txtNgay_ct.dValue);
+
+                    StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_cttmp"] = (object)this.txtSo_ct.Text;
+                    StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_qstmp"] = (object)this.txtMa_qs.Text;
+                }
                 this.txtNgay_ct.Value = (object)DateTime.Now;
+            }
             if (this.txtNgay_ct.IsFocusWithin || FormTrans.currActionTask != ActionTask.Add && FormTrans.currActionTask != ActionTask.Edit && FormTrans.currActionTask != ActionTask.Copy || (!StartUpTrans.M_ngay_lct.Equals("0") && !(this.txtngay_lct.dValue == new DateTime()) || !(this.txtNgay_ct.dValue != new DateTime())))
                 return;
             this.txtngay_lct.Value = (object)this.txtNgay_ct.dValue.Date;
@@ -1993,12 +2040,61 @@ namespace Poctpxf
                         //row2["ten_vt"] = dataRow["ten_vt"];
                         //row2["ma_kho_i"] = dataRow["ma_kho"];
                         //StartUpTrans.DsTrans.Tables[1].Rows.Add(row2);
-                    }  
+                    }
+
+                    foreach (DataRow row in StartUpTrans.DsTrans.Tables[1].Select("ma_vt = '' OR ma_vt IS NULL"))
+                        StartUpTrans.DsTrans.Tables[1].Rows.Remove(row);
                 }
             }
                
         }
+        public string GetLastSoctPxf(string ma_kh, DateTime ngay_ct)
+        {
+            string str = "NTV-";
+            string ngay = txtNgay_ct.dValue.ToString("yyMMdd");
 
+            try
+            {
+                SqlCommand sqlcmd = new SqlCommand("exec [dbo].[GetSoPxf]  @ma_kh , @ngay_ct");
+                sqlcmd.Parameters.Add("@ma_kh", SqlDbType.VarChar).Value = (object)ma_kh;
+                sqlcmd.Parameters.Add("@ngay_ct", SqlDbType.SmallDateTime).Value = (object)ngay_ct;
+                DataTable dataTable = StartupBase.SasObj.ExcuteReader(sqlcmd).Tables[0].Copy();
+                if (dataTable.Rows.Count == 0)
+                {
+                    str += ma_tra_cuu_kh + ngay;
+                }
+                else
+                {
+                    string lastSoct = dataTable.Rows[0][0].ToString();
+
+                    int pos = lastSoct.LastIndexOf('-');
+
+                    if (pos < 0)
+                    {
+                        // Chưa có hậu tố -xx
+                        str = lastSoct + "-01";
+                    }
+                    else
+                    {
+                        string soCuoi = lastSoct.Substring(pos + 1);
+
+                        if (int.TryParse(soCuoi, out int so))
+                        {
+                            str = lastSoct.Substring(0, pos) + "-" + (so + 1).ToString("00");
+                        }
+                        else
+                        {
+                            str = lastSoct + "-01";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.CatchMessage(ex);
+            }
+            return str;
+        }
         private void btnSoHD_Click(object sender, RoutedEventArgs e)
         {
             if (this.IsEditMode)

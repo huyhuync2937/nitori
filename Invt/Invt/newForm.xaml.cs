@@ -45,7 +45,8 @@ namespace Invt
             int formatDecimal = SysFunc.GetFormatDecimal(StartupBase.SasObj.GetOption("M_IP_SL").ToString());
             DataTable sqlTableFieldList = ListFunc.GetSqlTableFieldList(StartupBase.SasObj, StartUp.sqlTableName);
             this.txtsl_min.Mask = "{double:" + (object)(ListFunc.GetLengthColumn(sqlTableFieldList, "sl_min") - formatDecimal) + "." + formatDecimal.ToString() + "}";
-            this.txtsl_max.Mask = "{double:" + (object)(ListFunc.GetLengthColumn(sqlTableFieldList, "sl_max") - formatDecimal) + "." + formatDecimal.ToString() + "}";
+            this.txtsl_min.Mask = "{double:" + (object)(ListFunc.GetLengthColumn(sqlTableFieldList, "sl_min") - formatDecimal) + "." + formatDecimal.ToString() + "}";
+            this.txttien.Mask = "{double:" + (object)(ListFunc.GetLengthColumn(sqlTableFieldList, "tien") - formatDecimal) + "." + '5' + "}";
             this.txtma_vt.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "ma_vt");
             this.txtma_tra_cuu.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "ma_tra_cuu");
             this.txtten_vt.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "ten_vt");

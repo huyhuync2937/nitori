@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Incd1lksd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lksd\\Incd1lksd.csproj|d:\\siserpsme2025\\source\\incd1lksd\\incd1lksd\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lksd\\Incd1lksd.csproj|solutionrelative:incd1lksd\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lksd\\Incd1lksd.csproj|d:\\siserpsme2025\\source\\incd1lksd\\incd1lksd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lksd\\Incd1lksd.csproj|solutionrelative:incd1lksd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1lksd\\Incd1lksd\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Incd1lksd\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1lksd\\Incd1lksd\\App.xaml.cs",
+              "RelativeToolTip": "Incd1lksd\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T10:16:41.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1lksd\\Incd1lksd\\StartUp.cs",
+              "RelativeDocumentMoniker": "Incd1lksd\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1lksd\\Incd1lksd\\StartUp.cs",
+              "RelativeToolTip": "Incd1lksd\\StartUp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T10:16:29.288Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

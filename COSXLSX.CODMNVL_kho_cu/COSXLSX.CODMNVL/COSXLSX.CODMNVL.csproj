@@ -113,6 +113,9 @@
     <Compile Include="FrmTaoHDA.xaml.cs">
       <DependentUpon>FrmTaoHDA.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmTimKiem.xaml.cs">
+      <DependentUpon>FrmTimKiem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportInfo.cs" />
     <Compile Include="StartUp.cs" />
   </ItemGroup>
@@ -160,6 +163,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FrmTaoHDA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmTimKiem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -41,8 +41,17 @@
                             <TextBlock Visibility="Hidden" Name="tblloai_dh" Text="Loại NVL" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
                             <smc:MaskedTextBox Visibility="Hidden" Name="txtps_ck" TabIndex="10" Format="M" InputMask="1,2"
         Grid.Row="1" Grid.Column="1" Text="1"/>
+                           
                             <TextBlock Visibility="Hidden" Name="lblTenPs_ck" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1"
-Text="1 - Cacton, 2 - Khác"/> 
+Text="1 - Cacton, 2 - Khác"/>
+                            <TextBlock Name="tblps_ck" Text="Mã vật tư" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <smc:AutoCompleteTextBox PreviewLostFocus="txtMavt_PreviewLostFocus" Name="txtMavt" AllowEmty="false" AllowWrong="true"
+           Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" ListID="dmvt" TabIndex="9" IsTabStop="true"
+           Text="{smc:BindingEx Path=M_MA_VT, ElementName=frmLoc}"
+           ParentControl="{Binding ElementName=frmLoc}"
+           SasObj="{Binding ElementName=frmLoc, Path=BindingSasObj}"/>
+                            <TextBlock Name="lblTenvt" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" ClipToBounds="false"
+Text="{Binding Path=ten_vt}"/>
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>
                             <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="1" ListID="dmhd"
                                        AllowEmty="true" AllowWrong="true" TabIndex="3" IsTabStop="true"

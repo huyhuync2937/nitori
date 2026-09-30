@@ -30,7 +30,7 @@ namespace COSLDHT
             else
             {
                 StartUp startUp = new StartUp();
-                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.10.22";
+                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.13.10";
                 startUp.Run();
                 if (Process.GetCurrentProcess().ProcessName.Equals("SasProcess"))
                     return;

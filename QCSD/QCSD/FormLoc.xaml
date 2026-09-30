@@ -61,14 +61,14 @@
                   </igEditors:ComboBoxItemsProvider>
                 </igEditors:XamComboEditor.ItemsProvider>
               </igEditors:XamComboEditor>-->
-              <TextBlock Name="lblTuNgay" Text="C.từ từ ngày" Grid.Row="0" Grid.Column="0" Margin="0,2"
+              <TextBlock Name="lblHDTuNgay" Text="Đh từ ngày" Grid.Row="0" Grid.Column="0" Margin="0,2"
                          VerticalAlignment="Center"/>
-              <smc:DateTextBox Name="TxtStartDateTime" Grid.Column="1" Grid.Row="0" TabIndex="2" IsTabStop="true"
-                               Value="{smc:BindingEx Path=M_NGAY_CT1, ElementName=TransactionFrm}"/>
-              <TextBlock Name="lblDenNgay" Text="Đến ngày" Grid.Row="0" Grid.Column="3" Margin="0,2"
+              <smc:DateTextBox x:Name="txtHDTuNgay" Grid.Column="1" Grid.Row="0" TabIndex="2" IsTabStop="true"
+                                Style="{StaticResource DateTextBoxStyle}"/>
+              <TextBlock Name="lblHDDenNgay" Text="Đến ngày" Grid.Row="0" Grid.Column="3" Margin="0,2"
                          VerticalAlignment="Center"/>
-              <smc:DateTextBox Name="TxtEndDateTime" Grid.Row="0" Grid.Column="4" TabIndex="3" IsTabStop="true"
-                               Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=TransactionFrm}"/>
+              <smc:DateTextBox x:Name="txtHDDenNgay" Grid.Row="0" Grid.Column="4" TabIndex="3" IsTabStop="true"
+                                Style="{StaticResource DateTextBoxStyle}"/>
               <!--<TextBlock Name="lblSoCtBatDau" Text="C.từ từ số" Grid.Row="3" Grid.Column="0" Margin="0,2"
                          VerticalAlignment="Center"/>
               <TextBox Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="3" TabIndex="4" IsTabStop="true"

@@ -46,9 +46,17 @@ namespace PODMHDM
                 {
                     prog = "COSLDHT";
                 }
-                else
+                if (status.Equals("2"))
                 {
                     prog = "COSLDHN";
+                }
+                if (status.Equals("3"))
+                {
+                    prog = "COSLDH_Carton";
+                }
+                if (status.Equals("4"))
+                {
+                    prog = "COSLDH_Carton_bom";
                 }
             }
 
@@ -90,10 +98,10 @@ namespace PODMHDM
                 MessageBox.Show("Từ ngày phải <= đến ngày.", "Thông báo");
                 this.txtTungay.Focus();
             }
-            else if (txtStatus.Text.Trim() != "1" && txtStatus.Text.Trim() != "2")
+            else if (txtStatus.Text.Trim() != "1" && txtStatus.Text.Trim() != "2" && txtStatus.Text.Trim() != "3" && txtStatus.Text.Trim() != "4")
             {
                 flag = true;
-                MessageBox.Show("Trạng thái chỉ được nhập 0 hoặc 1.", "Thông báo");
+                MessageBox.Show("Trạng thái chỉ được nhập 1, 2, 3 hoặc 4.", "Thông báo");
                 this.txtStatus.Focus();
             }
             return flag;
@@ -101,7 +109,7 @@ namespace PODMHDM
 
         private void txtStatus_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = e.Text != "1" && e.Text != "2";
+            e.Handled = e.Text != "1" && e.Text != "2" && e.Text != "3" && e.Text != "4";
         }
 
         private void _confirmGridview_OnCancel(object sender, RoutedEventArgs e)

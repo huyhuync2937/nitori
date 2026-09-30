@@ -62,45 +62,25 @@ namespace QCSD
             //    int num = (int)ExMessageBox.Show(9, StartupBase.SasObj, "Chưa vào danh sách mã nx (tài khoản có)!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             //    this.txtDsManx.Focus();
             //}
-            else if (!this.TxtStartDateTime.IsValueValid)
+            else if (string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && ((DateTime)this.txtHDDenNgay.Value).Year > 2078)
             {
-                int num = (int)ExMessageBox.Show(10, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.TxtStartDateTime.Focus();
+                int num = (int)ExMessageBox.Show(10, StartupBase.SasObj, "Năm không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                this.txtHDDenNgay.Focus();
             }
-            else if (!this.TxtEndDateTime.IsValueValid)
+            else if (string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && ((DateTime)this.txtHDTuNgay.Value).Year > 2078)
             {
-                int num = (int)ExMessageBox.Show(15, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.TxtEndDateTime.Focus();
+                int num = (int)ExMessageBox.Show(15, StartupBase.SasObj, "Năm không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                this.txtHDTuNgay.Focus();
             }
-            else if (this.TxtStartDateTime.Value == null || this.TxtStartDateTime.Value == DBNull.Value)
+            else if (!string.IsNullOrEmpty(this.txtHDTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtHDDenNgay.Text.Trim()) && (DateTime)this.txtHDTuNgay.Value > (DateTime)this.txtHDDenNgay.Value)
             {
                 int num = (int)ExMessageBox.Show(20, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.TxtStartDateTime.Focus();
-            }
-            else if (this.TxtEndDateTime.Value == null || this.TxtEndDateTime.Value == DBNull.Value)
-            {
-                int num = (int)ExMessageBox.Show(25, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.TxtEndDateTime.Focus();
-            }
-            else if ((DateTime)this.TxtStartDateTime.Value > (DateTime)this.TxtEndDateTime.Value)
-            {
-                int num = (int)ExMessageBox.Show(35, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.TxtEndDateTime.Focus();
+                this.txtHDTuNgay.Focus();
+                this.txtHDTuNgay.SelectAll();
             }
             else
             {
-                string filter = this.GetFilter();
-                this.TxtStartDateTime.ValueToDisplayTextConverter = this.TxtStartDateTime.ValueToDisplayTextConverter;
-                StartUp.dtInfo.Rows.Add((object)this.TxtStartDateTime.Text, (object)this.TxtEndDateTime.Text);
-                int result;
-                //if (!int.TryParse(this.cbMauBaoCao.Value.ToString(), out result))
-                //    result = 1;
-                //this.Hide();
-                //string text = this.txtDsManx.Text;
-                if (!string.IsNullOrEmpty(this.txtMaVT.Text))
-                    StartUp.QueryData(true, this.TxtStartDateTime.Value, this.TxtEndDateTime.Value,  this.txtMaVT.Text.Trim());
-                else
-                    StartUp.QueryData(true, this.TxtStartDateTime.Value, this.TxtEndDateTime.Value,  this.txtMaVT.Text.Trim());
+                StartUp.QueryData(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, this.txtMaVT.Text.Trim());
             }
         }
 

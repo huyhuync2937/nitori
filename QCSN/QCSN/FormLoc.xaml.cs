@@ -29,14 +29,19 @@ namespace QCSN
             }
         }
 
+ 
         private void TransactionFrm_Loaded(object sender, RoutedEventArgs e)
         {
-           
+            //this.txtDsManx.Text = StartUp.CommandInfo["parameter"].ToString();
+            //this.txtDsManx.Focus();
             this.GridSearch.SasObj = this.BindingSasObj;
-            this.GridSearch.tableList = "v_QCSN";
+            this.GridSearch.tableList = "v_QCSD";
             SysFunc.LoadIcon((Window)this);
             this.txtMaVT.SearchInit();
-         
+            //this.txtMaKhach.SearchInit();
+            //this.txtMaKho.SearchInit();
+            //this.lblTenKhach.Text = this.txtMaKhach.RowResult == null ? "" : (StartupBase.SasObj.GetOption("M_LAN").ToString() == "V" ? this.txtMaKhach.RowResult["ten_kh"].ToString() : this.txtMaKhach.RowResult["ten_kh2"].ToString());
+            //this.lblTenKho.Text = this.txtMaKho.RowResult == null ? "" : (StartupBase.SasObj.GetOption("M_LAN").ToString() == "V" ? this.txtMaKho.RowResult["ten_kho"].ToString() : this.txtMaKho.RowResult["ten_kho2"].ToString());
             this.lblTenVT.Text = this.txtMaVT.RowResult == null ? "" : (StartupBase.SasObj.GetOption("M_LAN").ToString() == "V" ? this.txtMaVT.RowResult["ten_vt"].ToString() : this.txtMaVT.RowResult["ten_vt2"].ToString());
         }
 
@@ -53,7 +58,11 @@ namespace QCSN
                 if (focusedElement.ParentControl != null && !focusedElement.ParentControl.CheckLostFocus())
                     return;
             }
-           
+            //if (string.IsNullOrEmpty(this.txtDsManx.Text.Trim()))
+            //{
+            //    int num = (int)ExMessageBox.Show(9, StartupBase.SasObj, "Chưa vào danh sách mã nx (tài khoản có)!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //    this.txtDsManx.Focus();
+            //}
             else if (!this.TxtStartDateTime.IsValueValid)
             {
                 int num = (int)ExMessageBox.Show(10, StartupBase.SasObj, "Ngày lọc chứng từ không hợp lệ!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -85,11 +94,14 @@ namespace QCSN
                 this.TxtStartDateTime.ValueToDisplayTextConverter = this.TxtStartDateTime.ValueToDisplayTextConverter;
                 StartUp.dtInfo.Rows.Add((object)this.TxtStartDateTime.Text, (object)this.TxtEndDateTime.Text);
                 int result;
-               
+                //if (!int.TryParse(this.cbMauBaoCao.Value.ToString(), out result))
+                //    result = 1;
+                //this.Hide();
+                //string text = this.txtDsManx.Text;
                 if (!string.IsNullOrEmpty(this.txtMaVT.Text))
-                    StartUp.QueryData(true, this.TxtStartDateTime.Value, this.TxtEndDateTime.Value,  this.txtMaVT.Text.Trim());
+                    StartUp.QueryData(true, this.TxtStartDateTime.Value, this.TxtEndDateTime.Value, this.txtMaVT.Text.Trim());
                 else
-                    StartUp.QueryData(true, this.TxtStartDateTime.Value, this.TxtEndDateTime.Value,  this.txtMaVT.Text.Trim());
+                    StartUp.QueryData(true, this.TxtStartDateTime.Value, this.TxtEndDateTime.Value, this.txtMaVT.Text.Trim());
             }
         }
 

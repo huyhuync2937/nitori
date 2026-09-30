@@ -3658,20 +3658,32 @@ namespace CACTPC1
                 dataRow["tien_hd"] = (object)0;
                 dataRow["t_tien_dt"] = (object)0;
 
-                dataRow["tien_nt"] = data["t_tt"] == DBNull.Value
-                    ? (object)0m
-                    : data["t_tt"];
+                decimal tienNt = data["t_tt_nt"] == DBNull.Value
+       ? 0m
+       : Convert.ToDecimal(data["t_tt_nt"]);
+
+                dataRow["tien_nt"] = tienNt == 0m
+                    ? data["t_tt"]        // t_tt_nt null hoặc = 0 => lấy t_tt
+                    : data["t_tt_nt"];    // t_tt_nt có giá trị khác 0 => giữ nguyên t_tt_nt
+
                 dataRow["tien_tt"]=(object)0;
                 dataRow["tt_nt"]=(object)0;
                 dataRow["thue"] = (object)0;
 
                 dataRow["thue_nt"] = (object)0;
 
-                dataRow["ma_hdm_i"] = (object)data["so_ct"];
+                dataRow["ma_td_i"] = (object)data["so_ct"];
                 dataRow["so_ct0"] = (object)data["so_ct"];
                 dataRow["ty_gia_ht2"] =(object)0;
 
                 dataRow["tien"] = (object)0;
+                dataRow["tk_i"] = (object)"331";
+
+                if (StartUpTrans.DsTrans.Tables[1].Columns.Contains("ten_tk"))
+                {
+                    object tenTk = StartupBase.SasObj.ExcuteScalar(new SqlCommand("SELECT ten_tk FROM dmtk WHERE tk = '331'"));
+                    dataRow["ten_tk"] = tenTk == null || tenTk == DBNull.Value ? "" : tenTk.ToString().Trim();
+                }
 
                 txtMa_kh.Text = data["ma_kh"] == DBNull.Value ? "" : data["ma_kh"].ToString();
 

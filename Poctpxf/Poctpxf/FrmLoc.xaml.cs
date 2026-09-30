@@ -44,19 +44,16 @@ namespace Poctpxf
             DataSet dataSet = StartupBase.SasObj.ExcuteReader(sqlcmd);
             string link = dataSet.Tables[0].Rows[0]["link"].ToString().Trim();
 
-            if (!string.IsNullOrEmpty(this.txtma_kho.Text))
+            if (!string.IsNullOrEmpty(this.txtma_vt.Text))
             {
-                filter += " and ma_kho =''" + this.txtma_kho.Text.Trim() + "''";
-                conditionSD += " and ma_kho =''" + this.txtma_kho.Text.Trim() + "''";
+                filter += " ,@ma_vt='" + this.txtma_vt.Text.Trim() + "'";
 
             }
             if (!string.IsNullOrEmpty(this.txtma_kh.Text))
             {
-                filter += " and ma_kh =''" + this.txtma_kh.Text.Trim() + "''";
+                filter += ",@ma_td1= '" + this.txtma_kh.Text.Trim() + "'";
             }
-            string sql = "Exec [INCD1_realtime]" + " '" + ((DateTime)this.txtTungay.Value).ToString("yyyyMMdd") + "', '" + ((DateTime)this.txtDenngay.Value).ToString("yyyyMMdd") + "', 0 ," +
-                " '1=1   " + filter + "'" + " ,1," +
-                "' 1=1  AND  ma_kho in (Select ma_kho From "+ link+ ".dbo.dmkho Where ma_dvcs like ''NITORI%'')" + conditionSD + "'";
+            string sql = "Exec [GetNG]" + " '" + ((DateTime)this.txtTungay.Value).ToString("yyyyMMdd") + "', '" + ((DateTime)this.txtDenngay.Value).ToString("yyyyMMdd") + "'"+filter;
             StartUp.HDBData = StartupBase.SasObj.ExcuteReader(new SqlCommand(sql));
 
             DataTable dataTable = StartUp.HDBData.Tables[0];

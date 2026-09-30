@@ -555,7 +555,7 @@ HorizontalAlignment="Left" Width="75" Style="{StaticResource ButtonEditModeEnabl
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
-                                            <igDP:Field Label="Tồn kho" Name="ton13" Width="80">
+                                            <igDP:Field Label="Tồn kho" Visibility="Hidden" Name="ton13" Width="80">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" EditAsType="{x:Type System:Decimal}">
                                                         <igDP:FieldSettings.EditorStyle>

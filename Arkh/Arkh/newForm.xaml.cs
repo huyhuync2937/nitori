@@ -62,7 +62,7 @@ namespace Arkh
             this.txtma_tra_cuu.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "ma_tra_cuu");
             this.txtdia_chi.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "dia_chi");
             this.txtdoi_tac.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "doi_tac");
-            this.txtma_so_thue.MaxLength = 14;
+            this.txtma_so_thue.MaxLength = 25;
             this.txtdien_thoai.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "dien_thoai");
             this.txtfax.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "fax");
             this.txtemail.MaxLength = ListFunc.GetLengthColumn(sqlTableFieldList, "e_mail");

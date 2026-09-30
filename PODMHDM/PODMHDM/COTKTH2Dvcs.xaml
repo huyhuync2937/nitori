@@ -6,6 +6,14 @@
           xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
           xmlns:igEditors="http://infragistics.com/Editors"
           xmlns:local="clr-namespace:PODMHDM"
+           xmlns:igWindows="http://infragistics.com/Windows"
+ xmlns:smvc="clr-namespace:SasVoucherLib;assembly=SasVoucherLib"
+ xmlns:System="clr-namespace:System;assembly=mscorlib"
+ xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+ xmlns:sys="clr-namespace:System;assembly=mscorlib"
+ xmlns:igThemes="http://infragistics.com/Themes"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
           EscToClose="true" Title="Danh muc vat tu" LanguageID="FXTinhKH_3" Height="500" Width="800">
     <FrameworkElement.Resources>
         <ResourceDictionary>
@@ -13,7 +21,6 @@
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
-                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DataGridViewStyles.xaml"/>
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/CheckBoxStyles.xaml"/>
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
@@ -24,7 +31,130 @@
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ExRateTextBoxStyles.xaml"/>
                 <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <smvc:BindingVisibility x:Key="VisibilityConverter"/>
+            <smvc:FormatMaskNumberConverter x:Key="MaskNumeric"/>
+            <smvc:BindingStatusVoucher x:Key="StatusVoucher"/>
+            <smc:CheckBoxConverter x:Key="IsCheckedConverter"/>
+            <smc:BoolInverter x:Key="BoolInverter"/>
+
+            <smc:CodeValueBindingObject x:Key="IsCheckedPx_gia_dd" Value="False" />
+            <smc:CodeValueBindingObject x:Key="Voucher_Ma_nt0" Value="false"/>
+            <smc:CodeValueBindingObject x:Key="IsInEditMode" Value="false"/>
+            <smc:CodeValueBindingObject x:Key="IsCheckedSua_tien" Value="false"/>
+            <smc:CodeValueBindingObject x:Key="Ty_Gia_ValueChange" Value="false"/>
+            <smc:CodeValueBindingObject x:Key="Voucher_Lan0" Value="false"/>
+            <Style x:Key="ButtonEditModeDisable" TargetType="{x:Type Button}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="UIElement.IsEnabled" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="MaskedTextBoxReadOnly" TargetType="{x:Type smc:MaskedTextBox}"
+  BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ButtonEditModeEnable" TargetType="{x:Type Button}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="UIElement.IsEnabled" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="TextBoxEditModeEnable" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteTextBoxEditModeEnable" TargetType="{x:Type smc:AutoCompleteTextBox}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="XamMaskedEditorEditModeEnable" TargetType="{x:Type igEditors:XamMaskedEditor}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="NumericTextBoxrEditModeEnable" TargetType="{x:Type smc:NumericTextBox}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="CheckBoxEditModeEnable" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource CheckBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}}" Value="False">
+                        <Setter Property="UIElement.IsEnabled" Value="false"/>
+                        <Setter Property="Control.Foreground" Value="Black"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="CheckBoxEditModeEnable2" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource CheckBoxStyle}">
+                <Setter Property="IsEnabled" Value="False" />
+                <Style.Triggers>
+                    <DataTrigger Value="False" Binding="{smc:BindingEx IsEnabled, RelativeSource={x:Static RelativeSource.Self}}">
+                        <Setter Property="Foreground" Value="#FF000000" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DateTextBoxEditModeEnable" TargetType="{x:Type smc:DateTextBox}"
+  BasedOn="{StaticResource DateTextBoxStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{smc:BindingEx Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}"
+            Value="False">
+                        <Setter Property="igEditors:ValueEditor.IsReadOnly" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ComboBoxEditModeEnable" TargetType="{x:Type igEditors:XamComboEditor}"
+  BasedOn="{StaticResource XamComboEditorStyle}">
+                <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_act"/>
+                <Setter Property="UIElement.IsEnabled" Value="false"/>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}" Value="False"/>
+                            <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+              Value="E"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_act2"/>
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}" Value="True"/>
+                            <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+              Value="V"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_post"/>
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}" Value="True"/>
+                            <Condition Binding="{Binding Path=M_LAN, RelativeSource={RelativeSource AncestorType={x:Type smvc:FormTrans}}}"
+              Value="E"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="igEditors:XamComboEditor.DisplayMemberPath" Value="ten_post2"/>
+                    </MultiDataTrigger>
+                    <DataTrigger Binding="{Binding Path=Value, Source={StaticResource IsInEditMode}, Mode=OneWay}" Value="True">
+                        <Setter Property="UIElement.IsEnabled" Value="true"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
+        
     </FrameworkElement.Resources>
     <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel">
         <smc:GridLayout Name="grdMain" Margin="12,0,12,0">
@@ -42,14 +172,28 @@
                                 <igDP:FieldSettings AllowEdit="True"/>
                             </igDP:Field.Settings>
                         </igDP:Field>
+                        
                         <igDP:Field Name="ma_vt" Label="Mã vt" Width="130"/>
                         <igDP:Field Name="ten_vt" Label="Tên vt" Width="250"/>
                         <igDP:Field Name="dvt" Label="DVT" Width="130"/>
-                        <igDP:Field Name="so_luong" Label="Số lượng" Width="160"/>
-                        <igDP:Field Name="ngay_order" Label="Ngày giao hàng" Width="130"/>
+                        <igDP:Field Label="Số lượng" Name="so_luong" Width="130">
+                            <igDP:Field.Settings>
+                                <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="True"
+      AllowEdit="{Binding Path=Value}">
+                                    <igDP:FieldSettings.EditorStyle>
+                                        <Style TargetType="{x:Type smc:NumericTextBox}">
+                                            <Setter Property="igEditors:ValueEditor.Format"
+Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0}, Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                                        </Style>
+                                    </igDP:FieldSettings.EditorStyle>
+                                </igDP:FieldSettings>
+                            </igDP:Field.Settings>
+                        </igDP:Field>
+                                          <igDP:Field Name="ngay_order" Label="Ngày giao hàng" Width="130"/>
                         <igDP:Field Name="eta" Label="ETA" Width="130"/>
                         <igDP:Field Name="ma_kh" Label="Mã NCC" Width="130"/>
                         <igDP:Field Name="pic" Label="Mã PIC" Width="130"/>
+                        <igDP:Field Name="id" Label="id" Width="130"/>
 
                     </igDP:FieldLayout>
                 </igDP:DataPresenterBase.FieldLayouts>

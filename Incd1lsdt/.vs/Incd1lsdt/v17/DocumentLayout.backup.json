@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|d:\\siserpsme2025\\source\\incd1lsdt\\incd1lsdt\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|solutionrelative:incd1lsdt\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|D:\\SISERPSME2025\\Source\\Incd1lsdt\\incd1lsdt\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|solutionrelative:incd1lsdt\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|d:\\siserpsme2025\\source\\incd1lsdt\\incd1lsdt\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|D:\\SISERPSME2025\\Source\\Incd1lsdt\\incd1lsdt\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|solutionrelative:incd1lsdt\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|D:\\SISERPSME2025\\Source\\Incd1lsdt\\incd1lsdt\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|solutionrelative:incd1lsdt\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|d:\\siserpsme2025\\source\\incd1lsdt\\incd1lsdt\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|Incd1lsdt\\Incd1lsdt.csproj|solutionrelative:incd1lsdt\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,17 +26,42 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "Incd1lsdt\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "Incd1lsdt\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAuwOwAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-02T10:25:07.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "Incd1lsdt\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\FrmLoc.xaml*",
+              "RelativeToolTip": "Incd1lsdt\\FrmLoc.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-02T10:21:37.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\App.xaml.cs",
               "RelativeDocumentMoniker": "Incd1lsdt\\App.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\App.xaml.cs",
               "RelativeToolTip": "Incd1lsdt\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwCAAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T10:39:15.697Z",
               "EditorCaption": ""
@@ -41,7 +74,7 @@
               "RelativeDocumentMoniker": "Incd1lsdt\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Incd1lsdt\\Incd1lsdt\\StartUp.cs",
               "RelativeToolTip": "Incd1lsdt\\StartUp.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAawIIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T10:39:02.542Z",
               "EditorCaption": ""

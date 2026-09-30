@@ -402,14 +402,11 @@ Style="{StaticResource ContentTextStyle}"/>
          Grid.Column="1" Grid.Row="0" 
          Value="{smc:BindingEx sl_td1}"/>
 
-                        <TextBlock Name="tblma_ncc" Text="Supplier Code" Grid.Row="0" Grid.Column="3"
-         Style="{StaticResource ContentTextStyle}"/>
-
-                        <smc:AutoCompleteTextBox  Name="txtma_ncc" Grid.Column="4" Grid.Row="0"
-TabIndex="55" AllowEmty="true" AllowWrong="false" ListID="dmkh"
-Style="{StaticResource AutoCompleteTextBoxReadOnly}"
-Text="{smc:BindingEx ma_td1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        <TextBlock Name="tblngay_safety" Text="Ngày safety" Grid.Row="0" Grid.Column="3"
+Style="{StaticResource ContentTextStyle}"/>
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txtngay_safety" TabIndex="59"
+         Grid.Column="4" Grid.Row="0"
+         Value="{smc:BindingEx ngay_safety}"/>
 
                         <TextBlock Name="tblpacking" Text="Packing" Grid.Row="1" Grid.Column="0"
   Style="{StaticResource ContentTextStyle}"/>
@@ -457,8 +454,8 @@ SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, Anc
                 <igWindows:TabItemEx Name="TabAddition" IsTabStop="false" Header="_3. Thông tin bổ sung">
                     <smc:GridLayout Name="gridMainC" Margin="8,5.5,8,5.5"
                                     ColumnCount="6" ColumnWidths="*,140,12,*,12,140"
-                                    RowCount="14"
-                                    RowHeights="25,25,25,25,25,25,25,25,25,25,25,25,25,*">
+                                    RowCount="16"
+                                    RowHeights="25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,*">
                         <TextBlock Name="tblcode_mua" Text="CODE MUA HÀNG" Grid.Row="0" Grid.Column="0" Style="{StaticResource ContentTextStyle}"/>
                         <TextBox x:Name="txtcode_mua" Grid.Row="0" Grid.Column="1" TabIndex="64" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx code_mua}"/>
                         <TextBlock Name="tblcode_qcs" Text="CODE QCS" Grid.Row="0" Grid.Column="3" Style="{StaticResource ContentTextStyle}"/>
@@ -492,7 +489,10 @@ SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, Anc
                                                  SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                                  ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
                         <TextBlock Name="tbltien" Text="Price" Grid.Row="5" Grid.Column="3" Style="{StaticResource ContentTextStyle}"/>
-                        <smc:NumericTextBox Name="txttien" Grid.Row="5" Grid.Column="5" TabIndex="75" GotFocus="txtNum_GotFocus" Value="{smc:BindingEx tien}"/>
+                        <!--<smc:NumericTextBox  Name="txttien" Grid.Row="5" Grid.Column="5" TabIndex="75" GotFocus="txtNum_GotFocus" Value="{smc:BindingEx tien}"/>-->
+
+                        <smc:NumericTextBox GotFocus="txtNum_GotFocus" Name="txttien" Grid.Row="5" Grid.Column="5" TabIndex="75" Style="{StaticResource ReadOnlyNumericTextBox}"
+         Value="{smc:BindingEx tien}"/>
 
                         <TextBlock Name="tbltolerance" Text="Tolerance" Grid.Row="6" Grid.Column="0" Style="{StaticResource ContentTextStyle}"/>
                         <TextBox x:Name="txttolerance" Grid.Row="6" Grid.Column="1" TabIndex="76" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx tolerance}"/>
@@ -527,14 +527,25 @@ SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, Anc
 
                         <TextBlock Name="tbldinh_dang_qcs" Text="Định dạng QCS" Grid.Row="12" Grid.Column="0"
                                    Style="{StaticResource ContentTextStyle}"/>
-                        <StackPanel Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal">
-                            <smc:NumericTextBox x:Name="txtdinh_dang_qcs" TabIndex="86"
+                        <smc:NumericTextBox x:Name="txtdinh_dang_qcs" TabIndex="86" Grid.Row="12" Grid.Column="1"
                                                 Width="140" GotFocus="txtNum_GotFocus"
                                                 Value="{smc:BindingEx dinh_dang_qcs}"/>
-                            <TextBlock Text="1 - Dọc; 2 - Ngang" Margin="18,0,0,0"
+                        <TextBlock Text="1 - Dọc; 2 - Ngang"  Grid.Row="12" Grid.Column="3"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource ContentTextStyle}"/>
-                        </StackPanel>
+                        <TextBlock Name="tblnhom" Text="Nhom" Grid.Row="13" Grid.Column="0" Style="{StaticResource ContentTextStyle}"/>
+                        <TextBox x:Name="txtnhom" Grid.Row="13" Grid.Column="1"  TabIndex="87"
+             Style="{StaticResource ReadOnly}" Text="{smc:BindingEx nhom}"/>
+
+
+                        <TextBlock Name="tblma_ncc" Text="Supplier Code" Grid.Row="14" Grid.Column="0"
+         Style="{StaticResource ContentTextStyle}"/>
+
+                        <smc:AutoCompleteTextBox  Name="txtma_ncc" Grid.Column="1" Grid.Row="14"
+TabIndex="55" AllowEmty="true" AllowWrong="false" ListID="dmkh"
+Style="{StaticResource AutoCompleteTextBoxReadOnly}"
+Text="{smc:BindingEx ma_td1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
                     </smc:GridLayout>
                 </igWindows:TabItemEx>
             </igWindows:XamTabControl>

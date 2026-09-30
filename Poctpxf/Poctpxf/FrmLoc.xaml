@@ -66,22 +66,21 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Đến ngày" VerticalAlignment="Center"></TextBlock>
                 <smc:DateTextBox Name="txtDenngay" Grid.Row="1" Grid.Column="1" TabIndex="1" ></smc:DateTextBox>
 
-                <TextBlock Name="tblma_kh" Text="Mã NCC" Grid.Row="2" Grid.Column="0"  Style="{StaticResource ContentTextStyle}"/>
-                <smc:AutoCompleteTextBox   Name="txtma_kh" Grid.Column="1" Height="20" Grid.Row="2"
+                <TextBlock  Name="tblma_kh" Text="Mã NCC" Grid.Row="2" Grid.Column="0"  Style="{StaticResource ContentTextStyle}"/>
+                <smc:AutoCompleteTextBox    Name="txtma_kh" Grid.Column="1" Height="20" Grid.Row="2"
                                    TabIndex="2" AllowEmty="True" AllowWrong="false" ListID="dmkh"
                                    Style="{StaticResource AutoCompleteTextBoxEditModeEnable}"                                  
                                    ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                    SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
                 <TextBlock Name="tblTen_kh" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="12,0,0,0" Style="{StaticResource ContentTextStyle}"/>
 
-                <TextBlock Name="tblma_kho" Text="Mã kho" Grid.Row="3" Grid.Column="0"  Style="{StaticResource ContentTextStyle}"/>
-                <smc:AutoCompleteTextBox  Name="txtma_kho" Grid.Column="1" Height="20" Grid.Row="3"
-                    TabIndex="2" AllowEmty="True" AllowWrong="false" ListID="dmkho"
+                <TextBlock  Name="tblma_vt" Text="Mã vật tư" Grid.Row="3" Grid.Column="0"  Style="{StaticResource ContentTextStyle}"/>
+                <smc:AutoCompleteTextBox  Name="txtma_vt" Grid.Column="1" Height="20" Grid.Row="3"
+                    TabIndex="2" AllowEmty="True" AllowWrong="false" ListID="dmvt"
                     Style="{StaticResource AutoCompleteTextBoxEditModeEnable}"                                  
                     ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
-                <TextBlock Name="tblTen_kho" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="12,0,0,0" Style="{StaticResource ContentTextStyle}"/>
-
+                <TextBlock  Name="tblTen_vt" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="12,0,0,0" Style="{StaticResource ContentTextStyle}"/>
             </smc:GridLayout>
         </Border>
     </smc:ConfirmGridView>

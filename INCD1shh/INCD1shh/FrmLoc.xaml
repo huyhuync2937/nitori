@@ -42,7 +42,13 @@
                             <smc:MaskedTextBox Visibility="Hidden" Name="txtps_ck" TabIndex="10" Format="M" InputMask="1,2"
         Grid.Row="1" Grid.Column="1" Text="1"/>
                             <TextBlock Visibility="Hidden" Name="lblTenPs_ck" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1"
-Text="1 - Cacton, 2 - Khác"/> 
+Text="1 - Cacton, 2 - Khác"/>
+                            <TextBlock Name="lblMaKhach" Text="Mã ncc" Grid.Column="0" Grid.Row="1"/>
+                            <smc:AutoCompleteTextBox PreviewLostFocus="txtMaKhach_PreviewLostFocus" Name="txtMaKhach" Grid.Column="1" Grid.Row="1"
+            TabIndex="7" AllowEmty="true" AllowWrong="true" ListID="dmkh" 
+            ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                            <TextBlock Name="lblTenKhach" Text="" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1"/>
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>
                             <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="1" ListID="dmhd"
                                        AllowEmty="true" AllowWrong="true" TabIndex="3" IsTabStop="true"

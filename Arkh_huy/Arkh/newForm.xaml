@@ -1,0 +1,411 @@
+<smc:FormList x:Class="Arkh.newForm"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:smc="http://sis.vn/SasControls"
+              xmlns:igWindows="http://infragistics.com/Windows"
+              xmlns:igEditors="clr-namespace:Infragistics.Windows.Editors.Events;assembly=InfragisticsWPF3.Editors.v10.2"
+              Loaded="newForm_Loaded" Closed="FormList_Closed" PreviewKeyUp="FormList_PreviewKeyUp"
+              Title="Them moi khach hang" LanguageID="Arkh_0" Width="745" Height="677">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBlockStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/ButtonStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/MaskedTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/NumericTextBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/TabItemExStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/GroupBoxStyles.xaml"/>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/DateTextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:EditModeBindingObject x:Key="IsInEditMode" IsEditMode="false"/>
+            <Style x:Key="MaskedTextBoxReadOnly" TargetType="{x:Type smc:MaskedTextBox}"
+             BasedOn="{StaticResource MaskedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnly" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="TextBoxBase.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="TextBoxBase.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyNumericTextBox" TargetType="{x:Type smc:NumericTextBox}"
+             BasedOn="{StaticResource NumericTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="AutoCompleteReadOnly" TargetType="{x:Type smc:AutoCompleteTextBox}"
+             BasedOn="{StaticResource AutoCompleteTextBoxStyle}">
+                <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:AutoCompleteTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ReadOnlyDateTime" TargetType="{x:Type smc:DateTextBox}"
+             BasedOn="{StaticResource DateTextBoxStyle}">
+                <Setter Property="smc:DateTextBox.IsReadOnly" Value="true"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsEditMode, Source={StaticResource IsInEditMode}}" Value="True">
+                        <Setter Property="smc:DateTextBox.IsReadOnly" Value="false"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnCancel="ConfirmGV_OnCancel" OnOk="ConfirmGridView_OnOk" Name="ConfirmGV">
+        <smc:GridLayout Margin="12,4,12,0">
+            <igWindows:XamTabControl Name="TabInfor">
+                <FrameworkElement.Resources>
+                    <Style TargetType="{x:Type igWindows:TabItemEx}" BasedOn="{StaticResource TabItemStyle}"/>
+                </FrameworkElement.Resources>
+                <igWindows:TabItemEx Name="TabMain" Header="_1. Thông tin chính" IsTabStop="True">
+                    <smc:GridLayout Name="gridMain" Margin="8,0,8,0" RowCount="5" RowHeights="253,107,107,*">
+                        <GroupBox Name="gbHT" Header="Thông tin chung">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="10" RowHeights="25,25,25,25,25,25,25,25,25,*" ColumnCount="6"
+                              ColumnWidths="180,140,12,100,*,140">
+                                <TextBlock Name="tblma_kh" Text="Mã khách" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox GotFocus="txtma_kh_GotFocus" x:Name="txtma_kh" Grid.Column="1" Grid.Row="0" TabIndex="10"
+                         CharacterCasing="Upper" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ma_kh}"/>
+                                <TextBlock Name="tblma_tra_cuu" Text="Mã phụ" Grid.Row="0" Grid.Column="3"/>
+                                <TextBox GotFocus="txtma_tra_cuu_GotFocus" x:Name="txtma_tra_cuu" Grid.Column="5" Grid.Row="0" TabIndex="15"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ma_tra_cuu}"/>
+                                <TextBlock Name="tblma_so_thue" Text="Mã số thuế" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox x:Name="txtma_so_thue" Grid.Column="1" Grid.Row="1" TabIndex="20" Style="{StaticResource ReadOnly}" LostFocus="txtma_so_thue_LostFocus"
+                         Text="{smc:BindingEx ma_so_thue}" ToolTip="F5 Load Api, F6 Load Web" PreviewKeyDown="txtma_so_thue_PreviewKeyDown"/>
+                                <Button x:Name="btnTracuu" Click="btnTracuu_Click" Content="Tra cứu mã số thuế" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Width="130"
+                                        HorizontalAlignment="Left" Background="White" Height="22" IsTabStop="False" BorderThickness="1" FontWeight="DemiBold"/>
+                                <TextBlock Name="tblten_kh" Text="Tên khách" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox x:Name="txtten_kh" Grid.ColumnSpan="5" Grid.Row="2" Grid.Column="1" TabIndex="30"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ten_kh}"/>
+                                <TextBlock Name="tblten_kh2" Text="Tên 2" Grid.Row="3" Grid.Column="0"/>
+                                <TextBox x:Name="txtten_kh2" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" TabIndex="40"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ten_kh2}"/>
+                                <TextBlock Name="tblten_kh3" Text="Tên viết tắt" Grid.Row="4" Grid.Column="0"/>
+                                <TextBox x:Name="txtten_kh3" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5" TabIndex="45"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ten_kh3}"/>
+                                <TextBlock Name="tbldia_chi" Text="Địa chỉ" Grid.Row="5" Grid.Column="0"/>
+                                <TextBox x:Name="txtdia_chi" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" TabIndex="50"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx dia_chi}"/>
+                                <TextBlock Name="tbldia_chi_gd" Text="Địa chỉ giao dịch" Grid.Row="6" Grid.Column="0"/>
+                                <TextBox x:Name="txtdia_chi_gd" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="5" TabIndex="55"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx dia_chi_gd}"/>
+                                
+                                <TextBlock Name="tbldoi_tac" Text="Người giao dịch" Grid.Row="7" Grid.Column="0"/>
+                                <TextBox x:Name="txtdoi_tac" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" TabIndex="60"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx doi_tac}"/>
+
+                                <TextBlock Name="tblngay_thanh_lap" Text="Ngày thành lập" Grid.Row="8" Grid.Column="0"/>
+                                <smc:DateTextBox Style="{StaticResource ReadOnlyDateTime}" IsInEditMode="true" x:Name="txtngay_thanh_lap" AllowEmpty="True"
+                                                 Grid.Column="1" Grid.Row="8" TabIndex="70" Value="{smc:BindingEx ngay_thanh_lap}"/>
+                                
+                                <TextBlock Name="tblso_the" Text="Số thẻ" Grid.Row="8" Grid.Column="3"/>
+                                <TextBox GotFocus="txtso_the_GotFocus" x:Name="txtso_the" Grid.Column="5" Grid.Row="8" TabIndex="75"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx so_the}"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+                        <GroupBox Name="gbHT2" Grid.Row="1" Margin="0,4,0,0" Header="Thông tin ngầm định và phân loại">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="3" RowHeights="25,25,*" ColumnCount="7" ColumnWidths="180,140,12,140,12,140,*">
+                                <TextBlock Name="tbltk" Text="Tk ngầm định" Grid.Row="0" Grid.Column="0"/>
+                                <smc:AutoCompleteTextBox LostFocus="txttk_LostFocus" Name="txttk" Grid.Column="1" Grid.Row="0" TabIndex="80"
+                                         AllowEmty="true" AllowWrong="false" ListID="dmtk" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx tk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <TextBlock x:Name="txtten_tk" Margin="12,0,0,0" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="0"
+                           Text="{smc:BindingEx Path=ten_tk, Path2=ten_tk2}"/>
+                                
+                                <TextBlock Name="tblhan_tt" Text="Mã đ/k tt ngầm định" Grid.Row="0" Grid.Column="3"/>
+                                <smc:AutoCompleteTextBox PreviewLostFocus="txtHan_ck_PreviewLostFocus" Name="txtHan_ck" Grid.Column="5" TabIndex="82"
+                                         Grid.Row="0" AllowWrong="false" AllowEmty="true" ListID="dmthck"
+                                         Style="{StaticResource AutoCompleteReadOnly}" Text="{smc:BindingEx Path=ma_thck}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                
+                                <!--<TextBlock x:Name="txtthck" Margin="12,0,0,0" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="0"
+                           Text="{smc:BindingEx Path=ten_thck, Path2=ten_thck2}"/>-->
+
+                                <TextBlock Name="tbltk_portal" Text="Tài khoản portal" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox x:Name="txttk_portal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" TabIndex="55"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx tk_portal}"/>
+
+                                <TextBlock Name="tblnh_kh1" Text="Nhóm khách 1, 2, 3" Grid.Row="2" Grid.Column="0"/>
+                                <smc:AutoCompleteTextBox Name="txtnh_kh1" Grid.Column="1" Grid.Row="2" TabIndex="100" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmnhkh1" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx nh_kh1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <smc:AutoCompleteTextBox Name="txtnh_kh2" Grid.Column="3" Grid.Row="2" TabIndex="110" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmnhkh2" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx nh_kh2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <smc:AutoCompleteTextBox Name="txtnh_kh3" Grid.Column="5" Grid.Row="2" TabIndex="120" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmnhkh3" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx nh_kh3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+                        <GroupBox Name="gbHT3" Grid.Row="2" Margin="0,4,0,0" Header="Thông tin ngân hàng">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="3" RowHeights="25,25,*" ColumnCount="6" ColumnWidths="180,140,12,100,*,140">
+                                <TextBlock Name="tbltk_nh" Text="Tk ngân hàng" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox x:Name="txttk_nh" Grid.Column="1" Grid.Row="0" TabIndex="160" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx tk_nh}"/>
+                                <TextBlock Name="tblten_nh" Text="Tên ngân hàng" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox x:Name="txtten_nh" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" TabIndex="170"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ten_nh}"/>
+                                <TextBlock Name="tbltinh_thanh" Text="Tỉnh thành" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox x:Name="txttinh_thanh" Grid.Column="1" Grid.Row="2" TabIndex="180"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx tinh_thanh}"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+                        <GroupBox Name="gbHT4" Grid.Row="3" Margin="0,4,0,8" Header="">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="4" RowHeights="0,25,25,*" ColumnCount="6" ColumnWidths="180,140,12,100,*,140">
+                                <TextBlock Name="lblMa_dvcs" Grid.Row="1" Grid.Column="0" Text="Mã ĐVCS"/>
+                                <smc:AutoCompleteTextBox LostFocus="txtMa_dvcs_LostFocus" Name="txtMa_dvcs" Grid.Row="1" Grid.Column="1" AllowEmty="true"
+                                         AllowWrong="false" ListID="dmdvcs" TabIndex="200" Style="{StaticResource AutoCompleteReadOnly}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         Text="{smc:BindingEx ma_dvcs}"/>
+                                <TextBlock Name="txtTen_dvcs" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" TextWrapping="NoWrap"/>
+                                <TextBlock Name="tblstatus" Text="Trạng thái sử dụng" Grid.Row="2" Grid.Column="0"/>
+                                <StackPanel Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="2" Orientation="Horizontal">
+                                    <smc:MaskedTextBox LostFocus="txtstatus_LostFocus" Name="txtstatus" Format="M" InputMask="0,1" Width="140"
+                                     TabIndex="230" Style="{StaticResource MaskedTextBoxReadOnly}" HorizontalContentAlignment="Left"
+                                     Value="{smc:BindingEx status}"/>
+                                    <TextBlock Name="txtstatus_ghi_chu" Text="0 - Không sử dụng, 1 - Sử dụng" Margin="12,0,0,0"/>
+                                </StackPanel>
+                            </smc:GridLayout>
+                        </GroupBox>
+                        
+                    </smc:GridLayout>
+                </igWindows:TabItemEx>
+                <igWindows:TabItemEx Name="TabEx" IsTabStop="True" Header="_2. Thông tin khác">
+                    <smc:GridLayout Name="gridMainB" Margin="8,0,8,0" RowCount="4" RowHeights="150,110,135,*">
+                        <GroupBox Name="gbHTB" Header="Liên hệ chung">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="4" RowHeights="25,25,25,50" ColumnCount="6"
+                              ColumnWidths="100,140,12,100,*,140">
+                                <TextBlock Name="tbldien_thoai" Text="Điện thoại" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox x:Name="txtdien_thoai" Grid.Column="1" Grid.Row="0" TabIndex="51" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx dien_thoai}"/>
+                                <TextBlock Name="tblfax" Text="Fax" Grid.Row="0" Grid.Column="3" Margin="12,0,0,0"/>
+                                <TextBox x:Name="txtfax" Grid.Column="4" Grid.Row="0" TabIndex="52" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx fax}"/>
+
+                                <TextBlock Name="tblemail" Text="Email" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox x:Name="txtemail" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" TabIndex="53"
+                         Style="{StaticResource ReadOnly}" Text="{smc:BindingEx e_mail}"/>
+
+                                <TextBlock Name="tbldk_tt" Text="Điều kiện thanh toán" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox x:Name="txtdk_tt" Grid.Column="1" Grid.Row="2" TabIndex="54" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx dk_tt}"/>
+                                <TextBlock Name="tblVat" Text="Thuế VAT (%)" Grid.Row="2" Grid.Column="3" Margin="12,0,0,0"/>
+                                <smc:NumericTextBox Name="txtvat" Style="{StaticResource ReadOnlyNumericTextBox}" TabIndex="55"
+                    Value="{smc:BindingEx vat, Mode=TwoWay}"
+                    Grid.Row="2"
+                    Grid.Column="4"/>
+
+                                <TextBlock Name="tblghi_chu" Text="Ghi chú" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"
+                           Margin="0,5,0,0"/>
+                                <TextBox PreviewKeyDown="txtghi_chu_PreviewKeyDown" x:Name="txtghi_chu" Grid.Column="1" Margin="0,3.5,0,2.5"
+                         Height="Auto" Grid.Row="3" Grid.ColumnSpan="5" TabIndex="190" VerticalScrollBarVisibility="Auto"
+                         TextWrapping="Wrap" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ghi_chu}"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+
+                        <GroupBox Name="gbDaiDien" Grid.Row="1" Margin="0,4,0,0" Header="Doanh nghiệp &amp; đại diện">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="3" RowHeights="25,25,25" ColumnCount="6"
+                              ColumnWidths="100,140,12,100,*,140">
+                                <TextBlock Name="tblnuoc" Text="Quốc gia" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox x:Name="txtnuoc" Grid.Column="1" Grid.Row="0" TabIndex="300" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx nuoc}"/>
+                                <TextBlock Name="tblvon_dl" Text="Vốn điều lệ" Grid.Row="0" Grid.Column="3" Margin="12,0,0,0"/>
+                                <smc:NumericTextBox x:Name="txtvon_dl" Style="{StaticResource ReadOnlyNumericTextBox}" Grid.Column="4" Grid.Row="0"
+                         TabIndex="310" Value="{smc:BindingEx von_dl, Mode=TwoWay}"/>
+
+                                <TextBlock Name="tblnguoi_dd" Text="Người đại diện" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox x:Name="txtnguoi_dd" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" TabIndex="320" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx nguoi_dd}"/>
+
+                                <TextBlock Name="tblphone_dd" Text="SĐT đại diện" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox x:Name="txtphone_dd" Grid.Column="1" Grid.Row="2" TabIndex="340" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx phone_dd}"/>
+                                <TextBlock Name="tblemail_dd" Text="Email đại diện" Grid.Row="2" Grid.Column="3" Margin="12,0,0,0"/>
+                                <TextBox x:Name="txtemail_dd" Grid.Column="4" Grid.Row="2" TabIndex="330" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx email_dd}"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+
+                        <GroupBox Name="gbThanhToan" Grid.Row="2" Margin="0,4,0,0" Header="Thanh toán &amp; mua hàng">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="4" RowHeights="25,25,25,25" ColumnCount="6"
+                              ColumnWidths="100,140,12,100,*,140">
+                                <TextBlock Name="tblht_tt" Text="Hình thức tt" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox x:Name="txtht_tt" Grid.Column="1" Grid.Row="0" TabIndex="350" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx ht_tt}"/>
+                                <TextBlock Name="tblngay_tt" Text="Ngày tt" Grid.Row="0" Grid.Column="3" Margin="12,0,0,0"/>
+                                <smc:DateTextBox Style="{StaticResource ReadOnlyDateTime}" IsInEditMode="true" x:Name="txtngay_tt" AllowEmpty="True"
+                                                 Grid.Column="4" Grid.Row="0" TabIndex="360" Value="{smc:BindingEx ngay_tt}"/>
+
+                                <TextBlock Name="tblma_nt" Text="Mã ngoại tệ" Grid.Row="1" Grid.Column="0"/>
+                                <smc:AutoCompleteTextBox Name="txtma_nt" Grid.Column="1" Grid.Row="1" TabIndex="370" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmnt" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx ma_nt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <TextBlock Name="tblnguoi_thu_huong" Text="Người thụ hưởng" Grid.Row="1" Grid.Column="3" Margin="12,0,0,0"/>
+                                <TextBox x:Name="txtnguoi_thu_huong" Grid.Column="4" Grid.Row="1" TabIndex="380" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx nguoi_thu_huong}"/>
+
+                                <TextBlock Name="tblswift_code" Text="Swift code" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox x:Name="txtswift_code" Grid.Column="1" Grid.Row="2" TabIndex="420" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx swift_code}"/>
+                                <TextBlock Name="tblloai_ncc" Text="Loại ncc" Grid.Row="2" Grid.Column="3" Margin="12,0,0,0"/>
+                                <smc:NumericTextBox x:Name="txtloai_ncc" Style="{StaticResource ReadOnlyNumericTextBox}" Grid.Column="4" Grid.Row="2"
+                         TabIndex="430" Value="{smc:BindingEx loai_ncc, Mode=TwoWay}"/>
+
+                                <TextBlock Name="tblnguon_mua" Text="Nguồn mua" Grid.Row="3" Grid.Column="0"/>
+                                <TextBox x:Name="txtnguon_mua" Grid.Column="1" Grid.Row="3" TabIndex="440" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx nguon_mua}"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+
+                        <GroupBox Name="gbNguoiLienHe" Grid.Row="3" Margin="0,4,0,8" Header="Người liên hệ">
+                            <HeaderedContentControl.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding Background, ElementName=TabInfor}">
+                                        <ContentPresenter Content="{TemplateBinding ContentPresenter.Content}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </HeaderedContentControl.HeaderTemplate>
+                            <smc:GridLayout RowCount="6" RowHeights="22,25,25,25,25,*" ColumnCount="5"
+                              ColumnWidths="30,150,140,110,*">
+                                <TextBlock Name="tblSttHeader" Text="STT" Grid.Row="0" Grid.Column="0" FontWeight="DemiBold"/>
+                                <TextBlock Name="tblPersonHeader" Text="Họ và tên" Grid.Row="0" Grid.Column="1" FontWeight="DemiBold"/>
+                                <TextBlock Name="tblMaBpHeader" Text="Chức danh" Grid.Row="0" Grid.Column="2" FontWeight="DemiBold"/>
+                                <TextBlock Name="tblPhoneHeader" Text="Điện thoại" Grid.Row="0" Grid.Column="3" FontWeight="DemiBold"/>
+                                <TextBlock Name="tblEmailHeader" Text="Email" Grid.Row="0" Grid.Column="4" FontWeight="DemiBold"/>
+
+                                <TextBlock Text="1" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="txtperson1" Grid.Column="1" Grid.Row="1" TabIndex="450" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx person1}"/>
+                                <smc:AutoCompleteTextBox Name="txtma_bp1" Grid.Column="2" Grid.Row="1" TabIndex="460" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmbp" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx ma_bp1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <TextBox x:Name="txtphone1" Grid.Column="3" Grid.Row="1" TabIndex="470" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx phone1}"/>
+                                <TextBox x:Name="txtemail1" Grid.Column="4" Grid.Row="1" TabIndex="480" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx email1}"/>
+
+                                <TextBlock Text="2" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="txtperson2" Grid.Column="1" Grid.Row="2" TabIndex="490" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx person2}"/>
+                                <smc:AutoCompleteTextBox Name="txtma_bp2" Grid.Column="2" Grid.Row="2" TabIndex="500" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmbp" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx ma_bp2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <TextBox x:Name="txtphone2" Grid.Column="3" Grid.Row="2" TabIndex="510" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx phone2}"/>
+                                <TextBox x:Name="txtemail2" Grid.Column="4" Grid.Row="2" TabIndex="520" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx email2}"/>
+
+                                <TextBlock Text="3" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="txtperson3" Grid.Column="1" Grid.Row="3" TabIndex="530" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx person3}"/>
+                                <smc:AutoCompleteTextBox Name="txtma_bp3" Grid.Column="2" Grid.Row="3" TabIndex="540" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmbp" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx ma_bp3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <TextBox x:Name="txtphone3" Grid.Column="3" Grid.Row="3" TabIndex="550" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx phone3}"/>
+                                <TextBox x:Name="txtemail3" Grid.Column="4" Grid.Row="3" TabIndex="560" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx email3}"/>
+
+                                <TextBlock Text="4" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="txtperson4" Grid.Column="1" Grid.Row="4" TabIndex="570" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx person4}"/>
+                                <smc:AutoCompleteTextBox Name="txtma_bp4" Grid.Column="2" Grid.Row="4" TabIndex="580" AllowWrong="false" AllowEmty="true"
+                                         ListID="dmbp" Style="{StaticResource AutoCompleteReadOnly}"
+                                         Text="{smc:BindingEx ma_bp4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                         ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                <TextBox x:Name="txtphone4" Grid.Column="3" Grid.Row="4" TabIndex="590" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx phone4}"/>
+                                <TextBox x:Name="txtemail4" Grid.Column="4" Grid.Row="4" TabIndex="600" Style="{StaticResource ReadOnly}"
+                         Text="{smc:BindingEx email4}"/>
+
+                                <WebBrowser Grid.Row="5" x:Name="Webctl" Height="0" Width="0" LoadCompleted="Webctl_LoadCompleted"/>
+                            </smc:GridLayout>
+                        </GroupBox>
+                    </smc:GridLayout>
+                </igWindows:TabItemEx>
+            </igWindows:XamTabControl>
+        </smc:GridLayout>
+    </smc:ConfirmGridView>
+</smc:FormList>

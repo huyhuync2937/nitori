@@ -1,0 +1,29 @@
+﻿<smr:FormFilter x:Class="POCNCC1.Purchase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:smc="http://sis.vn/SasControls"
+                     xmlns:smr="clr-namespace:SasFormReport;assembly=SasFormReport"
+                     Title="Chon yeu cau mua hang" Height="140" Width="400" EscToClose="true"
+                     Name="PurchaseFrm"
+                     LanguageID="POCNCC1_2">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <smc:CachedResourceDictionary Source="pack://application:,,,/SasStyle;component/AutoCompleteTextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <smc:NegativeConverter x:Key="mau_bcConverter"/>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" Name="grdMain">
+        <GroupBox Name="gpMain" Margin="12,4,12,0">
+            <smc:GridLayout Name="grdLayout" RowCount="4" Margin="12" RowHeights="25,25,25,*" ColumnCount="4" ColumnWidths="120,180,10,10*">
+                <TextBlock Text="Số phiếu yêu cầu" Grid.Row="0" Grid.Column="0" Margin="0,2"
+                         VerticalAlignment="Center"/>
+                <smc:AutoCompleteTextBox LostFocus="txtSoyeucau_LostFocus"  Name="txtSoyeucau" Grid.Column="1" Grid.Row="0" ListID="SOYCMH"
+                                       AllowEmty="true" AllowWrong="true" TabIndex="0" IsTabStop="true"
+                                       SasObj="{Binding ElementName=PurchaseFrm, Path=BindingSasObj}"
+                                       ParentControl="{Binding ElementName=PurchaseFrm}"/>
+            </smc:GridLayout>
+        </GroupBox>
+    </smc:ConfirmGridView>
+</smr:FormFilter>

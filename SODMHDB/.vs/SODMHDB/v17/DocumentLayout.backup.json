@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\SODMHDB\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|d:\\siserpsme2025\\source\\sodmhdb\\sodmhdb\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|d:\\siserpsme2025\\source\\sodmhdb\\sodmhdb\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|d:\\siserpsme2025\\source\\sodmhdb\\sodmhdb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|solutionrelative:sodmhdb\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|SODMHDB\\SODMHDB.csproj|D:\\SISERPSME2025\\Source\\SODMHDB\\sodmhdb\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "StartUp.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\StartUp.cs",
               "RelativeDocumentMoniker": "SODMHDB\\StartUp.cs",
@@ -51,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\App.xaml.cs",
               "RelativeDocumentMoniker": "SODMHDB\\App.xaml.cs",
@@ -59,12 +59,11 @@
               "RelativeToolTip": "SODMHDB\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-02T09:37:37.046Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-02T09:37:37.046Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "FrmPoctpna.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\SODMHDB\\SODMHDB\\FrmPoctpna.xaml",
               "RelativeDocumentMoniker": "SODMHDB\\FrmPoctpna.xaml",

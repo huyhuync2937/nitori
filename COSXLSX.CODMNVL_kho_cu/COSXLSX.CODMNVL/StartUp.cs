@@ -28,8 +28,14 @@ namespace COSXLSX.CODMNVL
     public class StartUp : StartupBase
     {
         public static DataSet DataSourceReport = new DataSet();
-        private static SqlCommand cmd = new SqlCommand();
         public static bool isNew = true;
+
+        // --- Phân trang cuộn (infinite scroll) cho lưới chi tiết ---
+        public static int PageSize = 100;
+        private static string sLastMaSp = null;
+        private static string sLastMaVt = null;
+        private static bool bHasMoreData = true;
+        private static bool bIsLoadingMore = false;
         public static int M_ROUND = 0;
         public static ActionTask currActionTask = ActionTask.None;
         public static string M_FORMAT_STT_REC0 = "{0:0000}";
@@ -42,9 +48,12 @@ namespace COSXLSX.CODMNVL
         public static DateTime M_ngay_ct0;
         public static codmnvlLoc _frmLoc;
         public static string sso_lsx_loc;
+        public static string sMa_px_loc;
+
         public static string sMa_sp_loc;
         public static string sMa_bpht_loc;
         public static string sMa_hd_loc;
+        public static string sMa_vt_Search = "";
         public static DateTime? sNgay1_loc;
         public static DateTime? sNgay2_loc;
         public static string sMa_ky_loc;
@@ -87,10 +96,8 @@ namespace COSXLSX.CODMNVL
         public static void CallGridVouchers(
           bool isFirstLoad,
           string ma_ky,
-          string so_lsx,
-          string ma_sp,
-          string ma_bpht,
-          string ma_hd)
+          string ma_px
+    )
         {
             try
             {
@@ -98,17 +105,14 @@ namespace COSXLSX.CODMNVL
                 DataTable tb2;
                 if (isFirstLoad)
                 {
-                    StartUp.CommandInfo["store_proc"].ToString().Split('|');
-                    StartUp.cmd = new SqlCommand(StartUp.CommandInfo["store_proc"].ToString());
-                    StartUp.cmd.CommandType = CommandType.StoredProcedure;
-                    StartUp.cmd.Parameters.Add("@Ma_ky", SqlDbType.VarChar).Value = ma_ky;
-                    DataSet ds = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
-                    //DataSourceReport = ds.Copy();
-                    //StartUp.dataTable1 = dataSet.Tables[1].Copy();
-                    tb2 = ds.Tables[1].Copy();
+                    StartUp.sLastMaSp = null;
+                    StartUp.sLastMaVt = null;
+                    StartUp.bHasMoreData = true;
+
+                    tb2 = StartUp.FetchDetailPage(ma_ky, ma_px, StartUp.sMa_vt_Search, StartUp.sMa_sp_loc, null, null, StartUp.PageSize, out tb1);
                     tb2.TableName = "tbDetail";
-                    tb1 = ds.Tables[0].Copy();
                     tb1.TableName = "tbMain";
+                    StartUp.SetSttAndTrackLastKey(tb2, 0);
                     DataSourceReport.Tables.Add(tb1);
                     DataSourceReport.Tables.Add(tb2);
                     string[] strArray = StartUp.CommandInfo["VBrowse1"].ToString().Trim().Split('|');
@@ -117,6 +121,7 @@ namespace COSXLSX.CODMNVL
                     string strBrowse = strArray[0];
                     string strBrowseCt = strArray[1];
                     StartUp.oBrowse = new SasFormBrowes.FormBrowse(StartupBase.SasObj, tb2.DefaultView, strBrowse);
+                    StartUp.AttachInfiniteScroll();
                     //StartUp.oBrowse.frmBrw.oBrowse.DataSource = (IEnumerable)DataSourceReport.Tables[1].DefaultView;
                     StartUp.oBrowse.Esc += new SasFormBrowes.FormBrowse.GridKeyUp_Esc(StartUp.oBrowse_Esc);
                     StartUp.oBrowse.CTRL_R += new SasFormBrowes.FormBrowse.GridKeyUp_CTRL_R(StartUp.oBrowse_CTRL_R);
@@ -193,6 +198,14 @@ namespace COSXLSX.CODMNVL
                     toolBarButton7.ImagePath = "Images\\Copy.png";
                     toolBarButton7.BorderBrush = (Brush)null;
                     toolBarButton7.Click += new RoutedEventHandler(StartUp.btnDoimaVT_Click);
+                    ToolBarButton toolBarButton11 = new ToolBarButton();
+                    toolBarButton11.Text = StartupBase.M_LAN.Equals("V") ? "Tìm kiếm" : "Search";
+                    toolBarButton11.Text2 = StartupBase.M_LAN.Equals("V") ? "Tìm kiếm" : "Search";
+                    toolBarButton11.Name = "btnTimKiem";
+                    toolBarButton11.ToolTip = (object)"F7";
+                    toolBarButton11.ImagePath = "Images\\View.png";
+                    toolBarButton11.BorderBrush = (Brush)null;
+                    toolBarButton11.Click += new RoutedEventHandler(StartUp.btnTimKiem_Click);
                     //ToolBarButton toolBarButton8 = new ToolBarButton();
                     //toolBarButton8.Text = StartupBase.M_LAN.Equals("V") ? "Lấy mẫu Excel" : "Get Excel Templates";
                     //toolBarButton8.Text2 = StartupBase.M_LAN.Equals("V") ? "Lấy mẫu Excel" : "Get Excel Templates";
@@ -221,9 +234,10 @@ namespace COSXLSX.CODMNVL
                         name.Items.Insert(4, (object)toolBarButton5);
                         name.Items.Insert(5, (object)toolBarButton6);
                         name.Items.Insert(6, (object)toolBarButton7);
-                        //name.Items.Insert(7, (object)toolBarButton8);
-                        //name.Items.Insert(8, (object)toolBarButton9);
-                        name.Items.Insert(15, (object)PrintToolBar10);
+                        name.Items.Insert(7, (object)toolBarButton11);
+                        //name.Items.Insert(8, (object)toolBarButton8);
+                        //name.Items.Insert(9, (object)toolBarButton9);
+                        name.Items.Insert(16, (object)PrintToolBar10);
                     }
                 }
                 //else
@@ -269,17 +283,150 @@ namespace COSXLSX.CODMNVL
         {
             StartUp.DataSourceReport.Tables.Remove("tbMain");
             StartUp.DataSourceReport.Tables.Remove("tbDetail");
-            DataSet ds = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
-            DataTable tb2 = ds.Tables[1].Copy();
+
+            StartUp.sLastMaSp = null;
+            StartUp.sLastMaVt = null;
+            StartUp.bHasMoreData = true;
+
+            DataTable tb1;
+            DataTable tb2 = StartUp.FetchDetailPage(ma_ky, StartUp.sMa_px_loc, StartUp.sMa_vt_Search, StartUp.sMa_sp_loc, null, null, StartUp.PageSize, out tb1);
             tb2.TableName = "tbDetail";
-            DataTable tb1 = ds.Tables[0].Copy();
             tb1.TableName = "tbMain";
+            StartUp.SetSttAndTrackLastKey(tb2, 0);
             StartUp.oBrowse.frmBrw.oBrowse.DataSource = tb2.DefaultView;
 
             DataSourceReport.Tables.Add(tb1);
             DataSourceReport.Tables.Add(tb2);
             StartUp.oBrowse.frmBrw.oBrowse.FieldLayouts[0].SummaryDefinitions.Clear();
             StartUp.oBrowse.UpdateSumaryFields();
+        }
+
+        /// <summary>
+        /// Lấy 1 trang dữ liệu chi tiết định mức NVL bằng keyset pagination (seek theo ma_sp/ma_vt).
+        /// lastMaSp/lastMaVt = null nghĩa là lấy trang đầu tiên.
+        /// </summary>
+        private static DataTable FetchDetailPage(
+            string ma_ky,
+            string ma_px,
+            string ma_vt,
+            string ma_sp,
+            string lastMaSp,
+            string lastMaVt,
+            int pageSize,
+            out DataTable mainTable)
+        {
+            SqlCommand cmdPage = new SqlCommand(StartUp.CommandInfo["store_proc"].ToString());
+            cmdPage.CommandType = CommandType.StoredProcedure;
+            cmdPage.Parameters.Add("@Ma_ky", SqlDbType.VarChar).Value = ma_ky;
+            cmdPage.Parameters.Add("@Ma_px", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ma_px) ? (object)DBNull.Value : ma_px;
+            cmdPage.Parameters.Add("@Ma_vt", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ma_vt) ? (object)DBNull.Value : ma_vt;
+            cmdPage.Parameters.Add("@Ma_sp", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ma_sp) ? (object)DBNull.Value : ma_sp;
+            cmdPage.Parameters.Add("@PageSize", SqlDbType.Int).Value = pageSize;
+            cmdPage.Parameters.Add("@LastMaSp", SqlDbType.VarChar).Value = (object)lastMaSp ?? DBNull.Value;
+            cmdPage.Parameters.Add("@LastMaVt", SqlDbType.VarChar).Value = (object)lastMaVt ?? DBNull.Value;
+
+            DataSet ds = StartupBase.SasObj.ExcuteReader(cmdPage);
+            mainTable = ds.Tables[0].Copy();
+            return ds.Tables[1].Copy();
+        }
+
+        /// <summary>
+        /// Đánh lại cột "stt" tuần tự cho các dòng mới nạp (kể từ baseCount) và ghi nhớ
+        /// khóa (ma_sp, ma_vt) của dòng cuối để làm điểm seek cho trang kế tiếp.
+        /// </summary>
+        private static void SetSttAndTrackLastKey(DataTable page, int baseCount)
+        {
+            for (int index = 0; index < page.Rows.Count; ++index)
+                page.Rows[index]["stt"] = baseCount + index + 1;
+
+            if (page.Rows.Count > 0)
+            {
+                DataRow lastRow = page.Rows[page.Rows.Count - 1];
+                StartUp.sLastMaSp = lastRow["ma_sp"].ToString();
+                StartUp.sLastMaVt = lastRow["ma_vt"].ToString();
+            }
+            StartUp.bHasMoreData = page.Rows.Count == StartUp.PageSize;
+        }
+
+        private static void AttachInfiniteScroll()
+        {
+            if (StartUp.oBrowse?.frmBrw?.oBrowse == null)
+                return;
+            StartUp.oBrowse.frmBrw.oBrowse.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, (Delegate)new Action(() =>
+            {
+                ScrollViewer sv = StartUp.FindVisualChild<ScrollViewer>(StartUp.oBrowse.frmBrw.oBrowse);
+                if (sv == null)
+                    return;
+                sv.ScrollChanged -= StartUp.Grid_ScrollChanged;
+                sv.ScrollChanged += StartUp.Grid_ScrollChanged;
+            }));
+        }
+
+        private static void Grid_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (e.VerticalChange <= 0)
+                return;
+            double remaining = e.ExtentHeight - (e.VerticalOffset + e.ViewportHeight);
+            if (remaining > e.ViewportHeight)
+                return;
+            StartUp.LoadNextPage();
+        }
+
+        private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            int count = VisualTreeHelper.GetChildrenCount(parent);
+            for (int index = 0; index < count; ++index)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, index);
+                if (child is T typedChild)
+                    return typedChild;
+                T result = StartUp.FindVisualChild<T>(child);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+
+        private static void LoadNextPage()
+        {
+            if (StartUp.bIsLoadingMore || !StartUp.bHasMoreData)
+                return;
+            StartUp.bIsLoadingMore = true;
+            try
+            {
+                DataTable mainIgnored;
+                DataTable page = StartUp.FetchDetailPage(
+                    StartUp.sMa_ky_loc, StartUp.sMa_px_loc, StartUp.sMa_vt_Search, StartUp.sMa_sp_loc,
+                    StartUp.sLastMaSp, StartUp.sLastMaVt,
+                    StartUp.PageSize, out mainIgnored);
+
+                if (page.Rows.Count == 0)
+                {
+                    StartUp.bHasMoreData = false;
+                    return;
+                }
+
+                DataTable detail = StartUp.DataSourceReport.Tables["tbDetail"];
+                int baseCount = detail.Rows.Count;
+                foreach (DataRow row in page.Rows)
+                    detail.ImportRow(row);
+                for (int index = 0; index < page.Rows.Count; ++index)
+                    detail.Rows[baseCount + index]["stt"] = baseCount + index + 1;
+                detail.AcceptChanges();
+
+                DataRow lastRow = page.Rows[page.Rows.Count - 1];
+                StartUp.sLastMaSp = lastRow["ma_sp"].ToString();
+                StartUp.sLastMaVt = lastRow["ma_vt"].ToString();
+                StartUp.bHasMoreData = page.Rows.Count == StartUp.PageSize;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.CatchMessage(ex);
+            }
+            finally
+            {
+                StartUp.bIsLoadingMore = false;
+            }
         }
 
         private static void frmBrw_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -295,6 +442,10 @@ namespace COSXLSX.CODMNVL
             else if (e.Key == Key.F8)
             {
                 StartUp.V_Xoa();
+            }
+            else if (e.Key == Key.F7)
+            {
+                StartUp.V_TimKiem();
             }
             else
             {
@@ -646,7 +797,7 @@ namespace COSXLSX.CODMNVL
 
         private static void oBrowse_CTRL_R(object sender, EventArgs e)
         {
-            StartUp.CallGridVouchers(false, StartUp.sMa_ky_loc, StartUp.sso_lsx_loc, StartUp.sMa_sp_loc, StartUp.sMa_bpht_loc, StartUp.sMa_hd_loc);
+            StartUp.CallGridVouchers(false, StartUp.sMa_ky_loc, StartUp.sMa_px_loc);
         }
 
         private static void btnCopyky_Click(object sender, RoutedEventArgs e)
@@ -686,7 +837,7 @@ namespace COSXLSX.CODMNVL
                         //Hiện thị lại dữ liệu
                         if (frm.isClose)
                         {
-                            StartUp.CallGridVouchers(false, StartUp.sMa_ky_loc, StartUp.sso_lsx_loc, StartUp.sMa_sp_loc, StartUp.sMa_bpht_loc, StartUp.sMa_hd_loc);
+                            StartUp.CallGridVouchers(false, StartUp.sMa_ky_loc, StartUp.sMa_px_loc);
                             ReloadData(StartUp.sMa_ky_loc);
                             string message = "Sao chép định mức thành công !";
                             int num1 = (int)ExMessageBox.Show(StartupBase.SasObj, message, "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -745,9 +896,26 @@ namespace COSXLSX.CODMNVL
             //StartupBase.SasObj.ExcuteNonQuery(new SqlCommand(cmdText));
 
             int num = (int)ExMessageBox.Show(1123, StartupBase.SasObj, "Chương trình đã thực hiện xong!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            StartUp.CallGridVouchers(false, StartUp.sMa_ky_loc, StartUp.sso_lsx_loc, StartUp.sMa_sp_loc, StartUp.sMa_bpht_loc, StartUp.sMa_hd_loc);
+            StartUp.CallGridVouchers(false, StartUp.sMa_ky_loc, StartUp.sMa_px_loc);
             ReloadData(StartUp.sMa_ky_loc);
 
+        }
+
+        public static void btnTimKiem_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp.V_TimKiem();
+        }
+
+        public static void V_TimKiem()
+        {
+            FrmTimKiem frmTimKiem = new FrmTimKiem(StartUp.sMa_sp_loc, StartUp.sMa_vt_Search, StartUp.sMa_px_loc);
+            frmTimKiem.ShowDialog();
+            if (!frmTimKiem.isOk)
+                return;
+            StartUp.sMa_sp_loc = frmTimKiem.Ma_sp;
+            StartUp.sMa_vt_Search = frmTimKiem.Ma_vt;
+            StartUp.sMa_px_loc = frmTimKiem.Ma_px;
+            StartUp.ReloadData(StartUp.sMa_ky_loc);
         }
 
         public static void btnmauExcel_Click(object sender, RoutedEventArgs e)

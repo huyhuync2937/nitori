@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|D:\\SISERPSME2025\\Source\\INCD1sdNG\\incd1sdng\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|solutionrelative:incd1sdng\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|D:\\SISERPSME2025\\Source\\INCD1sdNG\\incd1sdng\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|solutionrelative:incd1sdng\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|d:\\siserpsme2025\\source\\incd1sdng\\incd1sdng\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|solutionrelative:incd1sdng\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|D:\\SISERPSME2025\\Source\\INCD1sdNG\\incd1sdng\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INCD1sdNG\\INCD1sdNG.csproj|solutionrelative:incd1sdng\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "INCD1sdNG\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\FrmLoc.xaml",
+              "RelativeToolTip": "INCD1sdNG\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-20T20:20:09.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "INCD1sdNG\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "INCD1sdNG\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwEIAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-20T19:49:50.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\App.xaml.cs",
+              "RelativeDocumentMoniker": "INCD1sdNG\\App.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\App.xaml.cs",
+              "RelativeToolTip": "INCD1sdNG\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-20T19:49:23.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\StartUp.cs",
+              "RelativeDocumentMoniker": "INCD1sdNG\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\INCD1sdNG\\INCD1sdNG\\StartUp.cs",
+              "RelativeToolTip": "INCD1sdNG\\StartUp.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAwwH4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-20T19:49:04.349Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -50,6 +50,8 @@ namespace COLGHSS1
         public static object g_ctTuNg;
         public static object g_ctDenNg;
         public static object g_loaiNvl;
+        public static object g_maKhach;
+
         public static string[] CanChangeValueFields;
         public static int m_user_id = 0;
 
@@ -80,17 +82,20 @@ namespace COLGHSS1
             }
         }
 
-        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg)
+        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg, object maKhach)
         {
             StartUp.g_hdTuNg = hdTuNg;
             StartUp.g_hdDenNg = hdDenNg;
+            StartUp.g_maKhach = maKhach;
             //StartUp.g_loaiNvl = loaiNvl;
 
             if (isFirstLoad)
             {
-                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg";
+                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg,@ma_kh";
                 StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
                 StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
+                StartUp.cmd.Parameters.Add("@ma_kh", SqlDbType.VarChar).Value = string.IsNullOrEmpty(maKhach.ToString()) ? (object)"" : (object)maKhach.ToString().Trim();
+
                 //StartUp.cmd.Parameters.Add("@loai_nvl", SqlDbType.VarChar).Value = loaiNvl == null || string.IsNullOrEmpty(loaiNvl.ToString()) ? (object)"" : (object)loaiNvl.ToString().Trim();
 
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
@@ -457,7 +462,7 @@ namespace COLGHSS1
                 
                 bool kindReport = true;
             
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg);
+                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg,StartUp.g_maKhach);
             }
             catch (Exception ex)
             {

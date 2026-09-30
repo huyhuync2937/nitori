@@ -153,13 +153,14 @@ namespace Incd1lksd
                 //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
                 //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
                 //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, string.IsNullOrEmpty(this.txtps_ck.Text) ? (object)"1" : (object)this.txtps_ck.Text.Trim());
+                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, string.IsNullOrEmpty(this.txtMavt.Text) ? (object)"" : (object)this.txtMavt.Text.Trim());
             }
             catch (Exception ex)
             {
                 ErrorLog.CatchMessage(ex);
             }
         }
+
 
         private void gridMain_OnCancel(object sender, RoutedEventArgs e)
         {
@@ -218,17 +219,17 @@ namespace Incd1lksd
         //{
         //}
 
-        //private void txtMavt_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
-        //{
-        //    if (!string.IsNullOrEmpty(this.txtMavt.Text))
-        //    {
-        //        if (this.txtMavt.RowResult == null)
-        //            return;
-        //        this.lblTenvt.Text = !StartupBase.M_LAN.Equals("V") ? this.txtMavt.RowResult["ten_vt2"].ToString() : this.txtMavt.RowResult["ten_vt"].ToString();
-        //    }
-        //    else
-        //        this.lblTenvt.Text = string.Empty;
-        //}
+        private void txtMavt_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.txtMavt.Text))
+            {
+                if (this.txtMavt.RowResult == null)
+                    return;
+                this.lblTenvt.Text = !StartupBase.M_LAN.Equals("V") ? this.txtMavt.RowResult["ten_vt2"].ToString() : this.txtMavt.RowResult["ten_vt"].ToString();
+            }
+            else
+                this.lblTenvt.Text = string.Empty;
+        }
 
     }
 }

@@ -27,7 +27,7 @@ namespace Poctpna
             this.BindingSasObj = StartupBase.SasObj;
             this.dsHdm = StartUp.GetHdm(filter);
             this.GrdBrowse.DataSource = (IEnumerable)this.dsHdm.Tables[0].DefaultView;
-            this.GrdBrowseCt.DataSource = (IEnumerable)this.dsHdm.Tables[1].DefaultView;
+            this.GrdBrowseCt.DataSource = (IEnumerable)this.dsHdm.Tables[2].DefaultView;
             string strBrowse1;
             if (StartUpTrans.M_LAN.Equals("V"))
                 strBrowse1 = StartUpTrans.CommandInfo["Vbrowse2"].ToString().Split('|')[2];
@@ -40,7 +40,7 @@ namespace Poctpna
                 strBrowse2 = StartUpTrans.CommandInfo["Vbrowse2"].ToString().Split('|')[3];
             else
                 strBrowse2 = StartUpTrans.CommandInfo["Ebrowse2"].ToString().Split('|')[3];
-            this.GrdBrowseCt.FieldLayouts.Add(SysFunc.CreateFieldLayout(StartupBase.SasObj, this.GrdBrowseCt, strBrowse2, this.dsHdm.Tables[1]));
+            this.GrdBrowseCt.FieldLayouts.Add(SysFunc.CreateFieldLayout(StartupBase.SasObj, this.GrdBrowseCt, strBrowse2, this.dsHdm.Tables[2]));
             SysFunc.CreateSumFieldList(StartupBase.SasObj, this.GrdBrowseCt, strBrowse2);
         }
 
@@ -78,10 +78,10 @@ namespace Poctpna
                 BasicGridView basicGridView = sender as BasicGridView;
                 if (basicGridView.ActiveRecord == null || (basicGridView.ActiveRecord.Index < 0 || basicGridView.ActiveRecord.RecordType != RecordType.DataRecord))
                     return;
-                this.dsHdm.Tables[1].DefaultView.RowFilter = "";
+                this.dsHdm.Tables[2].DefaultView.RowFilter = "";
                 string str = "1 = 1 ";
-                this.dsHdm.Tables[1].DefaultView.RowFilter += str + string.Format("{0} {1} = '{2}'", str == "" ? (object)"" : (object)" and ", (object)" stt_rec ", (object)((basicGridView.ActiveRecord as DataRecord).DataItem as DataRowView)["stt_rec"].ToString());
-                this.GrdBrowseCt.DataSource = (IEnumerable)this.dsHdm.Tables[1].DefaultView;
+                this.dsHdm.Tables[2].DefaultView.RowFilter += str + string.Format("{0} {1} = '{2}'", str == "" ? (object)"" : (object)" and ", (object)" stt_rec ", (object)((basicGridView.ActiveRecord as DataRecord).DataItem as DataRowView)["stt_rec"].ToString());
+                this.GrdBrowseCt.DataSource = (IEnumerable)this.dsHdm.Tables[2].DefaultView;
             }
             catch (Exception ex)
             {

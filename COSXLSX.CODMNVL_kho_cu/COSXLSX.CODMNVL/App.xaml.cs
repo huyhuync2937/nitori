@@ -29,7 +29,7 @@ namespace COSXLSX.CODMNVL
             else
             {
                 StartUp startUp = new StartUp();
-                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "50.03.05"; //50.02.06
+                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.20.04"; //50.02.06
                 startUp.Run();
             }
         }
