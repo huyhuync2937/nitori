@@ -206,6 +206,14 @@ namespace COSXLSX.CODMNVL
                     toolBarButton11.ImagePath = "Images\\View.png";
                     toolBarButton11.BorderBrush = (Brush)null;
                     toolBarButton11.Click += new RoutedEventHandler(StartUp.btnTimKiem_Click);
+                    ToolBarButton toolBarButton12 = new ToolBarButton();
+                    toolBarButton12.Text = StartupBase.M_LAN.Equals("V") ? "Kết xuất Excel" : "Export Excel";
+                    toolBarButton12.Text2 = StartupBase.M_LAN.Equals("V") ? "Kết xuất Excel" : "Export Excel";
+                    toolBarButton12.Name = "btnKetXuatExcel";
+                    toolBarButton12.ToolTip = (object)"Ctrl+E";
+                    toolBarButton12.ImagePath = "Images\\View.png";
+                    toolBarButton12.BorderBrush = (Brush)null;
+                    toolBarButton12.Click += new RoutedEventHandler(StartUp.btnKetXuatExcel_Click);
                     //ToolBarButton toolBarButton8 = new ToolBarButton();
                     //toolBarButton8.Text = StartupBase.M_LAN.Equals("V") ? "Lấy mẫu Excel" : "Get Excel Templates";
                     //toolBarButton8.Text2 = StartupBase.M_LAN.Equals("V") ? "Lấy mẫu Excel" : "Get Excel Templates";
@@ -235,9 +243,10 @@ namespace COSXLSX.CODMNVL
                         name.Items.Insert(5, (object)toolBarButton6);
                         name.Items.Insert(6, (object)toolBarButton7);
                         name.Items.Insert(7, (object)toolBarButton11);
-                        //name.Items.Insert(8, (object)toolBarButton8);
-                        //name.Items.Insert(9, (object)toolBarButton9);
-                        name.Items.Insert(16, (object)PrintToolBar10);
+                        name.Items.Insert(8, (object)toolBarButton12);
+                        //name.Items.Insert(9, (object)toolBarButton8);
+                        //name.Items.Insert(10, (object)toolBarButton9);
+                        name.Items.Insert(17, (object)PrintToolBar10);
                     }
                 }
                 //else
@@ -528,22 +537,35 @@ namespace COSXLSX.CODMNVL
             {
                 for (int index = 0; index < StartUp.oBrowse.frmBrw.oBrowse.Records.Count; ++index)
                 {
+                    DataRecord record = StartUp.oBrowse.frmBrw.oBrowse.Records[index] as DataRecord;
+                    if (record == null || record.RecordType != RecordType.DataRecord)
+                        continue;
 
-                    (StartUp.oBrowse.frmBrw.oBrowse.Records[index] as DataRecord).Cells["chon"].Value = tag;
-
+                    record.Cells["chon"].Value = tag;
                 }
             }
             else
             {
-                int a = g.Rows.Count;
-                int b = StartUp.oBrowse.frmBrw.oBrowse.Records.Count;
                 for (int index = 0; index < StartUp.oBrowse.frmBrw.oBrowse.Records.Count; ++index)
                 {
+                    DataRecord record = StartUp.oBrowse.frmBrw.oBrowse.Records[index] as DataRecord;
+                    if (record == null || record.RecordType != RecordType.DataRecord)
+                        continue;
+
+                    object sttValue = record.Cells["stt"].Value;
+                    if (sttValue == null || sttValue is DBNull)
+                        continue;
+                    long stt = Convert.ToInt64(sttValue);
+
                     for (int index0 = 0; index0 < g.Rows.Count; ++index0)
                     {
-                        if ((Int64)(StartUp.oBrowse.frmBrw.oBrowse.Records[index] as DataRecord).Cells["stt"].Value == (Int64)g.Rows[index0]["stt"])
+                        object gSttValue = g.Rows[index0]["stt"];
+                        if (gSttValue is DBNull)
+                            continue;
+                        if (stt == Convert.ToInt64(gSttValue))
                         {
-                            (StartUp.oBrowse.frmBrw.oBrowse.Records[index] as DataRecord).Cells["chon"].Value = tag;
+                            record.Cells["chon"].Value = tag;
+                            break;
                         }
                     }
                 }
@@ -916,6 +938,87 @@ namespace COSXLSX.CODMNVL
             StartUp.sMa_vt_Search = frmTimKiem.Ma_vt;
             StartUp.sMa_px_loc = frmTimKiem.Ma_px;
             StartUp.ReloadData(StartUp.sMa_ky_loc);
+        }
+
+        public static void btnKetXuatExcel_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp.V_KetXuatExcel();
+        }
+
+        public static void V_KetXuatExcel()
+        {
+            try
+            {
+                DataTable mainIgnored;
+                DataTable detail = StartUp.FetchDetailPage(
+                    StartUp.sMa_ky_loc, StartUp.sMa_px_loc, StartUp.sMa_vt_Search, StartUp.sMa_sp_loc,
+                    null, null, int.MaxValue, out mainIgnored);
+
+                if (detail.Rows.Count == 0)
+                {
+                    ExMessageBox.Show(StartupBase.SasObj, "Không có dữ liệu để kết xuất!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    return;
+                }
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel 2007 (*.xlsx)|*.xlsx";
+                saveFileDialog.FileName = "DinhMucNVL_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+                if (saveFileDialog.ShowDialog() != true)
+                    return;
+
+                DataTable dtExport = StartUp.BuildKetXuatExcelTable(detail);
+
+                Workbook workbook = new Workbook();
+                Worksheet worksheet = workbook.Worksheets[0];
+                worksheet.Cells.ImportDataTable(dtExport, true, 0, 0, true);
+                worksheet.AutoFitColumns();
+                workbook.Save(saveFileDialog.FileName);
+
+                if (ExMessageBox.Show(1536, StartupBase.SasObj, "Kết xuất Excel thành công! Mở file ngay?", "SASERP 20 .NET", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                    Process.Start(saveFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.CatchMessage(ex);
+            }
+        }
+
+        /// <summary>
+        /// Map các cột kỹ thuật trong bảng chi tiết (ma_sp, ma_vt, sl_dm, ...) sang tên tiêu đề
+        /// tiếng Việt hiển thị trên lưới (Mã sản phẩm, Mã vật tư, Số lượng định mức, ...) để xuất Excel.
+        /// </summary>
+        private static DataTable BuildKetXuatExcelTable(DataTable detail)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Stt", typeof(object));
+            dt.Columns.Add("Chọn", typeof(object));
+            dt.Columns.Add("Mã kỳ", typeof(object));
+            dt.Columns.Add("Mã sản phẩm", typeof(object));
+            dt.Columns.Add("Tên sản phẩm", typeof(object));
+            dt.Columns.Add("Mã vật tư", typeof(object));
+            dt.Columns.Add("Tên vật tư", typeof(object));
+            dt.Columns.Add("Đơn vị tính", typeof(object));
+            dt.Columns.Add("Số lượng định mức", typeof(object));
+            dt.Columns.Add("Mã chuyền", typeof(object));
+            dt.Columns.Add("Ghi chú", typeof(object));
+
+            foreach (DataRow row in detail.Rows)
+            {
+                DataRow newRow = dt.NewRow();
+                newRow["Stt"] = row["stt"];
+                newRow["Chọn"] = row["chon"];
+                newRow["Mã kỳ"] = row["ma_ky"];
+                newRow["Mã sản phẩm"] = row["ma_sp"];
+                newRow["Tên sản phẩm"] = row["ten_sp"];
+                newRow["Mã vật tư"] = row["ma_vt"];
+                newRow["Tên vật tư"] = row["Ten_Vt"];
+                newRow["Đơn vị tính"] = row["Dvt"];
+                newRow["Số lượng định mức"] = row["sl_dm"];
+                newRow["Mã chuyền"] = row["ma_px"];
+                newRow["Ghi chú"] = row["ghi_chu"];
+                dt.Rows.Add(newRow);
+            }
+            return dt;
         }
 
         public static void btnmauExcel_Click(object sender, RoutedEventArgs e)

@@ -30,7 +30,7 @@ namespace COLGHSS1
             else
             {
                 StartUp startUp = new StartUp();
-                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.13.12";
+                StartupBase.Menu_Id = ((IEnumerable<string>)e.Args).Count<string>() > 0 ? e.Args[0].ToString() : "23.13.13";
                 startUp.Run();
                 if (Process.GetCurrentProcess().ProcessName.Equals("SasProcess"))
                     return;

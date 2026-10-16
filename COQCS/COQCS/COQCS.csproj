@@ -85,10 +85,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FrmSetValue.xaml.cs">
-      <DependentUpon>FrmSetValue.xaml</DependentUpon>
-    </Compile>
     <Compile Include="StartUp.cs" />
+    <Compile Include="CoqcsBatchRunner.cs" />
+    <Compile Include="FrmBatchProgress.xaml.cs">
+      <DependentUpon>FrmBatchProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBatchErrors.xaml.cs">
+      <DependentUpon>FrmBatchErrors.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrmLoc.xaml.cs">
@@ -121,7 +125,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FrmSetValue.xaml">
+    <Page Include="FrmBatchProgress.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmBatchErrors.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

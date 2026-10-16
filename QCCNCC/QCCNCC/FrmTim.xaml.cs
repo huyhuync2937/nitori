@@ -1,4 +1,4 @@
-﻿using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.DataPresenter;
 using SasControls;
 using SasDefine;
 using SasErrorLib;
@@ -98,7 +98,8 @@ namespace QCCNCC
                 str = str + " and [user_id] = " + (object)StartUpTrans.M_User_Id;
             if (!string.IsNullOrEmpty(this.GridSearch.arrStrFilter[0]))
                 str = str + " and " + this.GridSearch.arrStrFilter[0];
-            return str;
+            str = System.Text.RegularExpressions.Regex.Replace(str.Trim(), @"^and\s+", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            return str.Length == 0 ? "1=1" : str;
         }
 
         private string GetCtFilterExpr()
@@ -146,7 +147,7 @@ namespace QCCNCC
                 bool flag = false;
                 this.GridSearch._GenerateSQLString();
                 this.GridSearch.GrdSearch.ExecuteCommand(DataPresenterCommands.EndEditModeAndAcceptChanges);
-                StartUp.TransFilterCmd.Parameters["@PhFilter"].Value = (object)this.GetPhFilterExpr();
+                StartUp.TransFilterCmd.Parameters["@PhFilter"].Value = (object)("(" + this.GetPhFilterExpr() + ") AND ma_ct = 'QCC' AND ISNULL(trang_thai_dg,'1') = '1'");
                 StartUp.TransFilterCmd.Parameters["@CtFilter"].Value = (object)this.GetCtFilterExpr();
                 StartUp.TransFilterCmd.Parameters["@sl_ct"].Value = (object)-1;
                 DataSet dataSet = DataProvider.FillCommand(StartupBase.SasObj, StartUp.TransFilterCmd);
@@ -156,7 +157,7 @@ namespace QCCNCC
                 if (count1 > 0)
                 {
                     flag = true;
-                    int num = (int)ExMessageBox.Show(2130, StartupBase.SasObj, string.Format("Có {0} chứng từ. Tổng số lượng  {1} / {2}", count1, str2, str1), "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    int num = (int)ExMessageBox.Show(2129, StartupBase.SasObj, string.Format("Có {0} chứng từ", count1), "", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 else
                 {

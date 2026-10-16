@@ -157,7 +157,7 @@
         <smc:GridLayout Name="GrdLayout10" Row="1" RowCount="1" RowHeights="*" ColumnCount="5"
                     ColumnWidths="23*,10,45*,12,276" Margin="12,4,12,12">
             <GroupBox Name="gbInfo" Header="Thông tin chung" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Margin="0">
-                <smc:GridLayout Name="GrdLayout30" RowCount="5" ColumnCount="5" RowHeights="25,25,25,25,25,*"
+                <smc:GridLayout Name="GrdLayout30" RowCount="6" ColumnCount="5" RowHeights="25,25,25,25,25,25,*"
                         ColumnWidths="100,140,*,100,140" Margin="0">
                     <TextBlock Name="tblma_kh" Text="Mã ncc" Grid.Row="0" Grid.Column="0"
                      Style="{StaticResource ContentTextStyle}"/>
@@ -233,6 +233,11 @@ TabIndex="15" Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingE
                                    SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=smvc:FormTrans}}"/>
                     <TextBlock Name="tblTen_nm" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Margin="12,0,0,0"
     Style="{StaticResource ContentTextStyle}" Text="{smc:BindingEx Path=ten_td, Path2=ten_td2}"/>
+                    <TextBlock Name="tblbu_hang" Text="Bù hàng" Grid.Row="4" Grid.Column="3"
+                     Style="{StaticResource ContentTextStyle}"/>
+                    <CheckBox Name="chkBu_hang" Grid.Row="4" Grid.Column="4" TabIndex="43"
+                    Style="{StaticResource CheckBoxEditModeEnable}"
+                    IsChecked="{smc:BindingEx Path=bu_hang}"/>
                 </smc:GridLayout>
             </GroupBox>
             <GroupBox Name="gbVoucher" Header="Chứng từ" Grid.Column="4" Grid.Row="0">
@@ -492,7 +497,7 @@ TabIndex="15" Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingE
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
-                                            <igDP:Field Label="Số lượng" Name="so_luong" Width="130">
+                                            <igDP:Field Label="Số lượng PO" Name="so_luong" Width="130">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="True"
                                               AllowEdit="{Binding Path=Value, Source={StaticResource IsInEditMode}}">
@@ -505,7 +510,7 @@ TabIndex="15" Style="{StaticResource TextBoxEditModeEnable}" Text="{smc:BindingE
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
-                                            <igDP:Field Label="Số lượng quy đổi" Name="sl_td1_i" Width="130">
+                                            <igDP:Field Label="Số lượng QCS" Name="sl_td1_i" Width="130">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="True"
       AllowEdit="{Binding Path=Value, Source={StaticResource IsInEditMode}}">
@@ -892,6 +897,18 @@ AllowEdit="{Binding Path=Value, Source={StaticResource IsInEditMode}}">
                                                                 <Setter Property="igEditors:ValueEditor.Format"
                                                 Value="{Binding Path=Text, Source={StaticResource Voucher_Ma_nt0},
                                                   Mode=OneWay, Converter={StaticResource MaskNumeric}, ConverterParameter=M_IP_SL}"/>
+                                                            </Style>
+                                                        </igDP:FieldSettings.EditorStyle>
+                                                    </igDP:FieldSettings>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>
+                                            <igDP:Field Label="Dung sai (%)" Name="tolerance" Width="90">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings LabelTextAlignment="Center" AllowSummaries="False"
+                                            AllowEdit="{Binding Path=Value, Source={StaticResource IsInEditMode}}">
+                                                        <igDP:FieldSettings.EditorStyle>
+                                                            <Style TargetType="{x:Type smc:NumericTextBox}">
+                                                                <Setter Property="igEditors:ValueEditor.Format" Value="N0"/>
                                                             </Style>
                                                         </igDP:FieldSettings.EditorStyle>
                                                     </igDP:FieldSettings>

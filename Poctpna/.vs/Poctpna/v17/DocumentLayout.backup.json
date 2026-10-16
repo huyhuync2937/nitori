@@ -3,40 +3,8 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Poctpna\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|d:\\siserpsme2025\\source\\poctpna\\poctpna\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|d:\\siserpsme2025\\source\\poctpna\\poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpnagethdm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpnagethdm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|D:\\SISERPSME2025\\Source\\Poctpna\\poctpna\\frmpoctpnagethdm.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1B715291-0AE1-465D-8AB1-EA21D79B3F09}|Poctpna\\Poctpna.csproj|solutionrelative:poctpna\\frmpoctpnagethdm.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,113 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\App.xaml.cs",
-              "RelativeDocumentMoniker": "Poctpna\\App.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\App.xaml.cs",
-              "RelativeToolTip": "Poctpna\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAB2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-18T09:59:05.829Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FrmView.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml",
-              "RelativeDocumentMoniker": "Poctpna\\FrmView.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml",
-              "RelativeToolTip": "Poctpna\\FrmView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-18T09:30:58.322Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "FrmView.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml.cs",
               "RelativeDocumentMoniker": "Poctpna\\FrmView.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmView.xaml.cs",
               "RelativeToolTip": "Poctpna\\FrmView.xaml.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAjwBwAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-18T09:30:57.484Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FrmPoctpna.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml.cs",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpna.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml.cs",
-              "RelativeToolTip": "Poctpna\\FrmPoctpna.xaml.cs",
-              "ViewState": "AgIAAOkMAAAAAAAAAAAowAENAABuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T08:31:21.867Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FrmIn.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmIn.xaml.cs",
-              "RelativeDocumentMoniker": "Poctpna\\FrmIn.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmIn.xaml.cs",
-              "RelativeToolTip": "Poctpna\\FrmIn.xaml.cs",
-              "ViewState": "AgIAAO4AAAAAAAAAAAAswAcBAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-12T00:58:59.256Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FrmPoctpna.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpna.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpna.xaml",
-              "RelativeToolTip": "Poctpna\\FrmPoctpna.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-08-26T04:49:08.173Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "FrmPoctpnaGetHDM.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "RelativeToolTip": "Poctpna\\FrmPoctpnaGetHDM.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-08-21T01:44:43.443Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FrmPoctpnaGetHDM.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "RelativeDocumentMoniker": "Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "RelativeToolTip": "Poctpna\\FrmPoctpnaGetHDM.xaml.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAWwDIAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-21T01:40:18.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StartUp.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\StartUp.cs",
-              "RelativeDocumentMoniker": "Poctpna\\StartUp.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpna\\Poctpna\\StartUp.cs",
-              "RelativeToolTip": "Poctpna\\StartUp.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAADgvy8AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-21T01:39:59.863Z",
+              "WhenOpened": "2026-10-14T08:06:34.574Z",
               "EditorCaption": ""
             }
           ]

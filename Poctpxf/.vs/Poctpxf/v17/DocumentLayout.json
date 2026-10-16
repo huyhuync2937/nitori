@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Poctpxf\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\frmpoctpxf.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|d:\\siserpsme2025\\source\\poctpxf\\poctpxf\\frmpoctpxf.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmpoctpxf.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmpoctpxf.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|d:\\siserpsme2025\\source\\poctpxf\\poctpxf\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|D:\\SISERPSME2025\\Source\\Poctpxf\\poctpxf\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D96833B2-C552-4BDA-B4B1-0675C9F74ADC}|Poctpxf\\Poctpxf.csproj|solutionrelative:poctpxf\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Poctpxf\\FrmPoctpxf.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmPoctpxf.xaml.cs",
               "RelativeToolTip": "Poctpxf\\FrmPoctpxf.xaml.cs",
-              "ViewState": "AgIAAPEHAAAAAAAAAAAAAAYIAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADcHAAAAAAAAAAAwwAIIAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-16T22:26:08.248Z",
               "EditorCaption": ""
@@ -66,8 +66,7 @@
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmCopy.xaml",
               "RelativeToolTip": "Poctpxf\\FrmCopy.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-04T08:37:45.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-04T08:37:45.7Z"
             },
             {
               "$type": "Document",
@@ -78,8 +77,7 @@
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmLoc.xaml",
               "RelativeToolTip": "Poctpxf\\FrmLoc.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-04T07:24:30.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-04T07:24:30.919Z"
             },
             {
               "$type": "Document",
@@ -91,8 +89,7 @@
               "RelativeToolTip": "Poctpxf\\FrmLoc.xaml.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAlwDcAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-04T07:14:17.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-04T07:14:17.467Z"
             },
             {
               "$type": "Document",
@@ -115,8 +112,7 @@
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\FrmPoctpxf.xaml",
               "RelativeToolTip": "Poctpxf\\FrmPoctpxf.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-04T05:02:21.113Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-04T05:02:21.113Z"
             },
             {
               "$type": "Document",
@@ -127,8 +123,7 @@
               "ToolTip": "D:\\SISERPSME2025\\Source\\Poctpxf\\Poctpxf\\COTKTH2Dvcs.xaml",
               "RelativeToolTip": "Poctpxf\\COTKTH2Dvcs.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-04T05:01:31.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-04T05:01:31.705Z"
             },
             {
               "$type": "Document",

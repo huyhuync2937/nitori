@@ -44,9 +44,10 @@
               "RelativeDocumentMoniker": "SOBGNCC1\\FrmPoctpna.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\SOBGNCC1\\SOBGNCC1\\FrmPoctpna.xaml.cs",
               "RelativeToolTip": "SOBGNCC1\\FrmPoctpna.xaml.cs",
-              "ViewState": "AgIAAPsCAAAAAAAAAAAhwBYDAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABcDAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T07:19:56.357Z"
+              "WhenOpened": "2026-05-08T07:19:56.357Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -58,7 +59,8 @@
               "RelativeToolTip": "SOBGNCC1\\StartUp.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAQwDUAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T09:37:57.195Z"
+              "WhenOpened": "2026-05-06T09:37:57.195Z",
+              "EditorCaption": ""
             }
           ]
         }

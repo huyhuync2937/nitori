@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\Pogia0\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{85CD5625-F7B0-4E13-99A5-05A4FE1A45C5}|Pogia0\\Pogia0.csproj|d:\\siserpsme2025\\source\\pogia0\\pogia0\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{85CD5625-F7B0-4E13-99A5-05A4FE1A45C5}|Pogia0\\Pogia0.csproj|solutionrelative:pogia0\\newform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85CD5625-F7B0-4E13-99A5-05A4FE1A45C5}|Pogia0\\Pogia0.csproj|d:\\siserpsme2025\\source\\pogia0\\pogia0\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85CD5625-F7B0-4E13-99A5-05A4FE1A45C5}|Pogia0\\Pogia0.csproj|solutionrelative:pogia0\\newform.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "newForm.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Pogia0\\Pogia0\\newForm.xaml.cs",
+              "RelativeDocumentMoniker": "Pogia0\\newForm.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Pogia0\\Pogia0\\newForm.xaml.cs",
+              "RelativeToolTip": "Pogia0\\newForm.xaml.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-01T08:29:34.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "newForm.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\Pogia0\\Pogia0\\newForm.xaml",
+              "RelativeDocumentMoniker": "Pogia0\\newForm.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\Pogia0\\Pogia0\\newForm.xaml",
+              "RelativeToolTip": "Pogia0\\newForm.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-01T08:29:33.936Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

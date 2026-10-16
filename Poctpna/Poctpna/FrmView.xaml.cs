@@ -54,9 +54,47 @@ namespace Poctpna
 
         private void Form_KeyUp(object sender, KeyEventArgs e)
         {
+            // Ctrl + A: chọn tất cả vật tư theo đơn hàng hiện tại trên GrdBrowseCt
+            if (e.Key.Equals((object)Key.A) && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                this.ChonTatCaVatTu(true);
+                e.Handled = true;
+                return;
+            }
+            // Ctrl + U: hủy chọn tất cả vật tư theo đơn hàng hiện tại trên GrdBrowseCt
+            if (e.Key.Equals((object)Key.U) && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                this.ChonTatCaVatTu(false);
+                e.Handled = true;
+                return;
+            }
             if (!e.Key.Equals((object)Key.Escape))
                 return;
             this.Close();
+        }
+
+        private void ChonTatCaVatTu(bool chon)
+        {
+            try
+            {
+                DataView detailView = this.dsHdm.Tables[2].DefaultView;
+                if (detailView.Count <= 0)
+                    return;
+                object chonValue = detailView.Table.Columns["chon"].DataType == typeof(bool) ? (object)chon : (object)(chon ? 1 : 0);
+                foreach (DataRowView drv in detailView)
+                    drv["chon"] = chonValue;
+                // Đánh dấu đơn hàng hiện tại để các vật tư được lấy khi nhấn OK
+                if (this.GrdBrowse.ActiveRecord != null && this.GrdBrowse.ActiveRecord.RecordType == RecordType.DataRecord)
+                {
+                    DataRowView header = (this.GrdBrowse.ActiveRecord as DataRecord).DataItem as DataRowView;
+                    if (header != null)
+                        header["chon"] = this.dsHdm.Tables[0].Columns["chon"].DataType == typeof(bool) ? (object)chon : (object)(chon ? 1 : 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.CatchMessage(ex);
+            }
         }
 
         private void ConfirmGridView_OnOk(object sender, RoutedEventArgs e)

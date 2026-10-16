@@ -153,7 +153,7 @@ namespace COLGHSS2
                 //    StartUp.ctTuNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTTuNgay.Value);
                 //if (!string.IsNullOrEmpty(this.txtCTDenNgay.Text))
                 //    StartUp.ctDenNgay_ = string.Format("{0:dd-MM-yyyy}", (object)(DateTime)this.txtCTDenNgay.Value);
-                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value);
+                StartUp.CallGridReport(true, string.IsNullOrEmpty(this.txtHDTuNgay.Text) ? (object)"" : this.txtHDTuNgay.Value, string.IsNullOrEmpty(this.txtHDDenNgay.Text) ? (object)"" : this.txtHDDenNgay.Value, this.txtSoCt.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -217,6 +217,17 @@ namespace COLGHSS2
         //private void txtSoCtBatDau_LostFocus(object sender, RoutedEventArgs e)
         //{
         //}
+
+        private void txtSoCt_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            this.txtSoCt.SearchInit();
+            if (this.txtSoCt.RowResult == null)
+            {
+                this.lblTenSoCt.Text = "";
+                return;
+            }
+            this.lblTenSoCt.Text = StartupBase.SasObj.GetOption("M_LAN").ToString() == "V" ? this.txtSoCt.RowResult["ten_lsx"].ToString() : this.txtSoCt.RowResult["ten_lsx2"].ToString();
+        }
 
         //private void txtMavt_PreviewLostFocus(object sender, KeyboardFocusChangedEventArgs e)
         //{

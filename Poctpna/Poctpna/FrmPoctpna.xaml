@@ -789,6 +789,12 @@ Value="{Binding Path=EditTemplate, RelativeSource={RelativeSource Self}}"/>
                                                     </igDP:FieldSettings>
                                                 </igDP:Field.Settings>
                                             </igDP:Field>
+                                            <igDP:Field Label="Stt dh" Name="stt_rec0_hdm" Width="0" Visibility="Hidden">
+                                                <igDP:Field.Settings>
+                                                    <igDP:FieldSettings AllowEdit="False" LabelTextAlignment="Center" AllowSummaries="False"
+      EditAsType="{x:Type sys:String}"/>
+                                                </igDP:Field.Settings>
+                                            </igDP:Field>
                                             <igDP:Field Label="Ngày sản xuất " Name="ngay_td1_i" Width="100">
                                                 <igDP:Field.Settings>
                                                     <igDP:FieldSettings LabelTextAlignment="Center" EditorType="{x:Type smc:DateTextBox}" AllowEdit="true" />

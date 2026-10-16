@@ -40,11 +40,11 @@
                                Value="{smc:BindingEx Path=M_NGAY_CT2, ElementName=frmLoc}"/>
 
                             <TextBlock Name="lblSohd" Text="Số kế hoạch" Grid.Column="0" Grid.Row="0"/>
-                            <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="0" ListID="ksxph"
-                                       AllowEmty="False" AllowWrong="true" TabIndex="3" IsTabStop="true"
-                                       SasObj="{Binding ElementName=TransactionFrm, Path=BindingSasObj}"
-                                       ParentControl="{Binding ElementName=TransactionFrm}"/>
-
+                           
+                            <smc:AutoCompleteTextBox Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="0"
+TabIndex="8" AllowEmty="true" AllowWrong="true" ListID="ksxph"
+ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+SasObj="{Binding BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
                             <!--<TextBlock Name="lblSohd" Text="Đh từ số" Grid.Column="0" Grid.Row="1"/>
                             <smc:AutoCompleteTextBox LostFocus="txtSoCtBatDau_LostFocus" Name="txtSoCtBatDau" Grid.Column="1" Grid.Row="1" ListID="dmhd"
                                        AllowEmty="true" AllowWrong="true" TabIndex="3" IsTabStop="true"

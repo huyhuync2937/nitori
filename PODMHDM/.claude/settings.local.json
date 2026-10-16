@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(\"C:/Program Files/dotnet/dotnet.exe\" tool install ilspycmd --tool-path ./tools)",
-      "Bash(./tools/ilspycmd.exe -t SasControls.ConfirmGridView \"D:/SISERPSME2025/Prog/SasControls.dll\")"
+      "Bash(./tools/ilspycmd.exe -t SasControls.ConfirmGridView \"D:/SISERPSME2025/Prog/SasControls.dll\")",
+      "Bash(where msbuild *)",
+      "Bash(where devenv *)",
+      "Bash(where.exe msbuild *)",
+      "Bash(command -v msbuild)"
     ]
   }
 }

@@ -88,7 +88,7 @@
                      Style="{StaticResource ContentTextStyle}" Margin="0"/>
           <smc:AutoCompleteTextBox PreviewLostFocus="txtMa_qs_PreviewLostFocus" Name="txtMa_qs" Grid.Column="1" Grid.Row="0"
                                    TabIndex="1" IsFocus="true" AllowEmty="true" AllowWrong="false" ListID="dmqs"
-                                   Filter="ma_cts like '%KSX%' and status =1" Margin="0,2"
+                                   Filter="ma_cts like '%KSW%' and status =1" Margin="0,2"
                                    Text="{smc:BindingEx Path=M_MA_QS, ElementName=FrmFilter}"
                                    ParentControl="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                    SasObj="{Binding Path=BindingSasObj, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>

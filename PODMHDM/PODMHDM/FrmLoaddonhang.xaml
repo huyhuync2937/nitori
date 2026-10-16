@@ -39,7 +39,7 @@
                                     FilterRecordLocation="OnTopFixed"/>
                 </igDP:DataPresenterBase.FieldLayoutSettings>
             </smc:BasicGridView>
-            <smc:BasicGridView Name="GrdBrowseCt" Grid.Row="2" Margin="0,0,0,0">
+            <smc:BasicGridView Name="GrdBrowseCt" Grid.Row="2" Margin="0,0,0,0" KeyUp="GrdBrowseCt_KeyUp">
                 <FrameworkElement.Resources>
                     <LinearGradientBrush x:Key="HeaderBackGround" EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFEFF7F7" Offset="0"/>
@@ -55,6 +55,7 @@
                 <igDP:DataPresenterBase.FieldLayoutSettings>
                     <igDP:FieldLayoutSettings HeaderPrefixAreaStyle="{StaticResource StyleHeaderPrefixArea}"
                                     RecordSelectorStyle="{StaticResource StyleRecordSelector}" AutoGenerateFields="False"
+                                    SelectionTypeRecord="Extended"
                                     FilterRecordLocation="OnTopFixed"/>
                 </igDP:DataPresenterBase.FieldLayoutSettings>
             </smc:BasicGridView>

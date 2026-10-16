@@ -1,0 +1,47 @@
+<Window x:Class="COQCS.FrmBatchErrors"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Danh sách lỗi QCS" Height="480" Width="680"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResize"
+        ShowInTaskbar="True">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="lblSummary" Grid.Row="0" FontWeight="Bold" Margin="0,0,0,8" TextWrapping="Wrap"/>
+
+        <GroupBox x:Name="gbItemErrors" Grid.Row="1" Header="Lỗi từng mã">
+            <ListView x:Name="lvItemErrors">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Mã vật tư" Width="150" DisplayMemberBinding="{Binding MaVt}"/>
+                        <GridViewColumn Header="Loại" Width="110" DisplayMemberBinding="{Binding Loai}"/>
+                        <GridViewColumn Header="Worker" Width="60" DisplayMemberBinding="{Binding Worker}"/>
+                        <GridViewColumn Header="Lỗi" Width="320" DisplayMemberBinding="{Binding Loi}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <GroupBox x:Name="gbGroupErrors" Grid.Row="3" Header="Nhóm bị lỗi ngay từ đầu (chưa kịp chạy mã nào)" Margin="0,10,0,0">
+            <ListView x:Name="lvGroupErrors">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Nhóm (loai_mode)" Width="150" DisplayMemberBinding="{Binding LoaiMode}"/>
+                        <GridViewColumn Header="Worker" Width="60" DisplayMemberBinding="{Binding Worker}"/>
+                        <GridViewColumn Header="Lỗi" Width="380" DisplayMemberBinding="{Binding Error}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button x:Name="btnClose" Content="Đóng" Width="90" Height="28" Click="btnClose_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

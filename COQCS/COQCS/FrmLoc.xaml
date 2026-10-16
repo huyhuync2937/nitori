@@ -47,8 +47,8 @@
                             <TextBox Name="txtStatus" Grid.Row="1" Grid.Column="1" Height="20" TabIndex="5"
                       MaxLength="1" PreviewTextInput="txtStatus_PreviewTextInput"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,0,0,0" VerticalAlignment="Center" 
-              Text="1- dọc; 2- ngang" Style="{StaticResource ContentTextStyle}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,0,0,0" VerticalAlignment="Center"
+              Text="1- dọc; 2- ngang (batch)" Style="{StaticResource ContentTextStyle}"/>
 
                             <TextBlock Name="lblPic" Text="Mã pic" Grid.Column="0" Grid.Row="2" />
                             <smc:AutoCompleteTextBox  Name="txtPic" Grid.Column="1" Grid.Row="2"

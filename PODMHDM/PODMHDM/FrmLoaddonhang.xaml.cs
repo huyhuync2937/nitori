@@ -67,6 +67,23 @@ namespace PODMHDM
             }
         }
 
+        private void GrdBrowseCt_KeyUp(object sender, KeyEventArgs e)
+        {
+            // Ctrl + A: chọn hết vật tư trên lưới chi tiết
+            if (Keyboard.Modifiers != ModifierKeys.Control || e.Key != Key.A)
+                return;
+            BasicGridView grid = sender as BasicGridView;
+            if (grid == null)
+                return;
+            grid.SelectedItems.Records.Clear();
+            foreach (Record record in grid.Records)
+            {
+                if (record.RecordType == RecordType.DataRecord)
+                    grid.SelectedItems.Records.Add(record);
+            }
+            e.Handled = true;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             StartUp.isOk = false;

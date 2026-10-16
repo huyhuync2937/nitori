@@ -80,18 +80,16 @@ namespace INNVLALERT
             }
         }
 
-        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg,object txtMavt)
+        public static void CallGridReport( bool isFirstLoad,object hdTuNg,object hdDenNg)
         {
             StartUp.g_hdTuNg = hdTuNg;
             StartUp.g_hdDenNg = hdDenNg;
-            StartUp.g_loaiNvl = txtMavt;
 
             if (isFirstLoad)
             {
-                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg,@ma_vt";
+                StartUp.cmd.CommandText = "Exec " + StartUp.commandInfo["store_proc"] + " @hdTuNg, @dhDenNg";
                 StartUp.cmd.Parameters.Add("@hdTuNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdTuNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdTuNg);
                 StartUp.cmd.Parameters.Add("@dhDenNg", SqlDbType.VarChar).Value = string.IsNullOrEmpty(hdDenNg.ToString()) ? (object)"" : (object)string.Format("{0:yyyyMMdd}", (object)(DateTime)hdDenNg);
-                StartUp.cmd.Parameters.Add("@ma_vt", SqlDbType.VarChar).Value = string.IsNullOrEmpty(txtMavt.ToString()) ? (object)"" : (string)txtMavt;
 
                 StartUp.dsReport = StartupBase.SasObj.ExcuteReader(StartUp.cmd);
                 DataTable dataTable = StartUp.dsReport.Tables[0].Copy();
@@ -453,7 +451,7 @@ namespace INNVLALERT
                 
                 bool kindReport = true;
             
-                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg, StartUp.g_loaiNvl);
+                StartUp.CallGridReport(false, StartUp.g_hdTuNg, StartUp.g_hdDenNg);
             }
             catch (Exception ex)
             {

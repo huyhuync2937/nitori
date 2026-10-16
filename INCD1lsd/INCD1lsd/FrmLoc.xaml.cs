@@ -59,12 +59,7 @@ namespace INCD1lsd
                     return false;
                 }
             }
-            if (string.IsNullOrEmpty(this.txtMavt.Text.Trim()))
-            {
-                int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Chưa nhập vật tư!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                this.txtMavt.Focus();
-                return false;
-            }
+           
             //if (string.IsNullOrEmpty(this.txtCTTuNgay.Text.Trim()) && !string.IsNullOrEmpty(this.txtCTDenNgay.Text.Trim()) && ((DateTime)this.txtCTDenNgay.Value).Year > 2078)
             //{
             //    int num = (int)ExMessageBox.Show(820, StartupBase.SasObj, "Năm không hợp lệ!", "Xac nhan nhap lieu", MessageBoxButton.OK, MessageBoxImage.Asterisk);

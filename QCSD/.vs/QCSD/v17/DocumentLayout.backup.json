@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|d:\\siserpsme2025\\source\\qcsd\\qcsd\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\formloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|d:\\siserpsme2025\\source\\qcsd\\qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|D:\\SISERPSME2025\\Source\\QCSD\\qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9675F8DF-B86A-4FA2-BCC0-74EFB17173A1}|QCSD\\QCSD.csproj|solutionrelative:qcsd\\formloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -34,8 +34,7 @@
               "RelativeToolTip": "QCSD\\FormLoc.xaml.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-30T20:59:58.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T20:59:58.071Z"
             },
             {
               "$type": "Document",
@@ -46,8 +45,7 @@
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\FormLoc.xaml",
               "RelativeToolTip": "QCSD\\FormLoc.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-09-30T10:49:35.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T10:49:35.933Z"
             },
             {
               "$type": "Document",
@@ -57,7 +55,7 @@
               "RelativeDocumentMoniker": "QCSD\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCSD\\QCSD\\StartUp.cs",
               "RelativeToolTip": "QCSD\\StartUp.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAUwE0AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAADwvyEAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-30T04:46:09.931Z",
               "EditorCaption": ""

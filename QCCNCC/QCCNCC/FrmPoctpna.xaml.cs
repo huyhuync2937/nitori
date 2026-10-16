@@ -1,4 +1,4 @@
-﻿using Infragistics.Windows.Controls;
+using Infragistics.Windows.Controls;
 using Infragistics.Windows.DataPresenter;
 using Infragistics.Windows.DataPresenter.Events;
 using Infragistics.Windows.Editors;
@@ -99,7 +99,8 @@ namespace QCCNCC
         private void LoadData()
         {
             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
-            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
+            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
             this.GrdLayout00.DataContext = (object)StartUpTrans.DsTrans.Tables[0].DefaultView;
             this.gridlayout50.DataContext = (object)StartUpTrans.DsTrans.Tables[0].DefaultView;
             this.GrdLayout10.DataContext = (object)StartUpTrans.DsTrans.Tables[0].DefaultView;
@@ -112,7 +113,8 @@ namespace QCCNCC
         {
             FrmPoctpna.iRow = StartUpTrans.DsTrans.Tables[0].Rows.Count < 2 ? 0 : 1;
             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
-            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
+            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
         }
 
         private void V_Truoc()
@@ -121,7 +123,8 @@ namespace QCCNCC
                 return;
             --FrmPoctpna.iRow;
             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
-            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
+            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
         }
 
         private void V_Sau()
@@ -130,14 +133,16 @@ namespace QCCNCC
                 return;
             ++FrmPoctpna.iRow;
             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
-            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
+            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
         }
 
         private void V_Cuoi()
         {
             FrmPoctpna.iRow = StartUpTrans.DsTrans.Tables[0].Rows.Count - 1;
             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
-            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'";
+            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
         }
 
         private void V_Moi()
@@ -152,7 +157,12 @@ namespace QCCNCC
                 this.DsVitual = StartUpTrans.DsTrans.Copy();
                 DataRow row = StartUpTrans.DsTrans.Tables[0].NewRow();
                 row["stt_rec"] = (object)str;
-                row["loai_phieu"] = (object)"PNA";
+                row["trang_thai_dg"] = "1";
+                row["dat_tu"] = 70m;
+                row["dat_den"] = 100m;
+                row["khong_dat_tu"] = 0m;
+                row["khong_dat_den"] = 69m;
+                row["loai_phieu"] = (object)"QCC";
                 row["loai_yc"] = (object)"IQC";
                 row["ma_ct"] = (object)StartUpTrans.Ma_ct;
                 row["ngay_ct"] = DateTime.Now.Date;
@@ -168,10 +178,10 @@ namespace QCCNCC
 
                 StartUpTrans.DsTrans.Tables[0].Rows.Add(row);
                 StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + str + "'";
-                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'";
-                this.NewRowCt();
+                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+                this.LoadMissingCriteria();
                 StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + str + "'";
-                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'";
+                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
                 FrmPoctpna.OldiRow = FrmPoctpna.iRow;
                 FrmPoctpna.iRow = StartUpTrans.DsTrans.Tables[0].Rows.Count - 1;
                 FrmPoctpna.IsInEditMode.Value = true;
@@ -205,6 +215,7 @@ namespace QCCNCC
                 DataRow row1 = StartUpTrans.DsTrans.Tables[0].NewRow();
                 row1.ItemArray = StartUpTrans.DsTrans.Tables[0].Rows[FrmPoctpna.iRow].ItemArray;
                 row1["stt_rec"] = (object)str;
+                row1["trang_thai_dg"] = "1";
                 row1["ngay_ct"] = (object)FrmPoctpnaCopy.ngay_ct;
                 row1["ngay_lct"] = (object)FrmPoctpnaCopy.ngay_ct;
                 row1["ma_qs"] = (object)this.GetDMQS(this.BindingSasObj, StartUpTrans.Ma_ct, Convert.ToDateTime(row1["ngay_ct"]), StartUpTrans.M_User_Id, row1["ma_qs"].ToString().Trim());
@@ -224,7 +235,8 @@ namespace QCCNCC
                 FrmPoctpna.OldiRow = FrmPoctpna.iRow;
                 FrmPoctpna.iRow = StartUpTrans.DsTrans.Tables[0].Rows.Count - 1;
                 StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + str + "'";
-                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'";
+                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
                 FrmPoctpna.IsInEditMode.Value = true;
             }
         }
@@ -255,7 +267,7 @@ namespace QCCNCC
             if (string.IsNullOrEmpty(StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ong_ba"].ToString().Trim()))
                 StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ong_ba"] = (object)this.txtMa_kh.RowResult["doi_tac"].ToString().Trim();
             //StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_thck"] = (object)this.txtMa_kh.RowResult["ma_thck"].ToString().Trim();
-            this.txtMaSoThue.Text = this.txtMa_kh.RowResult["ma_so_thue"].ToString();
+            StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_so_thue"] = this.txtMa_kh.RowResult["ma_so_thue"];
         }
         private void V_Sua()
         {
@@ -300,7 +312,7 @@ namespace QCCNCC
                     FormTrans.currActionTask = ActionTask.View;
                     string str = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString();
                     StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
-                    StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
+                    StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
                     if (StartUpTrans.DsTrans.Tables[1].Rows.Count > 0)
                     {
                         foreach (DataRow row in StartUpTrans.DsTrans.Tables[1].Select("stt_rec='" + str + "'"))
@@ -311,7 +323,7 @@ namespace QCCNCC
                     row1.ItemArray = this.DsVitual.Tables[0].Rows[0].ItemArray;
                     StartUpTrans.DsTrans.Tables[0].Rows.InsertAt(row1, FrmPoctpna.iRow);
                     StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + str + "'";
-                    StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'";
+                    StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
                     StartUpTrans.DsTrans.Tables[1].Merge(this.DsVitual.Tables[1]);
                     break;
             }
@@ -335,7 +347,7 @@ namespace QCCNCC
                 string _stt_rec = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString();
                 StartUp.DeleteVoucher(_stt_rec);
                 StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
-                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'";
+                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + StartUpTrans.DsTrans.Tables[0].Rows[0]["stt_rec"].ToString() + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
                 DataRow[] dataRowArray = StartUpTrans.DsTrans.Tables[0].Select("stt_rec='" + _stt_rec + "'");
                 StartUpTrans.DsTrans.Tables[0].Rows.Remove(dataRowArray[0]);
                 if (StartUpTrans.DsTrans.Tables[1].Rows.Count > 0)
@@ -364,6 +376,7 @@ namespace QCCNCC
                 FrmTim frmTim = new FrmTim(StartupBase.SasObj, StartUpTrans.filterId, StartUp.tableList);
                 SysFunc.LoadIcon((Window)frmTim);
                 frmTim.ShowDialog();
+                this.LoadMissingCriteria();
             }
             catch (Exception ex)
             {
@@ -396,7 +409,8 @@ namespace QCCNCC
                 string str = (formView.DataGrid.DataSource as DataView)[index]["stt_rec"].ToString();
                 FrmPoctpna.iRow = index + 1;
                 StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + str + "'";
-                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'";
+                StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + str + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
+            this.LoadMissingCriteria();
             }
         }
 
@@ -410,6 +424,165 @@ namespace QCCNCC
 
         }
 
+        // Add missing criteria without replacing scores already entered on the voucher.
+        private void RemoveUnscoredDuplicateCriteria()
+        {
+            DataTable details = StartUpTrans.DsTrans.Tables[1];
+            string voucher = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString();
+            Dictionary<string, DataRow> kept = new Dictionary<string, DataRow>(StringComparer.OrdinalIgnoreCase);
+            List<DataRow> remove = new List<DataRow>();
+            foreach (DataRow row in details.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted || row["stt_rec"].ToString() != voucher)
+                    continue;
+                string code = row["ma_tieu_chi"].ToString().Trim();
+                if (code.Length == 0) continue;
+                DataRow previous;
+                if (!kept.TryGetValue(code, out previous)) { kept.Add(code, row); continue; }
+                if (IsUnscoredCriterion(row)) remove.Add(row);
+                else if (IsUnscoredCriterion(previous)) { remove.Add(previous); kept[code] = row; }
+            }
+            foreach (DataRow row in remove) row.Delete();
+        }
+
+        private bool IsUnscoredCriterion(DataRow row)
+        {
+            foreach (DataColumn column in row.Table.Columns)
+            {
+                object value = row[column];
+                if (value == DBNull.Value) continue;
+                if ((column.DataType == typeof(decimal) || column.DataType == typeof(double) || column.DataType == typeof(int)) && Convert.ToDecimal(value) != 0)
+                    return false;
+                if ((column.ColumnName.StartsWith("gc_") || column.ColumnName == "ghi_chu" || column.ColumnName == "ten_dien_giai") && value.ToString().Trim().Length > 0)
+                    return false;
+            }
+            return true;
+        }
+        private void InitializeScoreTotals()
+        {
+            DataTable details = StartUpTrans.DsTrans.Tables[1];
+            if (!details.Columns.Contains("criteria_visible"))
+            {
+                DataColumn visibility = details.Columns.Add("criteria_visible", typeof(bool));
+                visibility.DefaultValue = true;
+            }
+            if (!details.Columns.Contains("tong_diem"))
+                details.Columns.Add("tong_diem", typeof(decimal), "ISNULL(tuyet_voi, 0) + ISNULL(tot, 0) + ISNULL(hai_long, 0) + ISNULL(khong_hl, 0) + ISNULL(khong_tot, 0)");
+            details.DefaultView.ListChanged -= ScoreTotals_ListChanged;
+            details.DefaultView.ListChanged += ScoreTotals_ListChanged;
+            this.UpdateScoreTotal();
+        }
+
+        private void ScoreTotals_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            this.UpdateScoreTotal();
+        }
+
+        private void UpdateScoreTotal()
+        {
+            decimal total = 0;
+            foreach (DataRowView detail in StartUpTrans.DsTrans.Tables[1].DefaultView)
+                if (detail["tong_diem"] != DBNull.Value)
+                    total += Convert.ToDecimal(detail["tong_diem"]);
+            this.txtTongDiemPhieu.Text = total.ToString("N2");
+            this.UpdateEvaluationResult(total);
+        }
+        private void Range_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtKetQua == null || txtDatTu == null || txtDatDen == null || txtKhongDatTu == null || txtKhongDatDen == null || StartUpTrans.DsTrans == null || !StartUpTrans.DsTrans.Tables[1].Columns.Contains("tong_diem"))
+                return;
+            this.UpdateScoreTotal();
+        }
+
+        private static bool TryReadRangeNumber(string text, out decimal value)
+        {
+            // Range inputs have decimals but never thousands separators.
+            return decimal.TryParse(text.Trim().Replace(',', '.'),
+                System.Globalization.NumberStyles.AllowLeadingSign | System.Globalization.NumberStyles.AllowDecimalPoint,
+                System.Globalization.CultureInfo.InvariantCulture, out value);
+        }
+        private bool ReadEvaluationRanges(out decimal passFrom, out decimal passTo, out decimal failFrom, out decimal failTo)
+        {
+            passFrom = passTo = failFrom = failTo = 0;
+            return TryReadRangeNumber(txtDatTu.Text, out passFrom) && TryReadRangeNumber(txtDatDen.Text, out passTo)
+                && TryReadRangeNumber(txtKhongDatTu.Text, out failFrom) && TryReadRangeNumber(txtKhongDatDen.Text, out failTo)
+                && passFrom <= passTo && failFrom <= failTo && (passTo < failFrom || failTo < passFrom);
+        }
+
+        private void UpdateEvaluationResult(decimal total)
+        {
+            decimal passFrom, passTo, failFrom, failTo;
+            txtKetQua.Text = "Chưa xác định";
+            if (!ReadEvaluationRanges(out passFrom, out passTo, out failFrom, out failTo)) return;
+            if (total >= passFrom && total <= passTo) txtKetQua.Text = "Đạt";
+            else if (total >= failFrom && total <= failTo) txtKetQua.Text = "Không đạt";
+        }
+        private void LoadMissingCriteria()
+        {
+            this.InitializeScoreTotals();
+            DataView header = StartUpTrans.DsTrans.Tables[0].DefaultView;
+            if (header.Count == 0 || string.IsNullOrEmpty(header[0]["stt_rec"].ToString().Trim()))
+                return;
+
+            DataTable criteria = CriterionMetadata.LoadCatalog();
+            DataTable details = StartUpTrans.DsTrans.Tables[1];
+            if (!details.Columns.Contains("thang_diem_tc"))
+                details.Columns.Add("thang_diem_tc", typeof(string));
+            if (!details.Columns.Contains("trong_so_tc"))
+                details.Columns.Add("trong_so_tc", typeof(string));
+            string voucher = header[0]["stt_rec"].ToString();
+            HashSet<string> allowed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (DataRow criterion in criteria.Rows)
+                allowed.Add(criterion["ma_tieu_chi"].ToString().Trim());
+            foreach (DataRow row in details.Rows)
+                if (row.RowState != DataRowState.Deleted && row["stt_rec"].ToString() == voucher)
+                    row["criteria_visible"] = allowed.Contains(row["ma_tieu_chi"].ToString().Trim());
+            this.RemoveUnscoredDuplicateCriteria();
+            HashSet<string> existing = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            int sequence = 0;
+            foreach (DataRow detail in details.Rows)
+            {
+                if (detail.RowState == DataRowState.Deleted || detail["stt_rec"].ToString() != voucher)
+                    continue;
+                existing.Add(detail["ma_tieu_chi"].ToString().Trim());
+                int number;
+                if (int.TryParse(detail["stt_rec0"].ToString(), out number))
+                    sequence = Math.Max(sequence, number);
+            }
+            foreach (DataRow criterion in criteria.Rows)
+            {
+                string code = criterion["ma_tieu_chi"].ToString().Trim();
+                if (code.Length == 0) continue;
+                if (!existing.Add(code))
+                {
+                    foreach (DataRow current in details.Rows)
+                        if (current.RowState != DataRowState.Deleted && current["stt_rec"].ToString() == voucher && string.Equals(current["ma_tieu_chi"].ToString().Trim(), code, StringComparison.OrdinalIgnoreCase))
+                        {
+                            current["ten_tieu_chi"] = criterion["ten_tieu_chi"];
+                            current["thang_diem_tc"] = criterion["thang_diem"];
+                            current["trong_so_tc"] = criterion["trong_so"];
+                        }
+                    continue;
+                }
+                DataRow detail = details.NewRow();
+                detail["stt_rec"] = header[0]["stt_rec"];
+                detail["stt_rec0"] = string.Format(StartupBase.SasObj.GetSysvar("M_FORMAT_stt_rec0").ToString(), ++sequence);
+                detail["ma_ct"] = StartUpTrans.Ma_ct;
+                detail["ngay_ct"] = header[0]["ngay_ct"];
+                detail["ma_tieu_chi"] = code;
+                detail["criteria_visible"] = true;
+                detail["ten_tieu_chi"] = criterion["ten_tieu_chi"];
+                detail["thang_diem_tc"] = criterion["thang_diem"];
+                detail["trong_so_tc"] = criterion["trong_so"];
+                foreach (string field in new string[] { "so_luong", "so_luong1", "thang_diem", "tuyet_voi", "tot", "hai_long", "khong_hl", "khong_tot" })
+                    detail[field] = 0;
+                FreeCodeFieldLib.CarryFreeCodeFields(StartupBase.SasObj, StartUpTrans.Ma_ct, details.DefaultView, detail, 1);
+                details.Rows.Add(detail);
+            }
+            CriterionMetadata.ApplyToVoucher(details, criteria);
+            details.DefaultView.RowFilter = "stt_rec = '" + voucher.Replace("'", "''") + "' AND criteria_visible = true";
+            this.UpdateScoreTotal();
+        }
         private void NewRowCt()
         {
             try
@@ -455,6 +628,9 @@ namespace QCCNCC
                 {
                     switch (e.Cell.Field.Name)
                     {
+                        case "ma_tieu_chi":
+                            this.LoadMissingCriteria();
+                            break;
                         case "ma_vt_i":
                             if (e.Editor.Value == null)
                                 break;
@@ -633,6 +809,17 @@ namespace QCCNCC
                             flag = true;
                         }
                     }
+                    if (!flag)
+                    {
+                        this.RemoveUnscoredDuplicateCriteria();
+                        HashSet<string> codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                        foreach (DataRowView detail in StartUpTrans.DsTrans.Tables[1].DefaultView)
+                            if (!codes.Add(detail["ma_tieu_chi"].ToString().Trim()))
+                            {
+                                MessageBox.Show("Mã tiêu chí bị trùng và các dòng đều có dữ liệu. Vui lòng kiểm tra trước khi lưu: " + detail["ma_tieu_chi"].ToString().Trim());
+                                return;
+                            }
+                    }
                     if (!flag && StartUpTrans.DsTrans.Tables[1].DefaultView.Count > 0)
                     {
                         for (int index = 0; index < StartUpTrans.DsTrans.Tables[1].DefaultView.Count; ++index)
@@ -677,6 +864,32 @@ namespace QCCNCC
                         StartUpTrans.DsTrans.Tables[0].AcceptChanges();
                         StartUpTrans.DsTrans.Tables[1].AcceptChanges();
                     }
+                    decimal passFrom, passTo, failFrom, failTo;
+                    bool rangesEmpty = string.IsNullOrEmpty(txtDatTu.Text.Trim()) && string.IsNullOrEmpty(txtDatDen.Text.Trim()) && string.IsNullOrEmpty(txtKhongDatTu.Text.Trim()) && string.IsNullOrEmpty(txtKhongDatDen.Text.Trim());
+                    if (!rangesEmpty && !ReadEvaluationRanges(out passFrom, out passTo, out failFrom, out failTo))
+                    {
+                        MessageBox.Show("Vui lòng nhập đủ bốn giới hạn bằng số. Giới hạn từ không được lớn hơn giới hạn đến; hai khoảng Đạt và Không đạt không được chồng lên nhau.");
+                        return;
+                    }
+                    if (rangesEmpty)
+                        foreach (string column in new string[] { "dat_tu", "dat_den", "khong_dat_tu", "khong_dat_den" })
+                            StartUpTrans.DsTrans.Tables[0].DefaultView[0][column] = DBNull.Value;
+                    if (!rangesEmpty)
+                    {
+                        ReadEvaluationRanges(out passFrom, out passTo, out failFrom, out failTo);
+                        DataRowView header = StartUpTrans.DsTrans.Tables[0].DefaultView[0];
+                        header["dat_tu"] = passFrom;
+                        header["dat_den"] = passTo;
+                        header["khong_dat_tu"] = failFrom;
+                        header["khong_dat_den"] = failTo;
+                    }
+                    StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_ct"] = StartUpTrans.Ma_ct;
+                    StartUpTrans.DsTrans.Tables[0].DefaultView[0]["trang_thai_dg"] = "1";
+                    decimal voucherTotal = 0;
+                    foreach (DataRowView detail in StartUpTrans.DsTrans.Tables[1].DefaultView)
+                        if (detail["tong_diem"] != DBNull.Value)
+                            voucherTotal += Convert.ToDecimal(detail["tong_diem"]);
+                    StartUpTrans.DsTrans.Tables[0].DefaultView[0]["tong_diem"] = voucherTotal;
                     DataTable LocalTable1 = StartUpTrans.DsTrans.Tables[0].Clone();
                     StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ngay_lct"] = StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ngay_ct"];
                     //StartUpTrans.DsTrans.Tables[0].DefaultView[0]["ma_hd"] = (object)StartUpTrans.DsTrans.Tables[0].DefaultView[0]["so_ct"].ToString().Trim();
@@ -691,13 +904,26 @@ namespace QCCNCC
                     else
                     {
                         DataTable LocalTable2 = StartUpTrans.DsTrans.Tables[1].Clone();
-                        foreach (DataRowView dataRowView in StartUpTrans.DsTrans.Tables[1].DefaultView)
+                        // Keep stored details that are hidden by the current criterion category.
+                        foreach (DataRow storedDetail in StartUpTrans.DsTrans.Tables[1].Rows)
                         {
+                            if (storedDetail.RowState == DataRowState.Deleted || storedDetail["stt_rec"].ToString() != StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString())
+                                continue;
                             if (!this.IsSequenceSave)
-                                dataRowView.Row["so_ct"] = (object)this.txtSo_ct.Text;
-                            LocalTable2.Rows.Add(dataRowView.Row.ItemArray);
+                                storedDetail["so_ct"] = this.txtSo_ct.Text;
+                            LocalTable2.Rows.Add(storedDetail.ItemArray);
                         }
 
+                        if (LocalTable2.Columns.Contains("muc_tieu"))
+                            LocalTable2.Columns.Remove("muc_tieu");
+                        if (LocalTable2.Columns.Contains("criteria_visible"))
+                            LocalTable2.Columns.Remove("criteria_visible");
+                        if (LocalTable2.Columns.Contains("trong_so_tc"))
+                            LocalTable2.Columns.Remove("trong_so_tc");
+                        if (LocalTable2.Columns.Contains("tong_diem"))
+                            LocalTable2.Columns.Remove("tong_diem");
+                        if (LocalTable2.Columns.Contains("thang_diem_tc"))
+                            LocalTable2.Columns.Remove("thang_diem_tc");
                         if (!DataProvider.UpdateCtTable(StartupBase.SasObj, StartUpTrans.DmctInfo["m_ctdbf"].ToString(), LocalTable2, StartUpTrans.DsTrans.Tables[0].DefaultView[0]["stt_rec"].ToString()))
                         {
                             int num1 = (int)ExMessageBox.Show(2285, StartupBase.SasObj, "Lưu không thành công, kiểm tra lại dữ liệu!", "", MessageBoxButton.OK, MessageBoxImage.Asterisk);

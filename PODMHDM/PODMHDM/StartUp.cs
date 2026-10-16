@@ -127,6 +127,16 @@ namespace PODMHDM
                     StartUpTrans.DsTrans = DataProvider.FillCommand(StartupBase.SasObj, StartUp.TransFilterCmd);
                     StartUpTrans.DsTrans.Tables[0].DefaultView.Sort = "ngay_ct asc, so_ct asc";
                     StartUpTrans.DsTrans.Tables[1].DefaultView.Sort = "stt_rec0 ASC";
+                    if (!StartUpTrans.DsTrans.Tables[0].Columns.Contains("bu_hang"))
+                    {
+                        StartUpTrans.DsTrans.Tables[0].Columns.Add("bu_hang", typeof(bool));
+                        StartUpTrans.DsTrans.Tables[0].Columns["bu_hang"].DefaultValue = false;
+                    }
+                    foreach (DataRow existingRow in StartUpTrans.DsTrans.Tables[0].Rows)
+                    {
+                        if (existingRow["bu_hang"] == DBNull.Value)
+                            existingRow["bu_hang"] = false;
+                    }
                     DataRow row = StartUpTrans.DsTrans.Tables[0].NewRow();
                     row["stt_rec"] = (object)string.Empty;
                     row["ma_nt"] = (object)StartUpTrans.M_ma_nt0;
@@ -359,7 +369,7 @@ namespace PODMHDM
                 string soLuongSql = Convert.ToDecimal(so_luong).ToString();
 
                 string updateCommand = string.Format(
-                    @"INSERT INTO dmhdmctgh
+                    @"INSERT INTO dmhdmctgt
         (stt_rec, stt_rec0, packing, he_so, dvt, so_luong, ngay_giao)
         VALUES
         ('{0}', '{1}', {2}, {3}, '{4}', {5}, '{6}')",
@@ -440,7 +450,7 @@ namespace PODMHDM
                 string soLuongSql = Convert.ToDecimal(so_luong).ToString();
 
                 string updateCommand = string.Format(
-      @"UPDATE dmhdmctgh
+      @"UPDATE dmhdmctgt
         SET packing = {1},
             he_so = {2},
             dvt = '{3}',

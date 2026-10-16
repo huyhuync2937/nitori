@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\SISERPSME2025\Source\QCCNCC\QCCNCC\obj\Debug\
+\\192.168.0.5\sis_demo\SISERPSME2025_NITORI\Source\QCCNCC\QCCNCC\obj\Debug\
 QCCNCC
 none
 false
 DEBUG;TRACE
-D:\SISERPSME2025\Source\QCCNCC\QCCNCC\App.xaml
+\\192.168.0.5\sis_demo\SISERPSME2025_NITORI\Source\QCCNCC\QCCNCC\App.xaml
 6-787064893
 
 18-1123762223
-24-1364426092
+24-1592869396
 FrmIn.xaml;FrmLoaddonhang.xaml;FrmLoc.xaml;FrmPoctpna.xaml;FrmPoctpnaCopy.xaml;FrmTim.xaml;
 
-False
+True
 

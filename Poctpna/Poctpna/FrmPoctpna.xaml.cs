@@ -992,7 +992,14 @@ namespace Poctpna
                                 }
                             }
 
+                            this.UpdateSttRec0Hdm(e.Cell.Record);
                             break;
+                        }
+                        break;
+                    case "ma_hdm_i":
+                        if (e.Cell.IsDataChanged)
+                        {
+                            this.UpdateSttRec0Hdm(e.Cell.Record);
                         }
                         break;
                     case "dvt1":
@@ -3344,7 +3351,12 @@ namespace Poctpna
                                 row2.ItemArray = dataTable.Rows[0].ItemArray;
                             row2["ton13"] = (object)DBNull.Value;
                             row2["tk_vt"] = GetTkVt(row1["ma_vt"].ToString());
-                            row2["stt_rec0_hdm"] = row1["stt_rec0"];
+
+                            string maVtCheck = row1["ma_vt"].ToString().Trim();
+                            string maHdmICheck = row1["so_ct"].ToString().Trim();
+                            DataRow[] existingRows = StartUpTrans.DsTrans.Tables[1].Select(
+                                "ma_vt = '" + maVtCheck.Replace("'", "''") + "' AND ma_hdm_i = '" + maHdmICheck.Replace("'", "''") + "'");
+                            row2["stt_rec0_hdm"] = existingRows.Length > 0 ? existingRows[0]["stt_rec0_hdm"] : row1["stt_rec0"];
                             row2["ma_hdm_i"] = row1["so_ct"];
                             row2["ma_kho_i"] = row1["ma_kho_i"];
 
@@ -3428,6 +3440,24 @@ namespace Poctpna
             sqlCommand.Parameters.Add("@ma_vt", SqlDbType.Char, 16).Value = ma_vt;
             object result = StartupBase.SasObj.ExcuteScalar(sqlCommand);
             return result != null && result != DBNull.Value ? result.ToString().Trim() : "";
+        }
+
+        private void UpdateSttRec0Hdm(DataRecord record)
+        {
+            if (record == null)
+                return;
+            string maVtCheck = record.Cells["ma_vt"].Value?.ToString().Trim();
+            string maHdmICheck = record.Cells["ma_hdm_i"].Value?.ToString().Trim();
+            if (string.IsNullOrEmpty(maVtCheck) || string.IsNullOrEmpty(maHdmICheck))
+                return;
+            DataRow currentRow = (record.DataItem as DataRowView)?.Row;
+            DataRow[] existingRows = StartUpTrans.DsTrans.Tables[1].Select(
+                "ma_vt = '" + maVtCheck.Replace("'", "''") + "' AND ma_hdm_i = '" + maHdmICheck.Replace("'", "''") + "'")
+                .Where(r => r != currentRow).ToArray();
+            if (existingRows.Length > 0)
+                record.Cells["stt_rec0_hdm"].Value = existingRows[0]["stt_rec0_hdm"];
+            //else if (currentRow != null)
+            //    record.Cells["stt_rec0_hdm"].Value = currentRow["stt_rec0"];
         }
 
         private void CreatePC(DataTable dt)

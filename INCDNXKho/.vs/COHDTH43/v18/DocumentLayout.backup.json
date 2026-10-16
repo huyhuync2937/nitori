@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\cohdth43\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|solutionrelative:cohdth43\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\cohdth43\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|solutionrelative:cohdth43\\frmsetvalue.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\cohdth43\\frmsetvalue.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|solutionrelative:cohdth43\\frmsetvalue.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\cohdth43\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|solutionrelative:cohdth43\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|c:\\kd1\\siserpsme2025\\siserpsme2025_ductan\\source\\cohdth43\\cohdth43\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|COHDTH43\\COHDTH43.csproj|solutionrelative:cohdth43\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\StartUp.cs",
+              "RelativeDocumentMoniker": "COHDTH43\\StartUp.cs",
+              "ToolTip": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\StartUp.cs",
+              "RelativeToolTip": "COHDTH43\\StartUp.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAiwPsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:04:57.584Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d562c6a0-d2fe-4c19-a8b3-e5cbc09bf375}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmSetValue.xaml",
+              "DocumentMoniker": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\FrmSetValue.xaml",
+              "RelativeDocumentMoniker": "COHDTH43\\FrmSetValue.xaml",
+              "ToolTip": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\FrmSetValue.xaml",
+              "RelativeToolTip": "COHDTH43\\FrmSetValue.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-10T04:37:17.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmSetValue.xaml.cs",
+              "DocumentMoniker": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\FrmSetValue.xaml.cs",
+              "RelativeDocumentMoniker": "COHDTH43\\FrmSetValue.xaml.cs",
+              "ToolTip": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\FrmSetValue.xaml.cs",
+              "RelativeToolTip": "COHDTH43\\FrmSetValue.xaml.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAiwBwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T04:37:16.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\App.xaml.cs",
+              "RelativeDocumentMoniker": "COHDTH43\\App.xaml.cs",
+              "ToolTip": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\App.xaml.cs",
+              "RelativeToolTip": "COHDTH43\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:07:08.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "COHDTH43\\FrmLoc.xaml.cs",
+              "ToolTip": "C:\\KD1\\SISERPSME2025\\SISERPSME2025_DUCTAN\\Source\\COHDTH43\\COHDTH43\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "COHDTH43\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAiwJwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:04:56.802Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 219,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

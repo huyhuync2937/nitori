@@ -1,4 +1,4 @@
-﻿using SasControls;
+using SasControls;
 using SasDataLib;
 using SasDefine;
 using SasErrorLib;
@@ -122,6 +122,7 @@ namespace QCCNCC
                             str += string.Format(" AND ngay_ct BETWEEN '{0:yyyyMMdd}' AND '{1:yyyyMMdd}'", (object)StartUp.M_NGAY_BAT_DAU, (object)StartUp.M_NGAY_KET_THUC);
                         }
                     }
+                    str += " AND ma_ct = 'QCC' AND ISNULL(trang_thai_dg,'1') = '1'";
                     string format = "exec {0} @ma_ct, @PhFilter, @CtFilter, @GtFilter,@sl_ct;";
                     StartUp.TransFilterCmd = new SqlCommand(StartUpTrans.Process_Store == null || StartUpTrans.Process_Store.Length <= 0 ? string.Format(format, (object)"[LoadVoucher]") : string.Format(format, (object)StartUpTrans.Process_Store[0]));
                     StartUp.TransFilterCmd.Parameters.Add("@ma_ct", SqlDbType.Char).Value = (object)StartUpTrans.Ma_ct;
@@ -168,7 +169,7 @@ namespace QCCNCC
         public static void DataFilter(string stt_rec)
         {
             StartUpTrans.DsTrans.Tables[0].DefaultView.RowFilter = "stt_rec= '" + stt_rec + "'";
-            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + stt_rec + "'";
+            StartUpTrans.DsTrans.Tables[1].DefaultView.RowFilter = "stt_rec= '" + stt_rec + "'" + (StartUpTrans.DsTrans.Tables[1].Columns.Contains("criteria_visible") ? " AND criteria_visible = true" : "");
         }
 
         public static DataSet CheckData()

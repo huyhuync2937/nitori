@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\INNVLALERT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|D:\\SISERPSME2025\\Source\\INNVLALERT\\innvlalert\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|d:\\siserpsme2025\\source\\innvlalert\\innvlalert\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|solutionrelative:innvlalert\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|D:\\SISERPSME2025\\Source\\INNVLALERT\\innvlalert\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|solutionrelative:innvlalert\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|D:\\SISERPSME2025\\Source\\INNVLALERT\\innvlalert\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|D:\\SISERPSME2025\\Source\\INNVLALERT\\innvlalert\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|solutionrelative:innvlalert\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|d:\\siserpsme2025\\source\\innvlalert\\innvlalert\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7967D0C9-24C3-4506-AE3C-B661B481E9D1}|INNVLALERT\\INNVLALERT.csproj|solutionrelative:innvlalert\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|INNVLALERT||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
@@ -33,32 +33,30 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FrmLoc.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INNVLALERT\\INNVLALERT\\FrmLoc.xaml",
               "RelativeDocumentMoniker": "INNVLALERT\\FrmLoc.xaml",
               "ToolTip": "D:\\SISERPSME2025\\Source\\INNVLALERT\\INNVLALERT\\FrmLoc.xaml",
               "RelativeToolTip": "INNVLALERT\\FrmLoc.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-08-03T10:09:22.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-03T10:09:22.781Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FrmLoc.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INNVLALERT\\INNVLALERT\\FrmLoc.xaml.cs",
               "RelativeDocumentMoniker": "INNVLALERT\\FrmLoc.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\INNVLALERT\\INNVLALERT\\FrmLoc.xaml.cs",
               "RelativeToolTip": "INNVLALERT\\FrmLoc.xaml.cs",
-              "ViewState": "AgIAANoAAAAAAAAAAAAuwOwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAIwJwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-03T10:09:21.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-03T10:09:21.934Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\INNVLALERT\\INNVLALERT\\App.xaml.cs",
               "RelativeDocumentMoniker": "INNVLALERT\\App.xaml.cs",
@@ -66,8 +64,7 @@
               "RelativeToolTip": "INNVLALERT\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-03T10:09:05.02Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-03T10:09:05.02Z"
             },
             {
               "$type": "Document",
@@ -77,7 +74,7 @@
               "RelativeDocumentMoniker": "INNVLALERT\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\INNVLALERT\\INNVLALERT\\StartUp.cs",
               "RelativeToolTip": "INNVLALERT\\StartUp.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAIwFkAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAUwFkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T10:08:42.174Z",
               "EditorCaption": ""

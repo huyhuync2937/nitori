@@ -1,7 +1,5 @@
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\COQCS.csproj.AssemblyReference.cache
-D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmSetValue.baml
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmLoc.g.cs
-D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmSetValue.g.cs
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\App.g.cs
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\App.baml
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmLoc.baml
@@ -16,3 +14,7 @@ D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\COQCS.g.resources
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\COQCS.Properties.Resources.resources
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\COQCS.exe
 D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\COQCS.pdb
+D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmBatchProgress.baml
+D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmBatchProgress.g.cs
+D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmBatchErrors.baml
+D:\SISERPSME2025\Source\COQCS\COQCS\obj\Debug\FrmBatchErrors.g.cs

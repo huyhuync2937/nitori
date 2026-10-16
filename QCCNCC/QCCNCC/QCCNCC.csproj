@@ -104,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CriterionMetadata.cs" />
     <Compile Include="BindingFilter.cs" />
     <Compile Include="BindingReadonly.cs" />
     <Compile Include="BindingStatusVoucher.cs" />

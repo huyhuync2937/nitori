@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|solutionrelative:colghss1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|d:\\siserpsme2025\\source\\colghss1\\colghss1\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|solutionrelative:colghss1\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|D:\\SISERPSME2025\\Source\\COLGHSS1\\colghss1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|solutionrelative:colghss1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|d:\\siserpsme2025\\source\\colghss1\\colghss1\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|D:\\SISERPSME2025\\Source\\COLGHSS1\\colghss1\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|solutionrelative:colghss1\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|D:\\SISERPSME2025\\Source\\COLGHSS1\\colghss1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|solutionrelative:colghss1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|D:\\SISERPSME2025\\Source\\COLGHSS1\\colghss1\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78E82E8D-A014-427B-AB58-46FE69C82B81}|COLGHSS1\\COLGHSS1.csproj|solutionrelative:colghss1\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,20 +42,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "FrmLoc.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGHSS1\\COLGHSS1\\FrmLoc.xaml.cs",
               "RelativeDocumentMoniker": "COLGHSS1\\FrmLoc.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\COLGHSS1\\COLGHSS1\\FrmLoc.xaml.cs",
               "RelativeToolTip": "COLGHSS1\\FrmLoc.xaml.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAnwJsAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAADwv6EAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-16T03:44:58.481Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\COLGHSS1\\COLGHSS1\\App.xaml.cs",
               "RelativeDocumentMoniker": "COLGHSS1\\App.xaml.cs",
@@ -63,7 +63,8 @@
               "RelativeToolTip": "COLGHSS1\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-26T03:43:12.842Z"
+              "WhenOpened": "2026-07-26T03:43:12.842Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -73,7 +74,7 @@
               "RelativeDocumentMoniker": "COLGHSS1\\StartUp.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\COLGHSS1\\COLGHSS1\\StartUp.cs",
               "RelativeToolTip": "COLGHSS1\\StartUp.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAQwF8AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAiwGYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-26T03:42:46.837Z",
               "EditorCaption": ""

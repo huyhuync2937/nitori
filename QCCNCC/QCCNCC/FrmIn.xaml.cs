@@ -22,6 +22,7 @@ namespace QCCNCC
             this.GridSearch.LocalSasObj = StartupBase.SasObj;
             this.GridSearch.ReportGroupName = StartUpTrans.CommandInfo["rep_file"].ToString();
             this.dsSource = StartUpTrans.DsTrans.Copy();
+            CriterionMetadata.PrepareReport(this.dsSource);
           
             this.dsSource.Tables[0].Columns.Add(new DataColumn("so_lien", typeof(int))
             {

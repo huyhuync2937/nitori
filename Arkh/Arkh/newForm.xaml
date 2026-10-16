@@ -254,11 +254,18 @@
                     Grid.Row="2"
                     Grid.Column="4"/>
 
-                                <TextBlock Name="tblghi_chu" Text="Ghi chú" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"
+                                <TextBlock Name="tblghi_chu" Text="Ghi chú" Grid.Row="3" Grid.Column="0"
                            Margin="0,5,0,0"/>
                                 <TextBox PreviewKeyDown="txtghi_chu_PreviewKeyDown" x:Name="txtghi_chu" Grid.Column="1" Margin="0,3.5,0,2.5"
-                         Height="Auto" Grid.Row="3" Grid.ColumnSpan="5" TabIndex="190" VerticalScrollBarVisibility="Auto"
+                         Height="Auto" Grid.Row="3" Grid.ColumnSpan="1" TabIndex="190" VerticalScrollBarVisibility="Auto"
                          TextWrapping="Wrap" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx ghi_chu}"/>
+
+                                <TextBlock Name="tbldk_gh" Text="Đk giao hàng" Grid.Row="3" Grid.Column="3" 
+  Margin="0,5,0,0"/>
+                                <TextBox  x:Name="txtdk_gh" Grid.Column="4" Margin="0,3.5,0,2.5"
+Height="Auto" Grid.Row="3" Grid.ColumnSpan="1" TabIndex="191" 
+TextWrapping="Wrap" Style="{StaticResource ReadOnly}" Text="{smc:BindingEx dk_gh}"/>
+
                             </smc:GridLayout>
                         </GroupBox>
 

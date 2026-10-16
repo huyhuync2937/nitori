@@ -144,7 +144,7 @@ namespace INCD1shh
                     return;
                 //string filter = this.getFilter();
                 //string condition = this.getCondition();
-                this.Hide();
+              //  this.Hide();
                 if (!string.IsNullOrEmpty(this.txtHDTuNgay.Text))
                     StartUp.hdTuNgay_ = string.Format("{0:dd-MM-yyyy}", this.txtHDTuNgay.Value);
                 if (!string.IsNullOrEmpty(this.txtHDDenNgay.Text))

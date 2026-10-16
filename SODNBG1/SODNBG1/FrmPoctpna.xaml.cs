@@ -20,6 +20,8 @@ using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -1270,11 +1272,11 @@ namespace SODNBG1
                             frm.ShowDialog();
                             if (!frm.isError)
                             {
-                                //Thực hiện gửi Email
+                                //Thực hiện gửi Email bằng Outlook
                                 FrmWaiting frmWaiting = new FrmWaiting(600);
                                 frmWaiting.Set(200);
                                 frmWaiting.Show();
-                                msg = SasUtilities.ClsEmail.sendmail(EmailFrom, EmailPassFrom, frm.txtTEmail.Text.ToString().Trim(), "", "", frm.txtTieude.Text.ToString().Trim(), frm.txtNoidung1.Text.ToString().Trim().Trim(), link);
+                                msg = FrmPoctpna.SendMailOutlook(EmailFrom, frm.txtTEmail.Text.ToString().Trim(), frm.txtTieude.Text.ToString().Trim(), frm.txtNoidung1.Text.ToString().Trim(), link);
                                 frmWaiting.Set(600);
                                 frmWaiting.Close();
 
@@ -1303,6 +1305,63 @@ namespace SODNBG1
             catch (Exception ex)
             {
                 ErrorLog.CatchMessage(ex);
+            }
+        }
+
+        private static string SendMailOutlook(string emailFrom, string to, string subject, string htmlBody, string attachmentPath)
+        {
+            try
+            {
+                Type outlookType = Type.GetTypeFromProgID("Outlook.Application");
+                if (outlookType == null)
+                    return "Không tìm thấy Microsoft Outlook trên máy, không thể gửi Email.";
+
+                object outlookApp;
+                try
+                {
+                    outlookApp = Marshal.GetActiveObject("Outlook.Application");
+                }
+                catch (COMException)
+                {
+                    outlookApp = Activator.CreateInstance(outlookType);
+                }
+
+                object mailItem = outlookType.InvokeMember("CreateItem", BindingFlags.InvokeMethod, null, outlookApp, new object[] { 0 });
+                Type mailItemType = mailItem.GetType();
+
+                mailItemType.InvokeMember("To", BindingFlags.SetProperty, null, mailItem, new object[] { to });
+                mailItemType.InvokeMember("Subject", BindingFlags.SetProperty, null, mailItem, new object[] { subject });
+                mailItemType.InvokeMember("HTMLBody", BindingFlags.SetProperty, null, mailItem, new object[] { htmlBody });
+
+                if (!string.IsNullOrEmpty(attachmentPath) && File.Exists(attachmentPath))
+                {
+                    object attachments = mailItemType.InvokeMember("Attachments", BindingFlags.GetProperty, null, mailItem, null);
+                    attachments.GetType().InvokeMember("Add", BindingFlags.InvokeMethod, null, attachments, new object[] { attachmentPath });
+                }
+
+                if (!string.IsNullOrEmpty(emailFrom))
+                {
+                    object session = outlookType.InvokeMember("Session", BindingFlags.GetProperty, null, outlookApp, null);
+                    object accounts = session.GetType().InvokeMember("Accounts", BindingFlags.GetProperty, null, session, null);
+                    int accountCount = (int)accounts.GetType().InvokeMember("Count", BindingFlags.GetProperty, null, accounts, null);
+                    for (int i = 1; i <= accountCount; i++)
+                    {
+                        object account = accounts.GetType().InvokeMember("Item", BindingFlags.InvokeMethod, null, accounts, new object[] { i });
+                        string smtpAddress = (account.GetType().InvokeMember("SmtpAddress", BindingFlags.GetProperty, null, account, null) ?? "").ToString();
+                        if (smtpAddress.Equals(emailFrom, StringComparison.OrdinalIgnoreCase))
+                        {
+                            mailItemType.InvokeMember("SendUsingAccount", BindingFlags.SetProperty, null, mailItem, new object[] { account });
+                            break;
+                        }
+                    }
+                }
+
+                mailItemType.InvokeMember("Send", BindingFlags.InvokeMethod, null, mailItem, null);
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return "Gửi Email bằng Outlook thất bại: " + ex.Message;
             }
         }
     }

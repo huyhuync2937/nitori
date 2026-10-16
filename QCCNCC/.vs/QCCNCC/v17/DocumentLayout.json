@@ -3,31 +3,44 @@
   "WorkspaceRootPath": "D:\\SISERPSME2025\\Source\\QCCNCC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmpoctpna.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|D:\\SISERPSME2025\\Source\\QCCNCC\\qccncc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|D:\\SISERPSME2025\\Source\\QCCNCC\\qccncc\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmpoctpna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmtim.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmtim.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|D:\\SISERPSME2025\\Source\\QCCNCC\\qccncc\\frmloaddonhang.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmloaddonhang.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmtim.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmtim.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|D:\\SISERPSME2025\\Source\\QCCNCC\\qccncc\\frmloaddonhang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmloaddonhang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmloaddonhang.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LONGPT1\\AppData\\Local\\Temp\\.vsdbgsrc\\3d1921d600199106fdb2ca7404087d7a49a0b24e4a46349121eb239ef185823b\\ThrowHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmloc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|D:\\SISERPSME2025\\Source\\QCCNCC\\qccncc\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmloc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|d:\\siserpsme2025\\source\\qccncc\\qccncc\\frmpoctpnacopy.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{294B2205-6763-4F44-8824-BB681FBBE7B9}|QCCNCC\\QCCNCC.csproj|solutionrelative:qccncc\\frmpoctpnacopy.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,91 +50,134 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ThrowHelper.cs",
-              "DocumentMoniker": "C:\\Users\\LONGPT1\\AppData\\Local\\Temp\\.vsdbgsrc\\3d1921d600199106fdb2ca7404087d7a49a0b24e4a46349121eb239ef185823b\\ThrowHelper.cs",
-              "ToolTip": "C:\\Users\\LONGPT1\\AppData\\Local\\Temp\\.vsdbgsrc\\3d1921d600199106fdb2ca7404087d7a49a0b24e4a46349121eb239ef185823b\\ThrowHelper.cs [Read Only]",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAACAAAAAQAAAA==",
+              "Title": "FrmIn.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmIn.xaml.cs",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmIn.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmIn.xaml.cs",
+              "RelativeToolTip": "QCCNCC\\FrmIn.xaml.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T09:22:23.051Z",
-              "EditorCaption": " [Read Only]"
+              "WhenOpened": "2026-10-08T03:24:34.072Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "FrmLoaddonhang.xaml.cs",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoaddonhang.xaml.cs",
               "RelativeDocumentMoniker": "QCCNCC\\FrmLoaddonhang.xaml.cs",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoaddonhang.xaml.cs",
               "RelativeToolTip": "QCCNCC\\FrmLoaddonhang.xaml.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T09:03:48.265Z"
+              "WhenOpened": "2026-10-08T03:24:25.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FrmPoctpnaCopy.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpnaCopy.xaml.cs",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmPoctpnaCopy.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpnaCopy.xaml.cs",
+              "RelativeToolTip": "QCCNCC\\FrmPoctpnaCopy.xaml.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T03:23:54.884Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FrmLoaddonhang.xaml",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoaddonhang.xaml",
-              "RelativeDocumentMoniker": "QCCNCC\\FrmLoaddonhang.xaml",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoaddonhang.xaml",
-              "RelativeToolTip": "QCCNCC\\FrmLoaddonhang.xaml",
+              "Title": "FrmTim.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmTim.xaml.cs",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmTim.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmTim.xaml.cs",
+              "RelativeToolTip": "QCCNCC\\FrmTim.xaml.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAswJwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T03:21:51.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmTim.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmTim.xaml",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmTim.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmTim.xaml",
+              "RelativeToolTip": "QCCNCC\\FrmTim.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-06T09:03:38.117Z"
+              "WhenOpened": "2026-10-08T03:21:50.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FrmLoc.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoc.xaml.cs",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmLoc.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoc.xaml.cs",
+              "RelativeToolTip": "QCCNCC\\FrmLoc.xaml.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T03:21:42.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FrmLoc.xaml",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoc.xaml",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmLoc.xaml",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmLoc.xaml",
+              "RelativeToolTip": "QCCNCC\\FrmLoc.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-08T03:21:34.585Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "StartUp.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\StartUp.cs",
+              "RelativeDocumentMoniker": "QCCNCC\\StartUp.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\StartUp.cs",
+              "RelativeToolTip": "QCCNCC\\StartUp.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwEMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T03:17:57.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmPoctpna.xaml.cs",
+              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpna.xaml.cs",
+              "RelativeDocumentMoniker": "QCCNCC\\FrmPoctpna.xaml.cs",
+              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpna.xaml.cs",
+              "RelativeToolTip": "QCCNCC\\FrmPoctpna.xaml.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAowAICAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T03:17:51.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "FrmPoctpna.xaml",
               "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpna.xaml",
               "RelativeDocumentMoniker": "QCCNCC\\FrmPoctpna.xaml",
               "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpna.xaml",
               "RelativeToolTip": "QCCNCC\\FrmPoctpna.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-07-06T09:03:20.132Z",
+              "WhenOpened": "2026-10-08T03:16:05.182Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FrmPoctpna.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpna.xaml.cs",
-              "RelativeDocumentMoniker": "QCCNCC\\FrmPoctpna.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\FrmPoctpna.xaml.cs",
-              "RelativeToolTip": "QCCNCC\\FrmPoctpna.xaml.cs",
-              "ViewState": "AgIAACUCAAAAAAAAAAAWwDcCAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T09:03:19.091Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StartUp.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\StartUp.cs",
-              "RelativeDocumentMoniker": "QCCNCC\\StartUp.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\StartUp.cs",
-              "RelativeToolTip": "QCCNCC\\StartUp.cs",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAnwK0AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T09:02:48.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\App.xaml.cs",
-              "RelativeDocumentMoniker": "QCCNCC\\App.xaml.cs",
-              "ToolTip": "D:\\SISERPSME2025\\Source\\QCCNCC\\QCCNCC\\App.xaml.cs",
-              "RelativeToolTip": "QCCNCC\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAB6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T09:01:35.178Z"
             }
           ]
         }

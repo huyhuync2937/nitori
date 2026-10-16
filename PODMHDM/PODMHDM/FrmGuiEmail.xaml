@@ -16,9 +16,9 @@
   <smc:ConfirmGridView OnOk="ConfirmGridView_OnOk" OnCancel="ConfirmGridView_OnCancel" Name="GrdOkCancel">
     <GroupBox Name="Grdgroup" Margin="12,4,12,0" Style="{StaticResource NonHeaderGroupBoxStyle}">
       <smc:GridLayout Name="GrdInfo" RowCount="4" ColumnCount="3" ColumnWidths="120,140,*" RowHeights="25,25,*,25">
-        <TextBlock Name="tblFEmail" Text="Mail gửi" Grid.Column="0" Grid.Row="0"
+                <TextBlock Visibility="Hidden" Name="tblFEmail" Text="Mail gửi" Grid.Column="0" Grid.Row="0"
                    Style="{StaticResource ContentTextStyle}"/>
-        <TextBox Name="txtFEmail" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TabIndex="10" IsEnabled="False"/>
+                <TextBox  Visibility="Hidden" Name="txtFEmail" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TabIndex="10" IsEnabled="False"/>
         <TextBlock Name="tblTieude" Text="Tiêu đề" Grid.Column="0" Grid.Row="1"
                    Style="{StaticResource ContentTextStyle}"/>
         <TextBox Name="txtTieude" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" TabIndex="20"/>
